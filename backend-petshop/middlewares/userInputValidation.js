@@ -1,6 +1,6 @@
 import { check, validationResult } from 'express-validator';
 
-const userInputValidation = [
+export const userInputValidation = [
   check('firstName')
     .exists()
     .trim()
@@ -18,13 +18,21 @@ const userInputValidation = [
     .withMessage('Please enter a valid email!'),
 
   check('password')
-    .exists()
     .isStrongPassword({
       minLength: 8,
       minLowercase: 1,
       minUppercase: 1,
       minNumbers: 1,
+      minSymbols: 1,
+      returnScore: false,
+      pointsPerUnique: 0,
+      pointsPerRepeat: 0,
+      pointsForContainingLower: 0,
+      pointsForContainingUpper: 0,
+      pointsForContainingNumber: 0,
+      pointsForContainingSymbol: 0,
     })
+
     .withMessage(
       'Password should contain 8 minium characters, 1 lowercase, 1 uppercase and one number'
     ),
@@ -32,12 +40,13 @@ const userInputValidation = [
   (req, res, next) => {
     const result = validationResult(req);
     let error = null;
-    result.isEmpty()
-      ? next()
-      : (error = result.errors.reduce((acc, currentElement) => {
-          acc[currentElement.params] = currentElement.msg;
-          return acc;
-        }, {}));
-    next({ message: error });
+    next(
+      result.isEmpty()
+        ? null
+        : (error = result.errors.reduce((acc, currentElement) => {
+            acc[currentElement.param] = currentElement.msg;
+            return acc;
+          }, {}))
+    );
   },
 ];

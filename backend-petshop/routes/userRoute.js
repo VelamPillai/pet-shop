@@ -1,7 +1,14 @@
 import express from 'express';
 
-import { getAllUser, getSingleUser, addNewUser ,loginUser ,updateUser ,deleteUser } from '../controller/userController.js';
-
+import {
+  getAllUser,
+  getSingleUser,
+  addNewUser,
+  loginUser,
+  updateUser,
+  deleteUser,
+} from '../controller/userController.js';
+import { userInputValidation } from '../middlewares/userInputValidation.js';
 
 const route = express.Router();
 
@@ -12,7 +19,7 @@ route.get('/', getAllUser);
 route.get('/:id', getSingleUser);
 
 //POST - new user
-route.post('/signup', addNewUser);
+route.post('/signup', userInputValidation, addNewUser);
 
 //POST - login user
 route.post('/login', loginUser);
@@ -22,6 +29,5 @@ route.patch('/:id', updateUser);
 
 //DELETE - delete user
 route.delete('/:id', deleteUser);
-
 
 export default route;
