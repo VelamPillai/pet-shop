@@ -4,7 +4,7 @@ export default function CopyRights() {
   return (
     <div className="flex justify-center items-center mt-3">
       <p>
-        &copy; 2022 - Pet Store by Rana and Velam <sup>TM</sup>
+        &copy; 2022 - Pet Store by Velam and Rana <sup>TM</sup>
       </p>
     </div>
   );
