@@ -6,6 +6,9 @@ import morgan from 'morgan';
 import path from 'path';
 const __dirname = path.dirname(new URL(import.meta.url).pathname); 
 
+//import multer
+import multer from 'multer';
+
 //to access env parameters
 dotenv.config();
 
@@ -19,6 +22,23 @@ import  userRoute  from './routes/userRoute.js';
 //create and initialize express server
 const app = express();
 
+
+//multer - config
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      let fullPath = "./upload";
+      cb(null, fullPath);
+    },
+    filename: function (req, file, cb) {
+      let fileName = new Date().getDate() + "-" + file.originalname;
+      cb(null, fileName);
+    },
+  });
+const upload = multer({ storage: storage });
+//serve static file /pages
+app.use(express.static("upload"));
+
+
 //external middleware
 //req-log middleware
 app.use(morgan('dev')); 
@@ -29,8 +49,8 @@ app.use(express.json());
 //routes - custom middleware
 
 //GET ,POST,PATCH,DELETE - req '/user'endpoint and its controller
- app.use('/users', userRoute);
-
+//for save profileImage in the upload-folder
+app.use("/users", upload.single("profileImage"), userRoute);
 
 
  //page not found
