@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import multer from 'multer';
+import cors from 'cors';
 
 //import path: __dirname
 import path from 'path';
@@ -32,6 +33,9 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+
+// Cors middleware
+app.use(cors({ origin: 'http://localhost:3000' })); // '*' to allow all
 
 // server static files/pages
 app.use(express.static('upload'));
