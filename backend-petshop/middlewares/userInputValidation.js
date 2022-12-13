@@ -1,5 +1,6 @@
 import { check, validationResult } from 'express-validator';
 
+
 export const userInputValidation = [
   check('firstName')
     .exists()
@@ -50,3 +51,4 @@ export const userInputValidation = [
     );
   },
 ];
+
