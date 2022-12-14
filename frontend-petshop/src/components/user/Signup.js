@@ -1,13 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState ,useContext ,useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
+import { StoreContext } from '../../context/StoreContext';
 
 export default function Signup() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { state, setState } = useContext(StoreContext);
+
   const navigate = useNavigate();
+
+
+  // display - user icon
+  useEffect(() => {
+    setState(!state);
+  },[])
+
   //to get the form data
   const registerUser = (e) => {
     e.preventDefault();

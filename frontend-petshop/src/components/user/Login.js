@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
+import { StoreContext } from '../../context/StoreContext.js'
 
 export default function Login() {
   const navigate = useNavigate();
 
+   const {  setUser ,setState,state} = useContext(StoreContext);
+ 
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    setState(!state);
+  },[])
 
   const loginHandler = (e) => {
     e.preventDefault();
@@ -25,6 +33,11 @@ export default function Login() {
       .then((result) => {
         if (result.success) {
           toast.success('Logged in successfully');
+          console.log(result.data);
+          setUser(result.data);
+
+          
+         // setStatus(true);
           setTimeout(() => navigate('/'), 2000);
         } else {
           toast.error(result.message);

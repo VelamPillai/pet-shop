@@ -1,24 +1,27 @@
-import React, { useState } from "react";
+import React, { useContext} from "react";
 import {
   useNavigate,
   
 } from "react-router-dom";
 import { FaUserCircle, FaCartPlus } from "react-icons/fa";
+import { StoreContext } from "../../context/StoreContext";
 
 
 
 export default function HeaderMenu() {
   const navigate = useNavigate();
-  const [state, setState] = useState(false);
-
+  
+  const {user ,setState,state} =useContext(StoreContext)
   const navigateToUser = () => {
-    setState(() => !state);
+    setState(!state);
     navigate("/user", { replace: true });
   };
 
   return (
     <div className="flex text-4xl  ">
-      {state ? null : (
+
+      {user ? null : (
+        !state &&
         <FaUserCircle
           className="mx-4  border text-6xl border-orange-500 rounded p-2 hover:cursor-pointer"
           onClick={navigateToUser}
