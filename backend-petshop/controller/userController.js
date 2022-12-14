@@ -28,22 +28,20 @@ const getSingleUser = (req, res, next) => {
 //sign up - add new user
 const addNewUser = async (req, res, next) => {
   try {
-    
-
     const DBUser = await userCollection.findOne({ email: req.body.email });
-    console.log(DBUser)
+    console.log(DBUser);
     if (!DBUser) {
       const user = new userCollection(req.body);
       req.file && (user.profileImage = `/${req.file.filename}`);
-    await user.save();
+      await user.save();
       res.json({ success: true, data: user });
+    } else {
+      throw new Error(
+        'Email already exists , Please register with other email address!'
+      );
     }
-    else {
-      throw new Error('Email already exists , Please register with other email address!');
-    }
-    
   } catch (err) {
-    console.log(err.message)
+    console.log(err.message);
 
     next(err.message);
   }
@@ -80,7 +78,7 @@ const loginUser = async (req, res, next) => {
       throw new Error('Email does not exists. please try again!');
     }
   } catch (err) {
-    next(err);
+    next(err.message);
   }
 };
 //update user
@@ -101,6 +99,17 @@ const deleteUser = (req, res, next) => {
     next(err);
   }
 };
+
+const verifyUserToken = async (req, res, next) => {
+  try {
+    const token = req.headers.token;
+    const payload = jwt.verify(token, process.env.TOKEN_SECRET_KEY);
+    const user = await usersCollection.findById(payload._id);
+    res.json({ success: true, data: user });
+  } catch (err) {
+    next(err);
+  }
+};
 export {
   getAllUser,
   getSingleUser,
@@ -108,4 +117,5 @@ export {
   loginUser,
   updateUser,
   deleteUser,
+  verifyUserToken,
 };

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function Login() {
   const navigate = useNavigate();
@@ -15,11 +16,25 @@ export default function Login() {
     fetch('http://localhost:8000/users/login', {
       method: 'POST',
       body: data,
-    }).then(res);
+    })
+      .then((res) => {
+        const token = res.headers.get('token');
+        localStorage.setItem('token', token);
+        return res.json();
+      })
+      .then((result) => {
+        if (result.success) {
+          toast.success('Logged in successfully');
+          setTimeout(() => navigate('/'), 2000);
+        } else {
+          toast.error(result.message);
+        }
+      });
   };
 
   return (
     <div className="flex justify-center items-center flex-col my-[2rem] ">
+      <Toaster />
       <p className="m-[1rem] font-bold">LOG IN</p>
       <div className="flex justify-center items-center border p-[3rem]">
         <form onSubmit={loginHandler} className=" flex flex-col">
