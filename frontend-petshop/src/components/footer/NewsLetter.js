@@ -14,6 +14,7 @@ export default function Newsletter() {
           placeholder="Your email address"
           name="email"
           onChange={(e) => setEmail(e.target.value)}
+          value={email}
         />
         <button className="uppercase bg-black absolute right-0 p-2 top-0">
           Subscribe
