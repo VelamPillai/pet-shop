@@ -102,11 +102,15 @@ const deleteUser = (req, res, next) => {
 
 const verifyUserToken = async (req, res, next) => {
   try {
+    console.log('token')
     const token = req.headers.token;
-    const payload = jwt.verify(token, process.env.TOKEN_SECRET_KEY);
-    const user = await usersCollection.findById(payload._id);
+    const payload = jwt.verify(token, process.env.TOKEN_KEY );
+    console.log(payload)
+    const user = await userCollection.findById(payload._id);
+    console.log(user)
     res.json({ success: true, data: user });
   } catch (err) {
+    console.log(err.message)
     next(err);
   }
 };

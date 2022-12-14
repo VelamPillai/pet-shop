@@ -4,12 +4,15 @@ import {BrowserRouter} from 'react-router-dom'
 
 import './index.css';
 import App from './App';
+import  Container  from './context/Container';
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    <App />
+    <Container>
+      <App />
+      </Container>
   </BrowserRouter>
 );

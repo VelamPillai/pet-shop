@@ -18,8 +18,6 @@ const route = express.Router();
 //GET
 route.get('/', verifyToken, isAdmin, getAllUser);
 
-//GET - singleUser
-route.get('/:id', verifyToken, isAdmin, getSingleUser);
 
 //POST - new user
 route.post('/signup', userInputValidation, addNewUser);
@@ -29,6 +27,10 @@ route.post('/login', loginUser);
 
 // Get - Verify User Token
 route.get('/verifyusertoken', verifyUserToken);
+
+
+//GET - singleUser
+route.get('/:id', verifyToken, isAdmin, getSingleUser);
 
 //PATCH - update user
 route.patch('/:id', verifyToken, isAdmin, updateUser);
