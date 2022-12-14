@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import multer from 'multer';
+import cors from 'cors';
 
 //import path: __dirname
 import path from 'path';
@@ -18,6 +19,9 @@ import userRoute from './routes/userRoute.js';
 
 //create and initialize express server
 const app = express();
+
+//cors config
+app.use(cors({ origin: "http://localhost:3000" ,exposedHeaders:["token"]}));
 
 // configure multer package
 const storage = multer.diskStorage({
@@ -58,7 +62,7 @@ app.use((err, req, res, next) => {
 });
 
 //listening request on port
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`Server started ... listening on port : ${PORT}`);
 });
