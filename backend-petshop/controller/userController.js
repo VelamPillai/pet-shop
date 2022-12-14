@@ -28,13 +28,24 @@ const getSingleUser = (req, res, next) => {
 //sign up - add new user
 const addNewUser = async (req, res, next) => {
   try {
-    const user = new userCollection(req.body);
+    
 
-    req.file && (user.profileImage = `/${req.file.filename}`);
+    const DBUser = await userCollection.findOne({ email: req.body.email });
+    console.log(DBUser)
+    if (!DBUser) {
+      const user = new userCollection(req.body);
+      req.file && (user.profileImage = `/${req.file.filename}`);
     await user.save();
-    res.json({ success: true, data: user });
+      res.json({ success: true, data: user });
+    }
+    else {
+      throw new Error('Email already exists , Please register with other email address!');
+    }
+    
   } catch (err) {
-    next(err);
+    console.log(err.message)
+
+    next(err.message);
   }
 };
 

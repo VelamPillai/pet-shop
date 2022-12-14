@@ -45,9 +45,11 @@ export const userInputValidation = [
       result.isEmpty()
         ? null
         : (error = result.errors.reduce((acc, currentElement) => {
-            acc[currentElement.param] = currentElement.msg;
+            /* acc[currentElement.param] = currentElement.msg; 
+            */
+              acc.push(`${currentElement.param} : ${currentElement.msg} `)
             return acc;
-          }, {}))
+          }, []))
     );
   },
 ];
