@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from 'react-hot-toast';
+
 
 export default function Signup() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   //to get the form data
 
@@ -18,8 +23,23 @@ export default function Signup() {
       .then((res) => res.json())
       .then((result) => {
         if (result.success) {
-          console.log('success');
-      }
+          let name = result.data.firstName.concat(' ', result.data.lastName)
+          toast.success(`Hallo ${name} ! Welcome to Pet-Store`);
+          setTimeout(() => navigate("/user/login"), 2000)
+          
+        } else {
+          if (Array.isArray(result.message)) {
+            const errMessage = result.message.reduce((overallError, errItem) => overallError += ` * ${errItem}  \n `, '')
+            console.log(result.message);
+            toast.error(`${errMessage}`)
+          }
+          else {
+            toast.error(result.message)
+            //console.log(result)
+
+          }
+        }
+        
     })
     
   }
@@ -27,6 +47,7 @@ export default function Signup() {
 
   return (
     <div className="flex justify-center items-center flex-col my-[2rem] ">
+      <Toaster />
       <p className="m-[1rem] font-bold">CREATE AN ACCOUNT</p>
       <div className="flex justify-center items-center border p-[3rem]">
         <form className=" flex flex-col" onSubmit={registerUser}>
