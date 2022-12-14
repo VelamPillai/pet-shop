@@ -4,7 +4,7 @@ import { AiOutlineSearch } from 'react-icons/ai';
 export default function HeaderSearch() {
   const [search, setSearch] = useState('');
   const handleChange = (e) => {
-    
+    setSearch(search);
   }
   return (
     <div className="w-48 ">

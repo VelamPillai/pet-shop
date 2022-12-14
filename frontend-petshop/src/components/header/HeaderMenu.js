@@ -5,7 +5,7 @@ import {
 } from "react-router-dom";
 import { FaUserCircle, FaCartPlus } from "react-icons/fa";
 
-import User from "../user/User.js";
+
 
 export default function HeaderMenu() {
   const navigate = useNavigate();
