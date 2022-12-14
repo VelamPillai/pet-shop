@@ -43,8 +43,7 @@ const addNewUser = async (req, res, next) => {
     }
     
   } catch (err) {
-    console.log(err.message)
-
+    
     next(err.message);
   }
 };
@@ -52,8 +51,9 @@ const addNewUser = async (req, res, next) => {
 //login - user
 const loginUser = async (req, res, next) => {
   try {
+    
     const user = await userCollection.findOne({ email: req.body.email });
-
+    console.log(user);
     if (user) {
       const checkPassword = await bcrypt.compare(
         req.body.password,
@@ -80,7 +80,8 @@ const loginUser = async (req, res, next) => {
       throw new Error('Email does not exists. please try again!');
     }
   } catch (err) {
-    next(err);
+    
+    next(err.message);
   }
 };
 //update user
