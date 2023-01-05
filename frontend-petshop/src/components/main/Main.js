@@ -10,6 +10,7 @@ export default function Main() {
         alt="header-icon"
         className="w-2/3 rounded-md m-auto"
       />
+
       <PetCategory />
       <hr className="mb-[2rem]" />
     </div>
