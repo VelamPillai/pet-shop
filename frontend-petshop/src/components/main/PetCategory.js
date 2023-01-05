@@ -12,7 +12,7 @@ export default function PetCategory() {
   return (
       <div>
           
-          <p className='text-lg font-bold text-orange-600'>Pet Category</p>
+          <p className='text-lg font-bold text-orange-600 pt-[3rem]'>Pet Category</p>
           <hr  className='my-[1rem]'/> 
           <div className='flex justify-around p-5'>
               <PetCard image={dog} petName={'Dogs'} />
