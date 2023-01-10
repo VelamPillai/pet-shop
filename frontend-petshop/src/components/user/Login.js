@@ -47,8 +47,8 @@ export default function Login() {
   };
   //onClick of SignUp button
 
-  const signupHandler = () => {
-    
+  const signupHandler = (e) => {
+    e.preventDefault();
     navigate("/signup")
     
 }
