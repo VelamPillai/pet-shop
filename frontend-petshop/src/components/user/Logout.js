@@ -4,12 +4,18 @@ import { StoreContext } from "../../context/StoreContext";
 import toast, { Toaster } from 'react-hot-toast';
 
 export default function Logout() {
-  const { user, setUser } = useContext(StoreContext);
+  const { homepageState, homepageDispatch } = useContext(StoreContext);
+  
+ 
+
+  //const {user,  userIconStatus} = homepageState
+  const {user} = homepageState
   const navigate = useNavigate()
 
   const logoutHandler = () => {   
-    localStorage.removeItem('token');
-    setUser(null);
+    localStorage.removeItem('token');    
+    homepageDispatch({ type: 'setUser', payload: { data: '' } })
+    /* homepageDispatch({type:'setUerIconStatus'}) */
     toast.success('logged out successfully')
     setTimeout(() => navigate('/'),2000);
 
