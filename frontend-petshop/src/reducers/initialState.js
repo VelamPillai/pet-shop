@@ -4,4 +4,5 @@ const initialState = {
   //userIconStatus: true,
   user: '',
 };
+
 export default initialState;

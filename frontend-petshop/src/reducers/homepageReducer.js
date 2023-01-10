@@ -8,11 +8,12 @@ export const homepageReducer = (state, action) => {
       };
     }
     /* case "setUserIconStatus": {
-          return {
-              ...state,
-              userIconStatus:!state.userIconStatus
-          }
-      } */
+            return {
+                ...state,
+                userIconStatus:!state.userIconStatus
+
+            }
+        } */
     default: {
       return state;
     }
