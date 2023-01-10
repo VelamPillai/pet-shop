@@ -1,4 +1,8 @@
-import React, { useState ,useContext } from 'react';
+
+
+
+import React, { useState, useContext} from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 //import { StoreContext } from '../../context/StoreContext';
@@ -8,11 +12,12 @@ export default function Signup() {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+ 
 
   const navigate = useNavigate();
 
 
+  
 
   //to get the form data
   const registerUser = (e) => {

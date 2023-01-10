@@ -6,7 +6,8 @@ import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
 import Main from "./components/main/Main.js";
 import Login from "./components/user/Login.js";
-import Signup from "./components/user/Signup";
+import Signup from "./components/user/Signup.js"
+
 
 function App() {
   return (

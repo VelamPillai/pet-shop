@@ -1,4 +1,7 @@
  const initialState = {
+    firstName:'',
+    lastName:'',
+    
     email: '',
     password: '',
     //userIconStatus: true,

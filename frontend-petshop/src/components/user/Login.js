@@ -1,11 +1,11 @@
-import React, { useContext, useReducer } from "react";
+import React, { useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { StoreContext } from "../../context/StoreContext.js";
 
 import { TiTick } from "react-icons/ti";
 import LoginImage from "../../image/loginImage.png";
-import { loginReducer } from "../../reducers/loginReducer.js";
+
 
 export default function Login() {
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ export default function Login() {
           
           toast.success("Logged in successfully");
           console.log(result.data);
-          homepageDispatch({ type: "setUser", payload: { data: result.data } });
+          homepageDispatch({ type: "setUser", payload: { data: result.data } });          
           setTimeout(() => navigate("/"), 2000);
         } else {
           toast.error(result.message);
@@ -83,9 +83,8 @@ export default function Login() {
               className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
               type="email"
               name="email"
-              
               onChange={(e) =>
-                dispatch({
+                loginDispatch({
                   type: "onChange",
                   payload: { name: e.target.name, data: e.target.value },
                 })
@@ -106,7 +105,7 @@ export default function Login() {
                 type="password"
                 name="password"
                 onChange={(e) =>
-                  dispatch({
+                  loginDispatch({
                     type: "onChange",
                     payload: { name: e.target.name, data: e.target.value },
                   })
@@ -155,8 +154,7 @@ export default function Login() {
               {" "}
               Don't have an account?{" "}
             </p>
-            {/* signup button - for new account creation */}
-            <button onClick={signUpHandler}
+            <button onClick={ signupHandler }
               className="bg-orange-500 justify-center items-center w-[100px] md:w-[200px] my-3 md:mx-auto md:my-[1rem] md:p-3 rounded shadow-black shadow-md focus:bg-green-600 ">
               {" "}
               Sign Up
