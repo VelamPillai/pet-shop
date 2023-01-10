@@ -10,14 +10,14 @@ import LoginImage from "../../image/loginImage.png";
 export default function Login() {
   const navigate = useNavigate();
 
-  const { homepageState, homepageDispatch, initialState } =
+  const { homepageState, homepageDispatch, initialState ,loginState, loginDispatch} =
     useContext(StoreContext);
 
  
 
   const { user } = homepageState;
 
-  const [loginState, dispatch] = useReducer(loginReducer, initialState);
+  
 
   //onSubmit - loginHandler -form element
 
