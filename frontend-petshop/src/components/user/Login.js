@@ -9,33 +9,34 @@ import LoginImage from "../../image/loginImage.png";
 
 export default function Login() {
   const navigate = useNavigate();
+  const {  homepageDispatch, loginState, loginDispatch} = useContext(StoreContext);
 
 
-//destructuring context
-  const { homepageState, homepageDispatch, initialState ,loginDispatch ,loginState} =
-    useContext(StoreContext);
-
-  const { user } = homepageState;
-
- 
-  //onClick of login-button
+  //onSubmit - loginHandler -form element
 
   const loginHandler = (e) => {
     e.preventDefault();
-
     const data = new FormData(e.target);
+    loginDispatch({type:'clearForm'})
 
-    fetch("http://localhost:8000/users/login", {
+//to avoid empty email and password fields - to avoid token = null 
+    data.get('email') && 
+       data.get('password') &&
+
+    ( fetch("http://localhost:8000/users/login", {
       method: "POST",
       body: data,
     })
-      .then((res) => {
+      .then((res) => {        
         const token = res.headers.get("token");
-        localStorage.setItem("token", token);
+        //only for valid username and Password , store the token in to the local storage.
+        token && localStorage.setItem("token", token);
+       
         return res.json();
       })
       .then((result) => {
         if (result.success) {
+          
           toast.success("Logged in successfully");
           console.log(result.data);
           homepageDispatch({ type: "setUser", payload: { data: result.data } });          
@@ -43,31 +44,33 @@ export default function Login() {
         } else {
           toast.error(result.message);
         }
-      });
+      })
+    )
   };
-  //onClick of SignUp button
 
-  const signupHandler = (e) => {
+  //onClick - signUpHandler - button
+
+  const signUpHandler = (e) => {
     e.preventDefault();
-    navigate("/signup")
-    
-}
+    navigate('/signup')
+  }
+
   return (
-    <div className="flex justify-center items-center flex-col xl:flex-row w-[75%] lg:w-[100%] lg:border m-auto lg:m-[1rem] rounded shadow-black shadow-xs ">
+    <div className="flex  flex-col xl:flex-row   lg:border  lg:m-[1rem] rounded shadow-black shadow-xs ">
       <Toaster />
       <img
         src={LoginImage}
         alt="login-pic"
-        className="rounded  drop-shadow-xl w-[100%] lg:w-[700px] lg:h-[700px] lg:ml-[6rem] "
+        className="rounded  drop-shadow-xl   lg:w-[700px] lg:h-[700px] lg:ml-[6rem] "
       />
 
-      <div className="flex flex-col justify-center items-center border lg:border-0 w-[100%]  p-[3rem] lg:h-[900px] ">
-        <p className="m-[1rem] font-bold">LOG IN</p>
+      <div className="flex flex-col justify-center items-center border lg:border-0 w-[100%]  p-[1rem] mb-[1rem] md:p-[3rem] lg:h-[900px] ">
+        <p className="m-[.25rem] md:m-[1rem] font-bold text-center ">LOGIN</p>
         <form
           onSubmit={loginHandler}
           className=" flex flex-col justify-center items-center w-[100%]"
         >
-          <label className="flex flex-col justify-center item-center md:items-start m-[1rem] ">
+          <label className="flex flex-col justify-center item-center md:items-start m-[.25rem]md:m-[1rem] ">
             Email:{" "}
             <input
               className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
@@ -80,10 +83,11 @@ export default function Login() {
                 })
               }
               value={loginState.email}
+              
             />
           </label>
 
-          <label className="flex flex-col justify-center  item-center md:items-start m-[1rem]">
+          <label className="flex flex-col justify-center  item-center md:items-start m-[.25rem]md:m-[1rem]">
             Password:{" "}
             <div
               className="flex-col
@@ -143,7 +147,7 @@ export default function Login() {
               {" "}
               Don't have an account?{" "}
             </p>
-            <button onClick={ signupHandler }
+            <button onClick={ signUpHandler}
               className="bg-orange-500 justify-center items-center w-[100px] md:w-[200px] my-3 md:mx-auto md:my-[1rem] md:p-3 rounded shadow-black shadow-md focus:bg-green-600 ">
               {" "}
               Sign Up
