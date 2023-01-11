@@ -42,8 +42,9 @@ export default function Signup() {
      } 
      signupDispatch({type:'clearForm'})
 
-    //post newUser to server
-    fetch('http://localhost:8000/users/signup', { method: 'POST', body: data })
+     //post newUser to server
+     
+     fetch('http://localhost:8000/users/signup', { method: 'POST', body: data }) 
       .then((res) => res.json())
       .then((result) => {
         if (result.success) {
