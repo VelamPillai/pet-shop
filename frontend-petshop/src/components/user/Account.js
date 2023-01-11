@@ -1,15 +1,15 @@
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
-import { StoreContext } from '../../context/StoreContext';
+
+import { CgProfile } from "react-icons/cg";
 
 import { TiTick } from "react-icons/ti";
-import SignupImage from "../../image/signupImage.png";
 
-export default function Signup() { 
-  const navigate = useNavigate();
-  const {  signupDispatch,signupState} = useContext(StoreContext);
- 
+import { StoreContext } from "../../context/StoreContext";
+
+
+
 
   //file to binary
   const toBase64 = (file) =>
@@ -20,65 +20,76 @@ export default function Signup() {
       reader.onerror = (error) => reject(error);
     });
   
-  //onSubmit - registerUser Handler -form element
-
-   const registerUser =async(e) => {
-    e.preventDefault();
-     
-     let formData = new FormData(e.target);
-     let profileImage = await toBase64 (formData.get('profileImage'))//convert file to binary
-     let data = new FormData();
-      data.append('firstName', e.target.firstName.value)
-     data.append('lastName', e.target.lastName.value);
-     data.append('email', e.target.email.value);
-     data.append('password', e.target.password.value);
-      data.append('profileImage',profileImage)   
-     
-     /* for (let key of data.keys()) {
-      console.log(key)
+export default function Account() {
+    const {homepageState,signupDispatch,signupState} = useContext(StoreContext);
+    const navigate = useNavigate();
+    const { user } = homepageState
+    const profileHandler = () => {
+       user && navigate('/profile')
     }
-     for (let values of data.values()) {
-       console.log(values)
-     }  */
-     signupDispatch({type:'clearForm'})
-
-     //post newUser to server
-     
-     fetch('http://localhost:8000/users/signup', { method: 'POST', body: data }) 
-      .then((res) => res.json())
-      .then((result) => {
-        if (result.success) {
-          let name = result.data.firstName.concat(' ', result.data.lastName);
-          toast.success(`Hallo ${name} ! Welcome to Pet-Store !!! please Login to place orders.`);
-          setTimeout(() => navigate('/login'), 2000);
-        } else {
-          if (Array.isArray(result.message)) {
-            const errMessage = result.message.reduce(
-              (overallError, errItem) => (overallError += ` * ${errItem}  \n `),
-              ''
-            );
-            console.log(result.message);
-            toast.error(`${errMessage}`);
-          } else {
-            toast.error(result.message);
-            
-          }
-        }
-      });
-  };  
-
-  return (
-    <div className="flex justify-center items-center flex-col xl:flex-row w-[100%]  lg:border m-auto lg:m-[1rem] rounded shadow-black shadow-xs ">
-      <Toaster />
-      <img
-        src={SignupImage}
-        alt="login-pic"
-        className="rounded  drop-shadow-xl lg:w-[700px] lg:h-[700px] lg:ml-[6rem] "
-      />
-        
+    
+    const registerUser =async(e) => {
+        e.preventDefault();
+         
+         let formData = new FormData(e.target);
+         let profileImage = await toBase64 (formData.get('profileImage'))//convert file to binary
+         let data = new FormData();
+          data.append('firstName', e.target.firstName.value)
+         data.append('lastName', e.target.lastName.value);
+         data.append('email', e.target.email.value);
+         data.append('password', e.target.password.value);
+          data.append('profileImage',profileImage)   
+                 
+         signupDispatch({type:'clearForm'})
       
-      <div className="flex flex-col justify-center items-center border lg:border-0 w-[100%]  p-[1rem] mb-[1rem] md:p-[3rem] lg:h-[900px] ">
-      <p className="m-[.25rem] md:m-[1rem] font-bold text-center ">CREATE AN ACCOUNT</p>
+         
+         fetch('http://localhost:8000/users/update', { method: 'PATCH', body: data }) 
+          .then((res) => res.json())
+          .then((result) => {
+            if (result.success) {
+              let name = result.data.firstName.concat(' ', result.data.lastName);
+              toast.success(`Hallo ${name} ! Welcome to Pet-Store !!! please Login to place orders.`);
+              setTimeout(() => navigate('/login'), 2000);
+            } else {
+              if (Array.isArray(result.message)) {
+                const errMessage = result.message.reduce(
+                  (overallError, errItem) => (overallError += ` * ${errItem}  \n `),
+                  ''
+                );
+                console.log(result.message);
+                toast.error(`${errMessage}`);
+              } else {
+                toast.error(result.message);
+                
+              }
+            }
+          });
+      };
+  return (
+      <div>
+          <>
+      <p className='flex justify-center items-center text-[2rem] font-bold m-5'>Account</p>
+      <div className="flex  flex-col justify-center items-center  xl:flex-row w-[100%]  lg:border mx-auto my-[1rem] md:m-[3rem] rounded shadow-black shadow-lg">
+      <div className='flex flex-col w-[40%]  p-5'>
+          <img src={user.profileImage} alt='profile' className='m-auto rounded-[50%]  md:visible' />
+          <div className='flex justify-center items-center flex-col md:flex-row'>
+            <button onClick={ profileHandler} className="bg-gradient-to-r from-orange-500 to-yellow-600 text-xs hover:bg-gradient-to-l justify-center items-center w-[150px] md:w-[200px] m-3 md:mx-auto md:my-[1rem] md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">
+            Profile
+            </button>
+            <button className="bg-gradient-to-r from-orange-500 to-yellow-600 text-xs hover:bg-gradient-to-l justify-center items-center w-[150px] md:w-[200px] m-3 md:mx-[1rem] md:my-[1rem] md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">
+            Notification
+            </button>
+            <button className="bg-gradient-to-r from-orange-500 to-yellow-600 text-xs hover:bg-gradient-to-l justify-center items-center w-[150px] md:w-[200px]  m-3 md:mx-auto md:my-[1rem] md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">
+            Delete
+          </button>
+          </div>
+        </div>
+     
+        <div className='flex justify-center items-center flex-col w-[100%] md:w-[60%] lg:border p-5  bg-gradient-to-r from-orange-500 to-yellow-600 text hover:bg-gradient-to-l'>
+         
+          
+        <div className="flex flex-col justify-center items-center border lg:border-0 w-[100%]  p-[1rem] mb-[1rem] md:p-[3rem] lg:h-[900px] ">
+      <p className="m-[.25rem] md:m-[1rem] font-bold text-center ">  ACCOUNT</p>
        
         <form  className=" flex flex-col justify-center items-center w-[100%]" onSubmit={registerUser}> 
           <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem] md:m-[1rem] ">
@@ -170,7 +181,7 @@ export default function Signup() {
           <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem] md:m-[1rem] ">
             Profile Image:{' '}
             <input
-               className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+               className=" py-2 border border-slate-200 rounded bg-white w-[150px] md:w-[400px] h-[50px] "
               type="file"
               name="profileImage"              
               onChange={(e) => {             
@@ -183,12 +194,20 @@ export default function Signup() {
             }
             />
           </label>
-          <button className="bg-orange-500 justify-center items-center w-[100px] md:w-[400px]  my-3 md:mx-auto md:my-[1rem] md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">
-            SIGN UP
+          <button className="bg-orange-500 justify-center items-center w-[100px] md:w-[200px]  my-3 md:mx-auto md:my-[1rem] md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">
+            update
           </button>
         </form>
           
       </div>
+          
+          
+        </div>
+       
+     </div>
+     
+
+    </>
     </div>
-  );
+  )
 }

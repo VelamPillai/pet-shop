@@ -8,6 +8,7 @@ import Main from "./components/main/Main.js";
 import Login from "./components/user/Login.js";
 import Signup from "./components/user/Signup.js"
 import Profile from "./components/user/Profile.js"
+import Account from "./components/user/Account.js";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route index={false} path="login" element={<Login />} />
         <Route index={false} path="signup" element={<Signup />} />
         <Route index={false} path="profile" element={<Profile />} />
+        <Route index={false} path="account" element={<Account />} />
       </Routes>
 
       <Footer />
