@@ -7,6 +7,7 @@ import Header from "./components/header/Header";
 import Main from "./components/main/Main.js";
 import Login from "./components/user/Login.js";
 import Signup from "./components/user/Signup.js"
+import Profile from "./components/user/Profile.js"
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         </Route>
         <Route index={false} path="login" element={<Login />} />
         <Route index={false} path="signup" element={<Signup />} />
+        <Route index={false} path="profile" element={<Profile />} />
       </Routes>
 
       <Footer />

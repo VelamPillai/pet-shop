@@ -33,17 +33,28 @@ import toast, { Toaster } from 'react-hot-toast'; */
       }); 
   }; */
 
+
+  //file to binary
+  const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+
 export function signupReducer(state, action) {
     const { type, payload } = action
     switch (type) {
-        case 'onChange': {
+      case 'onChange': {
+        
             return {
                 ...state,
                 firstName: payload.name === 'firstName' ? payload.data : state.firstName,
                 lastName:payload.name === 'lastName' ? payload.data : state.lastName,
                 email: payload.name === 'email' ? payload.data : state.email,
                 password: payload.name === 'password' ? payload.data : state.password,
-                profileImage : payload.name === 'profileImage' ? payload.data : ''
+                profileImage : payload.name === 'profileImage' ?  payload.data : ''
             }
                           
         }
@@ -54,7 +65,7 @@ export function signupReducer(state, action) {
                 lastName: '',
                 email: '',
                 password: '',
-                profileImage:''
+                
 
             }
             }
