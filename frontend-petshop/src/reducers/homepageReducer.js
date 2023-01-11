@@ -7,13 +7,7 @@ export const homepageReducer = (state, action) => {
         user: payload.data,
       };
     }
-    /* case "setUserIconStatus": {
-            return {
-                ...state,
-                userIconStatus:!state.userIconStatus
 
-            }
-        } */
     default: {
       return state;
     }

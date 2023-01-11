@@ -5,15 +5,11 @@ import { StoreContext } from "../../context/StoreContext";
 
 export default function HeaderMenu() {
   const navigate = useNavigate();
-  const { homepageState, homepageDispatch } = useContext(StoreContext);
+  const { homepageState } = useContext(StoreContext);
 
   const { user } = homepageState;
 
-  const navigateToUser = () => {
-    homepageDispatch({
-      type: "setUserIconStatus",
-    });
-    console.log("test", homepageState);
+  const navigateToUser = () => {    
     navigate("/login", { replace: true });
   };
 

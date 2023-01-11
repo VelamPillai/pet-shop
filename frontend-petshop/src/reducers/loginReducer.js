@@ -8,6 +8,14 @@ export const loginReducer = (state, action) => {
         password: payload.name === 'password' ? payload.data : state.password,
       };
     }
+    case 'clearForm': {
+      return {
+        ...state,
+        email: '',
+        password: '',
+      };
+    }
+
     default: {
       return state;
     }
