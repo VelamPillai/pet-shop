@@ -11,6 +11,15 @@ export const loginReducer = (state, action) => {
 
             }
         }
+        case 'clearForm': {
+            return {
+                ...state,                
+                email: '',
+                password: '',             
+
+            }
+            }
+        
         default: {
             return state
             }

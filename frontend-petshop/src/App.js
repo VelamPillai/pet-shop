@@ -4,8 +4,10 @@ import "./App.css";
 
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
-import Main from "./components/main/Main.js";
 import Login from "./components/user/Login.js";
+import Signup from "./components/user/Signup.js";
+import Profile from "./components/user/Profile.js";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -18,10 +20,12 @@ function App() {
             index={true}
             path="/"
             className="min-h-screen"
-            element={<Main />}
+            element={<Home />}
           />
         </Route>
         <Route index={false} path="login" element={<Login />} />
+        <Route index={false} path="signup" element={<Signup />} />
+        <Route index={false} path="profile" element={<Profile />} />
       </Routes>
 
       <Footer />
