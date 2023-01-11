@@ -34,12 +34,12 @@ export default function Signup() {
      data.append('password', e.target.password.value);
       data.append('profileImage',profileImage)   
      
-     for (let key of data.keys()) {
+     /* for (let key of data.keys()) {
       console.log(key)
     }
      for (let values of data.values()) {
        console.log(values)
-     } 
+     }  */
      signupDispatch({type:'clearForm'})
 
      //post newUser to server
