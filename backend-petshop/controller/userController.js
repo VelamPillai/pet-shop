@@ -29,13 +29,13 @@ const getSingleUser = (req, res, next) => {
 const addNewUser = async (req, res, next) => {
   console.log('hello')
   try {
-    console.log(req.file)
+    console.log(req.file);
     const DBUser = await userCollection.findOne({ email: req.body.email });
     //console.log(DBUser);
     if (!DBUser) {
       const user = new userCollection(req.body);
       console.log(user)
-      req.file && (user.profileImage = `/${req.file}`);
+      req.file && (user.profileImage = `/${req.file} `);
       await user.save();
       res.json({ success: true, data: user });
     } else {
