@@ -5,6 +5,7 @@
     
     email: '',
     password: '',
+    file:null,
     //userIconStatus: true,
     user :''
     

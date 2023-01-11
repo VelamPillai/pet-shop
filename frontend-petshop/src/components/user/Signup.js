@@ -11,11 +11,35 @@ export default function Signup() {
   const {  signupDispatch,signupState} = useContext(StoreContext);
  
 
+  //file to binary
+  const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+  
   //onSubmit - registerUser Handler -form element
 
-   const registerUser = (e) => {
+   const registerUser =async(e) => {
     e.preventDefault();
-     const data = new FormData(e.target);
+     
+     let formData = new FormData(e.target);
+     let profileImage = await toBase64 (formData.get('profileImage'))//convert file to binary
+     let data = new FormData();
+      data.append('firstName', e.target.firstName.value)
+     data.append('lastName', e.target.lastName.value);
+     data.append('email', e.target.email.value);
+     data.append('password', e.target.password.value);
+      data.append('profileImage',profileImage)   
+     
+    /*  for (let key of data.keys()) {
+      console.log(key)
+    }
+     for (let values of data.values()) {
+       console.log(values)
+     } */
      signupDispatch({type:'clearForm'})
 
     //post newUser to server
@@ -53,7 +77,7 @@ export default function Signup() {
         
       
       <div className="flex flex-col justify-center items-center border lg:border-0 w-[100%]  p-[1rem] mb-[1rem] md:p-[3rem] lg:h-[900px] ">
-      <p className="m-[.25rem] md:m-[1rem] font-bold text-center">CREATE AN ACCOUNT</p>
+      <p className="m-[.25rem] md:m-[1rem] font-bold text-center ">CREATE AN ACCOUNT</p>
        {/*  <form className=" flex flex-col" onSubmit={(e) => {
           e.preventDefault();
           signupDispatch({ type: 'signup', payload: { data: e } })
@@ -61,7 +85,7 @@ export default function Signup() {
          
         }> */}
         <form  className=" flex flex-col justify-center items-center w-[100%]" onSubmit={registerUser}> 
-          <label className="flex flex-col justify-center item-center md:items-start m-[.25rem]md:m-[1rem] ">
+          <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem] md:m-[1rem] ">
             First Name :{' '}
             <input
               className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
@@ -75,7 +99,7 @@ export default function Signup() {
               value={signupState.firstName}
             />
           </label>
-          <label className="flex flex-col justify-center item-center md:items-start m-[.25rem]md:m-[1rem] ">
+          <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem] md:m-[1rem] ">
             Last Name :{' '}
             <input
               type="text"
@@ -89,7 +113,7 @@ export default function Signup() {
               value={signupState.lastName}
             />
           </label>
-          <label className="flex flex-col justify-center item-center md:items-start m-[.25rem]md:m-[1rem] ">
+          <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem] md:m-[1rem] ">
             Email :{' '}
             <input
               className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
@@ -102,7 +126,7 @@ export default function Signup() {
               value={signupState.email}
             />
           </label>
-          <label className="flex flex-col justify-center item-center md:items-start m-[.25rem]md:m-[1rem] ">
+          <label className="flex flex-col justify-center item-center text-xs md:text-md  md:items-start m-[.25rem] md:m-[1rem] ">
             Password:{' '}
             <input
               className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
@@ -147,19 +171,23 @@ export default function Signup() {
               !@#$%
             </div>
           </div>
-          <label className="flex flex-col justify-center item-center md:items-start m-[.25rem]md:m-[1rem] ">
+          <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem] md:m-[1rem] ">
             Profile Image:{' '}
             <input
                className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
               type="file"
-              name="profileImage"
-              onChange={(e) => signupDispatch({
+              name="profileImage"              
+              onChange={(e) => {             
+                
+                signupDispatch({
                 type: "onChange",
-                payload: { name: e.target.name, data: e.target.value }
-              })}
+                payload: { name: e.target.name, data: e.target.files[0] }/* for image file  */
+              })
+              }
+            }
             />
           </label>
-          <button className="bg-orange-500 justify-center items-center w-[100px] md:w-[200px] my-3 md:mx-auto md:my-[1rem] md:p-3 rounded shadow-black shadow-md focus:bg-green-600 ">
+          <button className="bg-orange-500 justify-center items-center w-[100px] md:w-[400px]  my-3 md:mx-auto md:my-[1rem] md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">
             SIGN UP
           </button>
         </form>

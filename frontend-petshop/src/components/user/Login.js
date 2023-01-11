@@ -56,7 +56,7 @@ export default function Login() {
   }
 
   return (
-    <div className="flex  flex-col xl:flex-row   lg:border  lg:m-[1rem] rounded shadow-black shadow-xs ">
+    <div className="flex justify-center items-center flex-col xl:flex-row w-[100%]  lg:border m-auto lg:m-[1rem] rounded shadow-black shadow-xs ">
       <Toaster />
       <img
         src={LoginImage}
@@ -70,7 +70,7 @@ export default function Login() {
           onSubmit={loginHandler}
           className=" flex flex-col justify-center items-center w-[100%]"
         >
-          <label className="flex flex-col justify-center item-center md:items-start m-[.25rem]md:m-[1rem] ">
+          <label className="flex flex-col justify-center item-center  text-xs md:text-md md:items-start m-[.25rem] md:m-[1rem] ">
             Email:{" "}
             <input
               className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
@@ -87,7 +87,7 @@ export default function Login() {
             />
           </label>
 
-          <label className="flex flex-col justify-center  item-center md:items-start m-[.25rem]md:m-[1rem]">
+          <label className="flex flex-col justify-center  text-xs md:text-md item-center md:items-start m-[.25rem] md:m-[1rem]">
             Password:{" "}
             <div
               className="flex-col
@@ -139,16 +139,16 @@ export default function Login() {
               !@#$%
             </div>
           </div>
-          <button className="bg-orange-500 justify-center items-center w-[100px] md:w-[200px] my-3 md:mx-auto md:my-[1rem] md:p-3 rounded shadow-black shadow-md focus:bg-green-600 ">
+          <button className="bg-orange-500 justify-center items-center w-[100px] md:w-[400px]  my-3 text-xs md:text-mdmd:mx-auto md:my-[1rem] md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">
             LOG IN
           </button>
-          <div className="mt-[2rem]   flex  flex-col justify-center items-center">
-            <p className=" mx-[1rem] md:p-3 text-xs ">
+          <div className="mt-[2rem]   flex  flex-col lg:flex-row justify-center items-center">
+            <p className="  md:p-1 text-xs ">
               {" "}
               Don't have an account?{" "}
             </p>
             <button onClick={ signUpHandler}
-              className="bg-orange-500 justify-center items-center w-[100px] md:w-[200px] my-3 md:mx-auto md:my-[1rem] md:p-3 rounded shadow-black shadow-md focus:bg-green-600 ">
+              className=" text-red-500 font-bold text-xs md:text-md w-[100px] md:w-[200px] my-3 md:mx-auto md:my-[1rem] md:p-3  ">
               {" "}
               Sign Up
             </button>
