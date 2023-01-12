@@ -1,4 +1,5 @@
 export const homepageReducer = (state, action) => {
+
   const { type, payload } = action;
   switch (type) {
     case 'setUser': {
@@ -10,6 +11,7 @@ export const homepageReducer = (state, action) => {
 
     default: {
       return state;
+
     }
   }
 };
