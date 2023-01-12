@@ -6,14 +6,14 @@ export default function FooterMenu() {
   const products = [
     'Legal Notice',
     'About Us',
-    'Price drop',
+    'Price Drop',
     'New Products',
-    'Best sales',
+    'Best Sales',
   ];
   const company = [
     'Delivery',
-    'Secure payment',
-    'Contact us',
+    'Secure Payment',
+    'Contact Us',
     'Sitemap',
     'Stores',
   ];
