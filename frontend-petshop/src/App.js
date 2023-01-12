@@ -9,6 +9,8 @@ import Login from "./components/user/Login.js";
 import Signup from "./components/user/Signup.js"
 import Profile from "./components/user/Profile.js"
 import Account from "./components/user/Account.js";
+import Notification from "./components/user/Notification.js";
+import Delete from "./components/user/Delete.js";
 
 
 function App() {
@@ -29,6 +31,8 @@ function App() {
         <Route index={false} path="signup" element={<Signup />} />
         <Route index={false} path="profile" element={<Profile />} />
         <Route index={false} path="account" element={<Account />} />
+        <Route index={false} path="notification" element={<Notification />} />
+        <Route index={false} path="delete" element={<Delete />} />
       </Routes>
 
       <Footer />

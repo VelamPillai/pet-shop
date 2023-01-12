@@ -32,8 +32,12 @@ route.get('/verifyusertoken', verifyUserToken);
 //GET - singleUser
 route.get('/:id', verifyToken, isAdmin, getSingleUser);
 
+//GET -allUser
+route.get('/',getAllUser)
+
 //PATCH - update user
-route.patch('/:id', verifyToken, isAdmin, updateUser);
+//route.patch('/:id', verifyToken, isAdmin, updateUser);
+route.patch('/:id',  updateUser);
 
 //DELETE - delete user
 route.delete('/:id', verifyToken, isAdmin, deleteUser);

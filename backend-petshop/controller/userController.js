@@ -6,20 +6,19 @@ import bcrypt from 'bcrypt';
 dotenv.config();
 
 //get all user
-const getAllUser = (req, res, next) => {
+const getAllUser =async(req, res, next) => {
   try {
-    console.log('hello i am get user');
-    res.send('hello i am get user');
+    const user = await userCollection.find()
+    res.status(200).json({success:true,data:user})
   } catch (err) {
     next(err);
   }
 };
 
 //get single user
-const getSingleUser = (req, res, next) => {
+const getSingleUser = async(req, res, next) => {
   try {
-    console.log('hello from getalluser');
-    res.send('hellofrom sendalluser');
+    const user = await userCollection.findOne()
   } catch (err) {
     next(err);
   }
@@ -85,22 +84,48 @@ const loginUser = async (req, res, next) => {
   }
 };
 //update user
-const updateUser = (res, req, next) => {
+const updateUser = async(res, req, next) => {
   try {
-    console.log('i am from update');
-    res.send('i am from update');
+    let user = await userCollection.findById(req.params.id);
+    if (req.files) {
+      user.profileImage = `${req.file.filename}`
+    }
+    if (req.body.password) {
+      user.password = req.body.password;
+    }
+    await user.save(); 
+    let body = {};
+    for (const key in req.body) {
+        
+      if (req.body[key]!=='' && key !=='password' ) {
+          body[key] = req.body[key];
+      }
+      const updatedUser = await UsersCollection.findByIdAndUpdate(req.params.id, body, { new: true })
+      res.json({ success: true, data: updatedUser  });
+  }
+    
   } catch (err) {
-    next(err);
+    next(err)
   }
 };
 //delete user
-const deleteUser = (req, res, next) => {
+const deleteUser = async(req, res, next) => {
   try {
-    console.log('i am from delete');
-    res.send('i am from delete');
-  } catch (err) {
-    next(err);
-  }
+    const {id}= req.params 
+    const existingUser = await UsersCollection.findById(id);
+
+    if(existingUser){
+        const deleteStatus = await UsersCollection.deleteOne({_id:existingUser._id})
+        res.json({success:true, status: deleteStatus})
+    }else{
+        throw new Error("user id doesn't exist ! ")
+    }
+    
+}
+catch(err){
+    next(err)
+}
+  
 };
 
 const verifyUserToken = async (req, res, next) => {

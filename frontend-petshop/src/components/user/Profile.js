@@ -9,8 +9,9 @@ export default function Profile() {
      const {homepageState} = useContext(StoreContext);
   const navigate = useNavigate();
   const { user } = homepageState
-  const accountUpdateHandler = () => {
-     user && navigate('/account')
+  const UpdateHandler = (e) => {
+    console.log(e.target.textContent)
+     user && (e.target.textContent==='Account' ? navigate('/account') : e.target.textContent==='Profile' ?  navigate('/profile') : e.target.textContent==='Notification' ?  navigate('/notification') : navigate('/delete'))
   }
   return (
     <>
@@ -19,13 +20,13 @@ export default function Profile() {
       <div className='flex flex-col w-[40%]  p-5'>
           <img src={user.profileImage} alt='profile' className='m-auto rounded-[50%]  md:visible' />
           <div className='flex justify-center items-center flex-col md:flex-row'>
-            <button onClick={ accountUpdateHandler} className="bg-gradient-to-r from-orange-500 to-yellow-600 text-xs hover:bg-gradient-to-l justify-center items-center w-[150px] md:w-[200px] m-3 md:mx-auto md:my-[1rem] md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">
+            <button onClick={ UpdateHandler} className="bg-gradient-to-r from-orange-500 to-yellow-600 text-xs hover:bg-gradient-to-l justify-center items-center w-[150px] md:w-[200px] m-3 md:mx-auto md:my-[1rem] md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">
             Account
             </button>
-            <button className="bg-gradient-to-r from-orange-500 to-yellow-600 text-xs hover:bg-gradient-to-l justify-center items-center w-[150px] md:w-[200px] m-3 md:mx-[1rem] md:my-[1rem] md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">
+            <button  onClick={ UpdateHandler} className="bg-gradient-to-r from-orange-500 to-yellow-600 text-xs hover:bg-gradient-to-l justify-center items-center w-[150px] md:w-[200px] m-3 md:mx-[1rem] md:my-[1rem] md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">
             Notification
             </button>
-            <button className="bg-gradient-to-r from-orange-500 to-yellow-600 text-xs hover:bg-gradient-to-l justify-center items-center w-[150px] md:w-[200px]  m-3 md:mx-auto md:my-[1rem] md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">
+            <button onClick={ UpdateHandler} className="bg-gradient-to-r from-orange-500 to-yellow-600 text-xs hover:bg-gradient-to-l justify-center items-center w-[150px] md:w-[200px]  m-3 md:mx-auto md:my-[1rem] md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">
             Delete
           </button>
           </div>
