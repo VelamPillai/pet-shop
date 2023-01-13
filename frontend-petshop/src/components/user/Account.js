@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-
-import { CgProfile } from "react-icons/cg";
 import { TiTick } from "react-icons/ti";
 
 import { StoreContext } from "../../context/StoreContext";
@@ -17,14 +15,13 @@ const toBase64 = (file) =>
   });
 
 export default function Account() {
-  const { homepageState, signupDispatch, signupState } =
+  const { homepageState, signupDispatch, homepageDispatch} =
     useContext(StoreContext);
   const navigate = useNavigate();
   const { user } = homepageState;
 
   const profileHandler = (e) => {
-    console.log(e.target.textContent);
-    user &&
+        user &&
       (e.target.textContent === "Account"
         ? navigate("/account")
         : e.target.textContent === "Profile"
@@ -34,15 +31,26 @@ export default function Account() {
         : navigate("/delete"));
   };
 
-  const updateUser = async (e) => {
+  const updateUserHandler = async (e) => {
     e.preventDefault();
+    
+    let formData = new FormData(e.target);
+    let data = new FormData();
 
-    let data = new FormData(e.target);
-    console.log(user.profileImage)
-    console.log(await toBase64 (data.get('profileImage'))===user.profileImage);
+    //if the profile image want to be updated
+    
+    let profileImage = formData.get('profileImage').size > 0  ? await toBase64(formData.get('profileImage')) : (user.profileImage);
+    
+       
+    data.append('firstName', e.target.firstName.value)
+    data.append('lastName', e.target.lastName.value);
+    data.append('email', user.email);
+    //password not want to update then old password has been taken
+    data.append('password', e.target.password.value || user.password);
+    data.append('profileImage', profileImage);
 
     signupDispatch({ type: "clearForm" });
-    console.log("from update : ", user._id);
+    
 
     fetch(`http://localhost:8000/users/${user._id}`, {
       method: "PATCH",
@@ -52,27 +60,26 @@ export default function Account() {
       .then((res) => res.json())
       .then((result) => {
         if (result.success) {
+          homepageDispatch({ type: "setUser", payload: { data: result.data } });
+          
           let name = result.data.firstName.concat(" ", result.data.lastName);
           toast.success(`Hallo ${name} !  profile updated`);
-          setTimeout(() => navigate("/profile"), 2000);
+          setTimeout(() => navigate("/profile"), 1000);
         } else {
           if (Array.isArray(result.message)) {
             const errMessage = result.message.reduce(
-              (overallError, errItem) => (overallError += ` * ${errItem}  \n `),
-              ""
-            );
-            console.log(result);
-            //toast.error(`${errMessage}`);
+              (overallError, errItem) => (overallError += ` * ${errItem}  \n `)," ");           
+            toast.error(`${errMessage}`);
           } else {
             toast.error(result.message);
-            toast.error(result);
+            
           }
         }
       });
   };
   return (
     <>
-      <Toaster />
+    
       <p className="flex justify-center items-center text-[2rem] font-bold m-5">
         Account
       </p>
@@ -114,7 +121,7 @@ export default function Account() {
 
             <form
               className=" flex flex-col justify-center items-center w-[100%]"
-              onSubmit={updateUser}
+              onSubmit={updateUserHandler}
             >
               <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem] md:m-[1rem] ">
                 First Name :{" "}

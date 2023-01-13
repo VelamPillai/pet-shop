@@ -32,7 +32,9 @@ export default function Signup() {
      data.append('lastName', e.target.lastName.value);
      data.append('email', e.target.email.value);
      data.append('password', e.target.password.value);
-      data.append('profileImage',profileImage)   
+     data.append('profileImage', profileImage)  
+     
+    
      
      /* for (let key of data.keys()) {
       console.log(key)

@@ -37,9 +37,11 @@ route.get('/',getAllUser)
 
 //PATCH - update user
 //route.patch('/:id', verifyToken, isAdmin, updateUser);
-route.patch('/:id',  updateUser);
+ route.patch('/:id',  updateUser); 
 
 //DELETE - delete user
 route.delete('/:id', verifyToken, isAdmin, deleteUser);
+
+
 
 export default route;

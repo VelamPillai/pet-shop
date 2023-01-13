@@ -84,13 +84,18 @@ const loginUser = async (req, res, next) => {
   }
 };
 //update user
-const updateUser = async(res, req, next) => {
+const updateUser = async(req, res, next) => {
   try {
+
+    console.log('req-id',req.params.id)
     let user = await userCollection.findById(req.params.id);
-    if (req.files) {
-      user.profileImage = `${req.file.filename}`
-    }
-    if (req.body.password) {
+    console.log('user', user.profileImage !== req.body.profileImage);
+    console.log('req', req.body);
+    if (user.profileImage !== req.body.profileImage)
+    {
+      user.profileImage = req.body.profileImage
+      }
+    if (req.body.password != user.password) {
       user.password = req.body.password;
     }
     await user.save(); 
@@ -100,12 +105,13 @@ const updateUser = async(res, req, next) => {
       if (req.body[key]!=='' && key !=='password' ) {
           body[key] = req.body[key];
       }
-      const updatedUser = await UsersCollection.findByIdAndUpdate(req.params.id, body, { new: true })
+      const updatedUser = await userCollection.findByIdAndUpdate(req.params.id, body, { new: true })
       res.json({ success: true, data: updatedUser  });
   }
     
   } catch (err) {
-    next(err)
+    /* console.log(err.message); */
+    next(err.message);
   }
 };
 //delete user
@@ -130,12 +136,12 @@ catch(err){
 
 const verifyUserToken = async (req, res, next) => {
   try {
-    console.log('token')
+   /*  console.log('token') */
     const token = req.headers.token;
     const payload = jwt.verify(token, process.env.TOKEN_KEY );
-    console.log(payload)
+    /* console.log(payload) */
     const user = await userCollection.findById(payload._id);
-    console.log(user)
+   /*  console.log(user) */
     res.json({ success: true, data: user });
   } catch (err) {
     console.log(err.message)
