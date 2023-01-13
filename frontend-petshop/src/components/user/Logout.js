@@ -10,13 +10,12 @@ export default function Logout() {
   const navigate = useNavigate()
 
   //onClick - logout  Handler - p element
-  const logoutHandler = () => {   
+   const logoutHandler = () => {   
     localStorage.removeItem('token');    
-    homepageDispatch({ type: 'setUser', payload: { data: '' } })
-    /* homepageDispatch({type:'setUerIconStatus'}) */
+    homepageDispatch({ type: 'setUser', payload: { data: '' } })  
     toast.success('logged out successfully')
     setTimeout(() => navigate('/'),2000);
-  }
+  } 
 
   //onClick -profile Handler - p element
   const profileHandler = () => {

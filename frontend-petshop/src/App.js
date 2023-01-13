@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route , Navigate } from "react-router-dom";
 
 import "./App.css";
 
@@ -29,10 +29,14 @@ function App() {
         </Route>
         <Route index={false} path="login" element={<Login />} />
         <Route index={false} path="signup" element={<Signup />} />
-        <Route index={false} path="profile" element={<Profile />} />
+
+        <Route index={false} path="profile" element={<Profile />} /> 
         <Route index={false} path="account" element={<Account />} />
         <Route index={false} path="notification" element={<Notification />} />
-        <Route index={false} path="delete" element={<Delete />} />
+    
+        <Route path="*" element={<Navigate to="/" replace />}
+    />
+        
       </Routes>
 
       <Footer />

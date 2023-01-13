@@ -40,7 +40,9 @@ route.get('/',getAllUser)
  route.patch('/:id',  updateUser); 
 
 //DELETE - delete user
-route.delete('/:id', verifyToken, isAdmin, deleteUser);
+//route.delete('/:id', verifyToken, isAdmin, deleteUser);
+route.delete('/:id', deleteUser);
+
 
 
 

@@ -26,10 +26,29 @@ export default function Account() {
         ? navigate("/account")
         : e.target.textContent === "Profile"
         ? navigate("/profile")
-        : e.target.textContent === "Notification"
-        ? navigate("/notification")
-        : navigate("/delete"));
+        :  navigate("/notification")
+        );
   };
+
+//delete handler
+const deleteHandler = (id) => {
+  fetch(`http://localhost:8000/users/${id}`, {
+    method: "DELETE",
+    headers: { token: localStorage.getItem("token") }      
+  })
+    .then((res) => res.json())
+    .then((result) => {
+      if (result.success) {
+        toast.success('Account has Deleted');
+        setTimeout(() => {
+          localStorage.removeItem('token');
+          homepageDispatch({ type: 'setUser', payload: { data: '' } })
+          navigate('/')
+        },2000)
+        
+      }
+    })
+}
 
   const updateUserHandler = async (e) => {
     e.preventDefault();
@@ -55,7 +74,7 @@ export default function Account() {
     fetch(`http://localhost:8000/users/${user._id}`, {
       method: "PATCH",
       headers: { token: localStorage.getItem("token") },
-      body: data,
+      body: data
     })
       .then((res) => res.json())
       .then((result) => {

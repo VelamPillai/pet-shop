@@ -86,22 +86,20 @@ const loginUser = async (req, res, next) => {
 //update user
 const updateUser = async(req, res, next) => {
   try {
-
-    console.log('req-id',req.params.id)
+ 
     let user = await userCollection.findById(req.params.id);
-    console.log('user', user.profileImage !== req.body.profileImage);
-    console.log('req', req.body);
+    //image
     if (user.profileImage !== req.body.profileImage)
     {
       user.profileImage = req.body.profileImage
-      }
+    }
+    //password
     if (req.body.password != user.password) {
       user.password = req.body.password;
     }
     await user.save(); 
     let body = {};
-    for (const key in req.body) {
-        
+    for (const key in req.body) {        
       if (req.body[key]!=='' && key !=='password' ) {
           body[key] = req.body[key];
       }
@@ -109,19 +107,19 @@ const updateUser = async(req, res, next) => {
       res.json({ success: true, data: updatedUser  });
   }
     
-  } catch (err) {
-    /* console.log(err.message); */
+  } catch (err) {    
     next(err.message);
   }
 };
+
 //delete user
 const deleteUser = async(req, res, next) => {
   try {
     const {id}= req.params 
-    const existingUser = await UsersCollection.findById(id);
+    const existingUser = await userCollection.findById(id);
 
     if(existingUser){
-        const deleteStatus = await UsersCollection.deleteOne({_id:existingUser._id})
+        const deleteStatus = await userCollection.deleteOne({_id:existingUser._id})
         res.json({success:true, status: deleteStatus})
     }else{
         throw new Error("user id doesn't exist ! ")
