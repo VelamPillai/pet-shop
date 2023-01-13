@@ -4,20 +4,21 @@ import "./App.css";
 
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
+import Navbar from "./components/navbar/Navbar.js"
 import Main from "./components/main/Main.js";
 import Login from "./components/user/Login.js";
 import Signup from "./components/user/Signup.js"
 import Profile from "./components/user/Profile.js"
 import Account from "./components/user/Account.js";
 import Notification from "./components/user/Notification.js";
-import Delete from "./components/user/Delete.js";
+
 
 
 function App() {
   return (
     <div className="w-3/4 mx-auto p-5 h-screen">
       <Header />
-
+      <Navbar />
       <Routes>
         <Route path="/">
           <Route
