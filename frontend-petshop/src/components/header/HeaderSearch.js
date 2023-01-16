@@ -3,10 +3,14 @@ import { AiOutlineSearch } from 'react-icons/ai';
 
 export default function HeaderSearch() {
   const [search, setSearch] = useState('');
+  
+
+  
   const handleChange = (e) => {
     setSearch(search);
   }
   return (
+    
     <div className="w-48 ">
       <label className="relative block">
         <span className="sr-only">Search</span>
@@ -23,5 +27,6 @@ export default function HeaderSearch() {
         />
       </label>
     </div>
+    
   );
 }

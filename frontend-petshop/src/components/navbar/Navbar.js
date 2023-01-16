@@ -1,7 +1,8 @@
 import { NavLink, Outlet } from "react-router-dom";
 import React, { useState } from "react";
 
-import { FaAngleDoubleDown, FaAngleDoubleUp } from "react-icons/fa";
+import { FaAngleDoubleDown, FaAngleDoubleUp , FaCartPlus } from "react-icons/fa";
+
 
 
 
@@ -11,35 +12,40 @@ const Navbar = () => {
   const handleNavClick = () => setNav(!nav);
 
   return (
-    <div className="sticky top-0 w-full h-[180px]  md:h-[300px] flex justify-between items-center px-10 md:px-16 shadow bg-white text-black md:text-3xl z-10">
+    <div className=" sticky top-0 w-full h-[100px]  md:h-[150px] flex  justify-between items-center p-[2rem]   md:text-xl z-10 text-orange-500 md:shadow-xl">
       
       {/* menu */}
 
-      <ul className="hidden md:flex">
+      <ul className="hidden md:flex  md:justify-between md:items-center md:p-3">
         <li>
-          <NavLink to="/about" className=" navHover my-3 border-box p-1">
-            About
+          <NavLink to="/dogs" className=" navHover my-2 border-box lg:p-[3rem] md:p-[1rem]">
+            Dogs
           </NavLink>
         </li>
         <li>
-          <NavLink to="/gallery" className=" navHover my-2 border-box p-1">
-            Gallery
+          <NavLink to="/cats" className=" navHover my-2 border-box lg:p-[3rem] md:p-[1rem]">
+            Cats
           </NavLink>
         </li>
         <li>
-          <NavLink to="/testimonials" className=" navHover my-2 border-box p-1">
-            Testimonials
+          <NavLink to="/brands" className=" navHover my-2 border-box lg:p-[3rem] md:p-[1rem]">
+            Brands
           </NavLink>
         </li>
         <li>
-          <NavLink to="/contact" className=" navHover my-2 border-box p-1">
-            contact
+          <NavLink to="/blogs" className=" navHover my-2 border-box lg:p-[3rem] md:p-[1rem]">
+            Blogs
+          </NavLink>
+              </li>
+              <li>
+          <NavLink to="/specialOffers" className=" navHover my-2 border-box lg:p-[3rem] md:p-[.5rem] text-green-800 animate-ping">
+          Sale %
           </NavLink>
         </li>
       </ul>
       {/* hamburger */}
       <div
-        className="md:hidden text-3xl text-green-800 border-green-800 border-solid border-4 z-10"
+        className="  md:hidden text-lg text-orange-500 border-green-800 hover:text-green-800 hover:border-orange-500 border-solid border-4 z-10 relative "
         onClick={handleNavClick}
       >
         {nav ? <FaAngleDoubleUp /> : <FaAngleDoubleDown />}
@@ -49,43 +55,66 @@ const Navbar = () => {
         className={
           !nav
             ? "hidden "
-            : "absolute top-0 right-0 w-full h-[100vh]  bg-green-300 flex flex-col justify-center items-center md:hidden"
+            : "absolute top-[70px]  right-[-80px] h-[100vh]  bg-orange-200 flex flex-col justify-center items-center md:hidden p-[1rem]"
         }
       >
-        <li className="py-6 text-3xl">
+        <li className="py-6 text-xl">
           <NavLink
-            to="/about"
+            to="/dogs"
             className=" navHover my-3 border-box p-1"
             onClick={handleNavClick}
           >
-            About
+            Dogs
           </NavLink>
         </li>
-        <li className="py-6 text-3xl">
+        <li className="py-6 text-xl">
           <NavLink
-            to="/gallery"
+            to="/cats"
             className=" navHover my-2 border-box p-1"
             onClick={handleNavClick}
           >
-            Gallery
+            Cats
           </NavLink>
         </li>
-        <li className="py-6 text-3xl">
+        <li className="py-6 text-xl">
           <NavLink
-            to="/testimonials"
+            to="/brands"
             className=" navHover my-2 border-box p-1"
             onClick={handleNavClick}
           >
-            Testimonials
+            Brands
           </NavLink>
         </li>
-        <li className="py-6 text-3xl">
+        <li className="py-6 text-xl">
           <NavLink
-            to="/contact"
+            to="/blogs"
             className=" navHover my-2 border-box p-1"
             onClick={handleNavClick}
           >
-            Contact
+            Blogs
+          </NavLink>
+              </li>
+              <li className="py-6 text-xl">
+          <NavLink
+            to="sale"
+            className=" navHover my-2 border-box p-1 text-green-800 animate-ping"
+            onClick={handleNavClick}
+          >
+           Sale %
+          </NavLink>
+              </li>
+              <li className="py-6 text-xl">
+          <NavLink
+            to="cart"
+            className=" navHover my-2 border-box p-1"
+            onClick={handleNavClick}
+          >
+           <div className="flex justify-center items-center  border border-orange-500  text-4xl rounded">
+        <FaCartPlus className="mr-3  p-2  hover:cursor-pointer" />
+        <p className="text-lg p-2  border-l hover:cursor-pointer border-orange-500 ">
+          $0.00
+        </p>
+      </div>
           </NavLink>
         </li>
       </ul>
