@@ -17,7 +17,7 @@ export default function Header() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center ">
+    <div className="flex flex-col justify-center items-center  md:shadow w-[100%]">
        <div onClick={homePageHandler} className=" font-bold  md:p-3 flex md:hidden justify-center items-center">
           <img src={Logo} alt="header-icon" className=" w-20 mr-2" />
           <p className="text-2xl">Pet Store </p>

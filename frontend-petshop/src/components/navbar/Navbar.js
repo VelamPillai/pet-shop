@@ -12,7 +12,7 @@ const Navbar = () => {
   const handleNavClick = () => setNav(!nav);
 
   return (
-    <div className=" sticky top-0 w-full h-[100px]  md:h-[150px] flex  justify-between items-center p-[2rem]   md:text-xl z-10 text-orange-500 md:shadow-xl">
+    <div className=" sticky top-0 w-full h-[100px]  md:h-[150px] flex  justify-between items-center p-[2rem]   md:text-xl z-10 text-orange-500 ">
       
       {/* menu */}
 
@@ -55,7 +55,7 @@ const Navbar = () => {
         className={
           !nav
             ? "hidden "
-            : "absolute top-[70px]  right-[-80px] h-[100vh]  bg-orange-200 flex flex-col justify-center items-center md:hidden p-[1rem]"
+            : "absolute top-[90px]  right-[-40px] h-[100vh]  bg-orange-200 flex flex-col justify-center items-center md:hidden p-[1rem]"
         }
       >
         <li className="py-6 text-xl">
