@@ -14,10 +14,10 @@ export default function HeaderMenu() {
   };
 
   return (
-    <div className="flex text-4xl  ">
+    <div className="flex text-3xl  ">
       {user ? null : (
         <FaUserCircle
-          className=" mx-2 md:mx-4  border md:text-6xl border-orange-500 rounded p-2 hover:cursor-pointer"
+          className=" mx-2 md:mx-4 text-5xl md:border md:text-6xl border-orange-500 rounded p-2 hover:cursor-pointer text-orange-500 hover:text-green-800 mb-3 md:mb-0"
           onClick={navigateToUser}
         />
       )}

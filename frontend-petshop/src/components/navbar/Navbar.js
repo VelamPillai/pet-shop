@@ -12,40 +12,40 @@ const Navbar = () => {
   const handleNavClick = () => setNav(!nav);
 
   return (
-    <div className=" sticky top-0 w-full h-[100px]  md:h-[150px] flex  justify-between items-center p-[2rem]   md:text-xl z-10 text-orange-500 ">
+    <div className=" md:sticky w-full md:h-[150px] flex  justify-between items-center   md:text-xl  text-orange-500 ">
       
       {/* menu */}
 
-      <ul className="hidden md:flex  md:justify-between md:items-center md:p-3">
+      <ul className="hidden md:flex  md:justify-between md:items-center md:p-2">
         <li>
-          <NavLink to="/dogs" className=" navHover my-2 border-box lg:p-[3rem] md:p-[1rem]">
+          <NavLink to="/dogs" className=" md:leading-7 md:hover:underline border-black/6 my-1 border-box lg:p-[3rem] md:p-[1rem]">
             Dogs
           </NavLink>
         </li>
         <li>
-          <NavLink to="/cats" className=" navHover my-2 border-box lg:p-[3rem] md:p-[1rem]">
+          <NavLink to="/cats" className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[1rem]">
             Cats
           </NavLink>
         </li>
         <li>
-          <NavLink to="/brands" className=" navHover my-2 border-box lg:p-[3rem] md:p-[1rem]">
+          <NavLink to="/brands" className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[1rem]">
             Brands
           </NavLink>
         </li>
         <li>
-          <NavLink to="/blogs" className=" navHover my-2 border-box lg:p-[3rem] md:p-[1rem]">
+          <NavLink to="/blogs" className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[1rem]">
             Blogs
           </NavLink>
               </li>
               <li>
-          <NavLink to="/specialOffers" className=" navHover my-2 border-box lg:p-[3rem] md:p-[.5rem] text-green-800 animate-ping">
+          <NavLink to="/specialOffers" className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[.5rem] text-green-800 animate-ping hover:animate-none">
           Sale %
           </NavLink>
         </li>
       </ul>
       {/* hamburger */}
       <div
-        className="  md:hidden text-lg text-orange-500 border-green-800 hover:text-green-800 hover:border-orange-500 border-solid border-4 z-10 relative "
+        className="  md:hidden text-4xl text-orange-500 border-green-800 hover:text-green-800 hover:border-orange-500 border-solid border-2    ml-[1rem] z-10 rounded w-[100%]"
         onClick={handleNavClick}
       >
         {nav ? <FaAngleDoubleUp /> : <FaAngleDoubleDown />}
@@ -55,18 +55,19 @@ const Navbar = () => {
         className={
           !nav
             ? "hidden "
-            : "absolute top-[90px]  right-[-40px] h-[100vh]  bg-orange-200 flex flex-col justify-center items-center md:hidden p-[1rem]"
-        }
+            : "  z-20 w-[90vw]  absolute left-[-5rem]  top-[100px] mb-3 bg-orange-200 flex flex-col justify-center items-center md:hidden p-[1rem] "
+        } 
       >
-        <li className="py-6 text-xl">
+        <li className="py-6 text-xl ">
           <NavLink
             to="/dogs"
-            className=" navHover my-3 border-box p-1"
+            className=" navHover my-3 border-box p-1 "
             onClick={handleNavClick}
           >
             Dogs
           </NavLink>
         </li>
+        <hr />
         <li className="py-6 text-xl">
           <NavLink
             to="/cats"

@@ -4,7 +4,7 @@ import "./App.css";
 
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
-
+import Navbar from "./components/navbar/Navbar";
 import Main from "./components/main/Main.js";
 import Login from "./components/user/Login.js";
 import Signup from "./components/user/Signup.js"
@@ -16,9 +16,12 @@ import Notification from "./components/user/Notification.js";
 
 function App() {
   return (
-    <div className="w-3/4 mx-auto  p-5 h-screen">
+    <div className="    h-screen md:w-[100vw]" >
+      
       <Header />
       
+        
+      <div className="w-3/4 mx-auto  ">
       <Routes>
         <Route path="/">
           <Route
@@ -39,8 +42,8 @@ function App() {
     />
         
       </Routes>
-
-      <Footer />
+      </div>
+       <Footer /> 
     </div>
   );
 }

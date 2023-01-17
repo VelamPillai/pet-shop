@@ -8,7 +8,7 @@ export default function Newsletter() {
     <div className="flex justify-around items-center bg-orange-600 text-white ">
       <MdOutlineLocalPostOffice className="text-5xl" />
       <p className="uppercase">join our Newsletter </p>
-      <form className="border border-orange-500 m-6 p-2 w-2/4 bg-white relative">
+      <form className="border border-orange-500  m-6 p-2 w-2/4 bg-white relative">
         <input
           text="email"
           placeholder="Your email address"

@@ -11,7 +11,7 @@ export default function HeaderSearch() {
   }
   return (
     
-    <div className="w-48 ">
+    <div className="w-48 mt-[20px] md:mt-[-20px] ">
       <label className="relative block">
         <span className="sr-only">Search</span>
         <span className="absolute inset-y-0 left-0 flex items-center pl-2">
