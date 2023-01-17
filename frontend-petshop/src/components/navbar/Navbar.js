@@ -16,9 +16,9 @@ const Navbar = () => {
       
       {/* menu */}
 
-      <ul className="hidden md:flex  md:justify-between md:items-center md:p-2">
-        <li>
-          <NavLink to="/dogs" className=" md:leading-7 md:hover:underline border-black/6 my-1 border-box lg:p-[3rem] md:p-[1rem]">
+      <ul className="hidden md:flex  md:justify-between md:items-center md:p-2 ">
+        <li >
+          <NavLink to="/dogs" className=" md:leading-7     lg:p-[2rem] md:p-[1rem]  md:hover:underline " >
             Dogs
           </NavLink>
         </li>

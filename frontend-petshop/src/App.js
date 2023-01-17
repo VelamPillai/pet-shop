@@ -16,12 +16,15 @@ import Notification from "./components/user/Notification.js";
 
 function App() {
   return (
-    <div className="    h-screen md:w-[100vw]" >
+    <div className="    h-screen md:w-[100vw] flex flex-col" >
       
+      <div className=" ">
       <Header />
+      </div>
+      
       
         
-      <div className="w-3/4 mx-auto  ">
+      <div className="w-3/4 mx-auto mt-[15rem] ">
       <Routes>
         <Route path="/">
           <Route
@@ -43,7 +46,8 @@ function App() {
         
       </Routes>
       </div>
-       <Footer /> 
+        <Footer /> 
+       
     </div>
   );
 }
