@@ -14,6 +14,7 @@ const productSchema = new Schema({
         }
     }, */
     sale: { type: Boolean },
+    productAge:{type:String ,enum:['new','old'],default:'new'}
 
     
     
