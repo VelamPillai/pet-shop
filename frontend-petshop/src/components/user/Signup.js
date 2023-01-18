@@ -32,18 +32,21 @@ export default function Signup() {
      data.append('lastName', e.target.lastName.value);
      data.append('email', e.target.email.value);
      data.append('password', e.target.password.value);
-      data.append('profileImage',profileImage)   
+     data.append('profileImage', profileImage)  
      
-    /*  for (let key of data.keys()) {
+    
+     
+     /* for (let key of data.keys()) {
       console.log(key)
     }
      for (let values of data.values()) {
        console.log(values)
-     } */
+     }  */
      signupDispatch({type:'clearForm'})
 
-    //post newUser to server
-    fetch('http://localhost:8000/users/signup', { method: 'POST', body: data })
+     //post newUser to server
+     
+     fetch('http://localhost:8000/users/signup', { method: 'POST', body: data }) 
       .then((res) => res.json())
       .then((result) => {
         if (result.success) {
@@ -78,12 +81,7 @@ export default function Signup() {
       
       <div className="flex flex-col justify-center items-center border lg:border-0 w-[100%]  p-[1rem] mb-[1rem] md:p-[3rem] lg:h-[900px] ">
       <p className="m-[.25rem] md:m-[1rem] font-bold text-center ">CREATE AN ACCOUNT</p>
-       {/*  <form className=" flex flex-col" onSubmit={(e) => {
-          e.preventDefault();
-          signupDispatch({ type: 'signup', payload: { data: e } })
-        }
-         
-        }> */}
+       
         <form  className=" flex flex-col justify-center items-center w-[100%]" onSubmit={registerUser}> 
           <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem] md:m-[1rem] ">
             First Name :{' '}

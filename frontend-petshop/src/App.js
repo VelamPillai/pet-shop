@@ -1,8 +1,14 @@
-import { Routes, Route } from 'react-router-dom';
+
+
+import { Routes, Route , Navigate } from "react-router-dom";
+
+
+import Dog from "./components/petType/Dog";
+
 
 import './App.css';
-
-
+import Account from "./components/user/Account.js";
+import Notification from "./components/user/Notification.js";
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
 
@@ -22,10 +28,13 @@ import Stores from './components/footer/company/Stores';
 import Home from './pages/Home.js';
 
 
+
+
 function App() {
   return (
-    <div className="w-3/4 mx-auto p-5 h-screen">
+    <div className="h-screen md:w-[100vw] flex flex-col">
       <Header />
+      <div className="w-3/4 mx-auto mt-[15rem] ">
 
       <Routes>
         <Route path="/">
@@ -38,10 +47,11 @@ function App() {
         </Route>
         <Route index={false} path="login" element={<Login />} />
         <Route index={false} path="signup" element={<Signup />} />
+
+
         <Route index={false} path="profile" element={<Profile />} />
 
-      </Routes>
-      <Routes>
+     
         <Route
           index={false}
           path="products/legal-notice"
@@ -78,9 +88,18 @@ function App() {
         <Route index={false} path="company/contact" element={<Contact />} />
         <Route index={false} path="company/sitemap" element={<Sitemap />} />
         <Route index={false} path="company/stores" element={<Stores />} />
-
+        <Route index={false} path="profile" element={<Profile />} /> 
+        <Route index={false} path="account" element={<Account />} />
+        <Route index={false} path="notification" element={<Notification />} />
+        
+        <Route index={false} path="dog" element={<Dog />} /> 
+    
+        <Route path="*" element={<Navigate to="/" replace />}
+    />
+        
       </Routes>
 
+      </div>
       <Footer />
     </div>
   );
