@@ -10,13 +10,12 @@ export default function Logout() {
   const navigate = useNavigate()
 
   //onClick - logout  Handler - p element
-  const logoutHandler = () => {   
+   const logoutHandler = () => {   
     localStorage.removeItem('token');    
-    homepageDispatch({ type: 'setUser', payload: { data: '' } })
-    /* homepageDispatch({type:'setUerIconStatus'}) */
+    homepageDispatch({ type: 'setUser', payload: { data: '' } })  
     toast.success('logged out successfully')
     setTimeout(() => navigate('/'),2000);
-  }
+  } 
 
   //onClick -profile Handler - p element
   const profileHandler = () => {
@@ -24,9 +23,10 @@ export default function Logout() {
 }
 
   return (
-    <div className="flex justify-center items-center  border border-orange-500  text-2xl rounded">
-      <p onClick={ profileHandler} className="mr-3  p-2  hover:cursor-pointer">Hi! {user.firstName}</p>
-      <p  onClick={logoutHandler} className="text-sm p-2  border-l hover:cursor-pointer border-orange-500 " >
+    <div className="flex justify-center items-center flex-row border border-orange-500 text-xs ml-[2rem] md:text-lg rounded box-border mb-3  md:mr-3">
+      <p onClick={profileHandler} className="p-1 md:mr-3  md:p-2 border-r md:border-b-0  border-orange-500  hover:cursor-pointer hover:border-collapse   hover:animate-pulse hover:scale-105">Hi! {user.firstName}</p>
+      
+      <p  onClick={logoutHandler} className=" p-1  md:mr-3 md:p-2  hover:cursor-pointer   hover:animate-pulse hover:scale-105" >
         Log Out
       </p>
       <Toaster />

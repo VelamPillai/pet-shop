@@ -17,7 +17,7 @@ const userSchema = new Schema({
       return `https://joeschmoe.io/api/v1/${this.firstName}`;
     },
   },
-}, { strict: false });
+});
 
 userSchema.pre('save', function (next) {
   if (this.isModified('password')) {
