@@ -4,10 +4,15 @@ import PetCategory from './PetCategory';
 
 export default function Main() {
   return (
-    <div className='p-[3rem]'>
-      <img src={mainImage} alt="header-icon" className="w-2/3 border m-auto rounded-md" />
+    <div className="p-[3rem]">
+      <img
+        src={mainImage}
+        alt="header-icon"
+        className="w-2/3 rounded-md m-auto"
+      />
+
       <PetCategory />
-      <hr  className='mb-[2rem]'/> 
+      <hr className="mb-[2rem]" />
     </div>
-  )
+  );
 }

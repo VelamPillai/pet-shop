@@ -16,6 +16,7 @@ export default function Dog() {
   return (
     <div className="flex flex-col">
       <p className="flex justify-center items-center text-xl font-bold">Dog</p>
+
       <div>
         <ul className="flex flex-row justify-between m-3">
           {/* dog menu */}
@@ -46,6 +47,8 @@ export default function Dog() {
         </div>
       </div>
       <div>
+
+            
         {/* side menu */}
         <p>Side menu</p>
         {/* products card */}
@@ -54,4 +57,5 @@ export default function Dog() {
       <div>Payment methods</div>
     </div>
   );
+
 }
