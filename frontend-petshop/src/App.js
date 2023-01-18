@@ -1,5 +1,9 @@
 
+
 import { Routes, Route , Navigate } from "react-router-dom";
+
+
+import Dog from "./components/petType/Dog";
 
 
 import './App.css';
@@ -24,17 +28,13 @@ import Stores from './components/footer/company/Stores';
 
 
 
+
 function App() {
   return (
-    <div className="    h-screen md:w-[100vw] flex flex-col" >
-      
-      <div className=" ">
+    <div className="h-screen md:w-[100vw] flex flex-col">
       <Header />
-      </div>
-      
-      
-        
       <div className="w-3/4 mx-auto mt-[15rem] ">
+
       <Routes>
         <Route path="/">
           <Route
@@ -87,21 +87,19 @@ function App() {
         <Route index={false} path="company/contact" element={<Contact />} />
         <Route index={false} path="company/sitemap" element={<Sitemap />} />
         <Route index={false} path="company/stores" element={<Stores />} />
-
-  
-
-
         <Route index={false} path="profile" element={<Profile />} /> 
         <Route index={false} path="account" element={<Account />} />
         <Route index={false} path="notification" element={<Notification />} />
+        
+        <Route index={false} path="dog" element={<Dog />} /> 
     
         <Route path="*" element={<Navigate to="/" replace />}
     />
         
       </Routes>
+
       </div>
-        <Footer /> 
-       
+      <Footer />
     </div>
   );
 }
