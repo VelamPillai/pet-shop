@@ -1,46 +1,51 @@
-import productCollection from '../models/productSchema.js';
+import productCollection from "../models/productSchema.js";
 
-import dotenv from 'dotenv';
-
+import dotenv from "dotenv";
 
 dotenv.config();
 
-//get all user
-const getAllProduct=async(req, res, next) => {
+//get all products
+const getAllProduct = async (req, res, next) => {
   try {
-    const product= await productCollection.find()
-    res.status(200).json({success:true,data:user})
+    const product = await productCollection.find();
+
+    res
+      .status(200)
+      .json({ success: true, noOfProducts: product.length, data: product });
   } catch (err) {
     next(err);
   }
 };
 
-//get single user
-const getSingleproduct= async(req, res, next) => {
+//get single product
+const getSingleProduct = async (req, res, next) => {
   try {
-    const product= await productCollection.findOne()
+    const id = req.params.id;
+    console.log(id);
+    const product = await productCollection.findById(id);
+    console.log(product);
+    res.status(200).json({ success: true, data: product });
   } catch (err) {
     next(err);
   }
 };
 
 //  add new product to DB at Backend side
-const addNewProduct= async (req, res, next) => {
-  //console.log(req.body)
+const addNewProduct = async (req, res, next) => {
+ 
   try {
-    
-    const DBProduct= await productCollection.findOne({ productName: req.body.productName });
-    //console.log(DBUser);
+    const DBProduct = await productCollection.findOne({
+      productName: req.body.productName,
+    });
+   
     if (!DBProduct) {
-      const product= new productCollection(req.body);
+      const product = new productCollection(req.body);
       //console.log(product)//to display req.body information
-      
+
       await product.save();
-      res.json({ success: true, data: product});
+      res.json({ success: true, data: product });
     } else {
-      throw new Error(
-        'product already exists !'
-      );
+      throw new Error("product already exists !");
     }
   } catch (err) {
     console.log(err.message);
@@ -49,103 +54,36 @@ const addNewProduct= async (req, res, next) => {
   }
 };
 
-//login - user
-const loginproduct= async (req, res, next) => {
+//update product
+const updateProduct = async (req, res, next) => {
   try {
-    const product= await productCollection.findOne({ email: req.body.email });
-
-    if (user) {
-      const checkPassword = await bcrypt.compare(
-        req.body.password,
-        user.password
-      );
-
-      if (checkPassword) {
-        let token = jwt.sign(
-          { _id: user._id, firstName: user.firstName },
-          process.env.TOKEN_KEY,
-          { expiresIn: '1h', issuer: 'velam' }
-        );
-
-        const updatedproduct= await productCollection.findByIdAndUpdate(
-          user._id,
-          { token: token },
-          { new: true }
-        );
-        res.header('token', token).json({ success: true, data: updatedproduct});
-      } else {
-        throw new Error('Invalid password, please try again!');
-      }
-    } else {
-      throw new Error('Email does not exists. please try again!');
-    }
+   
+    const updatedProduct = await productCollection.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    res.json({ success: true, data: updatedProduct });
   } catch (err) {
     next(err.message);
   }
 };
-//update user
-const updateproduct= async(req, res, next) => {
+
+//delete product
+const deleteProduct = async (req, res, next) => {
   try {
- 
-    let product= await productCollection.findById(req.params.id);
-    //image
-    if (user.profileImage !== req.body.profileImage)
-    {
-      user.profileImage = req.body.profileImage
-    }
-    //password
-    if (req.body.password != user.password) {
-      user.password = req.body.password;
-    }
-    await user.save(); 
-    let body = {};
-    for (const key in req.body) {        
-      if (req.body[key]!=='' && key !=='password' ) {
-          body[key] = req.body[key];
-      }
-      const updatedproduct= await productCollection.findByIdAndUpdate(req.params.id, body, { new: true })
-      res.json({ success: true, data: updatedproduct });
-  }
+    const { id } = req.params; 
+
+   
+      const deleteStatus = await productCollection.deleteOne({
+        _id: id
+      });
+      res.json({ success: true, status: deleteStatus });
     
-  } catch (err) {    
-    next(err.message);
-  }
-};
-
-//delete user
-const deleteproduct= async(req, res, next) => {
-  try {
-    const {id}= req.params 
-    const existingproduct= await productCollection.findById(id);
-
-    if(existingUser){
-        const deleteStatus = await productCollection.deleteOne({_id:existingUser._id})
-        res.json({success:true, status: deleteStatus})
-    }else{
-        throw new Error("productid doesn't exist ! ")
-    }
-    
-}
-catch(err){
-    next(err)
-}
-  
-};
-
-const verifyUserToken = async (req, res, next) => {
-  try {
-   /*  console.log('token') */
-    const token = req.headers.token;
-    const payload = jwt.verify(token, process.env.TOKEN_KEY );
-    /* console.log(payload) */
-    const product= await productCollection.findById(payload._id);
-   /*  console.log(user) */
-    res.json({ success: true, data: product});
   } catch (err) {
-    console.log(err.message)
     next(err);
   }
 };
-export {
-    addNewProduct 
-};
+
+
+export { addNewProduct, getAllProduct, getSingleProduct, updateProduct ,deleteProduct};

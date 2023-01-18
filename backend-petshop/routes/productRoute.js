@@ -2,7 +2,11 @@ import express from 'express';
 
 import {
   
-  addNewProduct 
+    addNewProduct,
+    getAllProduct,
+    getSingleProduct,
+    updateProduct,
+    deleteProduct
   
  
 } from '../controller/productController.js';
@@ -11,15 +15,15 @@ import {
 
 
 const route = express.Router();
-/* 
+
 //GET
-route.get('/', getAllProduct); */
+route.get('/', getAllProduct); 
 
 
 //POST - new Product
 route.post('/addProduct',  addNewProduct);
 
-/* 
+
 //GET - singleProduct
 route.get('/:id',  getSingleProduct);
 
@@ -29,7 +33,7 @@ route.get('/:id',  getSingleProduct);
 
 //DELETE - delete Product
 //route.delete('/:id', verifyToken, isAdmin, deleteProduct);
-route.delete('/:id', deleteProduct); */
+route.delete('/:id', deleteProduct); 
 
 
 
