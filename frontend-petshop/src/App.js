@@ -2,10 +2,8 @@ import { Routes, Route } from 'react-router-dom';
 
 import './App.css';
 
-
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
-import Main from './components/main/Main.js';
 import Login from './components/user/Login.js';
 import Signup from './components/user/Signup.js';
 import Profile from './components/user/Profile.js';
@@ -19,7 +17,7 @@ import SecurePayment from './components/footer/company/SecurePayment';
 import Contact from './components/footer/company/Contact';
 import Sitemap from './components/footer/company/Sitemap';
 import Stores from './components/footer/company/Stores';
-
+import Home from './pages/Home.js';
 
 function App() {
   return (
@@ -38,7 +36,6 @@ function App() {
         <Route index={false} path="login" element={<Login />} />
         <Route index={false} path="signup" element={<Signup />} />
         <Route index={false} path="profile" element={<Profile />} />
-
       </Routes>
       <Routes>
         <Route
@@ -77,7 +74,6 @@ function App() {
         <Route index={false} path="company/contact" element={<Contact />} />
         <Route index={false} path="company/sitemap" element={<Sitemap />} />
         <Route index={false} path="company/stores" element={<Stores />} />
-
       </Routes>
 
       <Footer />
