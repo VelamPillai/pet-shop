@@ -17,7 +17,7 @@ export default function Header() {
   };
 
   return (
-    <div className="flex flex-col md:justify-between items-center  md:shadow  mb-3 ">
+    <div className="flex flex-col md:justify-between items-center  md:shadow  mb-3  z-50 w-[100vw] fixed top-0 bg-white ">
        <div onClick={homePageHandler} className=" font-bold  flex md:hidden justify-center items-center">
           <img src={Logo} alt="header-icon" className=" w-20 mr-2" />
           <p className="text-2xl">Pet Store </p>

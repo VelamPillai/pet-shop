@@ -1,3 +1,4 @@
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -54,4 +55,5 @@ export default function Dog() {
       <div>Payment methods</div>
     </div>
   );
+
 }
