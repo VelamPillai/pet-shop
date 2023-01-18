@@ -50,8 +50,7 @@ function App() {
 
         <Route index={false} path="profile" element={<Profile />} />
 
-      </Routes>
-      <Routes>
+     
         <Route
           index={false}
           path="products/legal-notice"
@@ -89,7 +88,7 @@ function App() {
         <Route index={false} path="company/sitemap" element={<Sitemap />} />
         <Route index={false} path="company/stores" element={<Stores />} />
 
-      </Routes>
+  
 
 
         <Route index={false} path="profile" element={<Profile />} /> 
