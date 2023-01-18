@@ -24,7 +24,7 @@ import Home from './pages/Home.js';
 
 function App() {
   return (
-    <div className="    h-screen md:w-[100vw] flex flex-col" >
+    <div className="h-screen md:w-[100vw] flex flex-col" >
       
       <div className=" ">
       <Header />
