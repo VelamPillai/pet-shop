@@ -1,12 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext} from "react";
 import { useNavigate } from "react-router-dom";
 
 import Sort from "./Sort";
-import Petmenu from "./Petmenu";
-import Sidemenu from "./Sidemenu";
+import PetMenu from "./PetMenu.js";
+import Sidemenu from "./Sidemenu.js";
+import ProductCard from "./ProductCard.js";
+
+import { StoreContext } from '../../context/StoreContext.js';
 
 export default function Dog() {
   const navigate = useNavigate();
+
+
+  const { productState} =
+    useContext(StoreContext);
+  
+  const { product ,sortOption } = productState;
+   
+  
 
   return (
     <div className="flex flex-col">
@@ -14,25 +25,31 @@ export default function Dog() {
 
       <div>
         {/* dog menu */}
-        <Petmenu />
+        <PetMenu />
       </div>
       <div className="flex flex-row justify-between m-3">
         {/* products */}
         <p>
-          <span className="font-bold">2222</span> products
+          <span className="font-bold">{product.length}</span> products
         </p>
         {/* search - drop down menu - filter */}
         <Sort />
       </div>
-      <div>
+      <div className='flex justify-between'>
         {/* side menu */}
-              <div>
+              <div className='w-1/4'>
                   <Sidemenu />
                   
               </div>
               
         {/* products card */}
-        <p>Display pf Products</p>
+        <div className='flex justify-between align-center w-3/4 flex-wrap '>
+          
+          {product &&
+            product.map((item) =>
+            <ProductCard product={{ ...item }} kex={item._id}  />)
+        }
+        </div>
       </div>
       <div>Payment methods</div>
     </div>

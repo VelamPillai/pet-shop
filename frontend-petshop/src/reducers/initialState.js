@@ -7,9 +7,13 @@ const initialState = {
 
   email: '',
   password: '',
-  file: null,
-  //userIconStatus: true,
+  file: null, 
   user: '',
+
+  product: '',
+  originalProduct:'',
+  sortOption:'Recommended'
+  
 };
 
 export default initialState;

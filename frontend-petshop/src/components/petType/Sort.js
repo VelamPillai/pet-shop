@@ -1,15 +1,26 @@
-import React,{useState} from 'react'
+import React,{useState,useContext} from 'react'
 
+import { StoreContext } from '../../context/StoreContext.js';
 import { MdKeyboardArrowDown } from "react-icons/md";
 
 export default function Sort() {
+  const {productDispatch,productState} =
+    useContext(StoreContext);
 
-  const [sortOption, setSortOption] = useState("Recommended");
+  const { sortOption ,product, originalProduct } = productState
   const [hideOption, setHideOption] = useState(true);
+
 
   const handleSortClick = (e) => {
     e.preventDefault();
-    setSortOption(e.target.value);
+    productDispatch({ type: "setSortOption", payload: { data: e.currentTarget.value } });
+   
+    e.currentTarget.value==='Price(high-low)' &&
+      product.sort((a, b) => Number(b.price) - Number(a.price)) 
+    e.currentTarget.value === 'Price(low-high)' &&
+      product.sort((a, b) => Number(a.price) - Number(b.price)) 
+    console.log(originalProduct)
+    e.currentTarget.value==='Recommended' && productDispatch({ type: "setProduct", payload: { data:[...originalProduct] } });
     setHideOption((hideOption) => !hideOption);
   };
 

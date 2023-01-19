@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Petmenu() {
+export default function PetMenu() {
 
   const dogMenu = [
     "Dog Food",

@@ -24,7 +24,7 @@ import productRoute from "./routes/productRoute.js"
 const app = express();
 
 //cors config
-app.use(cors({ origin: "http://localhost:3001", exposedHeaders: ["token"] }));
+app.use(cors({ origin: "http://localhost:3000", exposedHeaders: ["token"] }));
 
 
 //middleware for get file-data request(from express-fileupload)

@@ -2,6 +2,7 @@ import { Schema, model } from 'mongoose';
 
 
 const productSchema = new Schema({
+    petName:{type: String, required: true,default:'dog/cat' },
     productName: { type: String, required: true ,unique:true},
     description: { type: String, required: true },
     price: { type: Number, required: true },
