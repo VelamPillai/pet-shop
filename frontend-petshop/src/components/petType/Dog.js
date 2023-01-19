@@ -30,12 +30,12 @@ export default function Dog() {
       <div className="flex flex-row justify-between m-3">
         {/* products */}
         <p>
-          <span className="font-bold">{product.length}</span> products
+          <span className="font-bold">{product  && product.filter((item=>item.petName==="dog"||item.petName==="dog/cat")).length}</span> products
         </p>
         {/* search - drop down menu - filter */}
         <Sort />
       </div>
-      <div className='flex justify-between'>
+      <div className='flex justify-between mt-5'>
         {/* side menu */}
               <div className='w-1/4'>
                   <Sidemenu />
@@ -46,8 +46,8 @@ export default function Dog() {
         <div className='flex justify-between align-center w-3/4 flex-wrap '>
           
           {product &&
-            product.map((item) =>
-            <ProductCard product={{ ...item }} kex={item._id}  />)
+            product.filter((item=>item.petName==="dog"||item.petName==="dog/cat")).map((item) =>
+            <ProductCard product={{ ...item }} key={item._id}  />)
         }
         </div>
       </div>

@@ -26,7 +26,7 @@ export default function Sort() {
 
   const handleBtnClick = (e) => {
     e.preventDefault();
-    setHideOption(false);
+    setHideOption((hideOption)=>!hideOption);
   };
   return (
     <div>
@@ -40,22 +40,15 @@ export default function Sort() {
             <MdKeyboardArrowDown className="ml-2" />
           </button>
 
-          {/* <div>
-                      <input type="radio" name="sortOption" value="Recommended" onChange={ handleSortClick } className="mr-2 "/>
-                      <label>Recommended</label><br />
-                      <input type="radio" name="sortOption" value="Price(low - high)" onChange={ handleSortClick } className="mr-2 "/>
-                      <label >Price(low - high)</label><br />
-                      <input type="radio" name="sortOption" value="Price(high-low)" onChange={ handleSortClick } className="mr-2 "/>
-                      <label >Price(high-low)</label><br />
-                  </div> */}
+          
           {!hideOption && (
             <div
-              className="z-10  bg-white divide-y divide-orange-100 rounded shadow w-60 dark:bg-orange-700 "
+              className="z-10  bg-orange-200 divide-y divide-orange-100 rounded-lg shadow w-[280px] dark:bg-orange-700 "
               style={{
-                position: "absolute",
+                position: "fixed",
                 inset: "auto auto 0px 0px",
                 margin: "0px",
-                transform: "translate3d(54rem, -10rem, 0px)",
+                transform: "translate3d(119rem, -14rem, 0px)",
               }}
             >
               <ul className="p-3 space-y-1 text-sm text-orange-700 ">
