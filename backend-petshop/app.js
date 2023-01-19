@@ -16,6 +16,7 @@ import './models/dbConnection.js';
 
 //import : user defined function
 import userRoute from './routes/userRoute.js';
+import productRoute from './routes/productRoute.js';
 
 //create and initialize express server
 const app = express();
@@ -37,6 +38,8 @@ app.use(express.json());
 //GET ,POST,PATCH,DELETE - req '/user'endpoint and its controller
 
 app.use('/users', userRoute);
+//GET ,POST,PATCH,DELETE - req '/product'endpoint and its controller
+app.use('/products', productRoute);
 
 //page not found
 app.use((req, res, next) => {

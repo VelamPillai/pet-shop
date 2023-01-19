@@ -49,8 +49,6 @@ export default function Login() {
         });
   };
 
-  //onClick - signUpHandler - button
-
   const signUpHandler = (e) => {
     e.preventDefault();
     navigate('/signup');
