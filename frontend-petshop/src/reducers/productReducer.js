@@ -14,6 +14,18 @@ export const productReducer = (state, action) => {
         sortOption: payload.data,
       };
     }
+    case "setMenuName": {
+      return {
+        ...state,
+        menuName : payload.data
+      }
+    }
+    case "setSubMenuName": {
+      return {
+        ...state,
+        menuName : payload.data
+      }
+      }
     default: {
       return state;
     }

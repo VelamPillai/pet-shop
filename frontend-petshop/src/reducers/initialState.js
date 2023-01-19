@@ -12,7 +12,10 @@ const initialState = {
 
   product: '',
   originalProduct:'',
-  sortOption:'Recommended'
+  sortOption: 'Recommended',
+  menuName: '',
+  subMenuName:''
+
   
 };
 

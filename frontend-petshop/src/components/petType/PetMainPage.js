@@ -8,20 +8,20 @@ import ProductCard from "./ProductCard.js";
 
 import { StoreContext } from '../../context/StoreContext.js';
 
-export default function Dog() {
+export default function PetMainPage() {
   const navigate = useNavigate();
 
 
   const { productState} =
     useContext(StoreContext);
   
-  const { product ,sortOption } = productState;
+  const { product ,menuName } = productState;
    
-  
+ 
 
   return (
     <div className="flex flex-col">
-      <p className="flex justify-center items-center text-xl font-bold">Dog</p>
+      <p className="flex justify-center items-center text-xl font-bold">{menuName.toUpperCase()}</p>
 
       <div>
         {/* dog menu */}
@@ -30,7 +30,7 @@ export default function Dog() {
       <div className="flex flex-row justify-between m-3">
         {/* products */}
         <p>
-          <span className="font-bold">{product  && product.filter((item=>item.petName==="dog"||item.petName==="dog/cat")).length}</span> products
+          <span className="font-bold">{product  && product.filter((item=>item.petName===menuName||item.petName==="dog/cat")).length}</span> products
         </p>
         {/* search - drop down menu - filter */}
         <Sort />
@@ -46,8 +46,13 @@ export default function Dog() {
         <div className='flex justify-between align-center w-3/4 flex-wrap '>
           
           {product &&
-            product.filter((item=>item.petName==="dog"||item.petName==="dog/cat")).map((item) =>
-            <ProductCard product={{ ...item }} key={item._id}  />)
+            (menuName==='dog' || menuName === 'cat') ?
+            (product.filter((item=>item.petName===menuName||item.petName==="dog/cat")).map((item) =>
+              <ProductCard product={{ ...item }} key={item._id} />)):
+            (menuName === 'sale %' && (product.filter((item=>item.sale===true)).map((item) =>
+            <ProductCard product={{ ...item }} key={item._id} />))
+            )
+          
         }
         </div>
       </div>
