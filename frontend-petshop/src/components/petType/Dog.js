@@ -1,61 +1,57 @@
-import React from "react";
+import React, { useContext} from "react";
 import { useNavigate } from "react-router-dom";
+
+import Sort from "./Sort";
+import PetMenu from "./PetMenu.js";
+import Sidemenu from "./Sidemenu.js";
+import ProductCard from "./ProductCard.js";
+
+import { StoreContext } from '../../context/StoreContext.js';
 
 export default function Dog() {
   const navigate = useNavigate();
-  const dogMenu = [
-    "Dog Food",
-    "Dog Pharmacy",
-    "Dog Toys",
-    "Dog Treats and Bones",
-    "Dog Homes",
-    "care and Maintenance",
-    "Supplements",
-  ];
+
+
+  const { productState} =
+    useContext(StoreContext);
+  
+  const { product ,sortOption } = productState;
+   
+  
 
   return (
     <div className="flex flex-col">
       <p className="flex justify-center items-center text-xl font-bold">Dog</p>
 
       <div>
-        <ul className="flex flex-row justify-between m-3">
-          {/* dog menu */}
-          {dogMenu.map((item) => {
-            return (
-              <li className="p-2  ring-2 ring-orange-500 rounded bg-orange-200/25 hover:ring-green-500 hover:bg-green-100/25">
-                {item}
-              </li>
-            );
-          })}
-        </ul>
+        {/* dog menu */}
+        <PetMenu />
       </div>
       <div className="flex flex-row justify-between m-3">
         {/* products */}
         <p>
-          <span className="font-bold">2222</span> products
+          <span className="font-bold">{product.length}</span> products
         </p>
         {/* search - drop down menu - filter */}
-        <div>
-          <label for="sort">Sort:</label>
-          <select name="dog-product-sort" id="dog-product-sort">
-            <option value="">Recommended</option>
-            <option value="bestseller">Best Seller</option>
-            <option value="newest-items">Newest items</option>
-            <option value="low-price">Price (low to high)</option>
-            <option value="high-price">Price (high to low)</option>
-          </select>
-        </div>
+        <Sort />
       </div>
-      <div>
-
-            
+      <div className='flex justify-between'>
         {/* side menu */}
-        <p>Side menu</p>
+              <div className='w-1/4'>
+                  <Sidemenu />
+                  
+              </div>
+              
         {/* products card */}
-        <p>Display pf Products</p>
+        <div className='flex justify-between align-center w-3/4 flex-wrap '>
+          
+          {product &&
+            product.map((item) =>
+            <ProductCard product={{ ...item }} kex={item._id}  />)
+        }
+        </div>
       </div>
       <div>Payment methods</div>
     </div>
   );
-
 }

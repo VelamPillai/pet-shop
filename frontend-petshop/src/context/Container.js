@@ -1,8 +1,9 @@
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer} from "react";
 import { useNavigate } from "react-router-dom";
 
 import { StoreContext } from "../context/StoreContext.js";
 import { homepageReducer } from "../reducers/homepageReducer.js";
+import { productReducer } from "../reducers/productReducer.js";
 import { loginReducer } from "../reducers/loginReducer.js";
 import { signupReducer } from "../reducers/signupReducer.js";
 import initialState from "../reducers/initialState.js";
@@ -14,13 +15,30 @@ export default function Container(props) {
   const [loginState, loginDispatch] = useReducer(loginReducer, initialState);
   //signupReducer
   const [signupState, signupDispatch] = useReducer(signupReducer, initialState);
-
+  //productReducer
+  const [productState, productDispatch] = useReducer(productReducer, initialState);
   const navigate = useNavigate();
    
+  const { user } = homepageState;
   
   
 
   useEffect(() => {
+
+     fetch("http://localhost:8000/products", {
+      method: "GET",
+     
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.success) {         
+         productDispatch({ type: "setProduct", payload: { data: result.data } });
+         
+        } else {
+          console.log('error')
+        }
+      }); 
+  
     const token = localStorage.getItem("token");
     if (token) {
       fetch("http://localhost:8000/users/verifyusertoken", {
@@ -32,7 +50,7 @@ export default function Container(props) {
           if (result.success) {
             homepageDispatch({ type: "setUser", payload: { data: result.data } });
 
-            console.log(homepageState.user);
+            console.log(user);
           } else {
             navigate("/login");
           }
@@ -40,10 +58,12 @@ export default function Container(props) {
     } else {
       navigate("/");
     }
+   
+
   }, []);
 
   return (
-    <StoreContext.Provider value={{ homepageState,homepageDispatch ,loginState, loginDispatch,signupState, signupDispatch,initialState}}>
+    <StoreContext.Provider value={{ homepageState,homepageDispatch ,loginState, loginDispatch,signupState, signupDispatch,productState, productDispatch,initialState}}>
       {props.children}
     </StoreContext.Provider>
   );

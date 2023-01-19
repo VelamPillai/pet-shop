@@ -18,12 +18,13 @@ import "./models/dbConnection.js";
 
 //import : user defined function
 import userRoute from "./routes/userRoute.js";
+import productRoute from "./routes/productRoute.js"
 
 //create and initialize express server
 const app = express();
 
 //cors config
-app.use(cors({ origin: "http://localhost:3001", exposedHeaders: ["token"] }));
+app.use(cors({ origin: "http://localhost:3000", exposedHeaders: ["token"] }));
 
 
 //middleware for get file-data request(from express-fileupload)
@@ -40,7 +41,9 @@ app.use(express.json());
 
 //GET ,POST,PATCH,DELETE - req '/user'endpoint and its controller
 
-  app.use('/users', userRoute);  
+app.use('/users', userRoute);  
+  //GET ,POST,PATCH,DELETE - req '/product'endpoint and its controller
+app.use('/products', productRoute);
  
 
 //page not found

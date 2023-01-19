@@ -1,16 +1,15 @@
-import { Navigate, NavLink,Outlet } from "react-router-dom";
-import React, { useState } from "react";
+
+import React, { useState } from 'react';
+import {  NavLink, Outlet } from "react-router-dom";
+
 
 import { FaAngleDoubleDown, FaAngleDoubleUp , FaCartPlus } from "react-icons/fa";
-
-import Dog from "../petType/Dog";
-
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
 
   const handleNavClick = () => setNav(!nav);
-
+  
   return (
     <div className=" md:sticky w-full md:h-[150px] flex  justify-between items-center   md:text-xl  text-orange-500 ">
       
@@ -19,7 +18,7 @@ const Navbar = () => {
       <ul className="hidden md:flex  md:justify-between md:items-center md:p-2 ">
         <li >
            <NavLink to="/dog" className=" md:leading-7     lg:p-[2rem] md:p-[1rem]  md:hover:underline " >
-            Dogs
+            Dogs 
           </NavLink> 
           
         </li>
