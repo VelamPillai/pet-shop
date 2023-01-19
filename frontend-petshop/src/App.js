@@ -27,6 +27,7 @@ import Sitemap from './components/footer/company/Sitemap';
 import Stores from './components/footer/company/Stores';
 import Home from './pages/Home.js';
 import PetMainPage from "./components/petType/PetMainPage.js";
+import PetSubMenuPage from "./components/petType/PetSubMenuPage.js"
 
 
 
@@ -93,9 +94,13 @@ function App() {
         <Route index={false} path="account" element={<Account />} />
         <Route index={false} path="notification" element={<Notification />} />
         
-        <Route index={false} path="petMainPage" element={<PetMainPage />} /> 
+        <Route index={false}   path="petMainPage" element={<PetMainPage />} / >
+        
+          <Route index={false} path="petSubMenuPage" element={<PetSubMenuPage />} />
+
+          
     
-        <Route path="*" element={<Navigate to="/" replace />}
+        {/* <Route path="*" element={<Navigate to="/" replace />} */}
     />
         
       </Routes>

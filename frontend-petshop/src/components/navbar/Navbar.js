@@ -46,7 +46,7 @@ const Navbar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/brands"  onClick={ handleMenuClick} className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[1rem]">
+          <NavLink to="/petMainPage"  onClick={ handleMenuClick} className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[1rem]">
             Brand
           </NavLink>
         </li>

@@ -23,7 +23,14 @@ export const productReducer = (state, action) => {
     case "setSubMenuName": {
       return {
         ...state,
-        menuName : payload.data
+        subMenuName : payload.data
+      }
+    }
+    case "setFilteredProduct": {
+      return {
+        ...state,
+        product: [...state.product].filter((item) => 
+        (item.petName===state.menuName||item.petName==='dog/cat')&&item.productCategory===state.subMenuName)
       }
       }
     default: {

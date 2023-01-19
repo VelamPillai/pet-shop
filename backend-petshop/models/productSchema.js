@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-const productSubmenu = ['food', 'pharmacy', 'toys', 'treats-bones-grass', 'homes', 'care', 'supplements', 'pet-product'];
+const productSubmenu = ['food', 'pharmacy', 'toys', 'treats', 'homes', 'care', 'supplements', 'pet-product'];
 const materialType = ['rubber','polyester','push','nylon','na']
 
 const productSchema = new Schema({
