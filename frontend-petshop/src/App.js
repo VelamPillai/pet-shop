@@ -24,7 +24,7 @@ import SecurePayment from './components/footer/company/SecurePayment';
 import Contact from './components/footer/company/Contact';
 import Sitemap from './components/footer/company/Sitemap';
 import Stores from './components/footer/company/Stores';
-import Home from './pages/Home'
+import Home from './pages/Home.js';
 
 
 
