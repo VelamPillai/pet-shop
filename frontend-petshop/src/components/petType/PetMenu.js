@@ -11,7 +11,7 @@ export default function PetMenu() {
   const { productState,productDispatch} =
     useContext(StoreContext);
   
-  const { menuName,product,brand } = productState;
+  const { menuName } = productState;
 
   const petMenu = [
     "Food",
@@ -32,7 +32,7 @@ export default function PetMenu() {
       payload: { data: e.target.textContent.split(' ')[1].toLowerCase() },
      
     });
-   console.log('hello')
+   
    
     
    navigate('/petSubMenuPage')

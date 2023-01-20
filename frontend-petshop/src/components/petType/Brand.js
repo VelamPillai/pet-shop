@@ -1,16 +1,26 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import PetMenu from './PetMenu.js';
 
 import { StoreContext } from "../../context/StoreContext.js";
 export default function Brand() {
-    const { productState } = useContext(StoreContext);
+  const navigate = useNavigate();
+    const { productState,productDispatch } = useContext(StoreContext);
 
-    const { product, menuName, brand } = productState;
+    const { product, menuName, brand,subMenuName } = productState;
     
     const handleBrandClick = (e) => {
         e.preventDefault();
-        console.log(e.target.textContent)
+        productDispatch({
+          type: "setSubMenuName",
+          payload: { data: e.target.textContent },
+         
+        });
+       
+       
+        
+       navigate('/petSubMenuPage')
 
     }
     
