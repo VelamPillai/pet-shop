@@ -8,7 +8,8 @@ export default function Sidemenu() {
   const { product, menuName, brand,subMenuName } = productState;
   return (
       <div>
-          <p>Brand</p>
+      <p>Brand</p>
+      
 
     </div>
   )
