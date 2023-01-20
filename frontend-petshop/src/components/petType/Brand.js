@@ -8,7 +8,7 @@ export default function Brand() {
   const navigate = useNavigate();
     const { productState,productDispatch } = useContext(StoreContext);
 
-    const { product, menuName, brand,subMenuName } = productState;
+    const {  menuName, brand} = productState;
     
     const handleBrandClick = (e) => {
         e.preventDefault();
