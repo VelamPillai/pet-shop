@@ -3,7 +3,7 @@
 import { Routes, Route , Navigate } from "react-router-dom";
 
 
-import Dog from "./components/petType/Dog";
+
 
 
 import './App.css';
@@ -26,6 +26,9 @@ import Contact from './components/footer/company/Contact';
 import Sitemap from './components/footer/company/Sitemap';
 import Stores from './components/footer/company/Stores';
 import Home from './pages/Home.js';
+import PetMainPage from "./components/petType/PetMainPage.js";
+import PetSubMenuPage from "./components/petType/PetSubMenuPage.js";
+import Brand from "./components/petType/Brand.js"
 
 
 
@@ -92,9 +95,15 @@ function App() {
         <Route index={false} path="account" element={<Account />} />
         <Route index={false} path="notification" element={<Notification />} />
         
-        <Route index={false} path="dog" element={<Dog />} /> 
+        <Route index={false}   path="petMainPage" element={<PetMainPage />} / >
+        
+          <Route index={false} path="petSubMenuPage" element={<PetSubMenuPage />} />
+          <Route index={false} path="brand" element={<Brand/>} />
+
+          
+          
     
-        <Route path="*" element={<Navigate to="/" replace />}
+         <Route path="*" element={<Navigate to="/" replace />} 
     />
         
       </Routes>
