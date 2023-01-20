@@ -6,6 +6,7 @@ import PetMenu from "./PetMenu.js";
 import Sidemenu from "./Sidemenu.js";
 import ProductCard from "./ProductCard.js";
 
+
 import { StoreContext } from "../../context/StoreContext.js";
 
 export default function PetMainPage() {
@@ -68,7 +69,10 @@ export default function PetMainPage() {
                 .filter((item) => item.sale === true)
                 .map((item) => (
                   <ProductCard product={{ ...item }} key={item._id} />
-                ))}
+                ))
+             
+             
+            }
         </div>
       </div>
       <div>Payment methods</div>

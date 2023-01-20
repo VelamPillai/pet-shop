@@ -32,6 +32,12 @@ export const productReducer = (state, action) => {
         product: [...state.product].filter((item) => 
         (item.petName===state.menuName||item.petName==='dog/cat')&&item.productCategory===state.subMenuName)
       }
+    }
+    case "setBrand": {
+      return {
+        ...state,
+       brand:[...payload.data]
+      }
       }
     default: {
       return state;

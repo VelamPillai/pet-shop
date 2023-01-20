@@ -14,10 +14,10 @@ const Navbar = () => {
   const handleNavClick = () => setNav(!nav);
 
 
-  const { productDispatch} =
+  const { productDispatch,productState} =
     useContext(StoreContext);
   
-  
+  const {product,brand} = productState
   
   //to set the petName to filter the products from the DB
   const handleMenuClick = (e) => {
@@ -25,6 +25,18 @@ const Navbar = () => {
       type: "setMenuName",
       payload: { data: e.target.textContent.toLowerCase() },
     });
+    
+  }
+  const handleMenuBrandClick = (e) => {
+    productDispatch({
+      type: "setMenuName",
+      payload: { data: e.target.textContent.toLowerCase() },
+    });
+    productDispatch({
+      type: "setBrand",
+      payload: { data: [...new Set([...product].map(item=>item.brand))]},
+    });
+
     
   }
   
@@ -46,7 +58,7 @@ const Navbar = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/petMainPage"  onClick={ handleMenuClick} className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[1rem]">
+          <NavLink to="/brand"  onClick={ handleMenuBrandClick } className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[1rem]">
             Brand
           </NavLink>
         </li>

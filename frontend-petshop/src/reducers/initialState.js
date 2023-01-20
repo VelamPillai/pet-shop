@@ -14,7 +14,8 @@ const initialState = {
   originalProduct:'',
   sortOption: 'Recommended',
   menuName: '',
-  subMenuName:''
+  subMenuName: '',
+  brand:''
 
   
 };

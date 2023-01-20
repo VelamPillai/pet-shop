@@ -11,7 +11,7 @@ export default function PetMenu() {
   const { productState,productDispatch} =
     useContext(StoreContext);
   
-  const { menuName,product } = productState;
+  const { menuName,product,brand } = productState;
 
   const petMenu = [
     "Food",
@@ -37,10 +37,12 @@ export default function PetMenu() {
     
    navigate('/petSubMenuPage')
     
-   }
+  }
+  
   return (
     <div>
-      {(menuName === "dog" || menuName === "cat" ||menuName === "sale %")?  <ul className="flex flex-row  flex-wrap justify-around m-3 ">
+      {(menuName === "dog" || menuName === "cat" || menuName === "sale %") &&
+        <ul className="flex flex-row  flex-wrap justify-around m-3 ">
         {
           petMenu.map((item, idx) => {
             return (
@@ -57,22 +59,7 @@ export default function PetMenu() {
             );
           })}
       </ul>
-        : 
-        <ul className="flex flex-row  flex-wrap justify-around m-3 ">
-          {
-            
-         product && product.filter((item,
-          index) => product.indexOf(item) === index).map((item, idx) => {
-            return (
-              <li
-                key={idx} onClick={handleClick}
-                className="p-2 m-2 ring-2 ring-orange-500 rounded bg-orange-200/25 hover:ring-green-500 hover:bg-green-100/25"
-              >
-                { item.brand }
-              </li>
-            );
-          })}
-      </ul>
+        
         
       }
          
