@@ -1,7 +1,6 @@
-import React from "react";
-import Categories from "../components/main/Categories";
-import Products from "../components/main/Products";
-import Slider from "../components/main/Slider";
+import React from 'react';
+import Categories from '../components/main/Categories';
+import Products from '../components/main/Products';
 
 export default function Home() {
   const slides = [

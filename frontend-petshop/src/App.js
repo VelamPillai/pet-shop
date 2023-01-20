@@ -1,14 +1,16 @@
 
 
+
 import { Routes, Route , Navigate } from "react-router-dom";
 
 
-import Dog from "./components/petType/Dog";
+
+
 
 
 import './App.css';
-import Account from "./components/user/Account.js";
-import Notification from "./components/user/Notification.js";
+import Account from './components/user/Account.js';
+import Notification from './components/user/Notification.js';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
 import Login from './components/user/Login.js';
@@ -24,9 +26,11 @@ import SecurePayment from './components/footer/company/SecurePayment';
 import Contact from './components/footer/company/Contact';
 import Sitemap from './components/footer/company/Sitemap';
 import Stores from './components/footer/company/Stores';
+
 import Home from './pages/Home.js';
-
-
+import PetMainPage from "./components/petType/PetMainPage.js";
+import PetSubMenuPage from "./components/petType/PetSubMenuPage.js";
+import Brand from "./components/petType/Brand.js"
 
 
 function App() {
@@ -34,16 +38,25 @@ function App() {
     <div className="h-screen md:w-[100vw] flex flex-col">
       <Header />
       <div className="w-3/4 mx-auto mt-[15rem] ">
-
-      <Routes>
-        <Route path="/">
+        <Routes>
+          <Route path="/">
+            <Route
+              index={true}
+              path="/"
+              className="min-h-screen"
+              element={<Home />}
+            />
+          </Route>
+          <Route index={false} path="login" element={<Login />} />
+          <Route index={false} path="signup" element={<Signup />} />
+          <Route index={false} path="profile" element={<Profile />} />
           <Route
-            index={true}
-            path="/"
-            className="min-h-screen"
-            element={<Home />}
+            index={false}
+            path="products/legal-notice"
+            element={<LegalNotice />}
           />
-        </Route>
+
+        
         <Route index={false} path="login" element={<Login />} />
         <Route index={false} path="signup" element={<Signup />} />
 
@@ -91,17 +104,23 @@ function App() {
         <Route index={false} path="account" element={<Account />} />
         <Route index={false} path="notification" element={<Notification />} />
         
-        <Route index={false} path="dog" element={<Dog />} /> 
+        <Route index={false}   path="petMainPage" element={<PetMainPage />} / >
+        
+          <Route index={false} path="petSubMenuPage" element={<PetSubMenuPage />} />
+          <Route index={false} path="brand" element={<Brand/>} />
+
+          
+          
     
-        <Route path="*" element={<Navigate to="/" replace />}
+         <Route path="*" element={<Navigate to="/" replace />} 
     />
         
       </Routes>
+
 
       </div>
       <Footer />
     </div>
   );
 }
-
 export default App;
