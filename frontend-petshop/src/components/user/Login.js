@@ -60,12 +60,6 @@ export default function Login() {
 
   };
 
-  //onClick - signUpHandler - button
-
-  const signUpHandler = (e) => {
-    e.preventDefault();
-    navigate('/signup')
-  }
 
   return (
     <div className="flex justify-center items-center flex-col xl:flex-row w-[100%]  lg:border m-auto lg:m-[1rem] rounded shadow-black shadow-xs ">
