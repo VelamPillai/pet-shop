@@ -1,5 +1,9 @@
 import React from 'react';
 
 export default function Sitemap() {
-  return <div className="border p-[5rem] pb-[5rem] m-[5rem] ">Sitemap</div>;
+  return (
+    <div className="flex flex-col justify-center items-center md:mt-[5rem]">
+      Sitemap
+    </div>
+  );
 }
