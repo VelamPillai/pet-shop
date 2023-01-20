@@ -1,12 +1,14 @@
+
 import { useEffect, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { StoreContext } from "../context/StoreContext.js";
-import { homepageReducer } from "../reducers/homepageReducer.js";
-import { productReducer } from "../reducers/productReducer.js";
-import { loginReducer } from "../reducers/loginReducer.js";
-import { signupReducer } from "../reducers/signupReducer.js";
-import initialState from "../reducers/initialState.js";
+
+import { StoreContext } from '../context/StoreContext.js';
+import { homepageReducer } from '../reducers/homepageReducer.js';
+import { productReducer } from '../reducers/productReducer.js';
+import { loginReducer } from '../reducers/loginReducer.js';
+import { signupReducer } from '../reducers/signupReducer.js';
+import initialState from '../reducers/initialState.js';
 
 export default function Container(props) {
   //homepageReducer
@@ -28,13 +30,16 @@ export default function Container(props) {
   const { user } = homepageState;
 
   useEffect(() => {
+
     fetch("http://localhost:8000/products", {
       method: "GET",
+
     })
       .then((res) => res.json())
       .then((result) => {
         if (result.success) {
           productDispatch({
+
             type: "setProduct",
             payload: { data: result.data },
           });
@@ -44,26 +49,29 @@ export default function Container(props) {
       });
 
     const token = localStorage.getItem("token");
+
     if (token) {
-      fetch("http://localhost:8000/users/verifyusertoken", {
-        method: "GET",
+      fetch('http://localhost:8000/users/verifyusertoken', {
+        method: 'GET',
         headers: { token: token },
       })
         .then((res) => res.json())
         .then((result) => {
           if (result.success) {
             homepageDispatch({
-              type: "setUser",
+
+              type: 'setUser',
+
               payload: { data: result.data },
             });
 
             console.log(user);
           } else {
-            navigate("/login");
+            navigate('/login');
           }
         });
     } else {
-      navigate("/");
+      navigate('/');
     }
   }, []);
 
