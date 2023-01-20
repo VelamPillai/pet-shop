@@ -26,7 +26,7 @@ export default function Sort() {
 
   const handleBtnClick = (e) => {
     e.preventDefault();
-    setHideOption(false);
+    setHideOption(!hideOption);
   };
   return (
     <div>
@@ -38,25 +38,13 @@ export default function Sort() {
           >
             Sort: {sortOption}
             <MdKeyboardArrowDown className="ml-2" />
-          </button>
+          </button> 
 
-          {/* <div>
-                      <input type="radio" name="sortOption" value="Recommended" onChange={ handleSortClick } className="mr-2 "/>
-                      <label>Recommended</label><br />
-                      <input type="radio" name="sortOption" value="Price(low - high)" onChange={ handleSortClick } className="mr-2 "/>
-                      <label >Price(low - high)</label><br />
-                      <input type="radio" name="sortOption" value="Price(high-low)" onChange={ handleSortClick } className="mr-2 "/>
-                      <label >Price(high-low)</label><br />
-                  </div> */}
+          
           {!hideOption && (
             <div
-              className="z-10  bg-white divide-y divide-orange-100 rounded shadow w-60 dark:bg-orange-700 "
-              style={{
-                position: "absolute",
-                inset: "auto auto 0px 0px",
-                margin: "0px",
-                transform: "translate3d(54rem, -10rem, 0px)",
-              }}
+              className="z-10  bg-orange-100 divide-y divide-orange-100 rounded-lg shadow w-[280px] dark:bg-orange-700 "
+              
             >
               <ul className="p-3 space-y-1 text-sm text-orange-700 ">
                 <li>
@@ -65,7 +53,7 @@ export default function Sort() {
                       <input
                         name="sortOption"
                         type="radio"
-                        value="Recommanded"
+                        value="Recommended"
                         className="w-4 h-4 text-orange-600 bg-orange-100 border-orange-300 focus:ring-orange-500 "
                         onChange={handleSortClick}
                       />
@@ -116,7 +104,9 @@ export default function Sort() {
               </ul>
             </div>
           )}
-        </div>
+          
+      </div>
+      
     </div>
   )
 }
