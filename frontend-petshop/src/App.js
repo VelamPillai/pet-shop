@@ -1,17 +1,18 @@
 
 
+
 import { Routes, Route , Navigate } from "react-router-dom";
 
 
 
 
 
+
 import './App.css';
-import Account from "./components/user/Account.js";
-import Notification from "./components/user/Notification.js";
+import Account from './components/user/Account.js';
+import Notification from './components/user/Notification.js';
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
-
 import Login from './components/user/Login.js';
 import Signup from './components/user/Signup.js';
 import Profile from './components/user/Profile.js';
@@ -30,23 +31,29 @@ import PetMainPage from "./components/petType/PetMainPage.js";
 import PetSubMenuPage from "./components/petType/PetSubMenuPage.js";
 import Brand from "./components/petType/Brand.js"
 
-
-
-
 function App() {
   return (
     <div className="h-screen md:w-[100vw] flex flex-col">
       <Header />
       <div className="w-3/4 mx-auto mt-[15rem] ">
-
-      <Routes>
-        <Route path="/">
+        <Routes>
+          <Route path="/">
+            <Route
+              index={true}
+              path="/"
+              className="min-h-screen"
+              element={<Home />}
+            />
+          </Route>
+          <Route index={false} path="login" element={<Login />} />
+          <Route index={false} path="signup" element={<Signup />} />
+          <Route index={false} path="profile" element={<Profile />} />
           <Route
-            index={true}
-            path="/"
-            className="min-h-screen"
-            element={<Home />}
+            index={false}
+            path="products/legal-notice"
+            element={<LegalNotice />}
           />
+
         </Route>
         <Route index={false} path="login" element={<Login />} />
         <Route index={false} path="signup" element={<Signup />} />
@@ -108,10 +115,10 @@ function App() {
         
       </Routes>
 
+
       </div>
       <Footer />
     </div>
   );
 }
-
 export default App;

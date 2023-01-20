@@ -1,9 +1,10 @@
 import React from 'react';
+import Dog from '../../petType/Dog';
 
 export default function PriceDrop() {
   return (
-    <div className="border p-[5rem] pb-[5rem] m-[5rem] ">
-      Here comes the list of items and its price
+    <div>
+      <Dog />
     </div>
   );
 }
