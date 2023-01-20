@@ -1,9 +1,7 @@
-
 import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import { StoreContext } from '../../context/StoreContext.js';
-
 
 import { TiTick } from 'react-icons/ti';
 import LoginImage from '../../image/loginImage.png';
@@ -13,7 +11,6 @@ export default function Login() {
 
   const { homepageDispatch, loginState, loginDispatch } =
     useContext(StoreContext);
-
 
   //onSubmit - loginHandler -form element
 
@@ -52,12 +49,9 @@ export default function Login() {
         });
   };
 
-  //onClick - signUpHandler - button
-
   const signUpHandler = (e) => {
     e.preventDefault();
     navigate('/signup');
-
   };
 
 
@@ -77,30 +71,24 @@ export default function Login() {
           className=" flex flex-col justify-center items-center w-[100%]"
         >
           <label className="flex flex-col justify-center item-center  text-xs md:text-md md:items-start m-[.25rem] md:m-[1rem] ">
-
             Email:{' '}
-
             <input
               className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
               type="email"
               name="email"
               onChange={(e) =>
                 loginDispatch({
-
                   type: 'onChange',
 
                   payload: { name: e.target.name, data: e.target.value },
                 })
               }
               value={loginState.email}
-              
             />
           </label>
 
           <label className="flex flex-col justify-center  text-xs md:text-md item-center md:items-start m-[.25rem] md:m-[1rem]">
-
             Password:{' '}
-
             <div
               className="flex-col
             "
@@ -111,7 +99,6 @@ export default function Login() {
                 name="password"
                 onChange={(e) =>
                   loginDispatch({
-
                     type: 'onChange',
 
                     payload: { name: e.target.name, data: e.target.value },
@@ -124,7 +111,6 @@ export default function Login() {
           <div className="flex  flex-wrap md:flex-nowrap  align-start pl-2 md:pl-0  ">
             <div className="flex flex-row mr-1 font-thin  text-[12px] md:text-xs ">
               <sup>
-
                 {' '}
                 <TiTick />{' '}
               </sup>{' '}
@@ -136,12 +122,10 @@ export default function Login() {
                 {' '}
                 <TiTick />{' '}
               </sup>{' '}
-
               AaBbCc
             </div>
             <div className="flex flex-row mr-1 font-thin  text-[12px] md:text-xs ">
               <sup>
-
                 {' '}
                 <TiTick />{' '}
               </sup>{' '}
@@ -152,7 +136,6 @@ export default function Login() {
               <sup>
                 {' '}
                 <TiTick />{' '}
-
               </sup>
               !@#$%
             </div>
@@ -161,14 +144,12 @@ export default function Login() {
             LOG IN
           </button>
           <div className="mt-[2rem]   flex  flex-col lg:flex-row justify-center items-center">
-
             <p className="  md:p-1 text-xs "> Don't have an account? </p>
             <button
               onClick={signUpHandler}
               className=" text-red-500 font-bold text-xs md:text-md w-[100px] md:w-[200px] my-3 md:mx-auto md:my-[1rem] md:p-3  "
             >
               {' '}
-
               Sign Up
             </button>
           </div>
