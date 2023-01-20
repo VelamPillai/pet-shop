@@ -19,10 +19,12 @@ import SecurePayment from './components/footer/company/SecurePayment';
 import Contact from './components/footer/company/Contact';
 import Sitemap from './components/footer/company/Sitemap';
 import Stores from './components/footer/company/Stores';
+
 import Home from './pages/Home.js';
 import PetMainPage from "./components/petType/PetMainPage.js";
 import PetSubMenuPage from "./components/petType/PetSubMenuPage.js";
 import Brand from "./components/petType/Brand.js"
+
 
 function App() {
   return (
