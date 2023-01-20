@@ -11,7 +11,7 @@ export default function LegalNotice() {
         provident dicta praesentium sint harum quisquam quod id quia ut hic
         quasi ipsam labore corrupti? Odio architecto sapiente temporibus
         inventore fugiat, atque et, quibusdam dolores accusamus aut officia
-        soluta aliquam libero dignissimos sit. Impedit!
+        soluta aliquam libero dignissimos sit. Impedit!!
       </p>
     </div>
   );
