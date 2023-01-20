@@ -1,5 +1,13 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
-import Dog from './components/petType/Dog';
+
+
+
+import { Routes, Route , Navigate } from "react-router-dom";
+
+
+
+
+
+
 import './App.css';
 import Account from './components/user/Account.js';
 import Notification from './components/user/Notification.js';
@@ -19,6 +27,9 @@ import Contact from './components/footer/company/Contact';
 import Sitemap from './components/footer/company/Sitemap';
 import Stores from './components/footer/company/Stores';
 import Home from './pages/Home.js';
+import PetMainPage from "./components/petType/PetMainPage.js";
+import PetSubMenuPage from "./components/petType/PetSubMenuPage.js";
+import Brand from "./components/petType/Brand.js"
 
 function App() {
   return (
@@ -42,42 +53,69 @@ function App() {
             path="products/legal-notice"
             element={<LegalNotice />}
           />
-          <Route index={false} path="products/about-us" element={<AboutUs />} />
-          <Route
-            index={false}
-            path="products/price-drop"
-            element={<PriceDrop />}
-          />
-          <Route
-            index={false}
-            path="products/new-products"
-            element={<NewProducts />}
-          />
-          <Route
-            index={false}
-            path="products/best-sales"
-            element={<BestSales />}
-          />
-          <Route
-            index={false}
-            path="products/best-sales"
-            element={<BestSales />}
-          />
-          <Route index={false} path="company/delivery" element={<Delivery />} />
-          <Route
-            index={false}
-            path="company/secure-payment"
-            element={<SecurePayment />}
-          />
-          <Route index={false} path="company/contact" element={<Contact />} />
-          <Route index={false} path="company/sitemap" element={<Sitemap />} />
-          <Route index={false} path="company/stores" element={<Stores />} />
-          <Route index={false} path="profile" element={<Profile />} />
-          <Route index={false} path="account" element={<Account />} />
-          <Route index={false} path="notification" element={<Notification />} />
-          <Route index={false} path="dog" element={<Dog />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+
+        </Route>
+        <Route index={false} path="login" element={<Login />} />
+        <Route index={false} path="signup" element={<Signup />} />
+
+
+        <Route index={false} path="profile" element={<Profile />} />
+
+     
+        <Route
+          index={false}
+          path="products/legal-notice"
+          element={<LegalNotice />}
+        />
+        <Route index={false} path="products/about-us" element={<AboutUs />} />
+        <Route
+          index={false}
+          path="products/price-drop"
+          element={<PriceDrop />}
+        />
+        <Route
+          index={false}
+          path="products/new-products"
+          element={<NewProducts />}
+        />
+        <Route
+          index={false}
+          path="products/best-sales"
+          element={<BestSales />}
+        />
+        <Route
+          index={false}
+          path="products/best-sales"
+          element={<BestSales />}
+        />
+
+        <Route index={false} path="company/delivery" element={<Delivery />} />
+        <Route
+          index={false}
+          path="company/secure-payment"
+          element={<SecurePayment />}
+        />
+        <Route index={false} path="company/contact" element={<Contact />} />
+        <Route index={false} path="company/sitemap" element={<Sitemap />} />
+        <Route index={false} path="company/stores" element={<Stores />} />
+        <Route index={false} path="profile" element={<Profile />} /> 
+        <Route index={false} path="account" element={<Account />} />
+        <Route index={false} path="notification" element={<Notification />} />
+        
+        <Route index={false}   path="petMainPage" element={<PetMainPage />} / >
+        
+          <Route index={false} path="petSubMenuPage" element={<PetSubMenuPage />} />
+          <Route index={false} path="brand" element={<Brand/>} />
+
+          
+          
+    
+         <Route path="*" element={<Navigate to="/" replace />} 
+    />
+        
+      </Routes>
+
+
       </div>
       <Footer />
     </div>
