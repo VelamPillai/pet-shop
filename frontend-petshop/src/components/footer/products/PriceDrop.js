@@ -1,10 +1,10 @@
 import React from 'react';
-import Dog from '../../petType/Dog';
+import PetMainPage from '../../petType/PetMainPage';
 
 export default function PriceDrop() {
   return (
     <div>
-      <Dog />
+      <PetMainPage />
     </div>
   );
 }

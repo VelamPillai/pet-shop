@@ -54,7 +54,7 @@ function App() {
             element={<LegalNotice />}
           />
 
-        </Route>
+        
         <Route index={false} path="login" element={<Login />} />
         <Route index={false} path="signup" element={<Signup />} />
 
