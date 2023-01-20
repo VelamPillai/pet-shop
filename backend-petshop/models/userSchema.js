@@ -12,7 +12,7 @@ const userSchema = new Schema({
   role: { type: String, enum: ['user', 'admin'], default: 'user' },
   token: { type: String },
   profileImage: {
-    type: String,
+    type: String,    
     default: function () {
       return `https://joeschmoe.io/api/v1/${this.firstName}`;
     },

@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
-import multer from 'multer';
+import upload from 'express-fileupload';
 import cors from 'cors';
 
 //import path: __dirname
@@ -16,6 +16,7 @@ import './models/dbConnection.js';
 
 //import : user defined function
 import userRoute from './routes/userRoute.js';
+import productRoute from './routes/productRoute.js';
 
 //create and initialize express server
 const app = express();
@@ -23,22 +24,8 @@ const app = express();
 //cors config
 app.use(cors({ origin: 'http://localhost:3000', exposedHeaders: ['token'] }));
 
-// configure multer package
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    let fullPath = './upload';
-    cb(null, fullPath);
-  },
-  filename: function (req, file, cb) {
-    let fileName = Date.now() + '_' + file.originalname;
-    cb(null, fileName);
-  },
-});
-
-const upload = multer({ storage: storage });
-
-// server static files/pages
-app.use(express.static('upload'));
+//middleware for get file-data request(from express-fileupload)
+app.use(upload());
 
 //external middleware
 //req-log middleware
@@ -49,7 +36,10 @@ app.use(express.json());
 //routes - custom middleware
 
 //GET ,POST,PATCH,DELETE - req '/user'endpoint and its controller
-app.use('/users', upload.single('profileImage'), userRoute);
+
+app.use('/users', userRoute);
+//GET ,POST,PATCH,DELETE - req '/product'endpoint and its controller
+app.use('/products', productRoute);
 
 //page not found
 app.use((req, res, next) => {
