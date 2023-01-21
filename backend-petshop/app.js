@@ -21,7 +21,7 @@ import userRoute from './routes/userRoute.js';
 const app = express();
 
 //cors config
-app.use(cors({ origin: 'http://localhost:3000', exposedHeaders: ['token'] }));
+app.use(cors({ origin: 'http://localhost:3001', exposedHeaders: ['token'] }));
 
 // configure multer package
 const storage = multer.diskStorage({
