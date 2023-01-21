@@ -1,79 +1,158 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
-import { StoreContext } from '../../context/StoreContext.js'
+import { StoreContext } from '../../context/StoreContext.js';
+
+import { TiTick } from 'react-icons/ti';
+import LoginImage from '../../image/loginImage.png';
 
 export default function Login() {
   const navigate = useNavigate();
 
-   const {  setUser ,setState,state} = useContext(StoreContext);
- 
+  const { homepageDispatch, loginState, loginDispatch } =
+    useContext(StoreContext);
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  useEffect(() => {
-    setState(!state);
-  },[])
+  //onSubmit - loginHandler -form element
 
   const loginHandler = (e) => {
     e.preventDefault();
-
     const data = new FormData(e.target);
 
-    fetch('http://localhost:8000/users/login', {
-      method: 'POST',
-      body: data,
-    })
-      .then((res) => {
-        const token = res.headers.get('token');
-        localStorage.setItem('token', token);
-        return res.json();
-      })
-      .then((result) => {
-        if (result.success) {
-          toast.success('Logged in successfully');
-          console.log(result.data);
-          setUser(result.data);
+    loginDispatch({ type: 'clearForm' });
 
-          
-         // setStatus(true);
-          setTimeout(() => navigate('/'), 2000);
-        } else {
-          toast.error(result.message);
-        }
-      });
+    //to avoid empty email and password fields - to avoid token = null
+    data.get('email') &&
+      data.get('password') &&
+      fetch('http://localhost:8000/users/login', {
+        method: 'POST',
+        body: data,
+      })
+        .then((res) => {
+          const token = res.headers.get('token');
+          //only for valid username and Password , store the token in to the local storage.
+          token && localStorage.setItem('token', token);
+
+          return res.json();
+        })
+        .then((result) => {
+          if (result.success) {
+            toast.success('Logged in successfully');
+            console.log(result.data);
+            homepageDispatch({
+              type: 'setUser',
+              payload: { data: result.data },
+            });
+            setTimeout(() => navigate('/'), 2000);
+          } else {
+            toast.error(result.message);
+          }
+        });
   };
 
+  const signUpHandler = (e) => {
+    e.preventDefault();
+    navigate('/signup');
+  };
+
+
   return (
-    <div className="flex justify-center items-center flex-col my-[2rem] ">
+    <div className="flex justify-center items-center flex-col xl:flex-row w-[100%]  lg:border m-auto lg:m-[1rem] rounded shadow-black shadow-xs ">
       <Toaster />
-      <p className="m-[1rem] font-bold">LOG IN</p>
-      <div className="flex justify-center items-center border p-[3rem]">
-        <form onSubmit={loginHandler} className=" flex flex-col">
-          <label className="flex justify-center items-center m-[1rem]">
-            Email :{' '}
+      <img
+        src={LoginImage}
+        alt="login-pic"
+        className="rounded  drop-shadow-xl   lg:w-[700px] lg:h-[700px] lg:ml-[6rem] "
+      />
+
+      <div className="flex flex-col justify-center items-center border lg:border-0 w-[100%]  p-[1rem] mb-[1rem] md:p-[3rem] lg:h-[900px] ">
+        <p className="m-[.25rem] md:m-[1rem] font-bold text-center ">LOGIN</p>
+        <form
+          onSubmit={loginHandler}
+          className=" flex flex-col justify-center items-center w-[100%]"
+        >
+          <label className="flex flex-col justify-center item-center  text-xs md:text-md md:items-start m-[.25rem] md:m-[1rem] ">
+            Email:{' '}
             <input
-              className="border border-slate-200 rounded w-[500px] h-[50px] ml-10"
+              className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
               type="email"
               name="email"
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
+              onChange={(e) =>
+                loginDispatch({
+                  type: 'onChange',
+
+                  payload: { name: e.target.name, data: e.target.value },
+                })
+              }
+              value={loginState.email}
             />
           </label>
-          <label className="flex justify-center items-center m-[1rem]">
+
+          <label className="flex flex-col justify-center  text-xs md:text-md item-center md:items-start m-[.25rem] md:m-[1rem]">
             Password:{' '}
-            <input
-              className="border border-slate-200 rounded w-[500px] h-[50px] ml-2"
-              type="password"
-              name="password"
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-            />
+            <div
+              className="flex-col
+            "
+            >
+              <input
+                className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+                type="password"
+                name="password"
+                onChange={(e) =>
+                  loginDispatch({
+                    type: 'onChange',
+
+                    payload: { name: e.target.name, data: e.target.value },
+                  })
+                }
+                value={loginState.password}
+              />
+            </div>
           </label>
-          <button className="bg-orange-500 w-[200px]  mx-auto my-[1rem] p-3 rounded shadow-black shadow-md focus:bg-green-600 ">
+          <div className="flex  flex-wrap md:flex-nowrap  align-start pl-2 md:pl-0  ">
+            <div className="flex flex-row mr-1 font-thin  text-[12px] md:text-xs ">
+              <sup>
+                {' '}
+                <TiTick />{' '}
+              </sup>{' '}
+              Mind. 8 Characters
+            </div>
+            <div className="flex flex-row mr-1 font-thin  text-[12px] md:text-xs ">
+              {' '}
+              <sup>
+                {' '}
+                <TiTick />{' '}
+              </sup>{' '}
+              AaBbCc
+            </div>
+            <div className="flex flex-row mr-1 font-thin  text-[12px] md:text-xs ">
+              <sup>
+                {' '}
+                <TiTick />{' '}
+              </sup>{' '}
+              0-9
+            </div>{' '}
+            <div className="flex flex-row mr-1 font-thin  text-[12px] md:text-xs ">
+              {' '}
+              <sup>
+                {' '}
+                <TiTick />{' '}
+              </sup>
+              !@#$%
+            </div>
+          </div>
+          <button className="bg-orange-500 justify-center items-center w-[100px] md:w-[400px]  my-3 text-xs md:text-mdmd:mx-auto md:my-[1rem] md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">
             LOG IN
           </button>
+          <div className="mt-[2rem]   flex  flex-col lg:flex-row justify-center items-center">
+            <p className="  md:p-1 text-xs "> Don't have an account? </p>
+            <button
+              onClick={signUpHandler}
+              className=" text-red-500 font-bold text-xs md:text-md w-[100px] md:w-[200px] my-3 md:mx-auto md:my-[1rem] md:p-3  "
+            >
+              {' '}
+              Sign Up
+            </button>
+          </div>
         </form>
       </div>
     </div>

@@ -6,20 +6,19 @@ import bcrypt from 'bcrypt';
 dotenv.config();
 
 //get all user
-const getAllUser = (req, res, next) => {
+const getAllUser =async(req, res, next) => {
   try {
-    console.log('hello i am get user');
-    res.send('hello i am get user');
+    const user = await userCollection.find()
+    res.status(200).json({success:true,data:user})
   } catch (err) {
     next(err);
   }
 };
 
 //get single user
-const getSingleUser = (req, res, next) => {
+const getSingleUser = async(req, res, next) => {
   try {
-    console.log('hello from getalluser');
-    res.send('hellofrom sendalluser');
+    const user = await userCollection.findOne()
   } catch (err) {
     next(err);
   }
@@ -27,12 +26,15 @@ const getSingleUser = (req, res, next) => {
 
 //sign up - add new user
 const addNewUser = async (req, res, next) => {
+  //console.log(req.body)
   try {
+    
     const DBUser = await userCollection.findOne({ email: req.body.email });
-    console.log(DBUser);
+    //console.log(DBUser);
     if (!DBUser) {
       const user = new userCollection(req.body);
-      req.file && (user.profileImage = `/${req.file.filename}`);
+      //console.log(user)//to display req.body information
+      
       await user.save();
       res.json({ success: true, data: user });
     } else {
@@ -82,32 +84,62 @@ const loginUser = async (req, res, next) => {
   }
 };
 //update user
-const updateUser = (res, req, next) => {
+const updateUser = async(req, res, next) => {
   try {
-    console.log('i am from update');
-    res.send('i am from update');
-  } catch (err) {
-    next(err);
+ 
+    let user = await userCollection.findById(req.params.id);
+    //image
+    if (user.profileImage !== req.body.profileImage)
+    {
+      user.profileImage = req.body.profileImage
+    }
+    //password
+    if (req.body.password != user.password) {
+      user.password = req.body.password;
+    }
+    await user.save(); 
+    let body = {};
+    for (const key in req.body) {        
+      if (req.body[key]!=='' && key !=='password' ) {
+          body[key] = req.body[key];
+      }
+      const updatedUser = await userCollection.findByIdAndUpdate(req.params.id, body, { new: true })
+      res.json({ success: true, data: updatedUser  });
+  }
+    
+  } catch (err) {    
+    next(err.message);
   }
 };
+
 //delete user
-const deleteUser = (req, res, next) => {
+const deleteUser = async(req, res, next) => {
   try {
-    console.log('i am from delete');
-    res.send('i am from delete');
-  } catch (err) {
-    next(err);
-  }
+    const {id}= req.params 
+    const existingUser = await userCollection.findById(id);
+
+    if(existingUser){
+        const deleteStatus = await userCollection.deleteOne({_id:existingUser._id})
+        res.json({success:true, status: deleteStatus})
+    }else{
+        throw new Error("user id doesn't exist ! ")
+    }
+    
+}
+catch(err){
+    next(err)
+}
+  
 };
 
 const verifyUserToken = async (req, res, next) => {
   try {
-    console.log('token')
+   /*  console.log('token') */
     const token = req.headers.token;
     const payload = jwt.verify(token, process.env.TOKEN_KEY );
-    console.log(payload)
+    /* console.log(payload) */
     const user = await userCollection.findById(payload._id);
-    console.log(user)
+   /*  console.log(user) */
     res.json({ success: true, data: user });
   } catch (err) {
     console.log(err.message)

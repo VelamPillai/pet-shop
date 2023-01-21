@@ -3,11 +3,15 @@ import { AiOutlineSearch } from 'react-icons/ai';
 
 export default function HeaderSearch() {
   const [search, setSearch] = useState('');
+  
+
+  
   const handleChange = (e) => {
     setSearch(search);
   }
   return (
-    <div className="w-48 ">
+    
+    <div className="w-48 mt-[20px] md:mt-[-20px] ">
       <label className="relative block">
         <span className="sr-only">Search</span>
         <span className="absolute inset-y-0 left-0 flex items-center pl-2">
@@ -23,5 +27,6 @@ export default function HeaderSearch() {
         />
       </label>
     </div>
+    
   );
 }
