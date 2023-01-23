@@ -24,6 +24,7 @@ import Home from './pages/Home.js';
 import PetMainPage from "./components/petType/PetMainPage.js";
 import PetSubMenuPage from "./components/petType/PetSubMenuPage.js";
 import Brand from "./components/petType/Brand.js"
+import Product from "./components/petType/Product";
 
 
 function App() {
@@ -100,7 +101,8 @@ function App() {
         <Route index={false}   path="petMainPage" element={<PetMainPage />} / >
         
           <Route index={false} path="petSubMenuPage" element={<PetSubMenuPage />} />
-          <Route index={false} path="brand" element={<Brand/>} />
+          <Route index={false} path="brand" element={<Brand />} />
+          <Route index={false} path="product" element={<Product/>} /> 
 
          <Route path="*" element={<Navigate to="/" replace />} 
     />
