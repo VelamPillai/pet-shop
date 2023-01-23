@@ -16,7 +16,9 @@ const initialState = {
   menuName: '',
   subMenuName: '',
   brand: '',
-  sideMenuBrand : ''
+  sideMenuBrand: '',
+  singleProduct:'',
+  
 
   
 };

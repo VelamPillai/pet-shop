@@ -2,11 +2,15 @@ import React, { useContext, useState, useEffect } from "react";
 
 import { StoreContext } from "../../context/StoreContext.js";
 export default function Sidemenu() {
-  const [btn, setBtn] = useState("true");
+  const [btn, setBtn] = useState(false);
 
   const { productState, productDispatch } = useContext(StoreContext);
 
   const { product, menuName,   sideMenuBrand, subMenuName } = productState;
+  
+  useEffect(()=>{ 
+    setBtn(false)
+  },[menuName])
   useEffect(() => { 
     
     let sideMenuProduct='';
@@ -39,11 +43,6 @@ export default function Sidemenu() {
     
   }, []); 
 
-
-  
-  
-
-
   const handleBtnClick = (e) => {
     e.preventDefault();
     setBtn((btn) => !btn);
@@ -56,7 +55,7 @@ export default function Sidemenu() {
         {  sideMenuBrand &&
             sideMenuBrand.map(
             (item, idx) =>
-              idx <= (btn ?   sideMenuBrand.length : 4) && (
+              idx <= (btn ?   sideMenuBrand.length : 2) && (
                 <div key={idx}>
                   <input type="checkbox" name="brand" value={item} />
                   <label className="ml-3">
@@ -71,7 +70,7 @@ export default function Sidemenu() {
           className=" border bg-orange-500 p-1 rounded-md hover:bg-orange-400 m-2"
           onClick={handleBtnClick}
         >
-          {!btn ? "show more" : "show less"}
+          {btn ? "show less" : "show more"}
         </button>
       </div>
     </div>

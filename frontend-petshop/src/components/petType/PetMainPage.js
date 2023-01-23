@@ -1,4 +1,4 @@
-import React, { useContext,useState } from "react";
+import React, { useContext,useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Sort from "./Sort";
@@ -12,18 +12,26 @@ import { StoreContext } from "../../context/StoreContext.js";
 export default function PetMainPage() {
   const navigate = useNavigate();
 
-  const [btn, setBtn] = useState("true");
+   const [viewBtn, setViewBtn] = useState(false); 
 
-  const { productState } = useContext(StoreContext);
+  const { productState, productDispatch} = useContext(StoreContext);
 
-  const { product, menuName } = productState;
+  const { product, menuName} = productState;
 
+  //to display less product while the first load of the page
+useEffect(()=>{ 
+  setViewBtn(false)
+},[menuName])
 
+  //event handler for display less/more products
+  
   const handleBtnClick = (e) => {
     e.preventDefault();
-    setBtn((btn) => !btn);
+      setViewBtn((btn)=>!btn)
   };
 
+  
+ 
   return (
     <div className="flex flex-col">
       <p className="flex justify-center items-center text-xl font-bold">
@@ -69,14 +77,14 @@ export default function PetMainPage() {
                   (item  ) => 
                     item.petName === menuName || item.petName === "dog/cat"
                 )
-                .map((item ,idx ) => idx <= (btn ?   product.length : 5) && (
+                .map((item ,idx ) => idx <= (viewBtn ?   product.length : 2) && (
                   <ProductCard product={{ ...item }} key={item._id} />
                 ))
             : menuName === "sale %" &&
               product
                 .filter((item) => item.sale === true)
-                .map((item) => (
-                  <ProductCard product={{ ...item }} key={item._id} />
+                .map((item,idx) => idx <= (viewBtn ?   product.length : 2) && (
+                  <ProductCard product={{ ...item }} key={item._id}  />
                 ))
              
              
@@ -89,7 +97,7 @@ export default function PetMainPage() {
           className=" p-2 m-2 ring-2 ring-orange-500 rounded bg-orange-200/25 hover:ring-green-500 hover:bg-green-100/25"
           onClick={handleBtnClick}
         >
-          {!btn ? "show more" : "show less"}
+          {viewBtn ? "show less" : "show more"}
         </button>
       </div>
       <div>Payment methods</div>
