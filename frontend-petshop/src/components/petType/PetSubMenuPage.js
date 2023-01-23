@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Sort from "./Sort";
 import Sidemenu from "./SideMenu.js";
 import ProductCard from "./ProductCard.js";
+import PetMenu from "./PetMenu.js";
 
 import { StoreContext } from "../../context/StoreContext.js";
 
@@ -16,6 +17,14 @@ export default function PetSubMenuPage() {
 
   return (
     <div className="flex flex-col">
+       <p className="flex justify-center items-center text-xl font-bold">{
+      menuName==='sale %' ? menuName.split(' ')[0].slice(0, 1).toUpperCase()+menuName.slice(1,4).toUpperCase()+' '+subMenuName.toUpperCase():
+        menuName.toUpperCase()}
+      </p>
+     <div class="md:hidden">
+        {/* dog menu */}
+         <PetMenu /> 
+       </div> 
       <p className="flex justify-center items-center text-xl font-bold">{
       menuName==='sale %' ? menuName.split(' ')[0].slice(0, 1).toUpperCase()+menuName.slice(1,4).toUpperCase()+' '+subMenuName.toUpperCase():
         menuName.toUpperCase()+' - '+subMenuName.toUpperCase()}
@@ -49,7 +58,7 @@ export default function PetSubMenuPage() {
       </div>
       <div className="flex justify-between mt-5">
         {/* side menu */}
-        <div className="w-1/4">
+        <div className="w-1/4 hidden md:flex">
           { menuName=== 'brand' ? null : <Sidemenu />}
         </div>
 

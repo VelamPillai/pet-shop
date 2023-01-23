@@ -21,7 +21,7 @@ export default function Product() {
 
   return (
     singleProduct && (
-      <div className="flex  w-full">
+      <div className="flex flex-col md:flex-row w-full">
         <div className="w-[2/4] m-5 p-5">
           <img src={cardImage} alt="card-pic" className=" w-[1000px]" />
         </div>
@@ -41,7 +41,7 @@ export default function Product() {
           ))}
                   </div>
           
-          <div className="flex flex-row">
+          <div className="flex flex-col md:flex-row">
             <p className="text-orange-500 text-xl font-bold mr-3">
               $ {singleProduct.price}
                       </p>
