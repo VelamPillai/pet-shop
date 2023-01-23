@@ -23,7 +23,7 @@ export default function PetSubMenuPage() {
       </p>
      <div class="md:hidden">
         {/* dog menu */}
-         <PetMenu /> 
+         {menuName !== 'brand'  && <PetMenu /> }
        </div> 
       <p className="flex justify-center items-center text-xl font-bold">{
       menuName==='sale %' ? menuName.split(' ')[0].slice(0, 1).toUpperCase()+menuName.slice(1,4).toUpperCase()+' '+subMenuName.toUpperCase():

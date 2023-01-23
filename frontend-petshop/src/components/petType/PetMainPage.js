@@ -33,7 +33,7 @@ useEffect(()=>{
   
  
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col ">
       <p className="flex justify-center items-center text-xl font-bold">
         {menuName.toUpperCase()}
       </p>
@@ -42,7 +42,7 @@ useEffect(()=>{
         {/* dog menu */}
         <PetMenu />
       </div>
-      <div className="flex flex-col md:flex-row justify-between m-3">
+      <div className="flex flex-col md:flex-row justify:center items-center md:justify-between m-3">
         {/* products */}
         <p className=" mb-3 md:mb-0 text-xs md:text-lg">
           <span className="md:font-bold">
@@ -70,7 +70,7 @@ useEffect(()=>{
         </div>
 
         {/* products card */}
-        <div className="flex justify-start items-center w-3/4 flex-wrap ">
+        <div className="flex justify-center md:justify-start md:items-center w-3/4 flex-wrap ">
           {product && (menuName === "dog" || menuName === "cat")
             ? product
                 .filter(

@@ -24,6 +24,8 @@ const Navbar = () => {
   //to set the petName to filter the products from the DB
   const handleMenuClick = (e) => {
     
+   
+    
     productDispatch({
       type: "setMenuName",
       payload: { data: e.target.textContent.toLowerCase() },
@@ -39,7 +41,7 @@ const Navbar = () => {
       type: "setBrand",
       payload: { data: [...new Set([...product].map(item=>item.brand))]},
     });
-
+    setNav(!nav);
     
   }
   
@@ -93,7 +95,7 @@ const Navbar = () => {
       >
         <li className="py-6 text-xl ">
           <NavLink
-            to="/dogs"
+            to="/petMainPage"
             className=" navHover my-3 border-box p-1 "
             onClick={handleNavClick} 
           >
@@ -103,7 +105,7 @@ const Navbar = () => {
         <hr />
         <li className="py-6 text-xl">
           <NavLink
-            to="/cats"
+            to="/petMainPage"
             className=" navHover my-2 border-box p-1"
             onClick={handleNavClick} 
           >
@@ -112,15 +114,15 @@ const Navbar = () => {
         </li>
         <li className="py-6 text-xl">
           <NavLink
-            to="/brands"
+            to="/brand"
             className=" navHover my-2 border-box p-1"
-            onClick={handleNavClick} >
+            onClick={handleMenuBrandClick} >
             Brand
           </NavLink>
         </li>
         <li className="py-6 text-xl">
           <NavLink
-            to="/blogs"
+            to="/blog"
             className=" navHover my-2 border-box p-1"
             onClick={handleNavClick} 
           >
@@ -129,7 +131,7 @@ const Navbar = () => {
               </li>
               <li className="py-6 text-xl">
           <NavLink
-            to="sale"
+            to="/petMainPage"
             className=" navHover my-2 border-box p-1 text-green-800 animate-ping"
             onClick={handleNavClick} 
           >
@@ -151,7 +153,7 @@ const Navbar = () => {
           </NavLink>
         </li>
       </ul>
-      <Outlet />
+      {/* <Outlet /> */}
     </div>
   );
 };
