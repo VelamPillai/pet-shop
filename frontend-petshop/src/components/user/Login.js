@@ -54,6 +54,7 @@ export default function Login() {
     navigate('/signup');
   };
 
+
   return (
     <div className="flex justify-center items-center flex-col xl:flex-row w-[100%]  lg:border m-auto lg:m-[1rem] rounded shadow-black shadow-xs ">
       <Toaster />

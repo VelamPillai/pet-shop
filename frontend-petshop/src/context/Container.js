@@ -1,5 +1,7 @@
-import { useEffect, useReducer } from 'react';
-import { useNavigate } from 'react-router-dom';
+
+import { useEffect, useReducer } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 import { StoreContext } from '../context/StoreContext.js';
 import { homepageReducer } from '../reducers/homepageReducer.js';
@@ -28,22 +30,26 @@ export default function Container(props) {
   const { user } = homepageState;
 
   useEffect(() => {
-    fetch('http://localhost:8000/products', {
-      method: 'GET',
+
+    fetch("http://localhost:8000/products", {
+      method: "GET",
+
     })
       .then((res) => res.json())
       .then((result) => {
         if (result.success) {
           productDispatch({
-            type: 'setProduct',
+
+            type: "setProduct",
             payload: { data: result.data },
           });
         } else {
-          console.log('error');
+          console.log("error");
         }
       });
 
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
+
     if (token) {
       fetch('http://localhost:8000/users/verifyusertoken', {
         method: 'GET',
@@ -53,7 +59,9 @@ export default function Container(props) {
         .then((result) => {
           if (result.success) {
             homepageDispatch({
+
               type: 'setUser',
+
               payload: { data: result.data },
             });
 
