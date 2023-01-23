@@ -50,7 +50,7 @@ export default function PetMainPage() {
       <div className="flex justify-between mt-5">
         {/* side menu */}
         <div className="w-1/4">
-          <Sidemenu />
+           <Sidemenu />  
         </div>
 
         {/* products card */}

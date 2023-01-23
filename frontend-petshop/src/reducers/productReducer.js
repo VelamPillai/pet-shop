@@ -38,6 +38,12 @@ export const productReducer = (state, action) => {
         ...state,
        brand:[...payload.data]
       }
+    }
+    case "setSideMenuBrand": {
+      return {
+        ...state,
+       sideMenuBrand:[...payload.data]
+      }
       }
     default: {
       return state;

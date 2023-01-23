@@ -1,16 +1,59 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from "react";
 
 import { StoreContext } from "../../context/StoreContext.js";
 export default function Sidemenu() {
-    
-  const { productState,productDispatch } = useContext(StoreContext);
+  const [btn, setBtn] = useState("true");
 
-  const { product, menuName, brand,subMenuName } = productState;
+  const { productState, productDispatch } = useContext(StoreContext);
+
+  const { product, menuName,   sideMenuBrand, subMenuName } = productState;
+   useEffect(() => {
+     productDispatch({
+      type: "setProduct",
+      payload: {
+        data: [
+          ...product.filter(
+            (item) => item.petName === menuName || item.petName === "dog/cat"
+          ),
+        ],
+      },
+    }); 
+     productDispatch({
+      type: "setSideMenuBrand",
+      payload: { data: [...new Set([...product].map((item) => item.brand))] },
+    }); 
+  }, []); 
+
+  const handleBtnClick = (e) => {
+    e.preventDefault();
+    setBtn((btn) => !btn);
+  };
+
   return (
-      <div>
-      <p>Brand</p>
-      
-
+    <div className="border-2 m-2 p-5 rounded-lg bg-orange-100">
+      <p className="font-bold text-lg mb-2">Brand</p>
+      <div className="">
+        {  sideMenuBrand &&
+            sideMenuBrand.map(
+            (item, idx) =>
+              idx <= (btn ?   sideMenuBrand.length : 4) && (
+                <div>
+                  <input type="checkbox" name="brand" value={item} />
+                  <label className="ml-3">
+                    {item[0].toUpperCase() + item.slice(1, item.length - 1)}
+                  </label>
+                </div>
+              )
+          )}
+      </div>
+      <div className="flex justify-center ">
+        <button
+          className=" border bg-orange-500 p-1 rounded-md "
+          onClick={handleBtnClick}
+        >
+          {!btn ? "show more" : "show less"}
+        </button>
+      </div>
     </div>
-  )
+  );
 }
