@@ -17,7 +17,9 @@ export const productReducer = (state, action) => {
     case "setMenuName": {
       return {
         ...state,
-        menuName : payload.data
+        menuName: payload.data,
+        subMenuName:''
+        
       }
     }
     case "setSubMenuName": {

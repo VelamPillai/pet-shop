@@ -7,22 +7,42 @@ export default function Sidemenu() {
   const { productState, productDispatch } = useContext(StoreContext);
 
   const { product, menuName,   sideMenuBrand, subMenuName } = productState;
-   useEffect(() => {
-     productDispatch({
-      type: "setProduct",
-      payload: {
-        data: [
-          ...product.filter(
-            (item) => item.petName === menuName || item.petName === "dog/cat"
-          ),
-        ],
-      },
-    }); 
-     productDispatch({
+  useEffect(() => { 
+    
+    let sideMenuProduct='';
+    let sideMainProduct = '';
+    product &&  
+      
+    (sideMainProduct = [...product].filter(
+      (item) =>
+      (item.petName === menuName || item.petName === "dog/cat") 
+      )
+  )
+    product && subMenuName &&
+      (sideMenuProduct = [...product].filter(
+        (item) =>
+          ((item.petName === menuName || item.petName === "dog/cat") && item.productCategory === subMenuName)
+      ));
+   
+      
+      
+    (product &&  subMenuName) ?
+    ( productDispatch({
       type: "setSideMenuBrand",
-      payload: { data: [...new Set([...product].map((item) => item.brand))] },
-    }); 
+      payload: { data: [...new Set([...sideMenuProduct ].map((item) => item.brand))] },
+     }) ):   (productDispatch({
+      type: "setSideMenuBrand",
+      payload: { data: [...new Set([...sideMainProduct ].map((item) => item.brand))] },
+    }))
+    
+    
+    
   }, []); 
+
+
+  
+  
+
 
   const handleBtnClick = (e) => {
     e.preventDefault();
