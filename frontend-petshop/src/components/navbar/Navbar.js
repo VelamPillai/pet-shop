@@ -11,9 +11,11 @@ const Navbar = () => {
   const [nav, setNav] = useState(false);
 
   //to show and hide the mobile menu after selection of menu item
-  const handleNavClick = () => setNav(!nav);
-
-
+  const handleNavClick = (e) =>  {
+    handleMenuClick(e)
+    setNav(!nav);
+   
+  }
   const { productDispatch,productState} =
     useContext(StoreContext);
   
@@ -21,11 +23,14 @@ const Navbar = () => {
   
   //to set the petName to filter the products from the DB
   const handleMenuClick = (e) => {
+    
+   
+    
     productDispatch({
       type: "setMenuName",
       payload: { data: e.target.textContent.toLowerCase() },
     });
-    
+    console.log('hello111111',e.target.textContent.toLowerCase())
   }
   const handleMenuBrandClick = (e) => {
     productDispatch({
@@ -36,7 +41,7 @@ const Navbar = () => {
       type: "setBrand",
       payload: { data: [...new Set([...product].map(item=>item.brand))]},
     });
-
+    setNav(!nav);
     
   }
   
@@ -90,46 +95,45 @@ const Navbar = () => {
       >
         <li className="py-6 text-xl ">
           <NavLink
-            to="/dogs"
+            to="/petMainPage"
             className=" navHover my-3 border-box p-1 "
-            onClick={handleNavClick}
+            onClick={handleNavClick} 
           >
-            Dogs
+            Dog
           </NavLink>
         </li>
         <hr />
         <li className="py-6 text-xl">
           <NavLink
-            to="/cats"
+            to="/petMainPage"
             className=" navHover my-2 border-box p-1"
-            onClick={handleNavClick}
+            onClick={handleNavClick} 
           >
-            Cats
+            Cat
           </NavLink>
         </li>
         <li className="py-6 text-xl">
           <NavLink
-            to="/brands"
+            to="/brand"
             className=" navHover my-2 border-box p-1"
-            onClick={handleNavClick}
-          >
-            Brands
+            onClick={handleMenuBrandClick} >
+            Brand
           </NavLink>
         </li>
         <li className="py-6 text-xl">
           <NavLink
-            to="/blogs"
+            to="/blog"
             className=" navHover my-2 border-box p-1"
-            onClick={handleNavClick}
+            onClick={handleNavClick} 
           >
-            Blogs
+            Blog
           </NavLink>
               </li>
               <li className="py-6 text-xl">
           <NavLink
-            to="sale"
+            to="/petMainPage"
             className=" navHover my-2 border-box p-1 text-green-800 animate-ping"
-            onClick={handleNavClick}
+            onClick={handleNavClick} 
           >
            Sale %
           </NavLink>
@@ -138,7 +142,7 @@ const Navbar = () => {
           <NavLink
             to="cart"
             className=" navHover my-2 border-box p-1"
-            onClick={handleNavClick}
+            onClick={handleNavClick} 
           >
            <div className="flex justify-center items-center  border border-orange-500  text-4xl rounded">
         <FaCartPlus className="mr-3  p-2  hover:cursor-pointer" />
@@ -149,7 +153,7 @@ const Navbar = () => {
           </NavLink>
         </li>
       </ul>
-      <Outlet />
+      {/* <Outlet /> */}
     </div>
   );
 };
