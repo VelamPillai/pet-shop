@@ -1,12 +1,5 @@
 
-
-
 import { Routes, Route , Navigate } from "react-router-dom";
-
-
-
-
-
 
 import './App.css';
 import Account from './components/user/Account.js';
@@ -109,9 +102,6 @@ function App() {
           <Route index={false} path="petSubMenuPage" element={<PetSubMenuPage />} />
           <Route index={false} path="brand" element={<Brand/>} />
 
-          
-          
-    
          <Route path="*" element={<Navigate to="/" replace />} 
     />
         
