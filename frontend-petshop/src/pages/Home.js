@@ -1,8 +1,10 @@
+
 import React from "react";
 import Categories from "../components/main/Categories";
 import Products from "../components/main/Products";
 import Slider from "../components/main/Slider";
 import Welcome from "../components/main/Welcome";
+
 
 export default function Home() {
   const slides = [

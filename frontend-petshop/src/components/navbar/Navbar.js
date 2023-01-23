@@ -1,16 +1,45 @@
-import { Navigate, NavLink,Outlet } from "react-router-dom";
-import React, { useState } from "react";
 
-import { FaAngleDoubleDown, FaAngleDoubleUp , FaCartPlus } from "react-icons/fa";
+import React, { useState,useContext } from 'react';
+import {  NavLink, Outlet } from "react-router-dom";
 
-import Dog from "../petType/Dog";
 
+import { FaAngleDoubleDown, FaAngleDoubleUp, FaCartPlus } from "react-icons/fa";
+
+import { StoreContext } from '../../context/StoreContext.js';
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
 
+  //to show and hide the mobile menu after selection of menu item
   const handleNavClick = () => setNav(!nav);
 
+
+  const { productDispatch,productState} =
+    useContext(StoreContext);
+  
+  const {product,brand} = productState
+  
+  //to set the petName to filter the products from the DB
+  const handleMenuClick = (e) => {
+    productDispatch({
+      type: "setMenuName",
+      payload: { data: e.target.textContent.toLowerCase() },
+    });
+    
+  }
+  const handleMenuBrandClick = (e) => {
+    productDispatch({
+      type: "setMenuName",
+      payload: { data: e.target.textContent.toLowerCase() },
+    });
+    productDispatch({
+      type: "setBrand",
+      payload: { data: [...new Set([...product].map(item=>item.brand))]},
+    });
+
+    
+  }
+  
   return (
     <div className=" md:sticky w-full md:h-[150px] flex  justify-between items-center   md:text-xl  text-orange-500 ">
       
@@ -18,28 +47,28 @@ const Navbar = () => {
 
       <ul className="hidden md:flex  md:justify-between md:items-center md:p-2 ">
         <li >
-           <NavLink to="/dog" className=" md:leading-7     lg:p-[2rem] md:p-[1rem]  md:hover:underline " >
-            Dogs
+          <NavLink to="/petMainPage" onClick={ handleMenuClick} className=" md:leading-7     lg:p-[2rem] md:p-[1rem]  md:hover:underline " >
+            Dog 
           </NavLink> 
           
         </li>
         <li>
-          <NavLink to="/cats" className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[1rem]">
-            Cats
+          <NavLink to="/petMainPage"  onClick={ handleMenuClick} className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[1rem]">
+            Cat
           </NavLink>
         </li>
         <li>
-          <NavLink to="/brands" className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[1rem]">
-            Brands
+          <NavLink to="/brand"  onClick={ handleMenuBrandClick } className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[1rem]">
+            Brand
           </NavLink>
         </li>
         <li>
-          <NavLink to="/blogs" className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[1rem]">
+          <NavLink to="/blogs"  onClick={ handleMenuClick}className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[1rem]">
             Blogs
           </NavLink>
               </li>
               <li>
-          <NavLink to="/specialOffers" className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[.5rem] text-green-800 animate-ping hover:animate-none">
+          <NavLink to="/petMainPage" onClick={ handleMenuClick} className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[.5rem] text-green-800 animate-ping hover:animate-none">
           Sale %
           </NavLink>
         </li>

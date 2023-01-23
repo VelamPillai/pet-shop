@@ -8,7 +8,9 @@ export const homepageReducer = (state, action) => {
         user: payload.data,
       };
     }
-
+    
+    
+    
     default: {
       return state;
 
