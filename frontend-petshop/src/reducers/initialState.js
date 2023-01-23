@@ -15,7 +15,8 @@ const initialState = {
   sortOption: 'Recommended',
   menuName: '',
   subMenuName: '',
-  brand:''
+  brand: '',
+  sideMenuBrand : ''
 
   
 };

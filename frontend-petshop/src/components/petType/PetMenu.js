@@ -11,7 +11,7 @@ export default function PetMenu() {
   const { productState,productDispatch} =
     useContext(StoreContext);
   
-  const { menuName,product,brand } = productState;
+  const { menuName } = productState;
 
   const petMenu = [
     "Food",
@@ -32,7 +32,7 @@ export default function PetMenu() {
       payload: { data: e.target.textContent.split(' ')[1].toLowerCase() },
      
     });
-   console.log('hello')
+   
    
     
    navigate('/petSubMenuPage')
@@ -48,7 +48,7 @@ export default function PetMenu() {
             return (
               <li
                 key={idx} onClick={handleClick}
-                className="p-2 m-2 ring-2 ring-orange-500 rounded bg-orange-200/25 hover:ring-green-500 hover:bg-green-100/25"
+                className="p-2 m-2 ring-2 ring-orange-500 rounded bg-orange-200/25 hover:ring-green-500 hover:bg-green-100/25 "
               >
                 { (menuName==='dog'||menuName==='cat' ) ?
                   `${menuName.slice(0, 1).toUpperCase()}${menuName.slice(1)} ${item}` : 
