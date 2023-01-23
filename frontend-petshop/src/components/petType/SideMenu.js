@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 
 import { StoreContext } from "../../context/StoreContext.js";
 export default function Sidemenu() {
-  const [btn, setBtn] = useState("true");
+  const [btn, setBtn] = useState("false");
 
   const { productState, productDispatch } = useContext(StoreContext);
 

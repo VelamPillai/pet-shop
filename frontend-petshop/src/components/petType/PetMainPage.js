@@ -12,7 +12,7 @@ import { StoreContext } from "../../context/StoreContext.js";
 export default function PetMainPage() {
   const navigate = useNavigate();
 
-  const [btn, setBtn] = useState("true");
+  const [btn, setBtn] = useState("false");
 
   const { productState } = useContext(StoreContext);
 
