@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Sort from "./Sort";
-import Sidemenu from "./Sidemenu.js";
+import Sidemenu from "./SideMenu.js";
 import ProductCard from "./ProductCard.js";
 
 import { StoreContext } from "../../context/StoreContext.js";
@@ -50,7 +50,7 @@ export default function PetSubMenuPage() {
       <div className="flex justify-between mt-5">
         {/* side menu */}
         <div className="w-1/4">
-          <Sidemenu />
+          { menuName=== 'brand' ? null : <Sidemenu />}
         </div>
 
         {/* products card */}

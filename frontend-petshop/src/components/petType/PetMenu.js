@@ -48,7 +48,7 @@ export default function PetMenu() {
             return (
               <li
                 key={idx} onClick={handleClick}
-                className="p-2 m-2 ring-2 ring-orange-500 rounded bg-orange-200/25 hover:ring-green-500 hover:bg-green-100/25"
+                className="p-2 m-2 ring-2 ring-orange-500 rounded bg-orange-200/25 hover:ring-green-500 hover:bg-green-100/25 "
               >
                 { (menuName==='dog'||menuName==='cat' ) ?
                   `${menuName.slice(0, 1).toUpperCase()}${menuName.slice(1)} ${item}` : 

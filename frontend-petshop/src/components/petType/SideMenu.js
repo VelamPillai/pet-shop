@@ -57,10 +57,10 @@ export default function Sidemenu() {
             sideMenuBrand.map(
             (item, idx) =>
               idx <= (btn ?   sideMenuBrand.length : 4) && (
-                <div>
+                <div key={idx}>
                   <input type="checkbox" name="brand" value={item} />
                   <label className="ml-3">
-                    {item[0].toUpperCase() + item.slice(1, item.length - 1)}
+                    {item[0].toUpperCase() + item.slice(1, item.length )}
                   </label>
                 </div>
               )
@@ -68,7 +68,7 @@ export default function Sidemenu() {
       </div>
       <div className="flex justify-center ">
         <button
-          className=" border bg-orange-500 p-1 rounded-md "
+          className=" border bg-orange-500 p-1 rounded-md hover:bg-orange-400 m-2"
           onClick={handleBtnClick}
         >
           {!btn ? "show more" : "show less"}
