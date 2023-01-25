@@ -58,13 +58,17 @@ const addNewProduct = async (req, res, next) => {
 //update product
 const updateProduct = async (req, res, next) => {
   try {
+    const { id } = req.params;
+    console.log(id)
+    
    
     const updatedProduct = await productCollection.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true }
     );
-    res.json({ success: true, data: updatedProduct });
+    const products = await productCollection.find();
+    res.json({ success: true, data: products }); 
   } catch (err) {
     next(err.message);
   }

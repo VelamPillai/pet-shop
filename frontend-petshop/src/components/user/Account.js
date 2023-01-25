@@ -206,12 +206,14 @@ const deleteHandler = (id) => {
               </div>
               <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem] md:m-[1rem] ">
                 Profile Image:{" "}
+               
                 <input
                   className=" py-2 border border-slate-200 rounded bg-white w-[150px] md:w-[400px] h-[50px] "
                   type="file"
                   name="profileImage"                  
                 />
-                <img src={user.profileImage} width="100px" alt="profileImage" />
+                 <img src={user.profileImage} width="100px" alt="profileImage" />
+                
               </label>
               <button className="bg-orange-500 justify-center items-center w-[100px] md:w-[200px]  my-3 md:mx-auto md:my-[1rem] md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">
                 update

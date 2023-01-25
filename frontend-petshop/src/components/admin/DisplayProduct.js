@@ -44,11 +44,12 @@ export default function DisplayProduct() {
     
      //update handler
     const updateHandler = (product) => {
-        productDispatch({
+        
+         adminDispatch({
             type: "setProduct",
-            payload: { data: product},
+            payload: { data:product },
           });  
-        navigate('/updateProduct')
+        navigate('/updateProduct') 
     }
   return (
       <div className="flex flex-col items-center">

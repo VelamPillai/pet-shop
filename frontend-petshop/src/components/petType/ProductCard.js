@@ -1,7 +1,7 @@
 import React,{useContext} from "react";
 import { useNavigate } from "react-router-dom";
 
-import cardImage from "../../image/dog.jpeg";
+
 import { StoreContext } from "../../context/StoreContext.js";
 
 export default function ProductCard({ product }) {

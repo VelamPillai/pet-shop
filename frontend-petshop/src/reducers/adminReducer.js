@@ -2,9 +2,10 @@ export const adminReducer = (state, action) => {
     const { type, payload } = action;
     switch (type) {
       case "setProduct": {
+       
         return {
           ...state,
-          product:{...payload.data}
+          product: payload.data 
         };
       }
       
