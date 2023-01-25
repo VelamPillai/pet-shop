@@ -55,6 +55,13 @@ export const productReducer = (state, action) => {
         singleProduct: payload.data,
       };
     }
+    case "setSearchedProduct": {
+      return {
+        ...state,
+        searchedProduct: [...payload.data]
+        
+      };
+    }
     
     default: {
       return state;

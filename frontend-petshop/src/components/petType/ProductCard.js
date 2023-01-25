@@ -1,7 +1,7 @@
 import React,{useContext} from "react";
 import { useNavigate } from "react-router-dom";
 
-import cardImage from "../../image/dog.jpeg";
+
 import { StoreContext } from "../../context/StoreContext.js";
 
 export default function ProductCard({ product }) {
@@ -25,9 +25,9 @@ export default function ProductCard({ product }) {
     
   }
   return (
-    <div onClick={showProductClick} className="flex flex-col border w-[325px] h-[500px] box-border rounded-lg p-4 m-1 relative  ">
+    <div onClick={showProductClick} className="flex flex-col border w-[325px] h-[400px] box-border rounded-lg p-1 m-1 relative  ">
       {product.sale && <p className="absolute top-2 left-2  text-white bg-red-500 p-4 rounded-br-2xl ">Sale</p>}
-      <img src={cardImage} alt="card-pic" className="w-[100%] h-[200px] mb-3" />
+      <img src={product.productImage} alt="card-pic" className="w-[100%] h-[150px] mb-3" />
       <p className="text-sm  text-gray-500">
         {product.brand} - {product.petName}
       </p>

@@ -5,12 +5,13 @@ async function verifyToken(req, res, next) {
   try {
     // extracting token out fom headers
     const { token } = req.headers;
+   
     // verify token
-    const payload = jwt.verify(token, process.env.TOKEN_SECRET_KEY); // decoded or payload
+    const payload = jwt.verify(token, process.env.TOKEN_KEY); // decoded or payload
     // console.log(payload);
 
     // Get user from data base
-    const user = await usersCollection.findById(payload._id);
+    const user = await userCollection.findById(payload._id);
     // Attaching user in request
     req.user = user;
     next();

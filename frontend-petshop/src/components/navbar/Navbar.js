@@ -16,10 +16,11 @@ const Navbar = () => {
     setNav(!nav);
    
   }
-  const { productDispatch,productState} =
+  const { productDispatch,productState,homepageState} =
     useContext(StoreContext);
   
-  const {product,brand} = productState
+  const { product } = productState;
+  const { user } = homepageState;
   
   //to set the petName to filter the products from the DB
   const handleMenuClick = (e) => {
@@ -30,7 +31,7 @@ const Navbar = () => {
       type: "setMenuName",
       payload: { data: e.target.textContent.toLowerCase() },
     });
-    console.log('hello111111',e.target.textContent.toLowerCase())
+    
   }
   const handleMenuBrandClick = (e) => {
     productDispatch({
@@ -44,13 +45,22 @@ const Navbar = () => {
     setNav(!nav);
     
   }
+
+  
   
   return (
-    <div className=" md:sticky w-full md:h-[150px] flex  justify-between items-center   md:text-xl  text-orange-500 ">
+    <div className=" md:sticky w-full md:h-[50px] flex  justify-between items-center font-bold  md:text-xs text-orange-500 ">
       
       {/* menu */}
 
       <ul className="hidden md:flex  md:justify-between md:items-center md:p-2 ">
+        {user.role==='admin' &&  <li >
+          <NavLink to="/admin" onClick={handleMenuClick} className=" md:leading-7     lg:p-[2rem] md:p-[1rem]  md:hover:underline " >
+            Admin
+          </NavLink> 
+          
+        </li>}
+     
         <li >
           <NavLink to="/petMainPage" onClick={ handleMenuClick} className=" md:leading-7     lg:p-[2rem] md:p-[1rem]  md:hover:underline " >
             Dog 
@@ -93,6 +103,16 @@ const Navbar = () => {
             : "  z-20 w-[90vw]  absolute left-[-5rem]  top-[100px] mb-3 bg-orange-200 flex flex-col justify-center items-center md:hidden p-[1rem] "
         } 
       >
+
+        <li className="py-6 text-xl ">
+          <NavLink
+            to="/admin"
+            className=" navHover my-3 border-box p-1 "
+            onClick={handleNavClick} 
+          >
+            Admin
+          </NavLink>
+        </li>
         <li className="py-6 text-xl ">
           <NavLink
             to="/petMainPage"

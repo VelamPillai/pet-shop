@@ -8,7 +8,9 @@ import { homepageReducer } from '../reducers/homepageReducer.js';
 import { productReducer } from '../reducers/productReducer.js';
 import { loginReducer } from '../reducers/loginReducer.js';
 import { signupReducer } from '../reducers/signupReducer.js';
+import { adminReducer } from "../reducers/adminReducer.js";
 import initialState from '../reducers/initialState.js';
+import adminInitialState from "../reducers/adminInitialState.js";
 
 export default function Container(props) {
   //homepageReducer
@@ -25,6 +27,8 @@ export default function Container(props) {
     productReducer,
     initialState
   );
+  //adminReducer
+  const [adminState, adminDispatch] = useReducer(adminReducer, adminInitialState);
   const navigate = useNavigate();
 
   const { user } = homepageState;
@@ -87,6 +91,7 @@ export default function Container(props) {
         productState,
         productDispatch,
         initialState,
+        adminState, adminDispatch
       }}
     >
       {props.children}

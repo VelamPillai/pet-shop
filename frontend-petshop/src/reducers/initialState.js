@@ -19,7 +19,8 @@ const initialState = {
   sideMenuBrand: '',
   singleProduct:'',
   
-
+  searchedProduct:''
+  
   
 };
 
