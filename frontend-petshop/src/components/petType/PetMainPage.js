@@ -10,12 +10,12 @@ import ProductCard from "./ProductCard.js";
 import { StoreContext } from "../../context/StoreContext.js";
 
 export default function PetMainPage() {
-  const navigate = useNavigate();
+ 
 
   const [viewBtn, setViewBtn] = useState(false); 
   
 
-  const { productState, productDispatch} = useContext(StoreContext);
+  const { productState} = useContext(StoreContext);
 
   const { product, menuName} = productState;
 

@@ -1,13 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AiOutlineSearch } from 'react-icons/ai';
 
+import { StoreContext } from "../../context/StoreContext.js";
+
 export default function HeaderSearch() {
+  const navigate = useNavigate();
   const [search, setSearch] = useState('');
   
+  const { productState ,productDispatch} = useContext(StoreContext);
 
+  const { product } = productState;
   
   const handleChange = (e) => {
-    setSearch(search);
+    setSearch(e.target.value);
+  }
+
+  const handleSearch = (e) => {
+    if (e.keyCode === 13) {
+     
+      productDispatch({
+        type: 'setSearchedProduct',
+        payload:{data:product.filter((item) => (item.petName === search || item.brand===search || item.productName===search || item.productArrival===search)&& item)}
+})
+      navigate('/searchedProduct')
+    }
+   
   }
   return (
     
@@ -15,7 +33,7 @@ export default function HeaderSearch() {
       <label className="relative block">
         <span className="sr-only">Search</span>
         <span className="absolute inset-y-0 left-0 flex items-center pl-2">
-          <AiOutlineSearch className=" text-orange-800  focus:text-green-500 " />
+          <AiOutlineSearch onClick={ handleSearch} className=" text-orange-800  focus:text-green-500 " />
         </span>
         <input
           className="placeholder:italic placeholder:text-slate-400 block bg-white w-full border border-orange-800 rounded-md py-2 pl-9 pr-3 shadow-sm focus:outline-none focus:border-green-500 focus:ring-green-500 focus:ring-1 sm:text-sm"
@@ -24,6 +42,7 @@ export default function HeaderSearch() {
           name="search"
           value={search}
           onChange={handleChange}
+          onKeyDown ={ handleSearch}
         />
       </label>
     </div>

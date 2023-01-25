@@ -30,6 +30,7 @@ import AddProduct from "./components/admin/AddProduct";
 import DisplayProduct from "./components/admin/DisplayProduct";
 import UpdateProduct from "./components/admin/UpdateProduct";
 import DisplayCustomers from "./components/admin/DisplayCustomers";
+import SearchedProduct from "./components/header/SearchedProduct";
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
               element={<Home />}
             />
           </Route>
+          <Route index={false} path="searchedProduct" element={<SearchedProduct/>} />
           <Route index={false} path="login" element={<Login />} />
           <Route index={false} path="signup" element={<Signup />} />
           <Route index={false} path="profile" element={<Profile />} />
