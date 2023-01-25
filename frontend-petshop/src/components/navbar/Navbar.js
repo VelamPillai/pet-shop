@@ -19,7 +19,7 @@ const Navbar = () => {
   const { productDispatch,productState} =
     useContext(StoreContext);
   
-  const {product,brand} = productState
+  const {product} = productState
   
   //to set the petName to filter the products from the DB
   const handleMenuClick = (e) => {
@@ -30,7 +30,7 @@ const Navbar = () => {
       type: "setMenuName",
       payload: { data: e.target.textContent.toLowerCase() },
     });
-    console.log('hello111111',e.target.textContent.toLowerCase())
+    
   }
   const handleMenuBrandClick = (e) => {
     productDispatch({
@@ -45,11 +45,7 @@ const Navbar = () => {
     
   }
 
-  const handleAdminClick = (e) => {
-    e.preventDefault()
-
-    setNav(!nav);
-  }
+  
   
   return (
     <div className=" md:sticky w-full md:h-[150px] flex  justify-between items-center   md:text-xl  text-orange-500 ">
@@ -58,7 +54,7 @@ const Navbar = () => {
 
       <ul className="hidden md:flex  md:justify-between md:items-center md:p-2 ">
       <li >
-          <NavLink to="/admin" onClick={ handleAdminClick} className=" md:leading-7     lg:p-[2rem] md:p-[1rem]  md:hover:underline " >
+          <NavLink to="/admin" onClick={handleMenuClick} className=" md:leading-7     lg:p-[2rem] md:p-[1rem]  md:hover:underline " >
             Admin
           </NavLink> 
           
@@ -107,11 +103,11 @@ const Navbar = () => {
       >
         <li className="py-6 text-xl ">
           <NavLink
-            to="/petMainPage"
+            to="/admin"
             className=" navHover my-3 border-box p-1 "
             onClick={handleNavClick} 
           >
-            Dog
+            Admin
           </NavLink>
         </li>
         <li className="py-6 text-xl ">

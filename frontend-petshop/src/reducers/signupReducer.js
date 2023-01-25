@@ -22,6 +22,25 @@ export function signupReducer(state, action) {
                 lastName: '',
                 email: '',
                 password: '',
+                petName: '',
+                productName: '',
+                description: '',
+                price: '',
+                brand: '',
+                petSize: '',
+                lifeStyle: '',
+                productCategory: '',
+                material: '',
+                productCharacter: '',
+                sale: '',
+                productArrival: '',
+                productImage:''
+                
+                
+
+            
+                
+                
                 
 
             }

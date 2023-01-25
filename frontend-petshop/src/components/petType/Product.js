@@ -23,7 +23,7 @@ export default function Product() {
     singleProduct && (
       <div className="flex flex-col md:flex-row w-full">
         <div className="w-[2/4] m-5 p-5">
-          <img src={cardImage} alt="card-pic" className=" w-[1000px]" />
+          <img src={singleProduct.productImage} alt="card-pic" className=" w-[300px] h-[300px]" />
         </div>
         <div className="w-[2/4] m-5 p-5">
           <p className="text-sm  text-gray-500 mb-2">

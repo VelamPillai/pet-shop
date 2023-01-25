@@ -1,18 +1,48 @@
-import React from 'react'
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
+const adminFeatures = [
+  "addProduct",
+  "updateProduct",
+  "deleteProduct",
+  "displayCustomers",
+  "displaySingleCustomer",
+  "displayOrders",
+  "displaySingleOrder",
+];
 export default function Admin() {
-  return (
-      <div>
-          <p>Admin</p>
-          <div>
-              <button>Add Product</button>
-              <button>Update Product</button>
-              <button>Delete product</button>
-              <button>Display Customer</button>
-              <button>Display Single Customer</button>
+    const [display, setDisplay] = useState(false);
+    const navigate = useNavigate()
 
-          </div>
-         
-      </div>
-  )
+  const handleAdminClick = (e) => {
+    e.preventDefault();
+    setDisplay((display) => !display);
+  };
+    
+    const handleMenuClick = (e) => {
+        e.preventDefault();
+        navigate('/addProduct')
+    }
+  return (
+    <div>
+      <p
+        className=" text-xl flex justify-center items-center  font-bold"
+        onClick={handleAdminClick}
+      >
+        Admin
+      </p>
+      {display && (
+        <ul className="flex flex-col md:flex-row justify-center flex-wrap p-1 rounded-lg">
+          {adminFeatures.map((item, idx) => (
+            <li
+              key={idx} onClick={handleMenuClick}
+              className="flex justify-center items-center md:p-2 md:border bg-orange-200/25 hover:bg-orange-400/25 md:m-3 rounded-lg "
+            >
+              {item}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 }

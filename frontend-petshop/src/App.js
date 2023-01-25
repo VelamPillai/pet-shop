@@ -25,6 +25,8 @@ import PetMainPage from "./components/petType/PetMainPage.js";
 import PetSubMenuPage from "./components/petType/PetSubMenuPage.js";
 import Brand from "./components/petType/Brand.js"
 import Product from "./components/petType/Product";
+import Admin from "./components/admin/Admin.js"
+import AddProduct from "./components/admin/AddProduct";
 
 
 function App() {
@@ -96,8 +98,11 @@ function App() {
         <Route index={false} path="company/stores" element={<Stores />} />
         <Route index={false} path="profile" element={<Profile />} /> 
         <Route index={false} path="account" element={<Account />} />
-        <Route index={false} path="notification" element={<Notification />} />
-        
+          <Route index={false} path="notification" element={<Notification />} />
+          
+          <Route index={false} path="admin" element={<Admin />} />
+          <Route index={false} path="addProduct" element={<AddProduct />} />
+          
         <Route index={false}   path="petMainPage" element={<PetMainPage />} / >
         
           <Route index={false} path="petSubMenuPage" element={<PetSubMenuPage />} />
