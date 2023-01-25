@@ -1,4 +1,5 @@
 import express from 'express';
+import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import upload from 'express-fileupload';
@@ -21,8 +22,11 @@ import productRoute from './routes/productRoute.js';
 //create and initialize express server
 const app = express();
 
+//for monnogoose error
+mongoose.set('strictQuery', true);
+
 //cors config
-app.use(cors({ origin: 'http://localhost:3001', exposedHeaders: ['token'] }));
+app.use(cors({ origin: 'http://localhost:3000', exposedHeaders: ['token'] }));
 
 //middleware for get file-data request(from express-fileupload)
 app.use(upload());
