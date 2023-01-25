@@ -21,7 +21,7 @@ export default function PetSubMenuPage() {
       menuName==='sale %' ? menuName.split(' ')[0].slice(0, 1).toUpperCase()+menuName.slice(1,4).toUpperCase()+' '+subMenuName.toUpperCase():
         menuName.toUpperCase()}
       </p>
-     <div class="md:hidden">
+     <div className="md:hidden">
         {/* dog menu */}
          {menuName !== 'brand'  && <PetMenu /> }
        </div> 
