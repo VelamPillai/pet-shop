@@ -74,7 +74,7 @@ export default function AddProduct() {
   }
   return (
     <div>
-      <div className="flex justify-center items-center flex-wrap flex-col xl:flex-row  lg:border m-auto rounded shadow-black shadow-xs ">
+      <div className="flex justify-center items-center flex-wrap flex-col xl:flex-row  lg:border m-auto rounded shadow-black shadow-xs  mt-[3rem] md:mt-1">
         <Toaster />
         
         <p className="  font-bold text-center ">Add New Product</p>
@@ -83,7 +83,7 @@ export default function AddProduct() {
           <label className="flex flex-col  justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
             Pet Name :{" "}
             <input
-              className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+              className="border border-slate-200 rounded w-[150px] md:w-[300px] h-[50px] "
               type="text"
               name="petName"
               /* onChange={(e) => adminDispatch({
@@ -99,7 +99,7 @@ export default function AddProduct() {
             <input
               type="text"
               name="productName"
-              className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+              className="border border-slate-200 rounded w-[150px] md:w-[300px] h-[50px] "
               /* onChange={(e) => adminDispatch({
               type: "onChange",
               payload: { name: e.target.name, data: e.target.value }
@@ -111,7 +111,7 @@ export default function AddProduct() {
           <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
             Description :{" "}
             <input
-              className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+              className="border border-slate-200 rounded w-[150px] md:w-[300px] h-[50px] "
               type="text"
               name="description"
               /* onChange={(e) => adminDispatch({
@@ -124,7 +124,7 @@ export default function AddProduct() {
           <label className="flex flex-col justify-center item-center text-xs md:text-md  md:items-start m-[.25rem]  ">
             Price:{" "}
             <input
-              className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+              className="border border-slate-200 rounded w-[150px] md:w-[300px] h-[50px] "
               type="number"
               name="price"
               /* onChange={(e) => adminDispatch({
@@ -137,7 +137,7 @@ export default function AddProduct() {
           <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
             Brand:{" "}
             <input
-              className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+              className="border border-slate-200 rounded w-[150px] md:w-[300px] h-[50px] "
               type="text"
               name="brand"
               /* onChange={(e) => adminDispatch({
@@ -150,7 +150,7 @@ export default function AddProduct() {
           <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
             Pet Size :{" "}
             <select
-              className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+              className="border border-slate-200 rounded w-[150px] md:w-[300px] h-[50px] "
               name="petSize"
               /* onChange={(e) => adminDispatch({
               type: "onChange",
@@ -168,7 +168,7 @@ export default function AddProduct() {
           <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
             Life Style :{" "}
             <select
-              className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+              className="border border-slate-200 rounded w-[150px] md:w-[300px] h-[50px] "
               name="lifeStyle"
               /* onChange={(e) => adminDispatch({
               type: "onChange",
@@ -186,7 +186,7 @@ export default function AddProduct() {
           <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
             Product Category :{" "}
             <select
-              className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+              className="border border-slate-200 rounded w-[150px] md:w-[300px] h-[50px] "
               name="productCategory"
               /* onChange={(e) => adminDispatch({
               type: "onChange",
@@ -207,7 +207,7 @@ export default function AddProduct() {
           <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
             Material :{" "}
             <select
-              className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+              className="border border-slate-200 rounded w-[150px] md:w-[300px] h-[50px] "
               name="material"
               /* onChange={(e) => adminDispatch({
               type: "onChange",
@@ -239,7 +239,7 @@ export default function AddProduct() {
           <label className="fleconst product = await productCollection.find();x flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
             Sale :{" "}
             <select
-              className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+              className="border border-slate-200 rounded w-[150px] md:w-[300px] h-[50px] "
               name="sale"
               /* onChange={(e) => adminDispatch({
               type: "onChange",
@@ -255,7 +255,7 @@ export default function AddProduct() {
           <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
             Product Arrival :{" "}
             <select
-              className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+              className="border border-slate-200 rounded w-[150px] md:w-[300px] h-[50px] "
               name="productArrival"
               /* onChange={(e) => adminDispatch({
               type: "onChange",
@@ -272,7 +272,7 @@ export default function AddProduct() {
           <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
             Profile Image:{" "}
             <input
-              className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+              className="border border-slate-200 rounded w-[150px] md:w-[300px] h-[50px] "
               type="file"
               name="productImage"
               /* onChange={(e) => {             
@@ -285,7 +285,7 @@ export default function AddProduct() {
           } */
             />
           </label>
-          <button className="bg-orange-500 justify-center items-center w-[150px] md:w-[400px]  my-3 md:mx-auto md:my-[1rem] md:p-1 rounded shadow-black shadow-md hover:bg-green-600  h-[30px] lg:box-content">
+          <button className="bg-orange-500 justify-center items-center w-[150px] md:w-[300px]  my-3 md:mx-auto md:my-[1rem] md:p-1 rounded shadow-black shadow-md hover:bg-green-600  h-[30px] lg:box-content">
             AddProduct
           </button>
         </form>

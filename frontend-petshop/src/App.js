@@ -37,7 +37,7 @@ function App() {
   return (
     <div className="h-screen md:w-[100vw] flex flex-col">
       <Header />
-      <div className="w-3/4 mx-auto mt-[9rem] ">
+      <div className="w-3/4 mx-auto mt-[9rem] md:mt-[8rem] ">
         <Routes>
           <Route path="/">
             <Route

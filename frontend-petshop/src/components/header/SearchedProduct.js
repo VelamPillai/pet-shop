@@ -17,7 +17,7 @@ export default function SearchedProduct() {
     
   };
   return (
-      <div>SearchedProduct
+      <div className="mt-[3rem] md-1">SearchedProduct
            <div className="flex flex-col md:flex-row justify:center items-center md:justify-between m-1 ">
         {/* products */}
         <p className=" mb-3 md:mb-0 text-xs md:text-md">
@@ -45,13 +45,13 @@ export default function SearchedProduct() {
         
       </div>
       <div className="flex justify-end items-center m-2 relative">
-        
-        <button
+        {searchedProduct.length > 3 && <button
           className=" p-2 m-2 ring-2 ring-orange-500 rounded bg-orange-200/25 hover:ring-green-500 hover:bg-green-100/25"
           onClick={handleBtnClick}
         >
           {viewBtn ? "show less" : "show more"}
-        </button>
+        </button> }
+        
       </div>
     </div>
   )

@@ -27,10 +27,10 @@ export default function DisplayCustomers() {
     },[])
     
   return (
-      <div>
+      <div className="mt-[3rem]">
          
           Customers
-          <ul className="grid grid-cols-3 gap-4">
+          <ul className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-[1rem]">
               {customers && 
                   customers.map((item, idx) => <li key={idx} className="border-2 flex justify-evenly mb-2">
                       <p className="mr-5">{item.firstName} <br/>

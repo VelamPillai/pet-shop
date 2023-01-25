@@ -52,7 +52,7 @@ export default function DisplayProduct() {
         navigate('/updateProduct') 
     }
   return (
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center mt-[3rem] md:mt-1">
           <Toaster />
           <p className="font-bold text-xl mb-3">Products</p>    
           <div>
