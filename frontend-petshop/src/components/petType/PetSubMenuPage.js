@@ -2,30 +2,32 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Sort from "./Sort";
-import Sidemenu from "./Sidemenu.js";
+import Sidemenu from "./SideMenu.js";
 import ProductCard from "./ProductCard.js";
+import PetMenu from "./PetMenu.js";
 
 import { StoreContext } from "../../context/StoreContext.js";
 
 export default function PetSubMenuPage() {
- 
-
-
   const { productState } = useContext(StoreContext);
 
   const { product, menuName,subMenuName } = productState;
-   /* console.log('subMenuName', subMenuName);
-  console.log('menu name', menuName) 
-  console.log(product && product.filter(
-    (item) =>
-      ((item.petName === menuName || item.petName === "dog/cat") && item.productCategory === subMenuName)
-  )) */
+   
+  
 
   return (
     <div className="flex flex-col">
+       <p className="flex justify-center items-center text-xl font-bold">{
+      menuName==='sale %' ? menuName.split(' ')[0].slice(0, 1).toUpperCase()+menuName.slice(1,4).toUpperCase()+' '+subMenuName.toUpperCase():
+        menuName.toUpperCase()}
+      </p>
+     <div class="md:hidden">
+        {/* dog menu */}
+         {menuName !== 'brand'  && <PetMenu /> }
+       </div> 
       <p className="flex justify-center items-center text-xl font-bold">{
       menuName==='sale %' ? menuName.split(' ')[0].slice(0, 1).toUpperCase()+menuName.slice(1,4).toUpperCase()+' '+subMenuName.toUpperCase():
-        menuName.toUpperCase()+' '+subMenuName.toUpperCase()}
+        menuName.toUpperCase()+' - '+subMenuName.toUpperCase()}
       </p>
 
       
@@ -33,20 +35,19 @@ export default function PetSubMenuPage() {
         {/* products */}
         <p>
           <span className="font-bold">
-            {/* {product && 
-              product.filter(
-                (item) =>
-                ((item.petName === menuName || item.petName === "dog/cat") && item.productCategory === subMenuName)
-              ).length} */} 
+            
             {product && (menuName === "dog" || menuName === "cat")
             ?
             product.filter(
                 (item) =>
                 ((item.petName === menuName || item.petName === "dog/cat") && item.productCategory === subMenuName)
-              ).length : menuName === "sale %" &&
+              ).length : menuName === "sale %" ?
               product
               .filter((item) => (item.sale === true && item.productCategory===subMenuName ))
-              .length
+              .length : (menuName === "brand" &&
+              product
+              .filter((item) => (item.brand === subMenuName ))
+              .length)
             
             }
           </span>{" "}
@@ -57,8 +58,8 @@ export default function PetSubMenuPage() {
       </div>
       <div className="flex justify-between mt-5">
         {/* side menu */}
-        <div className="w-1/4">
-          <Sidemenu />
+        <div className="w-1/4 hidden md:flex">
+          { menuName=== 'brand' ? null : <Sidemenu />}
         </div>
 
         {/* products card */}
@@ -70,12 +71,17 @@ export default function PetSubMenuPage() {
                 ((item.petName === menuName || item.petName === "dog/cat") && item.productCategory === subMenuName)
               ).map((item) => (
                   <ProductCard product={{ ...item }} key={item._id} />
-              )) : menuName === "sale %" &&
+              )) : menuName === "sale %" ?
               product
               .filter((item) => (item.sale === true && item.productCategory===subMenuName ))
               .map((item) => (
                 <ProductCard product={{ ...item }} key={item._id} />
-              ))
+              )): (menuName === "brand" &&
+              product
+              .filter((item) => (item.brand === subMenuName ))
+              .map((item) => (
+                <ProductCard product={{ ...item }} key={item._id} />
+              )))
             
             }
         </div>
