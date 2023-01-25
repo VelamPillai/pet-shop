@@ -11,16 +11,22 @@ const Navbar = () => {
   const [nav, setNav] = useState(false);
 
   //to show and hide the mobile menu after selection of menu item
-  const handleNavClick = () => setNav(!nav);
-
-
-  const { productDispatch,productState} =
+  const handleNavClick = (e) =>  {
+    handleMenuClick(e)
+    setNav(!nav);
+   
+  }
+  const { productDispatch,productState,homepageState} =
     useContext(StoreContext);
   
-  const {product,brand} = productState
+  const { product } = productState;
+  const { user } = homepageState;
   
   //to set the petName to filter the products from the DB
   const handleMenuClick = (e) => {
+    
+   
+    
     productDispatch({
       type: "setMenuName",
       payload: { data: e.target.textContent.toLowerCase() },
@@ -36,16 +42,25 @@ const Navbar = () => {
       type: "setBrand",
       payload: { data: [...new Set([...product].map(item=>item.brand))]},
     });
-
+    setNav(!nav);
     
   }
+
+  
   
   return (
-    <div className=" md:sticky w-full md:h-[150px] flex  justify-between items-center   md:text-xl  text-orange-500 ">
+    <div className=" md:sticky w-full md:h-[50px] flex  justify-between items-center font-bold  md:text-xs text-orange-500 ">
       
       {/* menu */}
 
       <ul className="hidden md:flex  md:justify-between md:items-center md:p-2 ">
+        {user.role==='admin' &&  <li >
+          <NavLink to="/admin" onClick={handleMenuClick} className=" md:leading-7     lg:p-[2rem] md:p-[1rem]  md:hover:underline " >
+            Admin
+          </NavLink> 
+          
+        </li>}
+     
         <li >
           <NavLink to="/petMainPage" onClick={ handleMenuClick} className=" md:leading-7     lg:p-[2rem] md:p-[1rem]  md:hover:underline " >
             Dog 
@@ -88,48 +103,57 @@ const Navbar = () => {
             : "  z-20 w-[90vw]  absolute left-[-5rem]  top-[100px] mb-3 bg-orange-200 flex flex-col justify-center items-center md:hidden p-[1rem] "
         } 
       >
+
         <li className="py-6 text-xl ">
           <NavLink
-            to="/dogs"
+            to="/admin"
             className=" navHover my-3 border-box p-1 "
-            onClick={handleNavClick}
+            onClick={handleNavClick} 
           >
-            Dogs
+            Admin
+          </NavLink>
+        </li>
+        <li className="py-6 text-xl ">
+          <NavLink
+            to="/petMainPage"
+            className=" navHover my-3 border-box p-1 "
+            onClick={handleNavClick} 
+          >
+            Dog
           </NavLink>
         </li>
         <hr />
         <li className="py-6 text-xl">
           <NavLink
-            to="/cats"
+            to="/petMainPage"
             className=" navHover my-2 border-box p-1"
-            onClick={handleNavClick}
+            onClick={handleNavClick} 
           >
-            Cats
+            Cat
           </NavLink>
         </li>
         <li className="py-6 text-xl">
           <NavLink
-            to="/brands"
+            to="/brand"
             className=" navHover my-2 border-box p-1"
-            onClick={handleNavClick}
-          >
-            Brands
+            onClick={handleMenuBrandClick} >
+            Brand
           </NavLink>
         </li>
         <li className="py-6 text-xl">
           <NavLink
-            to="/blogs"
+            to="/blog"
             className=" navHover my-2 border-box p-1"
-            onClick={handleNavClick}
+            onClick={handleNavClick} 
           >
-            Blogs
+            Blog
           </NavLink>
               </li>
               <li className="py-6 text-xl">
           <NavLink
-            to="sale"
+            to="/petMainPage"
             className=" navHover my-2 border-box p-1 text-green-800 animate-ping"
-            onClick={handleNavClick}
+            onClick={handleNavClick} 
           >
            Sale %
           </NavLink>
@@ -138,7 +162,7 @@ const Navbar = () => {
           <NavLink
             to="cart"
             className=" navHover my-2 border-box p-1"
-            onClick={handleNavClick}
+            onClick={handleNavClick} 
           >
            <div className="flex justify-center items-center  border border-orange-500  text-4xl rounded">
         <FaCartPlus className="mr-3  p-2  hover:cursor-pointer" />
@@ -149,7 +173,7 @@ const Navbar = () => {
           </NavLink>
         </li>
       </ul>
-      <Outlet />
+      {/* <Outlet /> */}
     </div>
   );
 };

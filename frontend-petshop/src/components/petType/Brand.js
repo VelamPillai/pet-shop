@@ -1,16 +1,26 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import PetMenu from './PetMenu.js';
 
 import { StoreContext } from "../../context/StoreContext.js";
 export default function Brand() {
-    const { productState } = useContext(StoreContext);
+  const navigate = useNavigate();
+    const { productState,productDispatch } = useContext(StoreContext);
 
-    const { product, menuName, brand } = productState;
+    const {  menuName, brand} = productState;
     
     const handleBrandClick = (e) => {
         e.preventDefault();
-        console.log(e.target.textContent)
+        productDispatch({
+          type: "setSubMenuName",
+          payload: { data: e.target.textContent },
+         
+        });
+       
+       
+        
+       navigate('/petSubMenuPage')
 
     }
     
@@ -21,13 +31,13 @@ export default function Brand() {
           </p>
           <div>
         {/* Brand  */}
-    <ul className="flex flex-row   flex-wrap justify-around m-3 ">
+    <ul className="flex flex-row   flex-wrap justify-around m-1 ">
         {
             brand &&   brand.map((item, idx) => {
             return (
               <li
                 key={idx} onClick={handleBrandClick}
-                className="p-2 m-2 w-[300px] ring-2 ring-orange-500 rounded bg-orange-200/25 hover:ring-green-500 hover:bg-green-100/25 text-center"
+                className="p-1 m-1 w-[300px] ring-2 ring-orange-500 rounded bg-orange-200/25 hover:ring-green-500 hover:bg-green-100/25 text-center"
               >
                  {item}
                   

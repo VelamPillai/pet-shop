@@ -6,9 +6,12 @@ import bcrypt from 'bcrypt';
 dotenv.config();
 
 //get all user
-const getAllUser =async(req, res, next) => {
+const getAllUser = async (req, res, next) => {
+  
   try {
+
     const user = await userCollection.find()
+   
     res.status(200).json({success:true,data:user})
   } catch (err) {
     next(err);

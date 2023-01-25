@@ -14,11 +14,11 @@ const productSchema = new Schema({
     productCategory: { type: 'String', enum: productSubmenu, default: 'pet-product' },
     material: { type: String, enum: materialType, default: 'na' },
     productCharacter:[{type : String,default:'1kg'}],
-    /* productImage: {
+     productImage: {
         type: String, default: function () {
             return 'https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.collinsdictionary.com%2Fimages%2Ffull%2Fpetfood_150577460.jpg&imgrefurl=https%3A%2F%2Fwww.collinsdictionary.com%2Fde%2Fworterbuch%2Fenglisch%2Fpet-food&tbnid=DVqgAT2IGzGK4M&vet=12ahUKEwjd88O6oNH8AhU5oScCHYIACccQMygDegUIARDqAw..i&docid=xdve07u5DYysPM&w=1000&h=724&q=pet%20food&ved=2ahUKEwjd88O6oNH8AhU5oScCHYIACccQMygDegUIARDqAw'
         }
-    }, */
+    }, 
     sale: { type: Boolean },
     productArrival:{type:String ,enum:['new','old'],default:'new'}
 
