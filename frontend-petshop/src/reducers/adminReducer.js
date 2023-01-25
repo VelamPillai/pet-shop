@@ -2,8 +2,17 @@ export const adminReducer = (state, action) => {
     const { type, payload } = action;
     switch (type) {
       case "setProduct": {
+       
         return {
-         
+          ...state,
+          product: payload.data 
+        };
+      }
+      case "setCustomers": {
+       
+        return {
+          ...state,
+          customers: payload.data 
         };
       }
       

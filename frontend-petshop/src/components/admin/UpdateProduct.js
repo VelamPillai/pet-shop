@@ -16,16 +16,19 @@ const toBase64 = (file) =>
     reader.onload = () => resolve(reader.result);
     reader.onerror = (error) => reject(error);
   });
-export default function AddProduct() {
+export default function UpdateProduct() {
   const navigate = useNavigate();
-  const {  productDispatch,adminDispatch,adminState} = useContext(StoreContext);
+  const { adminState,adminDispatch, productDispatch} = useContext(StoreContext);
+  
+  const { product } = adminState;
 
-  const addProduct =  async(e) => {
+  const updateProduct =async (e) => {
     e.preventDefault();
-
     let formData = new FormData(e.target);
-    let productImage = await toBase64(formData.get('productImage'))
     let data = new FormData();
+
+    let productImage = formData.get('productImage').size > 0 ? await toBase64(formData.get('productImage')) : (product.productImage);
+    
     data.append('petName', e.target.petName.value)
     data.append('productName', e.target.productName.value)
     data.append('description', e.target.description.value)
@@ -40,46 +43,43 @@ export default function AddProduct() {
     data.append('productArrival', e.target.productArrival.value);
     data.append('productImage',productImage)
     
-    adminDispatch({ type: 'clearForm' })
+    adminDispatch({ type: 'clearForm' });
 
-    fetch('http://localhost:8000/products/addProduct', { method: 'POST', body: data }) 
+    fetch(`http://localhost:8000/products/${product._id}`, {
+      method: "PATCH",
+      headers: { token: localStorage.getItem("token") },
+      body: data
+    })
       .then((res) => res.json())
       .then((result) => {
         if (result.success) {
+          productDispatch({ type: "setProduct", payload: { data: result.data } });
           
-          toast.success('new product added');
-          productDispatch({
-
-            type: "setProduct",
-            payload: { data: result.data },
-          });
-
-          setTimeout(() => navigate('/admin'), 2000);
+          
+          toast.success(`Product updated!!!`);
+          setTimeout(() => navigate("/displayProduct"), 1000);
         } else {
           if (Array.isArray(result.message)) {
             const errMessage = result.message.reduce(
-              (overallError, errItem) => (overallError += ` * ${errItem}  \n `),
-              ''
-            );
-            console.log(result.message);
+              (overallError, errItem) => (overallError += ` * ${errItem}  \n `)," ");           
             toast.error(`${errMessage}`);
           } else {
-            toast.error(result.message);
+            toast.error(result.message.message);
             
           }
         }
       });
 
-   
   }
+
   return (
     <div>
       <div className="flex justify-center items-center flex-wrap flex-col xl:flex-row  lg:border m-auto rounded shadow-black shadow-xs ">
         <Toaster />
         
-        <p className="  font-bold text-center ">Add New Product</p>
+        <p className="  font-bold text-center ">Update Product</p>
 
-        <form onSubmit={addProduct } className=" grid md:grid-cols-3 justify-center items-center w-[100%]">
+        <form onSubmit={updateProduct } className=" grid md:grid-cols-3 justify-center items-center w-[100%]">
           <label className="flex flex-col  justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
             Pet Name :{" "}
             <input
@@ -90,8 +90,8 @@ export default function AddProduct() {
               type: "onChange",
               payload: { name: e.target.name, data: e.target.value }
             })
-            }
-            value={adminState.firstName} */
+            }*/
+            defaultValue={product.petName} 
             />
           </label>
           <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
@@ -105,7 +105,8 @@ export default function AddProduct() {
               payload: { name: e.target.name, data: e.target.value }
             })
             }
-            value={adminState.lastName} */
+             */
+            defaultValue={product.productName}
             />
           </label>
           <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
@@ -119,6 +120,7 @@ export default function AddProduct() {
               payload: { name: e.target.name, data: e.target.value }
             })}
             value={adminState.email} */
+            defaultValue={product.description}
             />
           </label>
           <label className="flex flex-col justify-center item-center text-xs md:text-md  md:items-start m-[.25rem]  ">
@@ -126,12 +128,14 @@ export default function AddProduct() {
             <input
               className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
               type="number"
+              step="0.01" 
               name="price"
               /* onChange={(e) => adminDispatch({
               type: "onChange",
               payload: { name: e.target.name, data: e.target.value }
             })}
             value={adminState.password} */
+            defaultValue={product.price}
             />
           </label>
           <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
@@ -145,6 +149,7 @@ export default function AddProduct() {
               payload: { name: e.target.name, data: e.target.value }
             })}
             value={adminState.email} */
+            defaultValue={product.brand}
             />
           </label>
           <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
@@ -157,6 +162,7 @@ export default function AddProduct() {
               payload: { name: e.target.name, data: e.target.value }
             })}
             value={adminState.email} */
+            defaultValue={product.petSize}
             >
               {" "}
               <option value="all">all</option>
@@ -175,6 +181,7 @@ export default function AddProduct() {
               payload: { name: e.target.name, data: e.target.value }
             })}
             value={adminState.email} */
+            defaultValue={product.lifeStyle}
             >
               {" "}
               <option value="all">all</option>
@@ -193,6 +200,7 @@ export default function AddProduct() {
               payload: { name: e.target.name, data: e.target.value }
             })}
             value={adminState.email} */
+            defaultValue={product.productCategory}
             >
               {" "}
               <option value="food">food</option>
@@ -214,6 +222,7 @@ export default function AddProduct() {
               payload: { name: e.target.name, data: e.target.value }
             })}
             value={adminState.email} */
+            defaultValue={product.material}
             >
               {" "}
               <option value="na">-NA-</option>
@@ -230,6 +239,7 @@ export default function AddProduct() {
                 type="text"
                 name="productCharacter"
                 className="border border-slate-200 rounded w-[150px] md:w-[350px] h-[50px] "
+                defaultValue={product.productCharacter}
               />
               {/* <button className="w-[50px]  bg-orange-500    rounded shadow-black shadow-md hover:bg-green-600 md:ml-1 h-[50px] lg:box-content">
                 +
@@ -246,6 +256,7 @@ export default function AddProduct() {
               payload: { name: e.target.name, data: e.target.value }
             })}
             value={adminState.email} */
+            defaultValue={product.sale}
             >
               {" "}
               <option value="false">False</option>
@@ -262,6 +273,7 @@ export default function AddProduct() {
               payload: { name: e.target.name, data: e.target.value }
             })}
             value={adminState.email} */
+            defaultValue={product.productArrival}
             >
               {" "}
               <option value="new">New</option>
@@ -270,7 +282,8 @@ export default function AddProduct() {
           </label>
 
           <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
-            Profile Image:{" "}
+            Product Image:{" "}
+            {product.productImage && <img src={product.productImage} width="100px" alt="productImage" />}
             <input
               className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
               type="file"
@@ -283,13 +296,14 @@ export default function AddProduct() {
               /*  })
             }
           } */
+          
             />
+            
           </label>
           <button className="bg-orange-500 justify-center items-center w-[150px] md:w-[400px]  my-3 md:mx-auto md:my-[1rem] md:p-1 rounded shadow-black shadow-md hover:bg-green-600  h-[30px] lg:box-content">
-            AddProduct
+            UpdateProduct
           </button>
         </form>
-      </div>
-    </div>
-  );
+      </div></div>
+  )
 }
