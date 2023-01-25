@@ -1,4 +1,4 @@
-export const isAdmin = (req, res, next) => {
+const isAdmin = (req, res, next) => {
   if (req.user.role === 'admin') {
     next();
   } else {
@@ -14,3 +14,6 @@ export const isAdmin = (req, res, next) => {
     }
   }
 };
+
+
+export default isAdmin;

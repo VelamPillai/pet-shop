@@ -12,7 +12,8 @@ const adminInitialState = {
     productCharacter: '',
     sale: '',
     productArrival: '',
-    productImage: ''
+    productImage: '',
+    product:''
 }
 
 export default adminInitialState;

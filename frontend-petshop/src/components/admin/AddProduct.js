@@ -18,7 +18,7 @@ const toBase64 = (file) =>
   });
 export default function AddProduct() {
   const navigate = useNavigate();
-  const {  adminDispatch,adminState} = useContext(StoreContext);
+  const {  productDispatch,adminDispatch,adminState} = useContext(StoreContext);
 
   const addProduct =  async(e) => {
     e.preventDefault();
@@ -48,6 +48,12 @@ export default function AddProduct() {
         if (result.success) {
           
           toast.success('new product added');
+          productDispatch({
+
+            type: "setProduct",
+            payload: { data: result.data },
+          });
+
           setTimeout(() => navigate('/admin'), 2000);
         } else {
           if (Array.isArray(result.message)) {
@@ -225,12 +231,12 @@ export default function AddProduct() {
                 name="productCharacter"
                 className="border border-slate-200 rounded w-[150px] md:w-[350px] h-[50px] "
               />
-              <button className="w-[50px]  bg-orange-500    rounded shadow-black shadow-md hover:bg-green-600 md:ml-1 h-[50px] lg:box-content">
+              {/* <button className="w-[50px]  bg-orange-500    rounded shadow-black shadow-md hover:bg-green-600 md:ml-1 h-[50px] lg:box-content">
                 +
-              </button>
+              </button> */}
             </div>
           </label>
-          <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
+          <label className="fleconst product = await productCollection.find();x flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
             Sale :{" "}
             <select
               className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "

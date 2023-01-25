@@ -27,6 +27,8 @@ import Brand from "./components/petType/Brand.js"
 import Product from "./components/petType/Product";
 import Admin from "./components/admin/Admin.js"
 import AddProduct from "./components/admin/AddProduct";
+import DisplayProduct from "./components/admin/DisplayProduct";
+import UpdateProduct from "./components/admin/UpdateProduct";
 
 
 function App() {
@@ -102,6 +104,8 @@ function App() {
           
           <Route index={false} path="admin" element={<Admin />} />
           <Route index={false} path="addProduct" element={<AddProduct />} />
+          <Route index={false} path="displayProduct" element={<DisplayProduct />} />
+          <Route index={false} path="updateProduct" element={<UpdateProduct />} />
           
         <Route index={false}   path="petMainPage" element={<PetMainPage />} / >
         

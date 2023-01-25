@@ -3,7 +3,8 @@ export const adminReducer = (state, action) => {
     switch (type) {
       case "setProduct": {
         return {
-         
+          ...state,
+          product:{...payload.data}
         };
       }
       

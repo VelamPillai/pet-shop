@@ -22,6 +22,8 @@ export default function Product() {
   return (
     singleProduct && (
       <div className="flex flex-col md:flex-row w-full">
+        {singleProduct.sale && <p className='bg-red-500 w-[50px] h-[50px] md:w-[100px] md:h-[100px] flex justify-center items-center p-2 rounded-tl-xl rounded-br-xl animate-bounce'> Sale </p>
+        }
         <div className="w-[2/4] m-1 p-1 md:m-5 md:p-5">
           <img src={singleProduct.productImage} alt="card-pic" className=" w-[300px] h-[300px]" />
         </div>

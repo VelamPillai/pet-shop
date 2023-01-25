@@ -9,7 +9,7 @@ import {
   deleteUser,
   verifyUserToken,
 } from '../controller/userController.js';
-import { isAdmin } from '../middlewares/isAdmin.js';
+import  isAdmin from '../middlewares/isAdmin.js';
 import { userInputValidation } from '../middlewares/userInputValidation.js';
 import verifyToken from '../middlewares/verifyToken.js';
 
@@ -36,12 +36,12 @@ route.get('/:id', verifyToken, isAdmin, getSingleUser);
 route.get('/',getAllUser)
 
 //PATCH - update user
-//route.patch('/:id', verifyToken, isAdmin, updateUser);
- route.patch('/:id',  updateUser); 
+route.patch('/:id', verifyToken, isAdmin, updateUser);
+ //route.patch('/:id',  updateUser); 
 
 //DELETE - delete user
-//route.delete('/:id', verifyToken, isAdmin, deleteUser);
-route.delete('/:id', deleteUser);
+route.delete('/:id', verifyToken, deleteUser);
+//route.delete('/:id', deleteUser);
 
 
 

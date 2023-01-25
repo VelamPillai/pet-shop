@@ -43,7 +43,8 @@ const addNewProduct = async (req, res, next) => {
       //console.log(product)//to display req.body information
 
       await product.save();
-      res.json({ success: true, data: product });
+      const products = await productCollection.find();
+      res.json({ success: true, data: products });
     } else {
       throw new Error("product already exists !");
     }
@@ -73,12 +74,18 @@ const updateProduct = async (req, res, next) => {
 const deleteProduct = async (req, res, next) => {
   try {
     const { id } = req.params; 
+    const selectedProduct = await productCollection.findById(id)
 
    
-      const deleteStatus = await productCollection.deleteOne({
+    if (selectedProduct) {
+     const deleteStatus = await productCollection.deleteOne({
         _id: id
-      });
-      res.json({ success: true, status: deleteStatus });
+     });
+     const products = await productCollection.find();
+      res.json({ success: true, status: deleteStatus ,data:products })
+    }
+    else{throw new Error("user id doesn't exist ! ")}
+    
     
   } catch (err) {
     next(err);
