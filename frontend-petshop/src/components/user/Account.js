@@ -97,17 +97,15 @@ const deleteHandler = (id) => {
       });
   };
   return (
-    <>
+    <div >
     
-      <p className="flex justify-center items-center text-[2rem] font-bold m-5">
-        Account
-      </p>
-      <div className="flex  flex-col justify-center items-center  xl:flex-row w-[100%]  lg:border mx-auto my-[1rem] md:m-[3rem] rounded shadow-black shadow-lg">
-        <div className="flex flex-col w-[40%]  p-5">
+     
+      <div className="flex  flex-col justify-center items-center  md:flex-row w-[100%]  lg:border mx-auto my-[4rem] md:m-0  rounded shadow-black shadow-lg">
+        <div className="flex flex-col w-[40%]  p-2 md:p-1">
           <img
             src={user.profileImage}
             alt="profile"
-            className="m-auto rounded-[50%]  md:visible"
+            className="m-auto rounded-[50%] w-[300px] md:visible"
           />
           <div className="flex justify-center items-center flex-col md:flex-row">
             <button
@@ -131,9 +129,9 @@ const deleteHandler = (id) => {
           </div>
         </div>
 
-        <div className="flex justify-center items-center flex-col w-[100%] md:w-[60%] lg:border p-5  bg-gradient-to-r from-orange-500 to-yellow-600 text hover:bg-gradient-to-l">
-          <div className="flex flex-col justify-center items-center border lg:border-0 w-[100%]  p-[1rem] mb-[1rem] md:p-[3rem] lg:h-[900px] ">
-            <p className="m-[.25rem] md:m-[1rem] font-bold text-center ">
+        <div className="flex justify-center items-center flex-col w-[100%] md:w-[60%] lg:border   bg-gradient-to-r from-orange-500 to-yellow-600 text hover:bg-gradient-to-l">
+          <div className="flex flex-col justify-center items-center border lg:border-0 w-[100%]  p-[1rem] mb-[1rem] md:p-1 lg:h-[900px] ">
+            <p className="m-[.25rem]  font-bold text-center ">
               {" "}
               ACCOUNT
             </p>
@@ -142,7 +140,7 @@ const deleteHandler = (id) => {
               className=" flex flex-col justify-center items-center w-[100%]"
               onSubmit={updateUserHandler}
             >
-              <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem] md:m-[1rem] ">
+              <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem] ">
                 First Name :{" "}
                 <input
                   className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
@@ -152,7 +150,7 @@ const deleteHandler = (id) => {
                   
                 />
               </label>
-              <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem] md:m-[1rem] ">
+              <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
                 Last Name :{" "}
                 <input
                   type="text"
@@ -163,7 +161,7 @@ const deleteHandler = (id) => {
                 />
               </label>              
               
-              <label className="flex flex-col justify-center item-center text-xs md:text-md  md:items-start m-[.25rem] md:m-[1rem] ">
+              <label className="flex flex-col justify-center item-center text-xs md:text-md  md:items-start m-[.25rem]  ">
                 Password:{" "}
                 <input
                   className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
@@ -204,7 +202,7 @@ const deleteHandler = (id) => {
                   !@#$%
                 </div>
               </div>
-              <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem] md:m-[1rem] ">
+              <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
                 Profile Image:{" "}
                
                 <input
@@ -212,16 +210,16 @@ const deleteHandler = (id) => {
                   type="file"
                   name="profileImage"                  
                 />
-                 <img src={user.profileImage} width="100px" alt="profileImage" />
+                 <img src={user.profileImage} width="50px" alt="profileImage" />
                 
               </label>
-              <button className="bg-orange-500 justify-center items-center w-[100px] md:w-[200px]  my-3 md:mx-auto md:my-[1rem] md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">
+              <button className="bg-orange-500 justify-center items-center w-[100px] md:w-[200px]  my-3 md:mx-auto  md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">
                 update
               </button>
             </form>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

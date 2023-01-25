@@ -64,7 +64,7 @@ export default function UpdateProduct() {
               (overallError, errItem) => (overallError += ` * ${errItem}  \n `)," ");           
             toast.error(`${errMessage}`);
           } else {
-            toast.error(result.message);
+            toast.error(result.message.message);
             
           }
         }

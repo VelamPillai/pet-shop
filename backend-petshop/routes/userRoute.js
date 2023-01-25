@@ -16,7 +16,9 @@ import verifyToken from '../middlewares/verifyToken.js';
 const route = express.Router();
 
 //GET
-route.get('/', verifyToken, isAdmin, getAllUser);
+//route.get('/', verifyToken, isAdmin, getAllUser);
+route.get('/',getAllUser);
+
 
 
 //POST - new user

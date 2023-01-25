@@ -32,7 +32,7 @@ route.get('/:id',  getSingleProduct);
 
 
 //PATCH - update Product
- route.patch('/:id',  updateProduct); 
+ route.patch('/:id', verifyToken, isAdmin, updateProduct); 
 
 //DELETE - delete Product
 route.delete('/:id', verifyToken, isAdmin, deleteProduct);

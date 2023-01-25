@@ -29,13 +29,14 @@ import Admin from "./components/admin/Admin.js"
 import AddProduct from "./components/admin/AddProduct";
 import DisplayProduct from "./components/admin/DisplayProduct";
 import UpdateProduct from "./components/admin/UpdateProduct";
+import DisplayCustomers from "./components/admin/DisplayCustomers";
 
 
 function App() {
   return (
     <div className="h-screen md:w-[100vw] flex flex-col">
       <Header />
-      <div className="w-3/4 mx-auto mt-[15rem] ">
+      <div className="w-3/4 mx-auto mt-[9rem] ">
         <Routes>
           <Route path="/">
             <Route
@@ -106,6 +107,7 @@ function App() {
           <Route index={false} path="addProduct" element={<AddProduct />} />
           <Route index={false} path="displayProduct" element={<DisplayProduct />} />
           <Route index={false} path="updateProduct" element={<UpdateProduct />} />
+          <Route index={false} path="displayCustomers" element={<DisplayCustomers/>} />
           
         <Route index={false}   path="petMainPage" element={<PetMainPage />} / >
         

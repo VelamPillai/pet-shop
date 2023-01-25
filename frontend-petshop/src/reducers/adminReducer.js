@@ -8,6 +8,13 @@ export const adminReducer = (state, action) => {
           product: payload.data 
         };
       }
+      case "setCustomers": {
+       
+        return {
+          ...state,
+          customers: payload.data 
+        };
+      }
       
       case 'clearForm': {
         return {
