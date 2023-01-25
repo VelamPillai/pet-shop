@@ -19,7 +19,7 @@ const initialState = {
   sideMenuBrand: '',
   singleProduct:'',
   
-
+  
   
 };
 
