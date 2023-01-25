@@ -22,7 +22,8 @@ export default function HeaderSearch() {
       productDispatch({
         type: 'setSearchedProduct',
         payload:{data:product.filter((item) => (item.petName === search || item.brand===search || item.productName===search || item.productArrival===search)&& item)}
-})
+      })
+      setSearch('');
       navigate('/searchedProduct')
     }
    
