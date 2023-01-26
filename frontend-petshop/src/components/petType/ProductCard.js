@@ -25,7 +25,7 @@ export default function ProductCard({ product }) {
     
   }
   return (
-    <div onClick={showProductClick} className="flex flex-col border w-[250px] 2xl:w-[300px] h-[350px] box-border rounded-lg p-1 m-1 relative  ">
+    <div onClick={showProductClick} className="flex flex-col border w-[250px] 2xl:w-[300px] h-[350px] bg-orange-100/50 box-border rounded-lg p-1 m-1 relative  ">
       {product.sale && <p className="absolute top-2 left-2  text-white bg-red-500 p-4 rounded-br-2xl ">Sale</p>}
       <img src={product.productImage} alt="card-pic" className="w-[100%] h-[150px] mb-1" />
       <p className="text-sm  text-gray-500">
@@ -37,7 +37,7 @@ export default function ProductCard({ product }) {
         { product.sale ?
           <p className="border w-[80%] flex justify-center items-center rounded-lg bg-red-500 absolute bottom-0 mb-2 hover:border-2 hover:border-orange-300  hover:bg-orange-400/50">
             $ {product.price}
-          </p> : <p className="border w-[80%] flex justify-center items-center rounded-lg bg-orange-100 absolute bottom-0 mb-2 hover:border-2 hover:border-orange-300  hover:bg-orange-400/50">
+          </p> : <p className="border w-[80%] flex justify-center items-center rounded-lg bg-orange-200 absolute bottom-0 mb-2 hover:border-2 hover:border-orange-400  hover:bg-orange-400/50">
             $ {product.price}
           </p>
         }

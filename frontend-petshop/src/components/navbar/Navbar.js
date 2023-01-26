@@ -42,8 +42,7 @@ const Navbar = () => {
       type: "setBrand",
       payload: { data: [...new Set([...product].map(item=>item.brand))]},
     });
-    setNav(!nav);
-    
+    setNav(!nav);    
   }
 
   
