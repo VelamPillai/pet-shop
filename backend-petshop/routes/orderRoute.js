@@ -21,7 +21,8 @@ const route = express.Router();
 
 
 //GET - only user can view his own orders
-route.get('/orders',verifyToken, getAllOrder);
+//route.get('/userOrders', verifyToken, getAllOrder);
+route.get('/userOrders',getAllOrder);
 
 
 //POST - new Order

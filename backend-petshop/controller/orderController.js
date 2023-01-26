@@ -6,9 +6,9 @@ dotenv.config();
 
 //POST : add a new order to the database 
 const addOrder = async (req, res, next) => {
-    console.log('order')
+    
     try {
-        console.log(req.body)
+        
         const order = new orderCollection(req.body);
         await order.save();
         res.json({ success: true, data: order }); 
