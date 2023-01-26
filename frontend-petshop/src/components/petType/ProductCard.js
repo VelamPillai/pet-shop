@@ -25,7 +25,7 @@ export default function ProductCard({ product }) {
     
   }
   return (
-    <div onClick={showProductClick} className="flex flex-col border w-[250px] 2xl:w-[350px] h-[300px] box-border rounded-lg p-1 m-1 relative  ">
+    <div onClick={showProductClick} className="flex flex-col border w-[250px] 2xl:w-[300px] h-[350px] box-border rounded-lg p-1 m-1 relative  ">
       {product.sale && <p className="absolute top-2 left-2  text-white bg-red-500 p-4 rounded-br-2xl ">Sale</p>}
       <img src={product.productImage} alt="card-pic" className="w-[100%] h-[150px] mb-1" />
       <p className="text-sm  text-gray-500">
