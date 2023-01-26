@@ -49,9 +49,9 @@ export default function Sidemenu() {
   };
 
   return (
-    <div className="border-2 m-2 p-5 rounded-lg bg-orange-100">
+    <div className="border-2 m-1 p-5 rounded-lg bg-orange-100 ">
       <p className="font-bold text-lg mb-2">Brand</p>
-      <div className="">
+      <div >
         {  sideMenuBrand &&
             sideMenuBrand.map(
             (item, idx) =>

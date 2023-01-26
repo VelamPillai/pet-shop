@@ -27,13 +27,17 @@ import Brand from "./components/petType/Brand.js"
 import Product from "./components/petType/Product";
 import Admin from "./components/admin/Admin.js"
 import AddProduct from "./components/admin/AddProduct";
+import DisplayProduct from "./components/admin/DisplayProduct";
+import UpdateProduct from "./components/admin/UpdateProduct";
+import DisplayCustomers from "./components/admin/DisplayCustomers";
+import SearchedProduct from "./components/header/SearchedProduct";
 
 
 function App() {
   return (
     <div className="h-screen md:w-[100vw] flex flex-col">
       <Header />
-      <div className="w-3/4 mx-auto mt-[15rem] ">
+      <div className="w-3/4 mx-auto mt-[9rem] md:mt-[8rem] ">
         <Routes>
           <Route path="/">
             <Route
@@ -43,6 +47,7 @@ function App() {
               element={<Home />}
             />
           </Route>
+          <Route index={false} path="searchedProduct" element={<SearchedProduct/>} />
           <Route index={false} path="login" element={<Login />} />
           <Route index={false} path="signup" element={<Signup />} />
           <Route index={false} path="profile" element={<Profile />} />
@@ -102,6 +107,9 @@ function App() {
           
           <Route index={false} path="admin" element={<Admin />} />
           <Route index={false} path="addProduct" element={<AddProduct />} />
+          <Route index={false} path="displayProduct" element={<DisplayProduct />} />
+          <Route index={false} path="updateProduct" element={<UpdateProduct />} />
+          <Route index={false} path="displayCustomers" element={<DisplayCustomers/>} />
           
         <Route index={false}   path="petMainPage" element={<PetMainPage />} / >
         

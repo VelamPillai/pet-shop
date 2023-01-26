@@ -46,15 +46,15 @@ export default function PetMenu() {
 
   return (
     <div>
-    <div className= "hidden md:flex">
+    <div className= "hidden md:flex flex-wrap justify-around items-center">
       {(menuName === "dog" || menuName === "cat" || menuName === "sale %") &&
-        <ul className="flex flex-row  flex-wrap justify-around m-3 ">
+        <ul className="flex flex-row  flex-wrap justify-around  ">
         {
           petMenu.map((item, idx) => {
             return (
               <li
                 key={idx} onClick={handleClick}
-                className="p-2 m-2 ring-2 ring-orange-500 rounded bg-orange-200/25 hover:ring-green-500 hover:bg-green-100/25 "
+                className="p-1 m-2 ring-2 ring-orange-500 rounded bg-orange-200/25 hover:ring-green-500 text-sm hover:bg-green-100/25 "
               >
                 { (menuName==='dog'||menuName==='cat' ) ?
                   `${menuName.slice(0, 1).toUpperCase()}${menuName.slice(1)} ${item}` : 
@@ -76,7 +76,7 @@ export default function PetMenu() {
             
             type="button"
              onClick={handleBtnClick} 
-            className=" mt-5 p-5 bg-orange-100/75 hover:bg-orange-200 focus:ring-4 focus:outline-none focus:ring-orange-300 md:font-medium rounded-lg text-sm  md:px-4 py-2.5 text-center inline-flex justify-between items-center dark:bg-orange-600 "
+            className=" mt-1 p-5 bg-orange-100/75 hover:bg-orange-200 focus:ring-4 focus:outline-none focus:ring-orange-300 md:font-medium rounded-lg text-sm  md:px-4 py-2.5 text-center inline-flex justify-between items-center dark:bg-orange-600 "
            
           >
            Subcategories

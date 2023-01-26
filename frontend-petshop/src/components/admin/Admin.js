@@ -3,15 +3,14 @@ import { useNavigate } from "react-router-dom";
 
 const adminFeatures = [
   "addProduct",
-  "updateProduct",
-  "deleteProduct",
+  "displayProduct",
   "displayCustomers",
   "displaySingleCustomer",
   "displayOrders",
   "displaySingleOrder",
 ];
 export default function Admin() {
-    const [display, setDisplay] = useState(false);
+    const [display, setDisplay] = useState(true);
     const navigate = useNavigate()
 
   const handleAdminClick = (e) => {
@@ -20,8 +19,8 @@ export default function Admin() {
   };
     
     const handleMenuClick = (e) => {
-        e.preventDefault();
-        navigate('/addProduct')
+      e.preventDefault();
+      e.target.textContent==='addProduct' ? navigate('/addProduct') :e.target.textContent==='displayProduct'?navigate('/displayProduct'):e.target.textContent==='displayCustomers'?navigate('/displayCustomers'):navigate('/admin')
     }
   return (
     <div>

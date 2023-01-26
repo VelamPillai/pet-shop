@@ -10,31 +10,36 @@ import ProductCard from "./ProductCard.js";
 import { StoreContext } from "../../context/StoreContext.js";
 
 export default function PetMainPage() {
-  const navigate = useNavigate();
+ 
 
-   const [viewBtn, setViewBtn] = useState(false); 
+  const [viewBtn, setViewBtn] = useState(false); 
+  
 
-  const { productState, productDispatch} = useContext(StoreContext);
+  const { productState} = useContext(StoreContext);
 
   const { product, menuName} = productState;
 
   //to display less product while the first load of the page
 useEffect(()=>{ 
-  setViewBtn(false)
-},[menuName])
+  setViewBtn(false);
+  
+    
+}, [menuName])
+  
 
   //event handler for display less/more products
   
   const handleBtnClick = (e) => {
     e.preventDefault();
-      setViewBtn((btn)=>!btn)
+    setViewBtn((btn) => !btn)
+    
   };
 
   
  
   return (
-    <div className="flex flex-col ">
-      <p className="flex justify-center items-center text-xl font-bold">
+    <div className="flex flex-col mt-[3rem] md:m-1 ">
+      <p className="flex justify-center items-center text-md font-bold " >
         {menuName.toUpperCase()}
       </p>
 
@@ -42,9 +47,9 @@ useEffect(()=>{
         {/* dog menu */}
         <PetMenu />
       </div>
-      <div className="flex flex-col md:flex-row justify:center items-center md:justify-between m-3">
+      <div className="flex flex-col md:flex-row justify:center items-center md:justify-between m-1 ">
         {/* products */}
-        <p className=" mb-3 md:mb-0 text-xs md:text-lg">
+        <p className=" mb-3 md:mb-0 text-xs md:text-md">
           <span className="md:font-bold">
           {product && (menuName === "dog" || menuName === "cat")
             ? product
@@ -65,7 +70,7 @@ useEffect(()=>{
       </div>
       <div className="flex justify-between mt-5">
         {/* side menu */}
-        <div className="w-1/4 hidden md:flex">
+        <div className="w-1/4 hidden  md:flex">
            <SideMenu />  
         </div>
 
@@ -92,7 +97,8 @@ useEffect(()=>{
         </div>
         
       </div>
-      <div className="flex justify-end items-center m-2 ">
+      <div className="flex justify-end items-center m-2 relative">
+        
         <button
           className=" p-2 m-2 ring-2 ring-orange-500 rounded bg-orange-200/25 hover:ring-green-500 hover:bg-green-100/25"
           onClick={handleBtnClick}

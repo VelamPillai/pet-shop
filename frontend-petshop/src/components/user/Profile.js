@@ -39,8 +39,8 @@ export default function Profile() {
 
   return (
     <>
-      <p className='flex justify-center items-center text-[2rem] font-bold m-5'>Profile</p>
-      <div className="flex  flex-col justify-center items-center  xl:flex-row w-[100%]  lg:border mx-auto my-[1rem] md:m-[3rem] rounded shadow-black shadow-lg">
+      <p className='flex justify-center items-center text-[1rem] font-bold  '>Profile</p>
+      <div className="flex  flex-col justify-center items-center  xl:flex-row w-[100%]  lg:border mx-auto my-[1rem] md:m-[1rem] rounded shadow-black shadow-lg">
       <div className='flex flex-col w-[40%]  p-5'>
           <img src={user.profileImage} alt='profile' className='m-auto rounded-[50%]  md:visible' />
           <div className='flex justify-center items-center flex-col md:flex-row'>
@@ -56,7 +56,7 @@ export default function Profile() {
           </div>
         </div>
      
-        <div className='flex justify-center items-center flex-col w-[100%] md:w-[60%] lg:border p-5  bg-gradient-to-r from-orange-500 to-yellow-600 text hover:bg-gradient-to-l'>
+        <div className='flex justify-center items-center flex-col w-[100%] md:h-[100%] md:w-[60%] lg:border p-3  bg-gradient-to-r from-orange-500 to-yellow-600 text hover:bg-gradient-to-l md:mr-5 rounded-tl-[10rem] rounded-br-[10rem]'>
          
           
           <div className='flex justify-center items-start md:w-[100%] '>
