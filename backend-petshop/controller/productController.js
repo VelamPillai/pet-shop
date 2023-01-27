@@ -23,7 +23,7 @@ const getSingleProduct = async (req, res, next) => {
     const id = req.params.id;
     console.log(id);
     const product = await productCollection.findById(id);
-    console.log(product);
+    //console.log(product);
     res.status(200).json({ success: true, data: product });
   } catch (err) {
     next(err);
@@ -59,7 +59,7 @@ const addNewProduct = async (req, res, next) => {
 const updateProduct = async (req, res, next) => {
   try {
     const { id } = req.params;
-    console.log(id)
+    //console.log(id)
     
    
     const updatedProduct = await productCollection.findByIdAndUpdate(
@@ -88,7 +88,7 @@ const deleteProduct = async (req, res, next) => {
      const products = await productCollection.find();
       res.json({ success: true, status: deleteStatus ,data:products })
     }
-    else{throw new Error("user id doesn't exist ! ")}
+    else{throw new Error("product doesn't exist ! ")}
     
     
   } catch (err) {

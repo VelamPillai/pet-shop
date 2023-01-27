@@ -2,11 +2,10 @@ import express from 'express';
 
 import {
   addOrder,
-   getAllOrder,
-  /*getSingleOrder,
-  
+  getAllOrder,
+  getSingleOrder,
   updateOrder,
-  deleteOrder */
+  deleteOrder 
  
 } from '../controller/orderController.js'
 
@@ -29,16 +28,17 @@ route.get('/userOrders',getAllOrder);
 route.post('/addOrder',addOrder);
 
 //GET - singleOrder
-//route.get('/:id', verifyToken,  getSingleOrder);
+//route.get('/:id', verifyToken, getSingleOrder);
+route.get('/userOrders/:id',getSingleOrder);
 
 
 //PATCH - update Order
 //route.patch('/:id', verifyToken,  updateOrder);
- //route.patch('/:id',  updateOrder); 
+ route.patch('/updateOrder/:id',  updateOrder); 
 
 //DELETE - delete Order
 //route.delete('/:id', verifyToken, deleteOrder);
-//route.delete('/:id', deleteOrder);
+route.delete('/deleteOrder/:id', deleteOrder);
 
 
 
