@@ -26,7 +26,7 @@ const productSchema = new Schema({
     
 });
 
-const productCollection = model('product', productSchema);
+const productCollection = model('products', productSchema);
 
 productCollection.createIndexes({productName : -1 });
 

@@ -11,6 +11,10 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   role: { type: String, enum: ['user', 'admin'], default: 'user' },
   token: { type: String },
+  orders: [{
+    type: Schema.Types.ObjectId,
+    ref:'orders'
+  }],
   profileImage: {
     type: String,    
     default: function () {
@@ -30,7 +34,7 @@ userSchema.pre('save', function (next) {
   next();
 });
 
-const userCollection = model('user', userSchema);
+const userCollection = model('users', userSchema);
 
 userCollection.createIndexes({ email: -1 });
 
