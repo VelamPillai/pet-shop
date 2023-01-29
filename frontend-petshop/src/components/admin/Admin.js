@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const adminFeatures = [
-  "addProduct",
+  
   "displayProduct",
   "displayCustomers",
   "displaySingleCustomer",
@@ -20,7 +20,7 @@ export default function Admin() {
     
     const handleMenuClick = (e) => {
       e.preventDefault();
-      e.target.textContent==='addProduct' ? navigate('/addProduct') :e.target.textContent==='displayProduct'?navigate('/displayProduct'):e.target.textContent==='displayCustomers'?navigate('/displayCustomers'):navigate('/admin')
+      e.target.textContent==='displayProduct'?navigate('/displayProduct'):e.target.textContent==='displayCustomers'?navigate('/displayCustomers'):navigate('/admin')
     }
   return (
     <div>
