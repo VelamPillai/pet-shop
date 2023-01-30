@@ -13,13 +13,15 @@ const initialState = {
   product: '',
   originalProduct:'',
   sortOption: 'Recommended',
-  menuName: '',
+  menuName: 'dog',
   subMenuName: '',
   brand: '',
   sideMenuBrand: '',
   singleProduct:'',
   
-  searchedProduct:''
+  searchedProduct: '',
+  
+  favoriteProduct:''
   
   
 };

@@ -26,7 +26,9 @@ const addOrder = async (req, res, next) => {
 
 const getAllOrder = async (req, res, next) => {
     try {
-        const orders = await orderCollection.find().populate();
+
+         
+        const orders = await orderCollection.find().populate('items').populate('userId');
 
         res.json({ success: true, data: orders });
     }
@@ -42,7 +44,7 @@ const getAllOrder = async (req, res, next) => {
 const getSingleOrder = async(req, res, next) => {
     try {
         const id = req.params.id;
-        const singleOrder = await orderCollection.findById(id);
+        const singleOrder = await orderCollection.findById(id).populate('items').populate('userId');
         console.log(singleOrder)
         res.status(200).json({success:true,data:singleOrder})
 
