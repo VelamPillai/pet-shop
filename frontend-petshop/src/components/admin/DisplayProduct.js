@@ -7,6 +7,9 @@ import toast, { Toaster } from "react-hot-toast";
 import { StoreContext } from "../../context/StoreContext.js";
 
 
+import { AiFillDelete } from "react-icons/ai";
+
+import { MdUpdate } from "react-icons/md";
 
 
 export default function DisplayProduct() {
@@ -15,6 +18,10 @@ export default function DisplayProduct() {
     
     const { product } = productState;
     
+    //adProductHandler
+    const addProductHandler =()=>{
+      navigate("/addProduct")
+    }
 
     //delete handler
     const deleteHandler = (id) => {
@@ -56,15 +63,15 @@ export default function DisplayProduct() {
           <Toaster />
           <p className="font-bold text-xl mb-3">Products</p>    
           <div>
-              <ul className="grid grid-cols-1 md:grid-cols-2">
+              <ul className="grid grid-cols-1 md:grid-cols-4">
                   
               {product && 
                       product.map((item, idx) => {
                           return (
-                              <li key={idx}    className="flex flex-row justify-center items-center">
+                              <li key={idx}    className="flex flex-row justify-center items-center relative ">
                                   <ProductCard product={{ ...item }} />
-                                  <div className="flex flex-col"><button onClick={ () => updateHandler(item)} className="bg-gradient-to-r from-orange-500 to-yellow-600 text-xs hover:bg-gradient-to-l justify-center items-center w-[150px] md:w-[200px] m-3 md:mx-[1rem] md:my-[1rem] md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">Update</button>
-                                      <button onClick={ () => deleteHandler(item._id)} className="bg-gradient-to-r from-orange-500 to-yellow-600 text-xs hover:bg-gradient-to-l justify-center items-center w-[150px] md:w-[200px] m-3 md:mx-[1rem] md:my-[1rem] md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">Delete</button></div>
+                                  <div className="flex flex-col"><button onClick={ () => updateHandler(item)} className=" text-lg text-green-600 font-bold justify-center items-center  m-3 p-2 rounded shadow-black shadow-md hover:bg-green-200   lg:box-content absolute top-0 right-5"><MdUpdate /></button>
+                                      <button onClick={ () => deleteHandler(item._id)} className="text-lg text-red-600 font-bold justify-center items-center  m-3 p-2 rounded shadow-black shadow-md hover:bg-red-100   lg:box-content absolute top-10 right-5"><AiFillDelete /></button></div>
                                   
                               </li>
                       )
@@ -73,6 +80,10 @@ export default function DisplayProduct() {
                   }
                   
               </ul>
+              <div onClick={addProductHandler} className="  border w-[220px] h-[220px] md:w-[250px] 2xl:w-[300px] h-[340px] text-green-600 box-border rounded-lg p-1 m-1 border-green-600 border-4  ">
+              <p className="flex justify-center items-center text-[7rem]">+</p>
+
+              </div>
               
           </div>
       </div>
