@@ -16,7 +16,7 @@ export default function PetMainPage() {
   
 
   const { productState} = useContext(StoreContext);
-
+console.log('messsage',productState)
   const { product, menuName} = productState;
 
   //to display less product while the first load of the page
@@ -35,7 +35,8 @@ useEffect(()=>{
     
   };
 
-  
+  //console.log('petmainpage-product', product, menuName)
+  console.log('petmainpage-product',product,menuName)
  
   return (
     <div className="flex flex-col mt-[3rem] md:m-1 ">
@@ -49,6 +50,7 @@ useEffect(()=>{
       </div>
       <div className="flex flex-col md:flex-row justify:center items-center md:justify-between m-1 ">
         {/* products */}
+
         <p className=" mb-3 md:mb-0 text-xs md:text-md">
           <span className="md:font-bold">
           {product && (menuName === "dog" || menuName === "cat")

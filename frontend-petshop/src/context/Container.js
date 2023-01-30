@@ -32,7 +32,7 @@ export default function Container(props) {
   const navigate = useNavigate();
 
   const { user } = homepageState;
-
+  console.log('user-container', user,productState);
   useEffect(() => {
 
     fetch("http://localhost:8000/products", {

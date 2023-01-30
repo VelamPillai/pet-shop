@@ -62,6 +62,13 @@ export const productReducer = (state, action) => {
         
       };
     }
+    case "setFavoriteProduct": {
+      return {
+        ...state,
+        favoriteProduct: payload.data
+        
+      };
+    }
     
     default: {
       return state;

@@ -10,7 +10,7 @@ const getAllUser = async (req, res, next) => {
   
   try {
 
-    const user = await userCollection.find()
+    const user = await userCollection.find().populate('ordersId').populate('favoriteProduct')
    
     res.status(200).json({success:true,data:user})
   } catch (err) {
@@ -21,7 +21,8 @@ const getAllUser = async (req, res, next) => {
 //get single user
 const getSingleUser = async(req, res, next) => {
   try {
-    const user = await userCollection.findOne()
+    const {id} = req.params
+    const user = await userCollection.findById(id).populate('ordersId').populate('favoriteProduct')
   } catch (err) {
     next(err);
   }
@@ -96,22 +97,35 @@ const updateUser = async(req, res, next) => {
     {
       user.profileImage = req.body.profileImage
     }
+    //add favorite product 
+    console.log(req.body.favoriteProduct)
+    if (req.body.favoriteProduct != '') {
+      if (user.favoriteProduct.includes(req.body.favoriteProduct)) {
+        console.log('Product already exists in your favorite List!!!')
+          throw new Error('Product already exists in your favorite List!!!');        
+      }
+      else{user.favoriteProduct.push(req.body.favoriteProduct)}     
+    }
     //password
     if (req.body.password != user.password) {
       user.password = req.body.password;
     }
+    
+    
     await user.save(); 
     let body = {};
     for (const key in req.body) {        
       if (req.body[key]!=='' && key !=='password' ) {
           body[key] = req.body[key];
       }
-      const updatedUser = await userCollection.findByIdAndUpdate(req.params.id, body, { new: true })
-      res.json({ success: true, data: updatedUser  });
+      
+      
   }
-    
+  const updatedUser = await userCollection.findByIdAndUpdate(req.params.id, body, { new: true })
+  res.json({ success: true, data: updatedUser  });
   } catch (err) {    
     next(err.message);
+    
   }
 };
 
