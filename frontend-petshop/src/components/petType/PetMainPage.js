@@ -16,7 +16,7 @@ export default function PetMainPage() {
   
 
   const { productState} = useContext(StoreContext);
-console.log('messsage',productState)
+
   const { product, menuName} = productState;
 
   //to display less product while the first load of the page
@@ -35,8 +35,7 @@ useEffect(()=>{
     
   };
 
-  //console.log('petmainpage-product', product, menuName)
-  console.log('petmainpage-product',product,menuName)
+  
  
   return (
     <div className="flex flex-col mt-[3rem] md:m-1 ">

@@ -99,12 +99,13 @@ const updateUser = async(req, res, next) => {
     }
     //add favorite product 
     console.log(req.body.favoriteProduct)
-    if (req.body.favoriteProduct != '') {
-      if (user.favoriteProduct.includes(req.body.favoriteProduct)) {
+    if (req.body.favoriteProduct.length > user.favoriteProduct.length) {
+      /* if (user.favoriteProduct.includes(req.body.favoriteProduct)) {
         console.log('Product already exists in your favorite List!!!')
           throw new Error('Product already exists in your favorite List!!!');        
-      }
-      else{user.favoriteProduct.push(req.body.favoriteProduct)}     
+      } */
+     /*  else{user.favoriteProduct.push(req.body.favoriteProduct)} */   
+     user.favoriteProduct=req.body.favoriteProduct  
     }
     //password
     if (req.body.password != user.password) {
