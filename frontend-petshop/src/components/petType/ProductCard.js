@@ -4,7 +4,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 
 
-import { BsHeartFill } from "react-icons/bs";
+import { BsHeartFill,BsHeart } from "react-icons/bs";
 import { StoreContext } from "../../context/StoreContext.js";
 
 export default function ProductCard({ product }) {
@@ -13,10 +13,13 @@ export default function ProductCard({ product }) {
   const { productDispatch ,productState,homepageState,homepageDispatch} = useContext(StoreContext);
   const { user } = homepageState;
   const { favoriteProduct } = productState;
+
+
   //event handler :FavoriteProductHandler 
   const FavoriteProductHandler = async(e) => {
-    console.log('favorite product', product._id)
+    
     e.preventDefault();
+    console.log(product._id)
     if (user.favoriteProduct.includes(product._id)) {
       toast.error("product is already there in favorite"); 
     }
@@ -81,7 +84,9 @@ export default function ProductCard({ product }) {
     <div onClick={showProductClick} className="flex flex-col border w-[250px] 2xl:w-[300px] h-[350px] bg-orange-100/50 box-border rounded-lg p-1 m-1 relative  ">
       <Toaster />
       {product.sale && <p className={`absolute top-2 left-2  text-white bg-red-500 p-4 rounded-br-2xl `}>Sale</p>}
-      <BsHeartFill onClick={FavoriteProductHandler } className={`absolute top-3 right-4 text-xl ${user?.favoriteProduct?.includes(product._id)?"text-orange-700":"text-green-700"} hover:text-orange-700/75 hover:text-2x`}/>
+
+      {user?.favoriteProduct?.includes(product._id)?<BsHeartFill className={`absolute top-3 right-4 text-xl text-orange-700 hover:text-orange-700/75 hover:text-2xl`}/> : <BsHeart onClick={FavoriteProductHandler } className={`absolute top-3 right-4 text-xl text-orange-700 hover:text-orange-700/75 hover:text-2xl`}/>}
+      
       <img src={product.productImage} alt="card-pic" className="w-[100%] h-[150px] mb-1" />
       <p className="text-sm  text-gray-500">
         {product.brand} - {product.petName}

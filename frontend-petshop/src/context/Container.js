@@ -32,7 +32,8 @@ export default function Container(props) {
   const navigate = useNavigate();
 
   const { user } = homepageState;
-  console.log('user-container', user,productState);
+  
+ 
   useEffect(() => {
 
     fetch("http://localhost:8000/products", {
@@ -63,13 +64,16 @@ export default function Container(props) {
         .then((result) => {
           if (result.success) {
             homepageDispatch({
-
               type: 'setUser',
-
               payload: { data: result.data },
             });
 
-            console.log(user);
+            //console.log(user);
+            user && console.log(user.favoriteProduct.length)
+            productDispatch({
+              type: 'setFavoriteProduct',
+              payload :{data: user.favoriteProduct}
+            })
           } else {
             navigate('/login');
           }

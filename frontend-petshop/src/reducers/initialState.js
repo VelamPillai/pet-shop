@@ -21,7 +21,7 @@ const initialState = {
   
   searchedProduct: '',
   
-  favoriteProduct:''
+  favoriteProduct:[]
   
   
 };
