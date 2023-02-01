@@ -29,7 +29,7 @@ export default function HeaderMenu() {
           {
           favoriteProduct.length ?
           <p>
-          <BsHeartFill  className="  p-2  text-orange-600  hover:cursor-pointer " /><span class="absolute text-sm top-0 right-0 text-orange-600  p-1">{favoriteProduct.length}</span></p> : <p>
+          <BsHeartFill  className="  p-2  text-orange-600  hover:cursor-pointer " /><span className="absolute text-sm top-0 right-0 text-orange-600  p-1">{favoriteProduct.length}</span></p> : <p>
           <BsHeart  className="  p-2   hover:cursor-pointer " /></p>
         }
             </div> }
