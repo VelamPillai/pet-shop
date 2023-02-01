@@ -78,7 +78,7 @@ useEffect(()=>{
      
    
   }
-  console.log(user.role)
+ 
   //event handler to navigate to single product page
 
   const showProductClick = (e) => {

@@ -70,7 +70,14 @@ export const productReducer = (state, action) => {
         
       };
     }
-    
+    case "setShowHideFavoriteBtn": {
+      
+      return {
+        ...state,
+        showHideFavoriteBtn:!state.showHideFavoriteBtn
+        
+      };
+    }
     default: {
       return state;
     }
