@@ -25,6 +25,7 @@ useEffect(()=>{
   const FavoriteProductHandler = async(e) => {
     
     e.stopPropagation()
+    if(user){
     let data = new FormData();
     data.append('firstName', user.firstName)
       data.append('lastName', user.lastName);
@@ -65,7 +66,14 @@ useEffect(()=>{
               toast.error(result.message);            
             }
           
-        }); 
+        })  }
+        else{
+          toast.error("Please Login to add favorite items")
+          
+          setTimeout(()=>{
+           navigate("/login")
+          },2000)
+        }
     
      
    

@@ -3,7 +3,7 @@ import React, { useState,useContext } from 'react';
 import {  NavLink, Outlet } from "react-router-dom";
 
 
-import { FaAngleDoubleDown, FaAngleDoubleUp, FaCartPlus } from "react-icons/fa";
+import { FaAngleDoubleDown, FaAngleDoubleUp, FaCartPlus ,FaHeart} from "react-icons/fa";
 
 import { StoreContext } from '../../context/StoreContext.js';
 
@@ -164,10 +164,9 @@ const Navbar = () => {
             onClick={handleNavClick} 
           >
            <div className="flex justify-center items-center  border border-orange-500  text-4xl rounded">
-        <FaCartPlus className="mr-3  p-2  hover:cursor-pointer" />
-        <p className="text-lg p-2  border-l hover:cursor-pointer border-orange-500 ">
-          $0.00
-        </p>
+            <FaHeart className="  p-2 border-r hover:cursor-pointer border-orange-500 "/>
+        <FaCartPlus className="  p-2  hover:cursor-pointer" />
+        
       </div>
           </NavLink>
         </li>
