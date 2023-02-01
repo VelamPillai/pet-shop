@@ -2,6 +2,8 @@ import userCollection from '../models/userSchema.js';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import bcrypt from 'bcrypt';
+import mongoose from 'mongoose';
+
 
 dotenv.config();
 
@@ -98,15 +100,17 @@ const updateUser = async(req, res, next) => {
       user.profileImage = req.body.profileImage
     }
     //add favorite product 
-    console.log(req.body.favoriteProduct)
-    if (req.body.favoriteProduct.length > user.favoriteProduct.length) {
-      /* if (user.favoriteProduct.includes(req.body.favoriteProduct)) {
-        console.log('Product already exists in your favorite List!!!')
-          throw new Error('Product already exists in your favorite List!!!');        
-      } */
-     /*  else{user.favoriteProduct.push(req.body.favoriteProduct)} */   
-     user.favoriteProduct=req.body.favoriteProduct  
-    }
+    //console.log(req.body.favoriteProduct)
+    //console.log(user.favoriteProduct)
+       if (user.favoriteProduct.includes(req.body.favoriteProduct)) {
+        //console.log('Product already exists in your favorite List!!!')
+         
+        user.favoriteProduct=user.favoriteProduct.filter(item=>String(item)!==req.body.favoriteProduct)  
+            
+      } 
+       else{user.favoriteProduct.push(req.body.favoriteProduct)}  
+     
+    
     //password
     if (req.body.password != user.password) {
       user.password = req.body.password;
@@ -114,17 +118,22 @@ const updateUser = async(req, res, next) => {
     
     
     await user.save(); 
+
     let body = {};
     for (const key in req.body) {        
       if (req.body[key]!=='' && key !=='password' ) {
-          body[key] = req.body[key];
+        if(key==="favoriteProduct"){body[key] = user.favoriteProduct}
+        else{
+          body[key] = req.body[key];}
       }
       
       
   }
+
   const updatedUser = await userCollection.findByIdAndUpdate(req.params.id, body, { new: true })
   res.json({ success: true, data: updatedUser  });
-  } catch (err) {    
+  } catch (err) { 
+    console.log(err.message)   
     next(err.message);
     
   }

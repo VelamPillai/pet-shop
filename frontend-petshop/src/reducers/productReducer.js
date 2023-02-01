@@ -63,9 +63,10 @@ export const productReducer = (state, action) => {
       };
     }
     case "setFavoriteProduct": {
+      
       return {
         ...state,
-        favoriteProduct:[...state.favoriteProduct,payload.data]
+        favoriteProduct:[...payload.data]
         
       };
     }

@@ -69,11 +69,7 @@ export default function Container(props) {
             });
 
             //console.log(user);
-            user && console.log(user.favoriteProduct.length)
-            productDispatch({
-              type: 'setFavoriteProduct',
-              payload :{data: user.favoriteProduct}
-            })
+            
           } else {
             navigate('/login');
           }
