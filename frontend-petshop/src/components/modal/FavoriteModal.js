@@ -15,14 +15,12 @@ export default function FavoriteModal() {
     const hideModalHandler = (e) => {
         productDispatch({type:"setShowHideFavoriteBtn"})
   }; 
-  /* console.log(
-    product && product.filter((item) => favoriteProduct.includes(item._id))
-  ); */
+  
 
   return (
     
-          <div className={`bg-gray-900 opacity-90 fixed right-0 inset-y-0 z-50 w-[90%] ${ showHideFavoriteBtn? 'visible':'invisible'}`}>
-        <div className="flex h-screen text-[1.5rem]  justify-center align-top ">
+          <div className={`bg-gray-900 opacity-90 fixed right-[5px] md:right-0  inset-y-0 z-50 w-[100%] md:w-[90%] ${ showHideFavoriteBtn? 'visible':'invisible'}`}>
+        <div className="flex h-screen text-[1.5rem]  justify-center align-top  ">
           <p className="flex  mt-2 text-orange-500 ">Favorite Product</p>
           <p
             onClick={hideModalHandler}
@@ -30,8 +28,8 @@ export default function FavoriteModal() {
           >
             x
           </p>
-          <div className="flex flex-col justify-center items-center  top-10 right-5 absolute">
-            <ul className="grid grid-cols-3">
+          <div className="flex flex-col justify-center items-center  top-10 right-5 absolute p-5 md:p-0">
+            <ul className="grid grid-cols-1 md:grid-cols-3">
               {product &&
                 product
                   .filter((item) => favoriteProduct?.includes(item._id))
@@ -44,13 +42,13 @@ export default function FavoriteModal() {
                         <img
                           src={item.productImage}
                           alt="card-pic"
-                          className="w-[150px] h-[150px] mr-4 p-2"
+                          className=" w-[75px] h-[75px] md:w-[150px] md:h-[150px] mr-4 p-1"
                         />
                         <div>
-                          <p className="text-[1rem] text-orange-500">
+                          <p className="text-[.5rem] md:text-[1rem] text-orange-500">
                             {item.brand} - {item.petName}
                           </p>
-                          <p className="font-bold text-[1rem] text-orange-500">
+                          <p className="font-bold text-[.5rem] md:text-[1rem] text-orange-500">
                             {item.productName}
                           </p>
                         </div>

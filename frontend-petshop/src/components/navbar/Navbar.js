@@ -1,7 +1,9 @@
 
 import React, { useState,useContext } from 'react';
-import {  NavLink, Outlet } from "react-router-dom";
-
+import {  NavLink } from "react-router-dom";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
+import FavoriteModal from "../modal/FavoriteModal";
+import toast, { Toaster } from 'react-hot-toast';
 
 import { FaAngleDoubleDown, FaAngleDoubleUp, FaCartPlus ,FaHeart} from "react-icons/fa";
 
@@ -19,9 +21,13 @@ const Navbar = () => {
   const { productDispatch,productState,homepageState} =
     useContext(StoreContext);
   
-  const { product } = productState;
+  const { product ,favoriteProduct ,showHideFavoriteBtn} = productState;
   const { user } = homepageState;
   
+   //hideModalHandler -
+   const hideModalHandler = (e) => {
+    productDispatch({type:"setShowHideFavoriteBtn"})
+}; 
   //to set the petName to filter the products from the DB
   const handleMenuClick = (e) => {
     
@@ -103,7 +109,7 @@ const Navbar = () => {
         } 
       >
 
-        <li className="py-6 text-xl ">
+        <li className="py-1 text-xl ">
           <NavLink
             to="/admin"
             className=" navHover my-3 border-box p-1 "
@@ -112,7 +118,7 @@ const Navbar = () => {
             Admin
           </NavLink>
         </li>
-        <li className="py-6 text-xl ">
+        <li className="py-1 text-xl ">
           <NavLink
             to="/petMainPage"
             className=" navHover my-3 border-box p-1 "
@@ -122,7 +128,7 @@ const Navbar = () => {
           </NavLink>
         </li>
         <hr />
-        <li className="py-6 text-xl">
+        <li className="py-1 text-xl">
           <NavLink
             to="/petMainPage"
             className=" navHover my-2 border-box p-1"
@@ -131,7 +137,7 @@ const Navbar = () => {
             Cat
           </NavLink>
         </li>
-        <li className="py-6 text-xl">
+        <li className="py-1 text-xl">
           <NavLink
             to="/brand"
             className=" navHover my-2 border-box p-1"
@@ -139,7 +145,7 @@ const Navbar = () => {
             Brand
           </NavLink>
         </li>
-        <li className="py-6 text-xl">
+        <li className="py-1 text-xl">
           <NavLink
             to="/blog"
             className=" navHover my-2 border-box p-1"
@@ -148,7 +154,7 @@ const Navbar = () => {
             Blog
           </NavLink>
               </li>
-              <li className="py-6 text-xl">
+              <li className="py-1 text-xl">
           <NavLink
             to="/petMainPage"
             className=" navHover my-2 border-box p-1 text-green-800 animate-ping"
@@ -157,14 +163,21 @@ const Navbar = () => {
            Sale %
           </NavLink>
               </li>
-              <li className="py-6 text-xl">
+              <li className="py-1 text-xl">
           <NavLink
             to="cart"
             className=" navHover my-2 border-box p-1"
             onClick={handleNavClick} 
           >
            <div className="flex justify-center items-center  border border-orange-500  text-4xl rounded">
-            <FaHeart className="  p-2 border-r hover:cursor-pointer border-orange-500 "/>
+           {user && <div className=" border-r border-orange-500 p-1 relative">
+          {
+          favoriteProduct.length ?
+          <p  >
+                <BsHeartFill  onClick={hideModalHandler } className="  p-2  text-orange-600  hover:cursor-pointer " /><span className="absolute text-sm top-0 right-0 text-orange-600  p-1">{favoriteProduct.length}</span></p> : <p>
+          <BsHeart  className="  p-2   hover:cursor-pointer " onClick={()=> toast.error('Please click Heart to add favorite products')} /></p>
+        }
+            </div> }
         <FaCartPlus className="  p-2  hover:cursor-pointer" />
         
       </div>
