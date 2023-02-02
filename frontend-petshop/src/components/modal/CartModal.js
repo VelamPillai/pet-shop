@@ -4,6 +4,7 @@ import { StoreContext } from "../../context/StoreContext";
 
 import { AiFillDelete } from "react-icons/ai";
 
+
 export default function CartModal() {
 
     const [price, setPrice] = useState(0);
@@ -23,11 +24,11 @@ export default function CartModal() {
     
     const deleteCartItem = (id) => {
         
-        productDispatch({
-            type: 'setCart',
-            payload:{data: [...cart].filter(item=>item._id!==id)}
-          }) 
-         
+         productDispatch({
+             type: 'resetCart',
+             payload:{data: [...cart].filter(item=>item!==id)}
+           }) 
+                
     }
 
   return (
@@ -46,7 +47,7 @@ export default function CartModal() {
             x
           </p>
           <div className="flex flex-col justify-center items-center  top-10 absolute p-5 md:p-0">
-            <ul className="flex flex-row p-3 ">
+            <ul className="flex flex-col p-3 ">
               {product &&
                 product
                   .filter((item) => cart?.includes(item._id))

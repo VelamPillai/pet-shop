@@ -82,7 +82,15 @@ export const productReducer = (state, action) => {
       
       return {
         ...state,
-        cart:[...state.cart,payload.data]
+        cart:Array.isArray(payload.data)?[...payload.data]:[...state.cart,payload.data]
+        
+      };
+    }
+    case "resetCart": {
+      
+      return {
+        ...state,
+        cart:[...payload.data]
         
       };
     }
