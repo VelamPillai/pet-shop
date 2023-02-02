@@ -22,7 +22,11 @@ const initialState = {
   searchedProduct: '',
   
   favoriteProduct: [],
-  showHideFavoriteBtn : false
+  showHideFavoriteBtn: false,
+  
+  cart: [],
+  orderCart:[],
+  showHideCartBtn: false
   
   
 };

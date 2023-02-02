@@ -78,6 +78,30 @@ export const productReducer = (state, action) => {
         
       };
     }
+    case "setCart": {
+      
+      return {
+        ...state,
+        cart:[...state.cart,payload.data]
+        
+      };
+    }
+    case "setShowHideCartBtn": {
+      
+      return {
+        ...state,
+        showHideCartBtn:!state.showHideCartBtn
+        
+      };
+    }
+    case "setOrderCart": {
+      
+      return {
+        ...state,
+        orderCart:[...state.cart,...state.orderCart,payload.data]
+        
+      };
+    }
     default: {
       return state;
     }
