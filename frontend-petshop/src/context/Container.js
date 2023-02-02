@@ -36,6 +36,8 @@ export default function Container(props) {
  
   useEffect(() => {
 
+   
+
     fetch("http://localhost:8000/products", {
       method: "GET",
 
@@ -71,12 +73,12 @@ export default function Container(props) {
             //console.log(user);
             
           } else {
-            navigate('/login');
+             navigate('/login') 
           }
         });
-    } else {
+    } /* else {
       navigate('/');
-    }
+    } */
   }, []);
 
   return (
