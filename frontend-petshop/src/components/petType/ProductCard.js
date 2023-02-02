@@ -78,6 +78,7 @@ useEffect(()=>{
      
    
   }
+ 
   //event handler to navigate to single product page
 
   const showProductClick = (e) => {
@@ -96,8 +97,9 @@ useEffect(()=>{
     <div onClick={showProductClick} className="flex flex-col border w-[250px] 2xl:w-[300px] h-[350px] bg-orange-100/50 box-border rounded-lg p-1 m-1 relative  ">
       <Toaster />
       {product.sale && <p className={`absolute top-2 left-2  text-white bg-red-500 p-4 rounded-br-2xl `}>Sale</p>}
-
-      {user?.favoriteProduct?.includes(product._id)?<BsHeartFill onClick={FavoriteProductHandler }className={`absolute top-3 right-4 text-xl text-orange-700 hover:text-orange-700/75 hover:text-2xl`}/> : <BsHeart onClick={FavoriteProductHandler } className={`absolute top-3 right-4 text-xl text-orange-700 hover:text-orange-700/75 hover:text-2xl`}/>}
+      {user &&
+        (user.role === 'user') ?
+      user?.favoriteProduct?.includes(product._id) ?<BsHeartFill onClick={FavoriteProductHandler }className={`absolute top-3 right-4 text-xl text-orange-700 hover:text-orange-700/75 hover:text-2xl `}/> : <BsHeart onClick={FavoriteProductHandler } className={`absolute top-3 right-4 text-xl text-orange-700 hover:text-orange-700/75 hover:text-2xl`}/>  : null }
       
       <img src={product.productImage} alt="card-pic" className="w-[100%] h-[150px] mb-1" />
       <p className="text-sm  text-gray-500">
