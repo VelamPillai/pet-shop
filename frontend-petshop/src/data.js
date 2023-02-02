@@ -16,31 +16,37 @@ export const petCategories = [
     id: 1,
     img: dog,
     title: "Dog",
+    cat: "dog"
   },
   {
     id: 2,
     img: cat,
     title: "Cat",
+    cat: "cat"
   },
   {
     id: 3,
     img: fish,
     title: "Fish",
+    cat: "fish"
   },
   {
     id: 4,
     img: smallPet,
     title: "Small pet",
+    cat: "smallPet"
   },
   {
     id: 5,
     img: reptile,
     title: "Reptile",
+    cat: "reptile"
   },
   {
     id: 6,
     img: bird,
     title: "Bird",
+    cat: "bird"
   },
 ];
 

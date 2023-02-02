@@ -39,12 +39,13 @@ function App() {
       <Header />
       <div className="w-3/4 mx-auto mt-[9rem] md:mt-[8rem] ">
         <Routes>
-          <Route path="/">
+          <Route  path="/">
             <Route
               index={true}
               path="/"
               className="min-h-screen"
               element={<Home />}
+              
             />
           </Route>
           <Route index={false} path="searchedProduct" element={<SearchedProduct/>} />
