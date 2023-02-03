@@ -110,6 +110,14 @@ export const productReducer = (state, action) => {
         
       };
     }
+    case "resetOrderCart": {
+      
+      return {
+        ...state,
+        orderCart:[...payload.data]
+        
+      };
+    }
     default: {
       return state;
     }
