@@ -56,6 +56,7 @@ export default function Container(props) {
         }
       });
     //console.log(product)
+    
     //cart items from localStorage  while refreshing browser
     var localStorageCart = JSON.parse(localStorage.getItem("localCart") || "[]");
     /* console.log(localStorageCart) */
@@ -64,7 +65,15 @@ export default function Container(props) {
       type: "setLocalStorageCart",
       payload: { data: [...localStorageCart]},
     });
-
+    
+    //set totalPrice
+    productDispatch({
+      type: "setTotalPrice",
+      payload: { data: localStorageCart
+        .reduce((acc, item) => (acc += item.price * item.quantity), 0)
+        .toFixed(2) },
+    });
+    
     //user authentication after refreshing the browser
     const token = localStorage.getItem("token");
 
