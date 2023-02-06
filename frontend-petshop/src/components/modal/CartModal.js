@@ -32,6 +32,8 @@ export default function CartModal() {
              type: 'resetCart',
              payload:{data: [...cart].filter(item=>item._id!==id)}
          }) 
+      console.log(cart.length)
+       cart.length === 1 ? setPrice(0):
          setPrice((price)=>price=cart.reduce(
           (acc, item) => (acc += item.price * item.quantity),
           0
@@ -44,15 +46,16 @@ export default function CartModal() {
     console.log(id)
     const foundItem = cart.find((item) => item._id === id);
     foundItem.quantity++;
+    setPrice((price)=>price=cart.reduce(
+      (acc, item) => (acc += item.price * item.quantity),
+      0
+    ).toFixed(2))
     productDispatch({
       type: 'resetCart',
       /* payload:{data: [...([...cart].filter(item=>item._id!==id)),foundItem]} */
       payload:{data:[...cart]}
     }) 
-    setPrice((price)=>price=cart.reduce(
-      (acc, item) => (acc += item.price * item.quantity),
-      0
-    ).toFixed(2))
+   
   }
   
   //decrease
@@ -64,6 +67,8 @@ export default function CartModal() {
         type: 'resetCart',        
         payload:{data:[...cart].filter(item=>item._id!==id)}
       }) 
+      console.log(cart.length)
+      cart.length === 1 && setPrice(0)
       
     } else {
       foundItem.quantity--;
@@ -71,11 +76,13 @@ export default function CartModal() {
         type: 'resetCart',        
         payload:{data:[...cart]}
       })  
+      setPrice((price)=>price=cart.reduce(
+        (acc, item) => (acc += item.price * item.quantity),
+        0
+      ).toFixed(2))
     }
-    setPrice((price)=>price=cart.reduce(
-      (acc, item) => (acc += item.price * item.quantity),
-      0
-    ).toFixed(2))
+    
+     
   }
 
   return (
