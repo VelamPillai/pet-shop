@@ -25,7 +25,7 @@ const initialState = {
   showHideFavoriteBtn: false,
   
   cart: [],
-  orderCart: [],
+  order: [],
   totalPrice :0,
   showHideCartBtn: false
   

@@ -95,21 +95,37 @@ const updateUser = async(req, res, next) => {
  
     let user = await userCollection.findById(req.params.id);
     //image
-    if (user.profileImage !== req.body.profileImage)
-    {
+    if (user.profileImage !== req.body.profileImage) {
       user.profileImage = req.body.profileImage
     }
     //add favorite product 
     //console.log(req.body.favoriteProduct)
     //console.log(user.favoriteProduct)
-       if (user.favoriteProduct.includes(req.body.favoriteProduct)) {
-        //console.log('Product already exists in your favorite List!!!')
-         
-        user.favoriteProduct=user.favoriteProduct.filter(item=>String(item)!==req.body.favoriteProduct)  
-            
-      } 
-       else{user.favoriteProduct.push(req.body.favoriteProduct)}  
-     
+    if (req.body.favoriteProduct) {
+      if (req.body.favoriteProduct.length <= 24) {
+      
+      
+        if (user.favoriteProduct.includes(req.body.favoriteProduct)) {
+          //console.log('Product already exists in your favorite List!!!')
+       
+          user.favoriteProduct = user.favoriteProduct.filter(item => String(item) !== req.body.favoriteProduct)
+          
+        }
+        else { user.favoriteProduct.push(req.body.favoriteProduct) }
+      }
+  
+      else {
+        req.body.favoriteProduct.split(',').map(item => console.log(item))
+      
+      }
+    }
+      
+    // console.log(req.body.favoriteProduct.split(',').length)
+    //orderIds
+    console.log()
+    if (req.body.ordersId) {
+    user.ordersId.push(req.body.ordersId)
+  }
     
     //password
     if (req.body.password != user.password) {
