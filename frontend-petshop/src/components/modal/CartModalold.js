@@ -16,7 +16,8 @@ export default function CartModal() {
   
     const { user } = homepageState;
     
-    const { orderCart,cart, product, showHideCartBtn } = productState;
+  const { orderCart, cart, product, showHideCartBtn } = productState;
+  console.log('cart component',cart)
     //hideModalHandler -
     const hideCartModalHandler = (e) => {
         productDispatch({type:"setShowHideCartBtn"})
@@ -68,20 +69,20 @@ export default function CartModal() {
           </p>
           <div className="flex flex-col justify-center items-center  top-10 absolute p-5 md:p-0">
             <ul className="flex flex-col p-3 ">
-              {product &&
+               {/* product &&
                 product
-                  .filter((item) => cart?.includes(item._id))
-                  .map((item) => {
+                  .filter((item) => cart?.includes(item._id))  */
+                  cart.map((item) => {
                     return (
                       <li
                         key={item._id}
                         className="shadow-lg border-black bg-gray-300/25 rounded-xl m-1 p-1 flex flex-row justify-center items-center"
                       >
-                        <img
+                         <img
                           src={item.productImage}
                           alt="card-pic"
                           className=" w-[75px] h-[75px] md:w-[150px] md:h-[150px] mr-4 p-1"
-                        />
+                        /> 
                         <div>
                           
                           <p className="font-bold text-[.5rem] md:text-[.75rem] text-black-500">
@@ -89,12 +90,12 @@ export default function CartModal() {
                                 </p>
                                 <p className="font-bold text-[.5rem] md:text-[.5rem] text-gray-800">
                             {item.brand}
-                                </p>
+                                </p> 
                                 
                             </div>
                             <div className="flex ml-[4rem]">
                             <button className="w-[50px] bg-orange-500 mr-5 shadow-md rounded-md shadow-black"> +</button>
-                                    <p ref="quantity">{quantityVal}</p>
+                <p>{item.quantity}</p>
                                     <button   className="w-[50px] bg-orange-500 ml-5 shadow-md rounded-md shadow-black"> -</button>
                             </div>
                             

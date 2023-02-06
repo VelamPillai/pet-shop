@@ -24,13 +24,24 @@ export default function CartModal() {
   //deleteCartItem
     
     const deleteCartItem = (id) => {
-        
+        console.log('delete')
          productDispatch({
              type: 'resetCart',
-             payload:{data: [...cart].filter(item=>item!==id)}
+             payload:{data: [...cart].filter(item=>item._id!==id)}
            }) 
                 
     }
+  
+  //increase
+  const increase = (id) => {
+    console.log(id)
+  }
+  
+  //decrease
+
+  const decrease = (id) => {
+    console.log(id)
+  }
 
   return (
     
@@ -49,10 +60,10 @@ export default function CartModal() {
           </p>
           <div className="flex flex-col justify-center items-center  top-10 absolute p-5 md:p-0">
             <ul className="flex flex-col p-3 ">
-              {product &&
+             {/*  {product &&
                 product
-                  .filter((item) => cart?.includes(item._id))
-                  .map((item) => {
+                  .filter((item) => cart?.includes(item._id)) */}
+                 { cart && cart.map((item) => {
                     return (
                       <li
                         key={item._id}
@@ -74,9 +85,9 @@ export default function CartModal() {
                                 
                             </div>
                             <div className="flex ml-[4rem]">
-                                    <button className="w-[50px] bg-orange-500 mr-5 shadow-md  shadow-black rounded-md">+</button>
-                                    <p>{quantity}</p>
-                                    <button className="w-[50px] bg-orange-500 ml-5 shadow-md rounded-md shadow-black"> -</button>
+                                    <button onClick={()=>increase(item._id)} className="w-[50px] bg-orange-500 mr-5 shadow-md  shadow-black rounded-md">+</button>
+                                    <p>{item.quantity}</p>
+                                    <button onClick={()=>decrease(item._id)} className="w-[50px] bg-orange-500 ml-5 shadow-md rounded-md shadow-black"> -</button>
                             </div>
                             
                             <p className="ml-[12rem] text-sm ">${quantity * item.price}</p>
