@@ -1,5 +1,4 @@
-
-import React, { useContext,useState } from "react";
+ import React, { useContext,useState ,useRef} from "react";
 
 import { StoreContext } from "../../context/StoreContext";
 
@@ -8,15 +7,16 @@ import { AiFillDelete } from "react-icons/ai";
 
 export default function CartModal() {
 
+    
     const [price, setPrice] = useState(0);
-    const [quantity, setquantity] = useState(1);
+    const [quantityVal, setquantityVal] = useState(1);
   
   const { homepageState, productState ,productDispatch} = useContext(StoreContext);
  
   
     const { user } = homepageState;
     
-    const { cart, product, showHideCartBtn } = productState;
+    const { orderCart,cart, product, showHideCartBtn } = productState;
     //hideModalHandler -
     const hideCartModalHandler = (e) => {
         productDispatch({type:"setShowHideCartBtn"})
@@ -24,13 +24,32 @@ export default function CartModal() {
   //deleteCartItem
     
     const deleteCartItem = (id) => {
+        console.log(id)
         
-         productDispatch({
+        /*  productDispatch({
              type: 'resetCart',
              payload:{data: [...cart].filter(item=>item!==id)}
-           }) 
+           })  */
                 
     }
+    //increaseQuantity
+    const increaseQuantity = (e) => {
+        console.log(e.target)
+     /*  productDispatch({
+        type:"setOrderCart",
+        payload:{data:id}
+      }) */
+      //setquantityVal((quantity)=>quantity+=1)
+    } 
+        //decreaseQuantity
+    const decreaseQuantity = (e) => {
+            console.log(e.target)
+         /*  productDispatch({
+            type:"resetOrderCart",
+            payload:{data:[...orderCart].filter(item=>item!==id)}
+          }) */
+          //setquantityVal((quantity)=>quantity-=1)
+        } 
 
   return (
     
@@ -74,13 +93,13 @@ export default function CartModal() {
                                 
                             </div>
                             <div className="flex ml-[4rem]">
-                                    <button className="w-[50px] bg-orange-500 mr-5 shadow-md  shadow-black rounded-md">+</button>
-                                    <p>{quantity}</p>
-                                    <button className="w-[50px] bg-orange-500 ml-5 shadow-md rounded-md shadow-black"> -</button>
+                            <button className="w-[50px] bg-orange-500 mr-5 shadow-md rounded-md shadow-black"> +</button>
+                                    <p ref="quantity">{quantityVal}</p>
+                                    <button   className="w-[50px] bg-orange-500 ml-5 shadow-md rounded-md shadow-black"> -</button>
                             </div>
                             
-                            <p className="ml-[12rem] text-sm ">${quantity * item.price}</p>
-                            <AiFillDelete onClick={(e) => deleteCartItem(item._id)} className="mx-[6rem] text-red-900" />
+                            <p className="ml-[12rem] text-sm ">${ item.price}</p>
+                            <AiFillDelete onClick={() => deleteCartItem(item._id)} className="mx-[6rem] text-red-900" />
                             
                       </li>
                     );
@@ -92,3 +111,4 @@ export default function CartModal() {
     
   );
 }
+ 
