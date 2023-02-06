@@ -82,7 +82,7 @@ export const productReducer = (state, action) => {
       
       return {
         ...state,
-        cart:Array.isArray(payload.data)?[...payload.data]:[...state.cart,payload.data]
+        cart:[...state.cart,payload.data]
         
       };
     }

@@ -32,6 +32,7 @@ export default function Container(props) {
   const navigate = useNavigate();
 
   const { user } = homepageState;
+  const { product } = productState;
   
  
   useEffect(() => {
@@ -54,7 +55,7 @@ export default function Container(props) {
           console.log("error");
         }
       });
-
+     console.log(product)
     const token = localStorage.getItem("token");
 
     if (token) {

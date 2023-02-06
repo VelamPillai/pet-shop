@@ -19,13 +19,14 @@ export default function Product() {
   //event handler to handle Cart click
   const handleCartClick = (e) => {
     e.preventDefault();
-    cart.includes(singleProduct._id)? toast.error('product is exists in the Cart'):
+     cart.includes(singleProduct._id)? toast.error('product is exists in the Cart'):
     productDispatch({
       type: 'setCart',
       payload:{data:singleProduct._id}
     }) 
     
-  cart && console.log(cart,menuName)
+  //cart && console.log(cart,menuName)  */
+    console.log('add to cart',cart)
   };
 
   return (

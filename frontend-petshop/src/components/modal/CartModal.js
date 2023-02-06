@@ -7,7 +7,7 @@ import { AiFillDelete } from "react-icons/ai";
 
 export default function CartModal() {
 
-    const quantity =useRef() 
+    
     const [price, setPrice] = useState(0);
     const [quantityVal, setquantityVal] = useState(1);
   
@@ -24,29 +24,32 @@ export default function CartModal() {
   //deleteCartItem
     
     const deleteCartItem = (id) => {
+        console.log(id)
         
-         productDispatch({
+        /*  productDispatch({
              type: 'resetCart',
              payload:{data: [...cart].filter(item=>item!==id)}
-           }) 
+           })  */
                 
     }
     //increaseQuantity
-    const increaseQuantity =(id)=>{
-      productDispatch({
+    const increaseQuantity = (e) => {
+        console.log(e.target)
+     /*  productDispatch({
         type:"setOrderCart",
         payload:{data:id}
-      })
-      setquantity((quantity)=>quantity+=1)
-    }
+      }) */
+      //setquantityVal((quantity)=>quantity+=1)
+    } 
         //decreaseQuantity
-        const decreaseQuantity =(id)=>{
-          productDispatch({
+    const decreaseQuantity = (e) => {
+            console.log(e.target)
+         /*  productDispatch({
             type:"resetOrderCart",
             payload:{data:[...orderCart].filter(item=>item!==id)}
-          })
-          setquantity((quantity)=>quantity-=1)
-        }
+          }) */
+          //setquantityVal((quantity)=>quantity-=1)
+        } 
 
   return (
     
@@ -90,13 +93,13 @@ export default function CartModal() {
                                 
                             </div>
                             <div className="flex ml-[4rem]">
-                            <button onClick={(e)=>increaseQuantity(e,item._id)}  className="w-[50px] bg-orange-500 mr-5 shadow-md rounded-md shadow-black"> +</button>
+                            <button className="w-[50px] bg-orange-500 mr-5 shadow-md rounded-md shadow-black"> +</button>
                                     <p ref="quantity">{quantityVal}</p>
-                                    <button onClick={()=>decreaseQuantity(item._id)}  className="w-[50px] bg-orange-500 ml-5 shadow-md rounded-md shadow-black"> -</button>
+                                    <button   className="w-[50px] bg-orange-500 ml-5 shadow-md rounded-md shadow-black"> -</button>
                             </div>
                             
-                            <p className="ml-[12rem] text-sm ">${quantity * item.price}</p>
-                            <AiFillDelete onClick={(e) => deleteCartItem(item._id)} className="mx-[6rem] text-red-900" />
+                            <p className="ml-[12rem] text-sm ">${ item.price}</p>
+                            <AiFillDelete onClick={() => deleteCartItem(item._id)} className="mx-[6rem] text-red-900" />
                             
                       </li>
                     );
