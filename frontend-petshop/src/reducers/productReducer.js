@@ -126,6 +126,7 @@
 */
 
 export const productReducer = (state, action) => {
+  
   const { type, payload } = action;
   switch (type) {
     case "setProduct": {
@@ -206,6 +207,7 @@ export const productReducer = (state, action) => {
       };
     }
     case "setCart": {
+      localStorage.setItem("localCart", JSON.stringify([...state.cart, { ...payload.data, quantity: 1 }]));
       
       return {
         ...state,
@@ -215,15 +217,15 @@ export const productReducer = (state, action) => {
       };
     }
     case "resetCart": {
-      
+      localStorage.setItem("localCart", JSON.stringify([...payload.data]));
       return {
         ...state,
         cart:[...payload.data]
         
       };
     }
-    case "updateCart": {
-      
+    case "setLocalStorageCart": {
+      localStorage.setItem("localCart", JSON.stringify([...payload.data]));
       return {
         ...state,
         cart:[...payload.data]

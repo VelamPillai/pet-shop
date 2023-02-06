@@ -32,7 +32,7 @@ export default function CartModal() {
              type: 'resetCart',
              payload:{data: [...cart].filter(item=>item._id!==id)}
          }) 
-      console.log(cart.length)
+      
        cart.length === 1 ? setPrice(0):
          setPrice((price)=>price=cart.reduce(
           (acc, item) => (acc += item.price * item.quantity),
@@ -52,7 +52,6 @@ export default function CartModal() {
     ).toFixed(2))
     productDispatch({
       type: 'resetCart',
-      /* payload:{data: [...([...cart].filter(item=>item._id!==id)),foundItem]} */
       payload:{data:[...cart]}
     }) 
    
@@ -67,7 +66,7 @@ export default function CartModal() {
         type: 'resetCart',        
         payload:{data:[...cart].filter(item=>item._id!==id)}
       }) 
-      console.log(cart.length)
+      
       cart.length === 1 && setPrice(0)
       
     } else {

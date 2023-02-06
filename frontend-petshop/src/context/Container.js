@@ -32,7 +32,7 @@ export default function Container(props) {
   const navigate = useNavigate();
 
   const { user } = homepageState;
-  const { product } = productState;
+  const { product ,cart} = productState;
   
  
   useEffect(() => {
@@ -55,7 +55,17 @@ export default function Container(props) {
           console.log("error");
         }
       });
-     console.log(product)
+    //console.log(product)
+    //cart items from localStorage  while refreshing browser
+    var localStorageCart = JSON.parse(localStorage.getItem("localCart") || "[]");
+    /* console.log(localStorageCart) */
+    productDispatch({
+
+      type: "setLocalStorageCart",
+      payload: { data: [...localStorageCart]},
+    });
+
+    //user authentication after refreshing the browser
     const token = localStorage.getItem("token");
 
     if (token) {
