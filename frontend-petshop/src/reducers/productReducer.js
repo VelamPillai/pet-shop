@@ -222,6 +222,14 @@ export const productReducer = (state, action) => {
         
       };
     }
+    case "updateCart": {
+      
+      return {
+        ...state,
+        cart:[...payload.data]
+        
+      };
+    }
     case "setShowHideCartBtn": {
       
       return {

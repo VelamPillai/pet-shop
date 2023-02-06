@@ -1,5 +1,5 @@
 
-import React, { useContext,useState } from "react";
+import React, { useContext,useState,useEffect } from "react";
 
 import { StoreContext } from "../../context/StoreContext";
 
@@ -9,14 +9,17 @@ import { AiFillDelete } from "react-icons/ai";
 export default function CartModal() {
 
     const [price, setPrice] = useState(0);
-    const [quantity, setquantity] = useState(1);
+    
   
   const { homepageState, productState ,productDispatch} = useContext(StoreContext);
  
   
     const { user } = homepageState;
     
-    const { cart, product, showHideCartBtn } = productState;
+  const { cart, product, showHideCartBtn } = productState;
+  
+ 
+
     //hideModalHandler -
     const hideCartModalHandler = (e) => {
         productDispatch({type:"setShowHideCartBtn"})
@@ -28,28 +31,62 @@ export default function CartModal() {
          productDispatch({
              type: 'resetCart',
              payload:{data: [...cart].filter(item=>item._id!==id)}
-           }) 
+         }) 
+         setPrice((price)=>price=cart.reduce(
+          (acc, item) => (acc += item.price * item.quantity),
+          0
+        ).toFixed(2))
                 
     }
   
   //increase
   const increase = (id) => {
     console.log(id)
+    const foundItem = cart.find((item) => item._id === id);
+    foundItem.quantity++;
+    productDispatch({
+      type: 'resetCart',
+      /* payload:{data: [...([...cart].filter(item=>item._id!==id)),foundItem]} */
+      payload:{data:[...cart]}
+    }) 
+    setPrice((price)=>price=cart.reduce(
+      (acc, item) => (acc += item.price * item.quantity),
+      0
+    ).toFixed(2))
   }
   
   //decrease
 
   const decrease = (id) => {
-    console.log(id)
+    const foundItem = cart.find((item) => item._id === id);
+    if (foundItem.quantity === 1) {
+      productDispatch({
+        type: 'resetCart',        
+        payload:{data:[...cart].filter(item=>item._id!==id)}
+      }) 
+      
+    } else {
+      foundItem.quantity--;
+      productDispatch({
+        type: 'resetCart',        
+        payload:{data:[...cart]}
+      })  
+    }
+    setPrice((price)=>price=cart.reduce(
+      (acc, item) => (acc += item.price * item.quantity),
+      0
+    ).toFixed(2))
   }
 
   return (
     
-          <div className={`bg-orange-400 fixed right-[5px] height-[100vh] md:right-0  inset-y-0  z-50 w-[100%] md:w-[100%] ${ showHideCartBtn? 'visible':'invisible'}`}>
-          <div className="flex h-screen text-[1.5rem]  justify-start align-top p-3 ">
-              <div className="flex flex-row "> <p className="flex  mt-2 text-black-800 mr-[2rem] ">Cart</p>
-                  <p className="  mt-5 text-black-800 text-sm ">No of Items : {cart.length}</p>
-                  <p className="ml-[30rem] mt-5 text-black-800 text-sm font-bold ">Total Price  : ${price}</p>
+    <div className={`bg-orange-400 fixed right-[5px] height-[100vh]  md:right-0  inset-y-0  z-50 w-[100%] md:w-[100%] ${showHideCartBtn ? 'visible' : 'invisible'}`}>
+      
+      <div className="flex h-screen text-[1.5rem]  justify-start align-top p-3 ">
+      <p className="flex  mt-2 text-black-800 mr-[2rem] ">Cart</p>
+              <div className="flex flex-row "> 
+                  <p className="  mt-5 text-black-800 text-sm  font-bold">No of Items : {cart.length}</p>
+                  <p className="ml-[15rem] mt-5 text-black-800 text-sm font-bold ">Total Price  : ${price}</p>
               </div>
          
           <p
@@ -67,16 +104,16 @@ export default function CartModal() {
                     return (
                       <li
                         key={item._id}
-                        className="shadow-lg border-black bg-gray-300/25 rounded-xl m-1 p-1 flex flex-row justify-center items-center"
+                        className="shadow-lg border-black bg-gray-300/25 rounded-xl m-1 p-1 flex flex-row justify-between items-center"
                       >
                         <img
                           src={item.productImage}
                           alt="card-pic"
                           className=" w-[75px] h-[75px] md:w-[150px] md:h-[150px] mr-4 p-1"
                         />
-                        <div>
+                        <div className="w-[75px] h-[75px] md:w-[250px] md:h-[150px] mr-4 p-1">
                           
-                          <p className="font-bold text-[.5rem] md:text-[.75rem] text-black-500">
+                          <p className="font-bold text-[.5rem] md:text-[.5rem] text-black-500 ">
                             {item.productName}
                                 </p>
                                 <p className="font-bold text-[.5rem] md:text-[.5rem] text-gray-800">
@@ -84,13 +121,13 @@ export default function CartModal() {
                                 </p>
                                 
                             </div>
-                            <div className="flex ml-[4rem]">
+                            <div className="flex ml-4">
                                     <button onClick={()=>increase(item._id)} className="w-[50px] bg-orange-500 mr-5 shadow-md  shadow-black rounded-md">+</button>
                                     <p>{item.quantity}</p>
                                     <button onClick={()=>decrease(item._id)} className="w-[50px] bg-orange-500 ml-5 shadow-md rounded-md shadow-black"> -</button>
                             </div>
                             
-                            <p className="ml-[12rem] text-sm ">${quantity * item.price}</p>
+                            <p className="ml-[5rem] text-sm ">${(item.quantity * item.price).toFixed(2)}</p>
                             <AiFillDelete onClick={(e) => deleteCartItem(item._id)} className="mx-[6rem] text-red-900" />
                             
                       </li>
