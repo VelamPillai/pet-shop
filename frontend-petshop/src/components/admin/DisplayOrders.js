@@ -19,7 +19,7 @@ export default function DisplayOrders() {
 
   //get all orders
   useEffect(() => {
-    fetch("   /orders/userOrders", {
+    fetch("   /orders", {
       method: "GET",
     })
       .then((res) => res.json())
@@ -42,7 +42,7 @@ export default function DisplayOrders() {
 
   //delete handler
   const deleteHandler = (id) => {
-    fetch(`   /orders/deleteOrder/${id}`, {
+    fetch(`   /orders/${id}`, {
       method: "DELETE",
       headers: { token: localStorage.getItem("token") },
     })

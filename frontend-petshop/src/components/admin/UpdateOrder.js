@@ -22,7 +22,7 @@ export default function UpdateOrder() {
 
     adminDispatch({ type: "clearForm" });
 
-    fetch(`   /orders/updateOrder/${order._id}`, {
+    fetch(`   /orders/${order._id}`, {
       method: "PATCH",
       headers: { token: localStorage.getItem("token") },
       body: data,
