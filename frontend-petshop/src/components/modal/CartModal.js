@@ -7,15 +7,14 @@ import { StoreContext } from "../../context/StoreContext";
 import { AiFillDelete } from "react-icons/ai";
 
 export default function CartModal() {
-  
   const navigate = useNavigate();
 
-  const { homepageState, productState, productDispatch,homepageDispatch } =
+  const { homepageState, productState, productDispatch, homepageDispatch } =
     useContext(StoreContext);
 
   const { user } = homepageState;
 
-  const { cart, product, showHideCartBtn,totalPrice } = productState;
+  const { cart, product, showHideCartBtn, totalPrice } = productState;
 
   //hideModalHandler -
   const hideCartModalHandler = (e) => {
@@ -32,15 +31,17 @@ export default function CartModal() {
 
     cart.length === 1
       ? productDispatch({
-        type: "setTotalPrice",
-        payload: { data: 0 },
-      })
-      :  productDispatch({
-        type: "setTotalPrice",
-        payload: { data: cart
-          .reduce((acc, item) => (acc += item.price * item.quantity), 0)
-          .toFixed(2) },
-      });
+          type: "setTotalPrice",
+          payload: { data: 0 },
+        })
+      : productDispatch({
+          type: "setTotalPrice",
+          payload: {
+            data: cart
+              .reduce((acc, item) => (acc += item.price * item.quantity), 0)
+              .toFixed(2),
+          },
+        });
   };
 
   //increase
@@ -50,11 +51,13 @@ export default function CartModal() {
     foundItem.quantity++;
     productDispatch({
       type: "setTotalPrice",
-      payload: { data: cart
-        .reduce((acc, item) => (acc += item.price * item.quantity), 0)
-        .toFixed(2) },
+      payload: {
+        data: cart
+          .reduce((acc, item) => (acc += item.price * item.quantity), 0)
+          .toFixed(2),
+      },
     });
-   /*  setPrice(
+    /*  setPrice(
       (price) =>
         (price = cart
           .reduce((acc, item) => (acc += item.price * item.quantity), 0)
@@ -76,10 +79,11 @@ export default function CartModal() {
         payload: { data: [...cart].filter((item) => item._id !== id) },
       });
 
-      cart.length === 1 && productDispatch({
-        type: "setTotalPrice",
-        payload: { data: 0 },
-      })
+      cart.length === 1 &&
+        productDispatch({
+          type: "setTotalPrice",
+          payload: { data: 0 },
+        });
     } else {
       foundItem.quantity--;
       productDispatch({
@@ -88,50 +92,50 @@ export default function CartModal() {
       });
       productDispatch({
         type: "setTotalPrice",
-        payload: { data: cart
-          .reduce((acc, item) => (acc += item.price * item.quantity), 0)
-          .toFixed(2) },
+        payload: {
+          data: cart
+            .reduce((acc, item) => (acc += item.price * item.quantity), 0)
+            .toFixed(2),
+        },
       });
     }
   };
 
   //checkout handler
   const checkoutHandler = (e) => {
-    e.stopPropagation()
-   
+    e.stopPropagation();
+
     if (!user) {
       productDispatch({ type: "setShowHideCartBtn" });
-      navigate('/login') 
-    } 
-    else {
-      
-    fetch("http://localhost:8000/orders/addOrder", {
-      method: "POST",
-      headers: {
-        token: localStorage.getItem("token"),
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        items: cart.map((item) => item._id),
-        totalPrice: totalPrice,
-        userId: user._id,
-      }),
-
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        if (result.success) {  
-          console.log(result.data);
-          console.log(result.data._id)
-          let data = new FormData();
-          data.append('firstName', user.firstName)
-            data.append('lastName', user.lastName);
-            data.append('email', user.email);
+      navigate("/login");
+    } else {
+      fetch("   /orders/addOrder", {
+        method: "POST",
+        headers: {
+          token: localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          items: cart.map((item) => item._id),
+          totalPrice: totalPrice,
+          userId: user._id,
+        }),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          if (result.success) {
+            console.log(result.data);
+            console.log(result.data._id);
+            let data = new FormData();
+            data.append("firstName", user.firstName);
+            data.append("lastName", user.lastName);
+            data.append("email", user.email);
             //password not want to update then old password has been taken
-            data.append('password',  user.password);
-            data.append('profileImage', user.profileImage);
-            user.favoriteProduct.length > 1  && data.append('favoriteProduct',[...user.favoriteProduct])
-            data.append('ordersId',result.data._id)
+            data.append("password", user.password);
+            data.append("profileImage", user.profileImage);
+            user.favoriteProduct.length > 1 &&
+              data.append("favoriteProduct", [...user.favoriteProduct]);
+            data.append("ordersId", result.data._id);
             /* for (let key of data.keys())
             {
              
@@ -143,45 +147,38 @@ export default function CartModal() {
              console.log(key)
               }   */
 
-              fetch(`http://localhost:8000/users/${user._id}`, {
-                method: "PATCH",
-                headers: { token: localStorage.getItem("token") },
-                body: data
-              })
-                .then((res) => res.json())
-                .then((result) => {
-                  if (result.success) {
-                    
-                    homepageDispatch({ type: "setUser", payload: { data: result.data } });
-                    
-                    
-                    
-                  }  else {
-                      toast.error(result.message.message);            
-                    }
-                  
-                })
+            fetch(`   /users/${user._id}`, {
+              method: "PATCH",
+              headers: { token: localStorage.getItem("token") },
+              body: data,
+            })
+              .then((res) => res.json())
+              .then((result) => {
+                if (result.success) {
+                  homepageDispatch({
+                    type: "setUser",
+                    payload: { data: result.data },
+                  });
+                } else {
+                  toast.error(result.message.message);
+                }
+              });
 
-
-          productDispatch({
-            type: "resetCart",
-            payload: { data: [] },
-          });
-          productDispatch({
-            type: "setTotalPrice",
-            payload: { data: 0 },
-          })
-          productDispatch({ type: "setShowHideCartBtn" });
-        }
-        else {
-          console.log(result.message)
-        }
-      })
-   
-   
-    }//else
-    
-  }
+            productDispatch({
+              type: "resetCart",
+              payload: { data: [] },
+            });
+            productDispatch({
+              type: "setTotalPrice",
+              payload: { data: 0 },
+            });
+            productDispatch({ type: "setShowHideCartBtn" });
+          } else {
+            console.log(result.message);
+          }
+        });
+    } //else
+  };
 
   return (
     <div
@@ -198,7 +195,10 @@ export default function CartModal() {
           <p className=" mt-5 text-black-800 text-sm font-bold ">
             Total Price : ${totalPrice}
           </p>
-          <button onClick={checkoutHandler} className=" mt-5 text-black-800 text-sm font-bold border-1 border-black bg-black text-white p-3 shadow-white shadow-md hover:bg-white hover:text-black hover:shadow-lg hover:shadow-black">
+          <button
+            onClick={checkoutHandler}
+            className=" mt-5 text-black-800 text-sm font-bold border-1 border-black bg-black text-white p-3 shadow-white shadow-md hover:bg-white hover:text-black hover:shadow-lg hover:shadow-black"
+          >
             Proceed to checkout
           </button>
         </div>

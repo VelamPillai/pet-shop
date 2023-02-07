@@ -1,15 +1,15 @@
-import React, { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
-import { StoreContext } from '../../context/StoreContext.js';
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+import { StoreContext } from "../../context/StoreContext.js";
 
-import { TiTick } from 'react-icons/ti';
-import LoginImage from '../../image/loginImage.png';
+import { TiTick } from "react-icons/ti";
+import LoginImage from "../../image/loginImage.png";
 
 export default function Login() {
   const navigate = useNavigate();
 
-  const { homepageDispatch, loginState, loginDispatch,productDispatch } =
+  const { homepageDispatch, loginState, loginDispatch, productDispatch } =
     useContext(StoreContext);
 
   //onSubmit - loginHandler -form element
@@ -18,37 +18,37 @@ export default function Login() {
     e.preventDefault();
     const data = new FormData(e.target);
 
-    loginDispatch({ type: 'clearForm' });
+    loginDispatch({ type: "clearForm" });
 
     //to avoid empty email and password fields - to avoid token = null
-    data.get('email') &&
-      data.get('password') &&
-      fetch('http://localhost:8000/users/login', {
-        method: 'POST',
+    data.get("email") &&
+      data.get("password") &&
+      fetch("   /users/login", {
+        method: "POST",
         body: data,
       })
         .then((res) => {
-          const token = res.headers.get('token');
+          const token = res.headers.get("token");
           //only for valid username and Password , store the token in to the local storage.
-          token && localStorage.setItem('token', token);
+          token && localStorage.setItem("token", token);
 
           return res.json();
         })
         .then((result) => {
           if (result.success) {
-            toast.success('Logged in successfully');
+            toast.success("Logged in successfully");
             //console.log(result.data);
             //user
             homepageDispatch({
-              type: 'setUser',
+              type: "setUser",
               payload: { data: result.data },
             });
             //favorite product from database
             productDispatch({
-              type: 'setFavoriteProduct',
+              type: "setFavoriteProduct",
               payload: { data: result.data.favoriteProduct },
             });
-            setTimeout(() => navigate('/'), 2000);
+            setTimeout(() => navigate("/"), 2000);
           } else {
             toast.error(result.message);
           }
@@ -57,9 +57,8 @@ export default function Login() {
 
   const signUpHandler = (e) => {
     e.preventDefault();
-    navigate('/signup');
+    navigate("/signup");
   };
-
 
   return (
     <div className="flex justify-center items-center flex-col xl:flex-row w-[100%]  lg:border m-auto lg:m-1 rounded shadow-black shadow-xs ">
@@ -77,14 +76,14 @@ export default function Login() {
           className=" flex flex-col justify-center items-center w-[100%]"
         >
           <label className="flex flex-col justify-center item-center  text-xs md:text-md md:items-start m-[.25rem] md:m-[1rem] ">
-            Email:{' '}
+            Email:{" "}
             <input
               className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
               type="email"
               name="email"
               onChange={(e) =>
                 loginDispatch({
-                  type: 'onChange',
+                  type: "onChange",
 
                   payload: { name: e.target.name, data: e.target.value },
                 })
@@ -94,7 +93,7 @@ export default function Login() {
           </label>
 
           <label className="flex flex-col justify-center  text-xs md:text-md item-center md:items-start m-[.25rem] md:m-[1rem]">
-            Password:{' '}
+            Password:{" "}
             <div
               className="flex-col
             "
@@ -105,7 +104,7 @@ export default function Login() {
                 name="password"
                 onChange={(e) =>
                   loginDispatch({
-                    type: 'onChange',
+                    type: "onChange",
 
                     payload: { name: e.target.name, data: e.target.value },
                   })
@@ -117,31 +116,31 @@ export default function Login() {
           <div className="flex  flex-wrap md:flex-nowrap  align-start pl-2 md:pl-0  ">
             <div className="flex flex-row mr-1 font-thin  text-[12px] md:text-xs ">
               <sup>
-                {' '}
-                <TiTick />{' '}
-              </sup>{' '}
+                {" "}
+                <TiTick />{" "}
+              </sup>{" "}
               Mind. 8 Characters
             </div>
             <div className="flex flex-row mr-1 font-thin  text-[12px] md:text-xs ">
-              {' '}
+              {" "}
               <sup>
-                {' '}
-                <TiTick />{' '}
-              </sup>{' '}
+                {" "}
+                <TiTick />{" "}
+              </sup>{" "}
               AaBbCc
             </div>
             <div className="flex flex-row mr-1 font-thin  text-[12px] md:text-xs ">
               <sup>
-                {' '}
-                <TiTick />{' '}
-              </sup>{' '}
+                {" "}
+                <TiTick />{" "}
+              </sup>{" "}
               0-9
-            </div>{' '}
+            </div>{" "}
             <div className="flex flex-row mr-1 font-thin  text-[12px] md:text-xs ">
-              {' '}
+              {" "}
               <sup>
-                {' '}
-                <TiTick />{' '}
+                {" "}
+                <TiTick />{" "}
               </sup>
               !@#$%
             </div>
@@ -155,7 +154,7 @@ export default function Login() {
               onClick={signUpHandler}
               className=" text-red-500 font-bold text-xs md:text-md w-[100px] md:w-[200px] my-3 md:mx-auto md:my-[1rem] md:p-3  "
             >
-              {' '}
+              {" "}
               Sign Up
             </button>
           </div>
