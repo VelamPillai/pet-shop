@@ -40,6 +40,12 @@ app.use(express.json());
 
 //routes - custom middleware
 
+
+app.use(express.static("./views/build"));
+
+app.get('/', (req,res, next)=> {
+  res.sendFile("./views/build/index.html", { root: "." });
+})
 //GET ,POST,PATCH,DELETE - req '/user'endpoint and its controller
 
 app.use('/users', userRoute);
