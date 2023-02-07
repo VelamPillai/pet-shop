@@ -20,7 +20,7 @@ export default function Admin() {
     
     const handleMenuClick = (e) => {
       e.preventDefault();
-      e.target.textContent==='Product'?navigate('/displayProduct'):e.target.textContent==='Customers'?navigate('/displayCustomers'):e.target.textContent==='displayOrders'?navigate('/Orders'):navigate('/admin')
+      e.target.textContent==='Product'?navigate('/displayProduct'):e.target.textContent==='Customers'?navigate('/displayCustomers'):e.target.textContent==='Orders'?navigate('/displayOrders'):navigate('/admin')
     }
   return (
     <div>
