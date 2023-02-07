@@ -42,6 +42,7 @@ export default function Login() {
               type: 'setUser',
               payload: { data: result.data },
             });
+
             setTimeout(() => navigate('/'), 2000);
           } else {
             toast.error(result.message);
