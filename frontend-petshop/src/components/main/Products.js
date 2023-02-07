@@ -23,7 +23,7 @@ export default function Products() {
           day he goes for a jog from morning until dark.
         </p>
       </div>
-      <div className="grid md:grid-cols-4 gap-3 p-2 sm:grid-cols-1 mb-5 gap-y-16">
+      <div className="grid md:grid-cols-4 gap-3 p-2 grid-cols-1 mb-5 gap-y-6 ">
         {product && product
               .filter((item) => (item.productArrival === "new" )).slice(0, 8)
               .map((item) => (

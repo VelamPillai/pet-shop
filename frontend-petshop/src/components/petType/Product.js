@@ -51,7 +51,7 @@ export default function Product() {
           <p className="text-sm  text-gray-500 mb-2">
             {singleProduct.brand} - {singleProduct.petName}
           </p>
-          <p className="font-bold text-3xl  mb-1">
+          <p className="font-bold text-md md:text-3xl  mb-1">
             {singleProduct.productName}
           </p>
           <p className="text-xs my-4  text-gray-500">

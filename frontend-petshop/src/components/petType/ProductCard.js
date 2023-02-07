@@ -94,7 +94,7 @@ useEffect(()=>{
     
   }
   return (
-    <div onClick={showProductClick} className="flex flex-col border w-[250px] 2xl:w-[300px] h-[350px] bg-orange-100/50 box-border rounded-lg p-1 m-1 relative  ">
+    <div onClick={showProductClick} className="flex flex-col border w-[250px] 2xl:w-[300px] h-[375px] md:h-[350px] bg-orange-100/50 box-border rounded-lg p-1 m-1 relative  ">
       <Toaster />
       {product.sale && <p className={`absolute top-2 left-2  text-white bg-red-500 p-4 rounded-br-2xl `}>Sale</p>}
       {user &&

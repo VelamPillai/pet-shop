@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 
 const adminFeatures = [
   
-  "displayProduct",
-  "displayCustomers",
+  "Product",
+  "Customers",
  /*  "displaySingleCustomer", */
-  "displayOrders",
+  "Orders",
   /* "displaySingleOrder", */
 ];
 export default function Admin() {
@@ -20,12 +20,12 @@ export default function Admin() {
     
     const handleMenuClick = (e) => {
       e.preventDefault();
-      e.target.textContent==='displayProduct'?navigate('/displayProduct'):e.target.textContent==='displayCustomers'?navigate('/displayCustomers'):e.target.textContent==='displayOrders'?navigate('/displayOrders'):navigate('/admin')
+      e.target.textContent==='Product'?navigate('/displayProduct'):e.target.textContent==='Customers'?navigate('/displayCustomers'):e.target.textContent==='displayOrders'?navigate('/Orders'):navigate('/admin')
     }
   return (
     <div>
       <p
-        className=" text-xl flex justify-center items-center  font-bold"
+        className=" text-xl flex justify-center items-center  font-bold text-shadow md:mt-[1rem]"
         onClick={handleAdminClick}
       >
         Admin

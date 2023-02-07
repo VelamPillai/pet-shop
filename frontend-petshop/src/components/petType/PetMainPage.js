@@ -43,7 +43,7 @@ useEffect(()=>{
   
  
   return (
-    <div className="flex flex-col mt-[3rem] md:m-1 ">
+    <div className="flex flex-col mt-[3rem] md:m-[1rem]  ">
       <p className="flex justify-center items-center text-md font-bold " >
         {menuName.toUpperCase()}
       </p>
@@ -52,7 +52,7 @@ useEffect(()=>{
         {/* dog menu */}
         <PetMenu />
       </div>
-      <div className="flex flex-col md:flex-row justify:center items-center md:justify-between m-1 ">
+      <div className="flex flex-col md:flex-row justify:center items-center md:justify-between m-1  ">
         {/* products */}
 
         <p className=" mb-3 md:mb-0 text-xs md:text-md">
@@ -81,7 +81,7 @@ useEffect(()=>{
         </div>
 
         {/* products card */}
-        <div className="flex justify-center md:justify-start md:items-center w-3/4 flex-wrap ">
+        <div className="flex justify-center  md:justify-start md:items-center md: flex-wrap  ">
           {product && (menuName === "dog" || menuName === "cat")
             ? product
                 .filter(
@@ -112,7 +112,7 @@ useEffect(()=>{
           {viewBtn ? "show less" : "show more"}
         </button>
       </div>
-      <div>Payment methods</div>
+     {/*  <div>Payment methods</div> */}
     </div>
   );
 }

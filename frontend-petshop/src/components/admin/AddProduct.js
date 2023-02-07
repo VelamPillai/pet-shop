@@ -74,7 +74,7 @@ export default function AddProduct() {
   }
   return (
     <div>
-      <div className="flex justify-center items-center flex-wrap flex-col xl:flex-row  lg:border m-auto rounded shadow-black shadow-xs  mt-[3rem] md:mt-1">
+      <div className="flex justify-center items-center flex-wrap flex-col xl:flex-row  lg:border m-auto rounded shadow-black shadow-xs  mt-[3rem] md:mt-[1rem] bg-orange-200/50 p-3">
         <Toaster />
         
         <p className="  font-bold text-center ">Add New Product</p>

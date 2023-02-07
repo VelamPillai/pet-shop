@@ -2,7 +2,8 @@
 import React, { useState,useContext } from 'react';
 import {  NavLink } from "react-router-dom";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
-import FavoriteModal from "../modal/FavoriteModal";
+import FavoriteModal from "../modal/FavoriteModal.js";
+import CartModal from "../modal/CartModal.js";
 import toast, { Toaster } from 'react-hot-toast';
 
 import { FaAngleDoubleDown, FaAngleDoubleUp, FaCartPlus ,FaHeart} from "react-icons/fa";
@@ -21,17 +22,19 @@ const Navbar = () => {
   const { productDispatch,productState,homepageState} =
     useContext(StoreContext);
   
-  const { product ,favoriteProduct } = productState;
+  const { product ,favoriteProduct,cart } = productState;
   const { user } = homepageState;
   
-   //hideModalHandler -
+   //hideFavoriteModalHandler -
    const hideModalHandler = (e) => {
     productDispatch({type:"setShowHideFavoriteBtn"})
-}; 
+  }; 
+  //hideCartModalHandler
+  const hideCartModalHandler = (e) => {
+    productDispatch({type:"setShowHideCartBtn"})
+};
   //to set the petName to filter the products from the DB
   const handleMenuClick = (e) => {
-    
-   
     
     productDispatch({
       type: "setMenuName",
@@ -105,11 +108,10 @@ const Navbar = () => {
         className={
           !nav
             ? "hidden "
-            : "  z-20 w-[90vw]  absolute left-[-5rem]  top-[100px] mb-3 bg-orange-200 flex flex-col justify-center items-center md:hidden p-[1rem] "
+            : "  z-20 w-[100vw]  absolute left-[-5rem]  top-[100px] mb-3 bg-orange-200 flex flex-col justify-center items-center md:hidden p-[1rem] "
         } 
       >
-
-        <li className="py-1 text-xl ">
+      {user.role==='admin' &&  <li className="py-1 text-xl ">
           <NavLink
             to="/admin"
             className=" navHover my-3 border-box p-1 "
@@ -117,7 +119,8 @@ const Navbar = () => {
           >
             Admin
           </NavLink>
-        </li>
+        </li>}
+       
         <li className="py-1 text-xl ">
           <NavLink
             to="/petMainPage"
@@ -178,8 +181,16 @@ const Navbar = () => {
           <BsHeart  className="  p-2   hover:cursor-pointer " onClick={()=> toast.error('Please click Heart to add favorite products')} /></p>
         }
             </div> }
-        <FaCartPlus className="  p-2  hover:cursor-pointer" />
+      {/*   <FaCartPlus className="  p-2  hover:cursor-pointer" /> 
+      */}
+              {cart && <div className=" border-r border-orange-500 p-1 relative">
+                {cart.length ?
+                  <p ><FaCartPlus onClick={hideCartModalHandler} className="  p-2  text-orange-600  hover:cursor-pointer " /><span className="absolute text-sm top-0 right-0 text-orange-600  p-1">{cart.length}</span></p> :
+                  <FaCartPlus onClick={() => toast.error('Please add Product to cart to show the cart products')} className="  p-2   hover:cursor-pointer " />
         
+                }
+              </div>
+              }
       </div>
           </NavLink>
         </li>

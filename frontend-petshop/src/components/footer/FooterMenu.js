@@ -18,9 +18,10 @@ export default function FooterMenu() {
     'Stores',
   ];
   return (
-    <div className="flex justify-between items-center mt-3 flex-col md:flex-row">
-      <Menu title="Products" menuItem={products} />
+    <div className="flex flex-col md:flex-row justify-around items-center mt-3  ">
+        <Menu title="Products" menuItem={products} />
       <Menu title="Our Company" menuItem={company} />
+     
       <FooterAddress />
     </div>
   );

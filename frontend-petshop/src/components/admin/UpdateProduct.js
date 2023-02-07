@@ -74,10 +74,10 @@ export default function UpdateProduct() {
 
   return (
     <div>
-      <div className="flex justify-center items-center flex-wrap flex-col xl:flex-row  lg:border m-auto rounded shadow-black shadow-xs mt-[3rem] md:mt-1">
+      <div className="flex justify-center items-center flex-wrap flex-col xl:flex-row  lg:border m-auto rounded shadow-black shadow-xs mt-[3rem] md:mt-[1rem]">
         <Toaster />
         
-        <p className="  font-bold text-center ">Update Product</p>
+        <p className="  font-bold text-center text-shadow">Update Product</p>
 
         <form onSubmit={updateProduct } className=" grid md:grid-cols-3 justify-center items-center w-[100%]">
           <label className="flex flex-col  justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
@@ -300,7 +300,7 @@ export default function UpdateProduct() {
             />
             
           </label>
-          <button className="bg-orange-500 justify-center items-center w-[150px] md:w-[300px]  my-3 md:mx-auto md:my-[1rem] md:p-1 rounded shadow-black shadow-md hover:bg-green-600  h-[30px] lg:box-content">
+          <button className="bg-orange-500 justify-center items-center w-[200px] md:w-[300px]  my-3 md:mx-auto md:my-[1rem] md:p-1 rounded shadow-black shadow-md hover:bg-green-600  h-[30px] lg:box-content">
             UpdateProduct
           </button>
         </form>

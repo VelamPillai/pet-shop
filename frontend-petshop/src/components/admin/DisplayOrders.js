@@ -87,7 +87,7 @@ export default function DisplayOrders() {
   return (
       <div className="w-[100%] flex flex-col items-center mt-[3rem] md:mt-1">
           <Toaster />
-          <p className="font-bold text-xl mb-3">Orders</p>    
+          <p className="font-bold text-xl mb-3 text-shadow">Orders</p>    
           <div>
           <div className='flex justify-around  items-center w-[900px] h-[100px] bg-green-600/50 rounded-lg m-2 p-4  shadow-black shadow-inner'>
           
