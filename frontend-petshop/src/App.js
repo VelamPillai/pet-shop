@@ -25,11 +25,15 @@ import PetMainPage from "./components/petType/PetMainPage.js";
 import PetSubMenuPage from "./components/petType/PetSubMenuPage.js";
 import Brand from "./components/petType/Brand.js"
 import Product from "./components/petType/Product";
+
 import Admin from "./components/admin/Admin.js"
 import AddProduct from "./components/admin/AddProduct";
 import DisplayProduct from "./components/admin/DisplayProduct";
 import UpdateProduct from "./components/admin/UpdateProduct";
 import DisplayCustomers from "./components/admin/DisplayCustomers";
+import DisplayOrders from "./components/admin/DisplayOrders";
+import UpdateOrder from "./components/admin/UpdateOrder";
+
 import SearchedProduct from "./components/header/SearchedProduct";
 
 
@@ -110,7 +114,10 @@ function App() {
           <Route index={false} path="addProduct" element={<AddProduct />} />
           <Route index={false} path="displayProduct" element={<DisplayProduct />} />
           <Route index={false} path="updateProduct" element={<UpdateProduct />} />
-          <Route index={false} path="displayCustomers" element={<DisplayCustomers/>} />
+          <Route index={false} path="displayCustomers" element={<DisplayCustomers />} />
+          <Route index={false} path="displayOrders" element={<DisplayOrders />} />
+          <Route index={false} path="updateOrder" element={<UpdateOrder />} />
+          
           
         <Route index={false}   path="petMainPage" element={<PetMainPage />} / >
         

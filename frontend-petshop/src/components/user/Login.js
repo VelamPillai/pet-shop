@@ -37,7 +37,7 @@ export default function Login() {
         .then((result) => {
           if (result.success) {
             toast.success('Logged in successfully');
-            console.log(result.data);
+            //console.log(result.data);
             //user
             homepageDispatch({
               type: 'setUser',

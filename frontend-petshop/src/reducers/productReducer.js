@@ -130,7 +130,7 @@ export const productReducer = (state, action) => {
         
       };
     }
-    case "resetOrderCart": {
+    case "resetOrder": {
       
       return {
         ...state,

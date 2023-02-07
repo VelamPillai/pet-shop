@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import ProductCard from "../petType/ProductCard.js";
+
 import toast, { Toaster } from "react-hot-toast";
 
 import { StoreContext } from "../../context/StoreContext.js";
+import OrderCard from "./OrderCard.js";
 
 
 import { AiFillDelete } from "react-icons/ai";
@@ -17,17 +18,41 @@ export default function DisplayOrders() {
     const { productState, productDispatch, adminDispatch} = useContext(StoreContext);
     
     const { order } = productState;
+
+    //get all orders
+    useEffect( () => {
+        fetch("http://localhost:8000/orders/userOrders", {
+            method: "GET",
+      
+          })
+            .then((res) => res.json())
+            .then((result) => {
+                if (result.success) {
+                    
+                productDispatch({
+      
+                  type: "resetOrder",
+                  payload: { data: result.data },
+                });
+                
+              } else {
+                console.log("error");
+              }
+            });
+          
+        
+    },[])
     
-    //adProductHandler
+   /*  //adProductHandler
     const dispalyOrderHandler =()=>{
       navigate("/addProduct")
-    }
+    } */
 
     //delete handler
     const deleteHandler = (id) => {
         
       
-    fetch(`http://localhost:8000/orders/${id}`, {
+    fetch(`http://localhost:8000/orders/deleteOrder/${id}`, {
       method: "DELETE",
       headers: { token: localStorage.getItem("token") }      
     })
@@ -35,9 +60,10 @@ export default function DisplayOrders() {
       .then((result) => {
           if (result.success) {
             
-             toast.success('Product has Deleted');
+              toast.success('order has Deleted');
+              console.log('delete',order)
             productDispatch({
-                type: "setProduct",
+                type: "resetOrder",
                 payload: { data: result.data },
               });           
         }
@@ -50,28 +76,37 @@ export default function DisplayOrders() {
     }
     
      //update handler
-    const updateHandler = (product) => {
+    const updateHandler = (order) => {
         
          adminDispatch({
-            type: "setProduct",
-            payload: { data:product },
+            type: "setOrder",
+            payload: { data:order },
           });  
-        navigate('/updateProduct') 
+        navigate('/updateOrder') 
     }
   return (
-      <div className="flex flex-col items-center mt-[3rem] md:mt-1">
+      <div className="w-[100%] flex flex-col items-center mt-[3rem] md:mt-1">
           <Toaster />
-          <p className="font-bold text-xl mb-3">Products</p>    
+          <p className="font-bold text-xl mb-3">Orders</p>    
           <div>
-              <ul className="grid grid-cols-1 md:grid-cols-4">
+          <div className='flex justify-around  items-center w-[900px] h-[100px] bg-green-600/50 rounded-lg m-2 p-4  shadow-black shadow-inner'>
+          
+          <p className='mr-5'>Order No </p>
+          <p className='mr-5'>TotalPrice in $</p>
+                  <p className='mr-5'>orderedDate</p>
+                  <p className='mr-5'>Carrier</p>
+          <p className='mr-5'>status</p>
+          
+    </div>
+              <ul className="grid grid-cols-1 w-[100%] ">
                   
-              {product && 
-                      product.map((item, idx) => {
+              {order && 
+                      order.map((item, idx) => {
                           return (
                               <li key={idx}    className="flex flex-row justify-center items-center relative ">
-                                  <ProductCard product={{ ...item }} />
-                                  <div className="flex flex-col"><button onClick={ () => updateHandler(item)} className=" text-lg text-green-600 font-bold justify-center items-center  m-3 p-2 rounded shadow-black shadow-md hover:bg-green-200   lg:box-content absolute top-0 right-5"><MdUpdate /></button>
-                                      <button onClick={ () => deleteHandler(item._id)} className="text-lg text-red-600 font-bold justify-center items-center  m-3 p-2 rounded shadow-black shadow-md hover:bg-red-100   lg:box-content absolute top-10 right-5"><AiFillDelete /></button></div>
+                                  <OrderCard order={{ ...item }} />
+                                  <div className="flex flex-row "><button onClick={ () => updateHandler(item)} className=" text-lg text-green-600 font-bold justify-center items-center  m-3 p-1 rounded shadow-black shadow-md hover:bg-green-200   lg:box-content "><MdUpdate /></button>
+                                      <button onClick={ () => deleteHandler(item._id)} className="text-lg text-red-600 font-bold justify-center items-center  m-3 p-1 rounded shadow-black shadow-md hover:bg-red-100   lg:box-content "><AiFillDelete /></button></div>
                                   
                               </li>
                       )
@@ -80,10 +115,7 @@ export default function DisplayOrders() {
                   }
                   
               </ul>
-              <div onClick={addProductHandler} className="  border w-[220px] h-[220px] md:w-[250px] 2xl:w-[300px] h-[340px] text-green-600 box-border rounded-lg p-1 m-1 border-green-600 border-4  ">
-              <p className="flex justify-center items-center text-[7rem]">+</p>
-
-              </div>
+             
               
           </div>
       </div>

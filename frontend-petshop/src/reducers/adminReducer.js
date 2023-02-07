@@ -34,15 +34,15 @@ export const adminReducer = (state, action) => {
             productArrival: '',
             productImage:''
             
-            
-
-        
-            
-            
-            
-
         }
-        }
+      }
+      case "setOrder": {
+       
+        return {
+          ...state,
+          order: payload.data 
+        };
+      }
       default: {
         return state;
       }

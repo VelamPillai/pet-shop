@@ -60,8 +60,11 @@ const updateOrder = async (req, res, next) => {
     console.log('update',req.params.id)
     try {
         const id = req.params.id;
-    const order = await orderCollection.findByIdAndUpdate(id, req.body, { new: true });
-       res.json({ success: true, data: order })
+             
+        const order = await orderCollection.findByIdAndUpdate(id, req.body, { new: true });
+        
+        const orders = await orderCollection.find();
+       res.json({ success: true, data: orders })
    } 
     catch (err) {
         next(err)
