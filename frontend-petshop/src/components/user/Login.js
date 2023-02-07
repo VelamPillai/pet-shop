@@ -9,7 +9,7 @@ import LoginImage from '../../image/loginImage.png';
 export default function Login() {
   const navigate = useNavigate();
 
-  const { homepageDispatch, loginState, loginDispatch } =
+  const { homepageDispatch, loginState, loginDispatch,productDispatch } =
     useContext(StoreContext);
 
   //onSubmit - loginHandler -form element
@@ -38,11 +38,16 @@ export default function Login() {
           if (result.success) {
             toast.success('Logged in successfully');
             console.log(result.data);
+            //user
             homepageDispatch({
               type: 'setUser',
               payload: { data: result.data },
             });
-
+            //favorite product from database
+            productDispatch({
+              type: 'setFavoriteProduct',
+              payload: { data: result.data.favoriteProduct },
+            });
             setTimeout(() => navigate('/'), 2000);
           } else {
             toast.error(result.message);
