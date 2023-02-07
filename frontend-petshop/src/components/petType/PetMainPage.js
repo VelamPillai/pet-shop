@@ -15,13 +15,18 @@ export default function PetMainPage() {
   const [viewBtn, setViewBtn] = useState(false); 
   
 
-  const { productState} = useContext(StoreContext);
+  const { productState,productDispatch} = useContext(StoreContext);
 
   const { product, menuName} = productState;
 
   //to display less product while the first load of the page
 useEffect(()=>{ 
   setViewBtn(false);
+  productDispatch({
+
+    type: "setProduct",
+    payload: { data:product },
+  });
   
     
 }, [menuName])

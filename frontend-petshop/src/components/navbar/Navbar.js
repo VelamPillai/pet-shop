@@ -21,7 +21,7 @@ const Navbar = () => {
   const { productDispatch,productState,homepageState} =
     useContext(StoreContext);
   
-  const { product ,favoriteProduct ,showHideFavoriteBtn} = productState;
+  const { product ,favoriteProduct } = productState;
   const { user } = homepageState;
   
    //hideModalHandler -

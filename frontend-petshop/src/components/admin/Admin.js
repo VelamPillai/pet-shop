@@ -5,9 +5,9 @@ const adminFeatures = [
   
   "displayProduct",
   "displayCustomers",
-  "displaySingleCustomer",
+ /*  "displaySingleCustomer", */
   "displayOrders",
-  "displaySingleOrder",
+  /* "displaySingleOrder", */
 ];
 export default function Admin() {
     const [display, setDisplay] = useState(true);

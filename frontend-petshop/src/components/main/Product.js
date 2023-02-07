@@ -5,6 +5,7 @@ import {  HiOutlineHeart, HiOutlineSearch, HiOutlineShoppingBag, HiPlusSm } from
 
 
 export default function Product({ product }) {
+  console.log(product)
   
   return (
     <div className="flex relative">

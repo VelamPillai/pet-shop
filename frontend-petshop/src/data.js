@@ -24,7 +24,7 @@ export const petCategories = [
     title: "Cat",
     cat: "cat"
   },
-  {
+  /* {
     id: 3,
     img: fish,
     title: "Fish",
@@ -47,7 +47,7 @@ export const petCategories = [
     img: bird,
     title: "Bird",
     cat: "bird"
-  },
+  }, */
 ];
 
 export const productsOfWeek = [
