@@ -122,11 +122,11 @@ export const productReducer = (state, action) => {
         
       };
     }
-    case "setOrderCart": {
+    case "setOrder": {
       
       return {
         ...state,
-        orderCart:[...state.cart,...state.orderCart,payload.data]
+        order:[...state.order,payload.data]
         
       };
     }
@@ -134,7 +134,7 @@ export const productReducer = (state, action) => {
       
       return {
         ...state,
-        orderCart:[...payload.data]
+        order:[...payload.data]
         
       };
     }
