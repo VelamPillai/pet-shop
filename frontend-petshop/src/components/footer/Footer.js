@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <div className='p-[2rem] box-border w-[100%] '>
       <Newsletter />
-      <FooterMenu />
+      <FooterMenu  />
       <hr className="mt-3 pt-[1rem]" />
       <CopyRights />
     </div>

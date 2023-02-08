@@ -11,6 +11,9 @@ import {
  
 } from '../controller/productController.js';
 
+import verifyToken from '../middlewares/verifyToken.js';
+import isAdmin from '../middlewares/isAdmin.js';
+
 /* import { ProductInputValidation } from '../middlewares/ProductInputValidation.js'; */
 
 
@@ -29,11 +32,11 @@ route.get('/:id',  getSingleProduct);
 
 
 //PATCH - update Product
- route.patch('/:id',  updateProduct); 
+ route.patch('/:id', verifyToken, isAdmin, updateProduct); 
 
 //DELETE - delete Product
-//route.delete('/:id', verifyToken, isAdmin, deleteProduct);
-route.delete('/:id', deleteProduct); 
+route.delete('/:id', verifyToken, isAdmin, deleteProduct);
+//route.delete('/:id', deleteProduct); 
 
 
 

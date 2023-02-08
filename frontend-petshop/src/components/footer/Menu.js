@@ -30,13 +30,13 @@ export default function Menu({ title, menuItem }) {
 
   return (
     <div>
-      <p className="text-1xl font-bold uppercase">{title}</p>
-      <ul>
+      <p className="text-[16px] md:text-lg font-bold uppercase">{title}</p>
+      <ul >
         {menuItem.map((item, idx) => {
           return (
             <li
               onClick={footerHandler}
-              className="text-xs m-2 hover:cursor-pointer hover:text-yellow-600"
+              className="text-[16px] md:text-xs md:m-1 hover:cursor-pointer hover:text-yellow-600"
               key={idx}
             >
               {item}

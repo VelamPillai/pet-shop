@@ -32,7 +32,7 @@ export default function Sort() {
     <div>
         <div>
           <button
-            className=" bg-orange-100/75 hover:bg-orange-200 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-orange-600 "
+            className=" text-xs bg-orange-100/75 hover:bg-orange-200 focus:ring-4 focus:outline-none focus:ring-orange-300 md:font-medium rounded-lg md:text-sm  md:px-4 py-2.5 text-center inline-flex items-center dark:bg-orange-600 "
             type="button"
             onClick={handleBtnClick}
           >
@@ -43,10 +43,10 @@ export default function Sort() {
           
           {!hideOption && (
             <div
-              className="z-10  bg-orange-100 divide-y divide-orange-100 rounded-lg shadow w-[280px] dark:bg-orange-700 "
+              className="z-10  bg-orange-100 divide-y divide-orange-100 rounded-lg shadow w-[200px] md:w-[280px] dark:bg-orange-700 "
               
             >
-              <ul className="p-3 space-y-1 text-sm text-orange-700 ">
+              <ul className="p-3 space-y-1 text-xs md:text-sm text-orange-700 ">
                 <li>
                   <div className="flex p-2 rounded hover:bg-orange-100/50">
                     <div className="flex items-center h-5">
@@ -54,12 +54,12 @@ export default function Sort() {
                         name="sortOption"
                         type="radio"
                         value="Recommended"
-                        className="w-4 h-4 text-orange-600 bg-orange-100 border-orange-300 focus:ring-orange-500 "
+                        className="w-4 h-4 text-orange-600 bg-orange-100 border-orange-300 focus:ring-orange-500  "
                         onChange={handleSortClick}
                       />
                     </div>
-                    <div className="ml-2 text-sm">
-                      <label className="font-medium text-gray-900 ">
+                    <div className="ml-2 text-xs md:text-sm ">
+                      <label className="md:font-medium text-gray-900 ">
                         <div>Recommended</div>
                       </label>
                     </div>
@@ -76,8 +76,8 @@ export default function Sort() {
                         onChange={handleSortClick}
                       />
                     </div>
-                    <div className="ml-2 text-sm">
-                      <label className="font-medium text-gray-900 ">
+                    <div className="ml-2 text-xs md:text-sm ">
+                      <label className="md:font-medium text-gray-900 ">
                         <div>Price(high-low)</div>
                       </label>
                     </div>
@@ -94,8 +94,8 @@ export default function Sort() {
                         onChange={handleSortClick}
                       />
                     </div>
-                    <div className="ml-2 text-sm">
-                      <label className="font-medium text-gray-900 ">
+                    <div className="ml-2 text-xs md:text-sm ">
+                      <label className="md:font-medium text-gray-900 ">
                         <div>Price(low-high)</div>
                       </label>
                     </div>

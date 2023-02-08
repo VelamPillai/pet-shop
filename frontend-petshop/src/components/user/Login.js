@@ -9,7 +9,7 @@ import LoginImage from '../../image/loginImage.png';
 export default function Login() {
   const navigate = useNavigate();
 
-  const { homepageDispatch, loginState, loginDispatch } =
+  const { homepageDispatch, loginState, loginDispatch,productDispatch } =
     useContext(StoreContext);
 
   //onSubmit - loginHandler -form element
@@ -37,10 +37,16 @@ export default function Login() {
         .then((result) => {
           if (result.success) {
             toast.success('Logged in successfully');
-            console.log(result.data);
+            //console.log(result.data);
+            //user
             homepageDispatch({
               type: 'setUser',
               payload: { data: result.data },
+            });
+            //favorite product from database
+            productDispatch({
+              type: 'setFavoriteProduct',
+              payload: { data: result.data.favoriteProduct },
             });
             setTimeout(() => navigate('/'), 2000);
           } else {
@@ -56,16 +62,16 @@ export default function Login() {
 
 
   return (
-    <div className="flex justify-center items-center flex-col xl:flex-row w-[100%]  lg:border m-auto lg:m-[1rem] rounded shadow-black shadow-xs ">
+    <div className="flex justify-center items-center flex-col xl:flex-row w-[100%]  lg:border m-auto lg:m-1 rounded shadow-black shadow-xs ">
       <Toaster />
       <img
         src={LoginImage}
         alt="login-pic"
-        className="rounded  drop-shadow-xl   lg:w-[700px] lg:h-[700px] lg:ml-[6rem] "
+        className="rounded  drop-shadow-xl   lg:w-[500px] lg:h-[500px] lg:ml-[6rem] "
       />
 
-      <div className="flex flex-col justify-center items-center border lg:border-0 w-[100%]  p-[1rem] mb-[1rem] md:p-[3rem] lg:h-[900px] ">
-        <p className="m-[.25rem] md:m-[1rem] font-bold text-center ">LOGIN</p>
+      <div className="flex flex-col justify-center items-center border lg:border-0 w-[100%]  p-[1rem] mb-[1rem] md:p-[1rem] lg:h-[550px] ">
+        <p className="m-[.25rem]  font-bold text-center ">LOGIN</p>
         <form
           onSubmit={loginHandler}
           className=" flex flex-col justify-center items-center w-[100%]"

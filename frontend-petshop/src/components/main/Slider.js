@@ -20,7 +20,7 @@ export default function Slider({slides}) {
         setCurrentIndex(slideIndex)
     }
   return (
-    <div className='h-full relative '>
+    <div className='h-full relative w-[100%] '>
         <div className='absolute top-[50%] translate-y-[-50%] left-[32px] text-3xl text-white z-10 cursor-pointer' onClick={goToPrevious}><HiArrowLeft /></div>
         <div className='absolute top-[50%] translate-y-[-50%] right-[32px] text-3xl text-white z-10 cursor-pointer' onClick={goToNext}><HiArrowRight /></div>
         <div className="w-full h-full rounded-xl bg-center bg-cover " style={{backgroundImage: `url(${slides[currentIndex].url})`}}></div>
