@@ -69,16 +69,16 @@ export default function Login() {
         className="rounded  drop-shadow-xl   lg:w-[500px] lg:h-[500px] lg:ml-[6rem] "
       />
 
-      <div className="flex flex-col justify-center items-center border lg:border-0 w-[100%]  p-[1rem] mb-[1rem] md:p-[1rem] lg:h-[550px] ">
+      <div className="flex flex-col justify-center items-center border lg:border-0 w-[100%]  p-[1rem] mb-[1rem]  sm:p-[1rem] lg:h-[550px] ">
         <p className="m-[.25rem]  font-bold text-center ">LOGIN</p>
         <form
           onSubmit={loginHandler}
           className=" flex flex-col justify-center items-center w-[100%]"
         >
-          <label className="flex flex-col justify-center item-center  text-xs md:text-md md:items-start m-[.25rem] md:m-[1rem] ">
+          <label className="flex flex-col justify-center item-center  text-xs  sm:text-md  sm:items-start m-[.25rem]  sm:m-[1rem] ">
             Email:{" "}
             <input
-              className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+              className="border border-slate-200 rounded w-[150px]  sm:w-[400px] h-[50px] "
               type="email"
               name="email"
               onChange={(e) =>
@@ -92,14 +92,14 @@ export default function Login() {
             />
           </label>
 
-          <label className="flex flex-col justify-center  text-xs md:text-md item-center md:items-start m-[.25rem] md:m-[1rem]">
+          <label className="flex flex-col justify-center  text-xs  sm:text-md item-center  sm:items-start m-[.25rem]  sm:m-[1rem]">
             Password:{" "}
             <div
               className="flex-col
             "
             >
               <input
-                className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+                className="border border-slate-200 rounded w-[150px]  sm:w-[400px] h-[50px] "
                 type="password"
                 name="password"
                 onChange={(e) =>
@@ -113,15 +113,15 @@ export default function Login() {
               />
             </div>
           </label>
-          <div className="flex  flex-wrap md:flex-nowrap  align-start pl-2 md:pl-0  ">
-            <div className="flex flex-row mr-1 font-thin  text-[12px] md:text-xs ">
+          <div className="flex  flex-wrap  sm:flex-nowrap  align-start pl-2  sm:pl-0  ">
+            <div className="flex flex-row mr-1 font-thin  text-[12px]  sm:text-xs ">
               <sup>
                 {" "}
                 <TiTick />{" "}
               </sup>{" "}
               Mind. 8 Characters
             </div>
-            <div className="flex flex-row mr-1 font-thin  text-[12px] md:text-xs ">
+            <div className="flex flex-row mr-1 font-thin  text-[12px]  sm:text-xs ">
               {" "}
               <sup>
                 {" "}
@@ -129,14 +129,14 @@ export default function Login() {
               </sup>{" "}
               AaBbCc
             </div>
-            <div className="flex flex-row mr-1 font-thin  text-[12px] md:text-xs ">
+            <div className="flex flex-row mr-1 font-thin  text-[12px]  sm:text-xs ">
               <sup>
                 {" "}
                 <TiTick />{" "}
               </sup>{" "}
               0-9
             </div>{" "}
-            <div className="flex flex-row mr-1 font-thin  text-[12px] md:text-xs ">
+            <div className="flex flex-row mr-1 font-thin  text-[12px]  sm:text-xs ">
               {" "}
               <sup>
                 {" "}
@@ -145,14 +145,14 @@ export default function Login() {
               !@#$%
             </div>
           </div>
-          <button className="bg-orange-500 justify-center items-center w-[100px] md:w-[400px]  my-3 text-xs md:text-mdmd:mx-auto md:my-[1rem] md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">
+          <button className="bg-orange-500 justify-center items-center w-[100px]  sm:w-[400px]  my-3 text-xs  sm:text-md sm:mx-auto  sm:my-[1rem]  sm:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">
             LOG IN
           </button>
           <div className="mt-[2rem]   flex  flex-col lg:flex-row justify-center items-center">
-            <p className="  md:p-1 text-xs "> Don't have an account? </p>
+            <p className="   sm:p-1 text-xs "> Don't have an account? </p>
             <button
               onClick={signUpHandler}
-              className=" text-red-500 font-bold text-xs md:text-md w-[100px] md:w-[200px] my-3 md:mx-auto md:my-[1rem] md:p-3  "
+              className=" text-red-500 font-bold text-xs  sm:text-md w-[100px]  sm:w-[200px] my-3  sm:mx-auto  sm:my-[1rem]  sm:p-3  "
             >
               {" "}
               Sign Up

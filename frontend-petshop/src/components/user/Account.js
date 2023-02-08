@@ -98,80 +98,80 @@ export default function Account() {
   };
   return (
     <div>
-      <div className="flex  flex-col justify-center items-center  md:flex-row w-[100%]  lg:border mx-auto my-[4rem] md:m-0  rounded shadow-black shadow-lg">
-        <div className="flex flex-col w-[40%]  p-2 md:p-1">
+      <div className="flex  flex-col justify-center items-center   sm:flex-row w-[100%]  lg:border mx-auto my-[4rem]  sm:m-0  rounded shadow-black shadow-lg">
+        <div className="flex flex-col w-[40%]  p-2  sm:p-1">
           <img
             src={user.profileImage}
             alt="profile"
-            className="m-auto rounded-[50%] w-[300px] md:visible"
+            className="m-auto rounded-[50%] w-[300px]  sm:visible"
           />
-          <div className="flex justify-center items-center flex-col md:flex-row">
+          <div className="flex justify-center items-center flex-col  sm:flex-row">
             <button
               onClick={profileHandler}
-              className="bg-gradient-to-r from-orange-500 to-yellow-600 text-xs hover:bg-gradient-to-l justify-center items-center w-[150px] md:w-[200px] m-3 md:mx-auto md:my-[1rem] md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content"
+              className="bg-gradient-to-r from-orange-500 to-yellow-600 text-xs hover:bg-gradient-to-l justify-center items-center w-[150px]  sm:w-[200px] m-3  sm:mx-auto  sm:my-[1rem]  sm:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content"
             >
               Profile
             </button>
             {/* <button
               onClick={profileHandler}
-              className="bg-gradient-to-r from-orange-500 to-yellow-600 text-xs hover:bg-gradient-to-l justify-center items-center w-[150px] md:w-[200px] m-3 md:mx-[1rem] md:my-[1rem] md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content"
+              className="bg-gradient-to-r from-orange-500 to-yellow-600 text-xs hover:bg-gradient-to-l justify-center items-center w-[150px]  sm:w-[200px] m-3  sm:mx-[1rem]  sm:my-[1rem]  sm:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content"
             >
               Notification
             </button> */}
             <button
               onClick={profileHandler}
-              className="bg-gradient-to-r from-orange-500 to-yellow-600 text-xs hover:bg-gradient-to-l justify-center items-center w-[150px] md:w-[200px]  m-3 md:mx-auto md:my-[1rem] md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content"
+              className="bg-gradient-to-r from-orange-500 to-yellow-600 text-xs hover:bg-gradient-to-l justify-center items-center w-[150px]  sm:w-[200px]  m-3  sm:mx-auto  sm:my-[1rem]  sm:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content"
             >
               Delete
             </button>
           </div>
         </div>
 
-        <div className="flex justify-center items-center flex-col w-[100%] md:w-[60%] lg:border   bg-gradient-to-r from-orange-500 to-yellow-600 text hover:bg-gradient-to-l">
-          <div className="flex flex-col justify-center items-center border lg:border-0 w-[100%]  p-[1rem] mb-[1rem] md:p-1 lg:h-[900px] ">
+        <div className="flex justify-center items-center flex-col w-[100%]  sm:w-[60%] lg:border   bg-gradient-to-r from-orange-500 to-yellow-600 text hover:bg-gradient-to-l">
+          <div className="flex flex-col justify-center items-center border lg:border-0 w-[100%]  p-[1rem] mb-[1rem]  sm:p-1 lg:h-[900px] ">
             <p className="m-[.25rem]  font-bold text-center "> ACCOUNT</p>
 
             <form
               className=" flex flex-col justify-center items-center w-[100%]"
               onSubmit={updateUserHandler}
             >
-              <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem] ">
+              <label className="flex flex-col justify-center item-center text-xs  sm:text-md  sm:items-start m-[.25rem] ">
                 First Name :{" "}
                 <input
-                  className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+                  className="border border-slate-200 rounded w-[150px]  sm:w-[400px] h-[50px] "
                   type="text"
                   name="firstName"
                   defaultValue={user.firstName}
                 />
               </label>
-              <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
+              <label className="flex flex-col justify-center item-center text-xs  sm:text-md  sm:items-start m-[.25rem]  ">
                 Last Name :{" "}
                 <input
                   type="text"
                   name="lastName"
                   defaultValue={user.lastName}
-                  className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+                  className="border border-slate-200 rounded w-[150px]  sm:w-[400px] h-[50px] "
                 />
               </label>
 
-              <label className="flex flex-col justify-center item-center text-xs md:text-md  md:items-start m-[.25rem]  ">
+              <label className="flex flex-col justify-center item-center text-xs  sm:text-md   sm:items-start m-[.25rem]  ">
                 Password:{" "}
                 <input
-                  className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+                  className="border border-slate-200 rounded w-[150px]  sm:w-[400px] h-[50px] "
                   type="password"
                   name="password"
                   placeholder="****"
                 />
               </label>
-              <div className="flex  flex-wrap md:flex-nowrap  align-start pl-2 md:pl-0  ">
-                <div className="flex flex-row mr-1 font-thin  text-[12px] md:text-xs ">
+              <div className="flex  flex-wrap  sm:flex-nowrap  align-start pl-2  sm:pl-0  ">
+                <div className="flex flex-row mr-1 font-thin  text-[12px]  sm:text-xs ">
                   <sup>
                     {" "}
                     <TiTick />{" "}
                   </sup>{" "}
                   Mind. 8 Characters
                 </div>
-                <div className="flex flex-row mr-1 font-thin  text-[12px] md:text-xs ">
+                <div className="flex flex-row mr-1 font-thin  text-[12px]  sm:text-xs ">
                   {" "}
                   <sup>
                     {" "}
@@ -179,14 +179,14 @@ export default function Account() {
                   </sup>{" "}
                   AaBbCc
                 </div>
-                <div className="flex flex-row mr-1 font-thin  text-[12px] md:text-xs ">
+                <div className="flex flex-row mr-1 font-thin  text-[12px]  sm:text-xs ">
                   <sup>
                     {" "}
                     <TiTick />{" "}
                   </sup>{" "}
                   0-9
                 </div>{" "}
-                <div className="flex flex-row mr-1 font-thin  text-[12px] md:text-xs ">
+                <div className="flex flex-row mr-1 font-thin  text-[12px]  sm:text-xs ">
                   {" "}
                   <sup>
                     {" "}
@@ -195,16 +195,16 @@ export default function Account() {
                   !@#$%
                 </div>
               </div>
-              <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
+              <label className="flex flex-col justify-center item-center text-xs  sm:text-md  sm:items-start m-[.25rem]  ">
                 Profile Image:{" "}
                 <input
-                  className=" py-2 border border-slate-200 rounded bg-white w-[150px] md:w-[400px] h-[50px] "
+                  className=" py-2 border border-slate-200 rounded bg-white w-[150px]  sm:w-[400px] h-[50px] "
                   type="file"
                   name="profileImage"
                 />
                 <img src={user.profileImage} width="50px" alt="profileImage" />
               </label>
-              <button className="bg-orange-500 justify-center items-center w-[100px] md:w-[200px]  my-3 md:mx-auto  md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">
+              <button className="bg-orange-500 justify-center items-center w-[100px]  sm:w-[200px]  my-3  sm:mx-auto   sm:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">
                 update
               </button>
             </form>

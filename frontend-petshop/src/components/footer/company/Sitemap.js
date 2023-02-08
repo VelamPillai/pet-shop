@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 export default function Sitemap() {
   return (
-    <div className="flex flex-col justify-center items-center md:mt-[5rem]">
+    <div className="flex flex-col justify-center items-center  sm:mt-[5rem]">
       Sitemap
     </div>
   );

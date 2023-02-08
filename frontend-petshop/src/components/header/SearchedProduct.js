@@ -5,7 +5,7 @@ import { StoreContext } from "../../context/StoreContext.js";
 import Sort from "../petType/Sort.js";
 import ProductCard from "../petType/ProductCard.js";
 export default function SearchedProduct() {
-  const { productState} = useContext(StoreContext);
+  const { productState } = useContext(StoreContext);
 
   const { searchedProduct } = productState;
   const [viewBtn, setViewBtn] = useState(false);
@@ -17,10 +17,10 @@ export default function SearchedProduct() {
   return (
     <div className="mt-[3rem] md-1">
       SearchedProduct
-      <div className="flex flex-col md:flex-row justify:center items-center md:justify-between m-1 ">
+      <div className="flex flex-col  sm:flex-row justify:center items-center  sm:justify-between m-1 ">
         {/* products */}
-        <p className=" mb-3 md:mb-0 text-xs md:text-md">
-          <span className="md:font-bold">
+        <p className=" mb-3  sm:mb-0 text-xs  sm:text-md">
+          <span className=" sm:font-bold">
             {searchedProduct && searchedProduct.length}
           </span>{" "}
           products
@@ -29,7 +29,7 @@ export default function SearchedProduct() {
         <Sort />
       </div>
       {/* products card */}
-      <div className="flex justify-center md:justify-start md:items-center w-3/4 flex-wrap ">
+      <div className="flex justify-center  sm:justify-start  sm:items-center w-3/4 flex-wrap ">
         {searchedProduct &&
           searchedProduct.map(
             (item, idx) =>

@@ -70,11 +70,11 @@ export default function DisplayOrders() {
     navigate("/updateOrder");
   };
   return (
-    <div className="w-[100%] flex flex-col items-center mt-[3rem] md:mt-1">
+    <div className="w-[100%] flex flex-col items-center mt-[3rem]  sm:mt-1">
       <Toaster />
       <p className="font-bold text-xl mb-3 text-shadow">Orders</p>
       <div>
-        <div className="flex justify-around  items-center w-[900px] h-[100px] bg-green-600/50 rounded-lg m-2 p-4  shadow-black shadow-inner">
+        <div className="flex justify-around  items-center flex-col sm:flex-row w-[400px] sm:w-[900px] sm:h-[100px] bg-green-600/50 rounded-lg m-2 p-4  shadow-black shadow-inner">
           <p className="mr-5">Order No </p>
           <p className="mr-5">TotalPrice in $</p>
           <p className="mr-5">orderedDate</p>
@@ -90,7 +90,7 @@ export default function DisplayOrders() {
                   className="flex flex-row justify-center items-center relative "
                 >
                   <OrderCard order={{ ...item }} />
-                  <div className="flex flex-row ">
+                  <div className="flex flex-col sm:flex-row ">
                     <button
                       onClick={() => updateHandler(item)}
                       className=" text-lg text-green-600 font-bold justify-center items-center  m-3 p-1 rounded shadow-black shadow-md hover:bg-green-200   lg:box-content "

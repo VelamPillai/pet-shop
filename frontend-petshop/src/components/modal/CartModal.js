@@ -182,7 +182,7 @@ export default function CartModal() {
 
   return (
     <div
-      className={`bg-orange-400 fixed right-[5px] height-[100vh]  md:right-0  inset-y-0  z-50 w-[100%] md:w-[100%] ${
+      className={`bg-orange-400 fixed right-[5px] height-[100vh]   sm:right-0  inset-y-0  z-50 w-[100%]  sm:w-[100%] ${
         showHideCartBtn ? "visible" : "invisible"
       }`}
     >
@@ -205,11 +205,11 @@ export default function CartModal() {
 
         <p
           onClick={hideCartModalHandler}
-          className="top-0 right-10 md:right-5 absolute cursor-pointer  text-black-500 text-[3rem]"
+          className="top-0 right-10  sm:right-5 absolute cursor-pointer  text-black-500 text-[3rem]"
         >
           x
         </p>
-        <div className="flex flex-col justify-center items-center top-[30%] md:top-10 absolute  md:p-0">
+        <div className="flex flex-col justify-center items-center top-[30%]  sm:top-10 absolute   sm:p-0">
           <ul className="flex flex-col p-3 ">
             {/*  {product &&
                 product
@@ -224,39 +224,39 @@ export default function CartModal() {
                     <img
                       src={item.productImage}
                       alt="card-pic"
-                      className=" w-[75px] h-[75px] md:w-[150px] md:h-[150px] md:mr-4 p-1"
+                      className=" w-[75px] h-[75px]  sm:w-[150px]  sm:h-[150px]  sm:mr-4 p-1"
                     />
-                    <div className="w-[75px] h-[75px] md:w-[250px] md:h-[150px] mr-4 md:p-1 ">
-                      <p className="font-bold text-[10px] md:text-[.5rem] text-black-500  leading-3">
+                    <div className="w-[75px] h-[75px]  sm:w-[250px]  sm:h-[150px] mr-4  sm:p-1 ">
+                      <p className="font-bold text-[10px]  sm:text-[.5rem] text-black-500  leading-3">
                         {item.productName}
                       </p>
-                      <p className="font-bold text-[10px] md:text-[.5rem] text-black-500  leading-3">
+                      <p className="font-bold text-[10px]  sm:text-[.5rem] text-black-500  leading-3">
                         {item.brand}
                       </p>
                     </div>
-                    <div className="flex md:ml-4">
+                    <div className="flex  sm:ml-4">
                       <button
                         onClick={() => increase(item._id)}
-                        className="w-[25px] h-[50px] md:w-[50px] bg-orange-500 mr-1 md:mr-5 shadow-md  shadow-black rounded-md"
+                        className="w-[25px] h-[50px]  sm:w-[50px] bg-orange-500 mr-1  sm:mr-5 shadow-md  shadow-black rounded-md"
                       >
                         +
                       </button>
                       <p className="text-md">{item.quantity}</p>
                       <button
                         onClick={() => decrease(item._id)}
-                        className="w-[25px] h-[50px] md:w-[50px] bg-orange-500 ml-1 md:ml-5 shadow-md rounded-md shadow-black"
+                        className="w-[25px] h-[50px]  sm:w-[50px] bg-orange-500 ml-1  sm:ml-5 shadow-md rounded-md shadow-black"
                       >
                         {" "}
                         -
                       </button>
                     </div>
 
-                    <p className="ml-1 md:ml-[5rem] text-sm  ">
+                    <p className="ml-1  sm:ml-[5rem] text-sm  ">
                       ${(item.quantity * item.price).toFixed(2)}
                     </p>
                     <AiFillDelete
                       onClick={(e) => deleteCartItem(item._id)}
-                      className="md:mx-[6rem] text-red-900"
+                      className=" sm:mx-[6rem] text-red-900"
                     />
                   </li>
                 );

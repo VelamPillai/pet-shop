@@ -53,19 +53,19 @@ export default function UpdateOrder() {
   return (
     <div>
       <p className="  font-bold text-center mt-[2rem] ">Update Order</p>
-      <div className="flex justify-center items-center flex-wrap w-[500px] flex-col xl:flex-row  lg:border m-auto rounded shadow-black shadow-xs mt-[5rem] md:mt-[3rem] bg-orange-200 p-3">
+      <div className="flex justify-center items-center flex-wrap w-[500px] flex-col xl:flex-row  lg:border m-auto rounded shadow-black shadow-xs mt-[5rem]  sm:mt-[3rem] bg-orange-200 p-3">
         <Toaster />
 
         <form
           onSubmit={updateOrder}
-          className=" grid md:grid-cols-1 justify-center items-center w-[100%]"
+          className=" grid  sm:grid-cols-1 justify-center items-center w-[100%]"
         >
           <p className="font-bold">Order No : {order._id}</p>
 
-          <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
+          <label className="flex flex-col justify-center item-center text-xs  sm:text-md  sm:items-start m-[.25rem]  ">
             Status :{" "}
             <select
-              className="border border-slate-200 rounded w-[150px] lg:w-[300px] md:w-[200px] h-[50px] hover:bg-orange-500/50 "
+              className="border border-slate-200 rounded w-[150px] lg:w-[300px]  sm:w-[200px] h-[50px] hover:bg-orange-500/50 "
               name="status"
               /* onChange={(e) => adminDispatch({
             type: "onChange",
@@ -80,10 +80,10 @@ export default function UpdateOrder() {
               <option value="shipped">Shipped</option>
             </select>
           </label>
-          <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
+          <label className="flex flex-col justify-center item-center text-xs  sm:text-md  sm:items-start m-[.25rem]  ">
             Carrier :{" "}
             <select
-              className="border border-slate-200 rounded w-[150px] md:w-[200px] lg:w-[300px] h-[50px]   hover:bg-orange-500/50"
+              className="border border-slate-200 rounded w-[150px]  sm:w-[200px] lg:w-[300px] h-[50px]   hover:bg-orange-500/50"
               name="carrier"
               /* onChange={(e) => adminDispatch({
             type: "onChange",
@@ -99,7 +99,7 @@ export default function UpdateOrder() {
             </select>
           </label>
 
-          <button className="bg-orange-500 justify-center items-center w-[150px] md:w-[300px]  my-3 md:mx-auto md:my-[1rem] md:p-1 rounded shadow-black shadow-md hover:bg-green-600  h-[30px] lg:box-content">
+          <button className="bg-orange-500 justify-center items-center w-[150px]  sm:w-[300px]  my-3  sm:mx-auto  sm:my-[1rem]  sm:p-1 rounded shadow-black shadow-md hover:bg-green-600  h-[30px] lg:box-content">
             UpdateOrder
           </button>
         </form>

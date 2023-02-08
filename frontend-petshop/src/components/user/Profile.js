@@ -44,41 +44,41 @@ export default function Profile() {
       <p className="flex justify-center items-center text-[1rem] font-bold  ">
         Profile
       </p>
-      <div className="flex  flex-col justify-center items-center  xl:flex-row w-[100%]  lg:border mx-auto my-[1rem] md:m-[1rem] rounded shadow-black shadow-lg">
+      <div className="flex  flex-col justify-center items-center  xl:flex-row w-[100%]  lg:border mx-auto my-[1rem]  sm:m-[1rem] rounded shadow-black shadow-lg">
         <div className="flex flex-col w-[40%]  p-5">
           <img
             src={user.profileImage}
             alt="profile"
-            className="m-auto rounded-[50%]  md:visible"
+            className="m-auto rounded-[50%]   sm:visible"
           />
-          <div className="flex justify-center items-center flex-col md:flex-row">
+          <div className="flex justify-center items-center flex-col  sm:flex-row">
             <button
               onClick={profileHandler}
-              className="bg-gradient-to-r from-orange-500 to-yellow-600 text-xs hover:bg-gradient-to-l justify-center items-center w-[150px] md:w-[200px] m-3 md:mx-auto md:my-[1rem] md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content"
+              className="bg-gradient-to-r from-orange-500 to-yellow-600 text-xs hover:bg-gradient-to-l justify-center items-center w-[150px]  sm:w-[200px] m-3  sm:mx-auto  sm:my-[1rem]  sm:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content"
             >
               Account
             </button>
-           {/*  <button
+            {/*  <button
               onClick={profileHandler}
-              className="bg-gradient-to-r from-orange-500 to-yellow-600 text-xs hover:bg-gradient-to-l justify-center items-center w-[150px] md:w-[200px] m-3 md:mx-[1rem] md:my-[1rem] md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content"
+              className="bg-gradient-to-r from-orange-500 to-yellow-600 text-xs hover:bg-gradient-to-l justify-center items-center w-[150px]  sm:w-[200px] m-3  sm:mx-[1rem]  sm:my-[1rem]  sm:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content"
             >
               Notification
             </button> */}
             <button
               onClick={() => deleteHandler(user._id)}
-              className="bg-gradient-to-r from-orange-500 to-yellow-600 text-xs hover:bg-gradient-to-l justify-center items-center w-[150px] md:w-[200px]  m-3 md:mx-auto md:my-[1rem] md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content"
+              className="bg-gradient-to-r from-orange-500 to-yellow-600 text-xs hover:bg-gradient-to-l justify-center items-center w-[150px]  sm:w-[200px]  m-3  sm:mx-auto  sm:my-[1rem]  sm:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content"
             >
               Delete
             </button>
           </div>
         </div>
 
-        <div className="flex justify-center items-center flex-col w-[100%] md:h-[100%] md:w-[60%] lg:border p-3  bg-gradient-to-r from-orange-500 to-yellow-600 text hover:bg-gradient-to-l md:mr-5 rounded-tl-[10rem] rounded-br-[10rem]">
-          <div className="flex justify-center items-start md:w-[100%] ">
+        <div className="flex justify-center items-center flex-col w-[100%]  sm:h-[100%]  sm:w-[60%] lg:border p-3  bg-gradient-to-r from-orange-500 to-yellow-600 text hover:bg-gradient-to-l  sm:mr-5 rounded-tl-[10rem] rounded-br-[10rem]">
+          <div className="flex justify-center items-start  sm:w-[100%] ">
             <CgProfile className=" mr-2" />
             <p className="font-bold">Profile Information</p>
           </div>
-          <div className="flex  items-center  md:p-5 flex-col md:w-[75%]">
+          <div className="flex  items-center   sm:p-5 flex-col  sm:w-[75%]">
             <p className="m-5"> first Name : {user.firstName}</p>
             <p className="m-5">Last Name : {user.lastName}</p>
             <p className="m-5">Email : {user.email}</p>

@@ -76,17 +76,17 @@ export default function Signup() {
         className="rounded  drop-shadow-xl lg:w-[500px] lg:h-[500px] lg:ml-[6rem] "
       />
 
-      <div className="flex flex-col justify-center items-center border lg:border-0 w-[100%]  p-[1rem] mb-[1rem] md:p-[3rem] lg:h-[550px] ">
+      <div className="flex flex-col justify-center items-center border lg:border-0 w-[100%]  p-[1rem] mb-[1rem]  sm:p-[3rem] lg:h-[550px] ">
         <p className="m-[.25rem] font-bold text-center ">CREATE AN ACCOUNT</p>
 
         <form
           className=" flex flex-col justify-center items-center w-[100%]"
           onSubmit={registerUser}
         >
-          <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
+          <label className="flex flex-col justify-center item-center text-xs  sm:text-md  sm:items-start m-[.25rem]  ">
             First Name :{" "}
             <input
-              className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+              className="border border-slate-200 rounded w-[150px]  sm:w-[400px] h-[50px] "
               type="text"
               name="firstName"
               onChange={(e) =>
@@ -98,12 +98,12 @@ export default function Signup() {
               value={signupState.firstName}
             />
           </label>
-          <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
+          <label className="flex flex-col justify-center item-center text-xs  sm:text-md  sm:items-start m-[.25rem]  ">
             Last Name :{" "}
             <input
               type="text"
               name="lastName"
-              className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+              className="border border-slate-200 rounded w-[150px]  sm:w-[400px] h-[50px] "
               onChange={(e) =>
                 signupDispatch({
                   type: "onChange",
@@ -113,10 +113,10 @@ export default function Signup() {
               value={signupState.lastName}
             />
           </label>
-          <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
+          <label className="flex flex-col justify-center item-center text-xs  sm:text-md  sm:items-start m-[.25rem]  ">
             Email :{" "}
             <input
-              className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+              className="border border-slate-200 rounded w-[150px]  sm:w-[400px] h-[50px] "
               type="email"
               name="email"
               onChange={(e) =>
@@ -128,10 +128,10 @@ export default function Signup() {
               value={signupState.email}
             />
           </label>
-          <label className="flex flex-col justify-center item-center text-xs md:text-md  md:items-start m-[.25rem] ">
+          <label className="flex flex-col justify-center item-center text-xs  sm:text-md   sm:items-start m-[.25rem] ">
             Password:{" "}
             <input
-              className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+              className="border border-slate-200 rounded w-[150px]  sm:w-[400px] h-[50px] "
               type="password"
               name="password"
               onChange={(e) =>
@@ -143,15 +143,15 @@ export default function Signup() {
               value={signupState.password}
             />
           </label>
-          <div className="flex  flex-wrap md:flex-nowrap  align-start pl-2 md:pl-0  ">
-            <div className="flex flex-row mr-1 font-thin  text-[12px] md:text-xs ">
+          <div className="flex  flex-wrap  sm:flex-nowrap  align-start pl-2  sm:pl-0  ">
+            <div className="flex flex-row mr-1 font-thin  text-[12px]  sm:text-xs ">
               <sup>
                 {" "}
                 <TiTick />{" "}
               </sup>{" "}
               Mind. 8 Characters
             </div>
-            <div className="flex flex-row mr-1 font-thin  text-[12px] md:text-xs ">
+            <div className="flex flex-row mr-1 font-thin  text-[12px]  sm:text-xs ">
               {" "}
               <sup>
                 {" "}
@@ -159,14 +159,14 @@ export default function Signup() {
               </sup>{" "}
               AaBbCc
             </div>
-            <div className="flex flex-row mr-1 font-thin  text-[12px] md:text-xs ">
+            <div className="flex flex-row mr-1 font-thin  text-[12px]  sm:text-xs ">
               <sup>
                 {" "}
                 <TiTick />{" "}
               </sup>{" "}
               0-9
             </div>{" "}
-            <div className="flex flex-row mr-1 font-thin  text-[12px] md:text-xs ">
+            <div className="flex flex-row mr-1 font-thin  text-[12px]  sm:text-xs ">
               {" "}
               <sup>
                 {" "}
@@ -175,10 +175,10 @@ export default function Signup() {
               !@#$%
             </div>
           </div>
-          <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
+          <label className="flex flex-col justify-center item-center text-xs  sm:text-md  sm:items-start m-[.25rem]  ">
             Profile Image:{" "}
             <input
-              className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+              className="border border-slate-200 rounded w-[150px]  sm:w-[400px] h-[50px] "
               type="file"
               name="profileImage"
               onChange={(e) => {
@@ -192,7 +192,7 @@ export default function Signup() {
               }}
             />
           </label>
-          <button className="bg-orange-500 justify-center items-center w-[100px] md:w-[400px]  my-1 md:mx-auto  md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">
+          <button className="bg-orange-500 justify-center items-center w-[100px]  sm:w-[400px]  my-1  sm:mx-auto   sm:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">
             SIGN UP
           </button>
         </form>

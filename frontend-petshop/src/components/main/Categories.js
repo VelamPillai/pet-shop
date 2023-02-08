@@ -2,8 +2,6 @@ import { petCategories } from "../../data.js";
 import CategoryItem from "./CategoryItem";
 
 export default function Categories() {
-
-  
   return (
     <div>
       <div className="mt-24 ">
@@ -13,9 +11,9 @@ export default function Categories() {
           day he goes for a jog from morning until dark.
         </p>
       </div>
-      <div className="grid md:grid-cols-2 p-2 gap-8 sm:grid-cols-1 ">
+      <div className="grid  sm:grid-cols-2 p-2 gap-8 sm:grid-cols-1 ">
         {petCategories.map((item) => (
-          <CategoryItem  item={item} key={item.id} />
+          <CategoryItem item={item} key={item.id} />
         ))}
       </div>
     </div>

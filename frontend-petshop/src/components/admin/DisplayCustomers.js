@@ -26,7 +26,7 @@ export default function DisplayCustomers() {
   return (
     <div className="mt-[3rem]">
       <p className="text-center font-bold text-xl text-shadow">Customers</p>
-      <ul className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-[1rem]">
+      <ul className="grid grid-cols-1  sm:grid-cols-3 gap-4 mt-[1rem]">
         {customers &&
           customers.map((item, idx) => (
             <li

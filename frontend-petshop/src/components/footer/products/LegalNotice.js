@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 export default function LegalNotice() {
   return (
-    <div className="flex flex-col justify-center items-center md:m-[5rem]">
+    <div className="flex flex-col justify-center items-center  sm:m-[5rem]">
       <h1 className=" font-bold">Legal Notice</h1>
 
       <p className=" pt-[2rem]">
