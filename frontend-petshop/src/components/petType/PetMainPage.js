@@ -1,10 +1,12 @@
 import React, { useContext,useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { BsFillEyeSlashFill, BsFillEyeFill} from "react-icons/bs";
 
 import Sort from "./Sort";
 import PetMenu from "./PetMenu.js";
 import SideMenu from "./SideMenu.js";
 import ProductCard from "./ProductCard.js";
+
 
 
 import { StoreContext } from "../../context/StoreContext.js";
@@ -27,7 +29,10 @@ useEffect(()=>{
     type: "setProduct",
     payload: { data:product },
   });
-  
+  productDispatch({
+    type: "resetSideMenuProduct",
+   
+  })
     
 }, [menuName])
   
@@ -54,7 +59,7 @@ useEffect(()=>{
       </div>
       <div className="flex flex-col md:flex-row justify:center items-center md:justify-between m-1  ">
         {/* products */}
-
+        <div className="flex justify-between items-center gap-[8rem]">
         <p className=" mb-3 md:mb-0 text-xs md:text-md">
           <span className="md:font-bold">
           {product && (menuName === "dog" || menuName === "cat")
@@ -71,12 +76,16 @@ useEffect(()=>{
           </span>{" "}
           products
         </p>
+        
+          
+</div>
+       
         {/* search - drop down menu - filter */}
         <Sort />
       </div>
-      <div className="flex justify-between mt-5">
+      <div className="flex justify-between w-[1/4] mt-5">
         {/* side menu */}
-        <div className="w-1/4 hidden  md:flex">
+        <div className="w-1/4 hidden  md:flex mr-5">
            <SideMenu />  
         </div>
 
@@ -99,19 +108,21 @@ useEffect(()=>{
                 ))
              
              
-            }
+          }
+          <div className="flex justify-start items-center m-2 relative">
+      <p
+          /* className=" p-2 m-2 ring-2 ring-orange-500 rounded bg-orange-200/25 hover:ring-green-500 hover:bg-green-100/25" */
+          className=" flex justify-center items-center border w-[350px] 2xl:w-[300px] h-[400px] md:h-[400px] bg-orange-400/50 box-border rounded-lg p-4 m-1 text-[4rem] text-green-800"
+          onClick={handleBtnClick}
+        >
+          {viewBtn ? <BsFillEyeSlashFill className="text-red-600"/> : <BsFillEyeFill />}
+        </p>
+        
+      </div>
         </div>
         
       </div>
-      <div className="flex justify-end items-center m-2 relative">
-        
-        <button
-          className=" p-2 m-2 ring-2 ring-orange-500 rounded bg-orange-200/25 hover:ring-green-500 hover:bg-green-100/25"
-          onClick={handleBtnClick}
-        >
-          {viewBtn ? "show less" : "show more"}
-        </button>
-      </div>
+      
      {/*  <div>Payment methods</div> */}
     </div>
   );

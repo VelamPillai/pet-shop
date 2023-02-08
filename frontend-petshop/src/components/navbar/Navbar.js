@@ -57,7 +57,7 @@ const Navbar = () => {
   
   
   return (
-    <div className=" md:sticky w-full md:h-[50px] flex  justify-between items-center font-bold  md:text-xs text-orange-500 ">
+    <div className=" md:sticky w-[100vw] md:h-[50px] flex  justify-center items-center font-bold  md:text-xs text-orange-500  shadow-lg shadow-gray-500 ">
       
       {/* menu */}
 
@@ -70,28 +70,28 @@ const Navbar = () => {
         </li>}
      
         <li >
-          <NavLink to="/petMainPage" onClick={ handleMenuClick} className=" md:leading-7     lg:p-[2rem] md:p-[1rem]  md:hover:underline " >
+          <NavLink to="/petMainPage" onClick={ handleMenuClick} className=" md:leading-7     lg:p-[2rem] md:p-[1rem]  md:hover:underline  md:focus:text-green-600" >
             Dog 
           </NavLink> 
           
         </li>
         <li>
-          <NavLink to="/petMainPage"  onClick={ handleMenuClick} className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[1rem]">
+          <NavLink to="/petMainPage"  onClick={ handleMenuClick} className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[2rem] md:p-[1rem] md:focus:text-green-600">
             Cat
           </NavLink>
         </li>
         <li>
-          <NavLink to="/brand"  onClick={ handleMenuBrandClick } className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[1rem]">
+          <NavLink to="/brand"  onClick={ handleMenuBrandClick } className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[2rem] md:p-[1rem] md:focus:text-green-600">
             Brand
           </NavLink>
         </li>
         <li>
-          <NavLink to="/blogs"  onClick={ handleMenuClick}className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[1rem]">
+          <NavLink to="/blogs"  onClick={ handleMenuClick}className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[2rem] md:p-[1rem] md:focus:text-green-600">
             Blogs
           </NavLink>
               </li>
               <li>
-          <NavLink to="/petMainPage" onClick={ handleMenuClick} className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[.5rem] text-green-800 animate-ping hover:animate-none">
+          <NavLink to="/petMainPage" onClick={ handleMenuClick} className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[.5rem] text-green-800 animate-ping hover:animate-none md:focus:text-orange-600 focus:animate-none">
           Sale %
           </NavLink>
         </li>

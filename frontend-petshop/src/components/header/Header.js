@@ -17,7 +17,7 @@ export default function Header() {
   };
 
   return (
-    <div className="flex flex-col md:justify-between items-center  md:shadow  md:m-1  z-50 w-[100vw] fixed top-0 bg-white ">
+    <div className="flex flex-col md:justify-between items-center  md:shadow  md:m-1  z-50 w-[100vw] fixed top-0 bg-white  mt-0 sm:h-[200px]    ">
       <div
         onClick={homePageHandler}
         className=" font-bold  flex md:hidden justify-center items-center"

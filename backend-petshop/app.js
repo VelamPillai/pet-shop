@@ -23,7 +23,7 @@ import orderRoute from './routes/orderRoute.js';
 //create and initialize express server
 const app = express();
 
-//for monnogoose error
+//for mongoose error
 mongoose.set('strictQuery', true);
 
 //cors config

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Sort from "./Sort";
@@ -9,11 +9,16 @@ import PetMenu from "./PetMenu.js";
 import { StoreContext } from "../../context/StoreContext.js";
 
 export default function PetSubMenuPage() {
-  const { productState } = useContext(StoreContext);
+  const { productState ,productDispatch} = useContext(StoreContext);
 
-  const { product, menuName,subMenuName } = productState;
+  const { product, menuName,subMenuName,sideMenuProduct } = productState;
    
-  
+  useEffect(() => {
+    productDispatch({
+      type: "resetSideMenuProduct",
+      
+    })
+  },[])
 
   return (
     <div className="flex flex-col mt-[3rem] md:m-1">

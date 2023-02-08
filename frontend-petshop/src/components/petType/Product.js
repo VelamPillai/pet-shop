@@ -1,11 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext} from "react";
 import { useNavigate } from "react-router-dom";
 
 
 import { StoreContext } from "../../context/StoreContext.js";
 
-import { GiBasket } from "react-icons/gi";
-import { Navigate } from "react-router-dom";
+
 import toast , {Toaster} from "react-hot-toast";
 export default function Product() {
   const navigate = useNavigate();
@@ -14,7 +13,7 @@ export default function Product() {
   const { user } = homepageState;
   const { singleProduct,cart,menuName } = productState;
 
-  const [addCart, setAddCart] = useState(true);
+  
 
   //event handler to handle Cart click
   const handleCartClick = (e) => {
@@ -44,7 +43,7 @@ export default function Product() {
           <img
             src={singleProduct.productImage}
             alt="card-pic"
-            className=" w-[300px] h-[300px]"
+            className=" w-[300px] h-[300px] rounded-lg shadow-lg shadow-gray-500"
           />
         </div>
         <div className="w-[2/4] m-1 p-1 md:m-5 md:p-5">

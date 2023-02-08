@@ -15,7 +15,7 @@ export default function CartModal() {
 
   const { user } = homepageState;
 
-  const { cart, product, showHideCartBtn,totalPrice } = productState;
+  const { cart,  showHideCartBtn,totalPrice } = productState;
 
   //hideModalHandler -
   const hideCartModalHandler = (e) => {

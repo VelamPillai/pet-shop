@@ -2,7 +2,7 @@ import React,{useContext, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 
-
+import { TbBasketOff,TbBasket} from "react-icons/tb";
 
 import { BsHeartFill,BsHeart } from "react-icons/bs";
 import { StoreContext } from "../../context/StoreContext.js";
@@ -12,7 +12,7 @@ export default function ProductCard({ product }) {
   const navigate = useNavigate();
   const { productDispatch ,productState,homepageState,homepageDispatch} = useContext(StoreContext);
   const { user } = homepageState;
-  const { favoriteProduct } = productState;
+  const { favoriteProduct ,cart} = productState;
 
 useEffect(()=>{
   user && 
@@ -60,13 +60,10 @@ useEffect(()=>{
             
             homepageDispatch({ type: "setUser", payload: { data: result.data } });
             
-            
-            
           }  else {
               toast.error(result.message);            
             }
-          
-        })  }
+           })  }
         else{
           toast.error("Please Login to add favorite items")
           
@@ -75,9 +72,37 @@ useEffect(()=>{
           },2000)
         }
     
-     
-   
   }
+
+//event handler to handle Cart click
+  const handleCartClick = (e) => {
+    e.stopPropagation();
+    cart.map(item => item._id).includes(product._id) ? toast.error('product is exists in the Cart') :
+      productDispatch({
+        type: 'setCart',
+        payload: { data: product }
+      })
+  }
+
+  const deleteCartItem = (e) => {
+    e.stopPropagation();
+    productDispatch({
+      type: "resetCart",
+      payload: { data: [...cart].filter((item) => item._id !== product._id) },
+    });
+
+    cart.length === 1
+      ? productDispatch({
+        type: "setTotalPrice",
+        payload: { data: 0 },
+      })
+      :  productDispatch({
+        type: "setTotalPrice",
+        payload: { data: cart
+          .reduce((acc, item) => (acc += item.price * item.quantity), 0)
+          .toFixed(2) },
+      });
+  };
  
   //event handler to navigate to single product page
 
@@ -89,19 +114,24 @@ useEffect(()=>{
      
     });
     
-     navigate('/product') 
+     navigate('/product')  
     
     
   }
   return (
-    <div onClick={showProductClick} className="flex flex-col border w-[250px] 2xl:w-[300px] h-[375px] md:h-[350px] bg-orange-100/50 box-border rounded-lg p-1 m-1 relative  ">
+    <div onClick={showProductClick} className="flex flex-col border w-[350px] sm:w-[300px] h-[400px] md:h-[400px] bg-orange-400/50 box-border rounded-lg p-5 m-2 relative  ">
       <Toaster />
-      {product.sale && <p className={`absolute top-2 left-2  text-white bg-red-500 p-4 rounded-br-2xl `}>Sale</p>}
+      {product.sale && <p className={`absolute top-[-.25rem] left-[-.25rem]  text-white bg-red-500 p-3 rounded-br-2xl `}>Sale</p>}
+      
+      {cart &&
+        (user.role === 'admin') ? null : (cart.map(item => item._id).includes(product._id) ? <TbBasket onClick={deleteCartItem} className={`absolute top-10 right-3 text-3xl text-green-700 hover:text-green-700/75 hover:text-4xl `} /> : <TbBasketOff onClick={handleCartClick} className={`absolute top-10 right-3 text-3xl text-orange-700 hover:text-orange-700/75 hover:text-4xl`} />)
+        }
+     
       {user &&
         (user.role === 'user') ?
-      user?.favoriteProduct?.includes(product._id) ?<BsHeartFill onClick={FavoriteProductHandler }className={`absolute top-3 right-4 text-xl text-orange-700 hover:text-orange-700/75 hover:text-2xl `}/> : <BsHeart onClick={FavoriteProductHandler } className={`absolute top-3 right-4 text-xl text-orange-700 hover:text-orange-700/75 hover:text-2xl`}/>  : null }
+      user?.favoriteProduct?.includes(product._id) ?<BsHeartFill onClick={FavoriteProductHandler }className={`absolute top-3 right-4 text-2xl text-orange-700 hover:text-orange-700/75 hover:text-3xl `}/> : <BsHeart onClick={FavoriteProductHandler } className={`absolute top-3 right-4 text-2xl text-orange-700 hover:text-orange-700/75 hover:text-3xl`}/>  : null }
       
-      <img src={product.productImage} alt="card-pic" className="w-[100%] h-[150px] mb-1" />
+      <img src={product.productImage} alt="card-pic" className="w-[50%] h-[150px] mb-1 text-center mx-auto rounded-lg shadow-md shadow-gray-500" />
       <p className="text-sm  text-gray-500">
         {product.brand} - {product.petName}
       </p>

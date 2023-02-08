@@ -61,7 +61,11 @@ export default function DisplayProduct() {
   return (
       <div className="flex flex-col items-center mt-[3rem] md:mt-[2rem]">
           <Toaster />
-          <p className="font-bold text-xl mb-3 text-shadow">Products</p>    
+      <p className="font-bold text-xl mb-3 text-shadow">Products</p>  
+      <div onClick={addProductHandler} className=" w-[220px]  md:w-[250px] 2xl:w-[300px] h-[340px] text-green-600 box-border rounded-lg p-1 m-1 border-green-600 border-4  ">
+              <p className="flex justify-center items-center text-[7rem]">+</p>
+
+              </div>
           <div>
               <ul className="grid grid-cols-1 md:grid-cols-4">
                   
@@ -82,10 +86,7 @@ export default function DisplayProduct() {
                   }
                   
               </ul>
-              <div onClick={addProductHandler} className=" w-[220px]  md:w-[250px] 2xl:w-[300px] h-[340px] text-green-600 box-border rounded-lg p-1 m-1 border-green-600 border-4  ">
-              <p className="flex justify-center items-center text-[7rem]">+</p>
-
-              </div>
+              
               
           </div>
       </div>

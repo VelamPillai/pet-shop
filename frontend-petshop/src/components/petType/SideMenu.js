@@ -1,7 +1,13 @@
 import React, { useContext, useState, useEffect } from "react";
+import { MdUnfoldLess ,MdUnfoldMore } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 import { StoreContext } from "../../context/StoreContext.js";
-export default function Sidemenu() {
+
+
+
+export default function SideMenu() {
+  const navigate = useNavigate();
   const [btn, setBtn] = useState(false);
 
   const { productState, productDispatch } = useContext(StoreContext);
@@ -48,6 +54,15 @@ export default function Sidemenu() {
     setBtn((btn) => !btn);
   };
 
+  //handleSideMenuClick
+  const handleSideMenuClick = (brand) => {
+    productDispatch({
+      type: "setSideMenuProduct",
+      payload:{data:brand}
+    })
+    navigate('/petSideMenuPage')
+  }
+
   return (
     <div className="border-2 m-1 p-5 rounded-lg bg-orange-100 ">
       <p className="font-bold text-lg mb-2">Brand</p>
@@ -57,7 +72,7 @@ export default function Sidemenu() {
             (item, idx) =>
               idx <= (btn ?   sideMenuBrand.length : 2) && (
                 <div key={idx}>
-                  <input type="checkbox" name="brand" value={item} />
+                    <input onClick={ ()=>handleSideMenuClick(item)} type="checkbox" name="brand" value={item} />
                   <label className="ml-3">
                     {item[0].toUpperCase() + item.slice(1, item.length )}
                   </label>
@@ -67,10 +82,10 @@ export default function Sidemenu() {
       </div>
       <div className="flex justify-center ">
         <button
-          className=" border bg-orange-500 p-1 rounded-md hover:bg-orange-400 m-2"
+          className=" border bg-orange-500 p-1 rounded-md hover:bg-orange-400 m-2 shadow-lg shadow-black"
           onClick={handleBtnClick}
         >
-          {btn ? "show less" : "show more"}
+          {btn ? <MdUnfoldLess /> : <MdUnfoldMore />}
         </button>
       </div>
     </div>

@@ -39,6 +39,24 @@ export const productReducer = (state, action) => {
         ),
       };
     }
+    case "setSideMenuProduct": {
+      return {
+        ...state,
+         sideMenuProduct:[...new Set([...state.sideMenuProduct,...[...state.product].filter(
+          (item) =>
+            ((item.petName === state.menuName || item.petName === "dog/cat") ||
+            (item.productCategory === state.subMenuName) )&& (item.brand===payload.data)
+        )])], 
+       
+      };
+    }
+    case "resetSideMenuProduct": {
+      return {
+        ...state,
+         sideMenuProduct:[]
+       
+      };
+    }
     case "setBrand": {
       return {
         ...state,

@@ -23,6 +23,7 @@ import Stores from './components/footer/company/Stores';
 import Home from './pages/Home.js';
 import PetMainPage from "./components/petType/PetMainPage.js";
 import PetSubMenuPage from "./components/petType/PetSubMenuPage.js";
+import PetSideMenuPage from "./components/petType/PetSideMenuPage";
 import Brand from "./components/petType/Brand.js"
 import Product from "./components/petType/Product";
 
@@ -39,9 +40,9 @@ import SearchedProduct from "./components/header/SearchedProduct";
 
 function App() {
   return (
-    <div className="h-screen md:w-[100vw] flex flex-col">
+    <div className="h-screen md:w-[100vw] flex flex-col p-0">
       <Header />
-      <div className="w-3/4 mx-auto mt-[9rem] md:mt-[8rem] ">
+      <div className="w-3/4 mx-auto mt-[9rem] sm:mt-[10rem] ">
         <Routes>
           <Route  path="/">
             <Route
@@ -122,6 +123,7 @@ function App() {
         <Route index={false}   path="petMainPage" element={<PetMainPage />} / >
         
           <Route index={false} path="petSubMenuPage" element={<PetSubMenuPage />} />
+          <Route index={false} path="petSideMenuPage" element={<PetSideMenuPage />} />
           <Route index={false} path="brand" element={<Brand />} />
           <Route index={false} path="product" element={<Product/>} /> 
 
