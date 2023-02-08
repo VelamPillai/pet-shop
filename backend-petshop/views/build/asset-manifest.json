@@ -1,0 +1,34 @@
+{
+  "files": {
+    "main.css": "./static/css/main.90d07f91.css",
+    "main.js": "./static/js/main.c2f4580d.js",
+    "static/media/welcome-2.png": "./static/media/welcome-2.f5b59c4f3f0566057d95.png",
+    "static/media/smallpet.png": "./static/media/smallpet.83635d3cb101baa79606.png",
+    "static/media/fish.png": "./static/media/fish.a134ec192f34a4ecb772.png",
+    "static/media/reptile.png": "./static/media/reptile.1febe2af3ff73bc796a5.png",
+    "static/media/cat.png": "./static/media/cat.d14ab5ede2cc4788f1de.png",
+    "static/media/dog.png": "./static/media/dog.5c0a647c7c16de8b2a77.png",
+    "static/media/product-2.png": "./static/media/product-2.6592846b3fe767b056af.png",
+    "static/media/product-4.png": "./static/media/product-4.d820ea17c404fdd84efd.png",
+    "static/media/product-5.png": "./static/media/product-5.284d1381ebf4511ab21b.png",
+    "static/media/product-3.png": "./static/media/product-3.ed8628a614838aa0bd07.png",
+    "static/media/loginImage.png": "./static/media/loginImage.6cf452c562927d91e9f4.png",
+    "static/media/product-6.png": "./static/media/product-6.65ae7b3fbb1f9057c03a.png",
+    "static/media/bird.png": "./static/media/bird.141470c77c2118520ae1.png",
+    "static/media/signupImage.png": "./static/media/signupImage.8998f2ee02c7d5a376a7.png",
+    "static/media/product-1.png": "./static/media/product-1.608c3ccd8ecb5c74f287.png",
+    "static/media/icon-new.png": "./static/media/icon-new.6aa51314190eb4cb0f32.png",
+    "static/media/store5.jpeg": "./static/media/store5.bd5f829b9d8c38b7f906.jpeg",
+    "static/media/store1.jpeg": "./static/media/store1.96d782ba1786811a77c7.jpeg",
+    "static/media/store2.jpeg": "./static/media/store2.06fe41f4cc3540b4193e.jpeg",
+    "static/media/store3.jpeg": "./static/media/store3.4a3dca52369c27d41c4c.jpeg",
+    "static/media/store4.jpeg": "./static/media/store4.d500737780d871fc3e0c.jpeg",
+    "index.html": "./index.html",
+    "main.90d07f91.css.map": "./static/css/main.90d07f91.css.map",
+    "main.c2f4580d.js.map": "./static/js/main.c2f4580d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.90d07f91.css",
+    "static/js/main.c2f4580d.js"
+  ]
+}

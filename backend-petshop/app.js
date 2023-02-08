@@ -42,6 +42,13 @@ app.use(express.json());
 
 //GET ,POST,PATCH,DELETE - req '/user'endpoint and its controller
 
+
+app.use(express.static("./views/build"));
+
+app.get('/', (req,res, next)=> {
+  res.sendFile("./views/build/index.html", { root: "." });
+})
+
 app.use('/users', userRoute);
 //GET ,POST,PATCH,DELETE - req '/product'endpoint and its controller
 app.use('/products', productRoute);

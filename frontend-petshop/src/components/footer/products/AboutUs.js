@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 export default function AboutUs() {
   return (
-    <div className="flex flex-col justify-center items-center md:mt-[5rem]">
+    <div className="flex flex-col justify-center items-center  sm:mt-[5rem]">
       <h1 className="text-1xl font-bold">About Us</h1>
       <h3 className="text-1xl font-bold">Company Profile</h3>
       <p className="pt-[2rem]">

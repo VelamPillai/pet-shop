@@ -2,16 +2,12 @@ import { useContext } from "react";
 
 import ProductCard from "../petType/ProductCard";
 
-
-
 import { StoreContext } from "../../context/StoreContext.js";
-
 
 export default function Products() {
   const { productState } = useContext(StoreContext);
-  const { product} = productState;
-  
-  
+  const { product } = productState;
+
   return (
     <div>
       <div className="mt-24">
@@ -23,13 +19,14 @@ export default function Products() {
           day he goes for a jog from morning until dark.
         </p>
       </div>
-      <div className="grid md:grid-cols-4 gap-3 p-2 grid-cols-1 mb-5 gap-y-6 ">
-        {product && product
-              .filter((item) => (item.productArrival === "new" )).slice(0, 8)
-              .map((item) => (
-                <ProductCard product={{ ...item }} key={item._id} /> 
-                
-              ))}
+      <div className="grid  sm:grid-cols-4 gap-3 p-2 grid-cols-1 mb-5 gap-y-6 ">
+        {product &&
+          product
+            .filter((item) => item.productArrival === "new")
+            .slice(0, 8)
+            .map((item) => (
+              <ProductCard product={{ ...item }} key={item._id} />
+            ))}
       </div>
     </div>
   );

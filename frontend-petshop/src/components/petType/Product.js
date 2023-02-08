@@ -1,57 +1,56 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 import { StoreContext } from "../../context/StoreContext.js";
 
 import { GiBasket } from "react-icons/gi";
 import { Navigate } from "react-router-dom";
-import toast , {Toaster} from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 export default function Product() {
   const navigate = useNavigate();
-  const { productState ,productDispatch ,homepageState} = useContext(StoreContext);
+  const { productState, productDispatch, homepageState } =
+    useContext(StoreContext);
 
   const { user } = homepageState;
-  const { singleProduct,cart,menuName } = productState;
+  const { singleProduct, cart, menuName } = productState;
 
   const [addCart, setAddCart] = useState(true);
 
   //event handler to handle Cart click
   const handleCartClick = (e) => {
     e.preventDefault();
-     cart.map(item=>item._id).includes(singleProduct._id)? toast.error('product is exists in the Cart'):
-    productDispatch({
-      type: 'setCart',
-      payload:{data:singleProduct}
-    }) 
-    
-  //cart && console.log(cart,menuName)  */
-   
+    cart.map((item) => item._id).includes(singleProduct._id)
+      ? toast.error("product is exists in the Cart")
+      : productDispatch({
+          type: "setCart",
+          payload: { data: singleProduct },
+        });
+
+    //cart && console.log(cart,menuName)  */
   };
 
   return (
-   
     singleProduct && (
-      <div className="flex flex-col md:flex-row w-full mt-[4rem]">
+      <div className="flex flex-col  sm:flex-row w-full mt-[4rem]">
         {singleProduct.sale && (
-          <p className="bg-red-500 w-[50px] h-[50px] md:w-[100px] md:h-[100px] flex justify-center items-center p-2 rounded-tl-xl rounded-br-xl animate-bounce">
+          <p className="bg-red-500 w-[50px] h-[50px]  sm:w-[100px]  sm:h-[100px] flex justify-center items-center p-2 rounded-tl-xl rounded-br-xl animate-bounce">
             {" "}
             Sale{" "}
           </p>
         )}
         <Toaster />
-        <div className="w-[2/4] m-1 p-1 md:m-5 md:p-5">
+        <div className="w-[2/4] m-1 p-1  sm:m-5  sm:p-5">
           <img
             src={singleProduct.productImage}
             alt="card-pic"
             className=" w-[300px] h-[300px]"
           />
         </div>
-        <div className="w-[2/4] m-1 p-1 md:m-5 md:p-5">
+        <div className="w-[2/4] m-1 p-1  sm:m-5  sm:p-5">
           <p className="text-sm  text-gray-500 mb-2">
             {singleProduct.brand} - {singleProduct.petName}
           </p>
-          <p className="font-bold text-md md:text-3xl  mb-1">
+          <p className="font-bold text-md  sm:text-3xl  mb-1">
             {singleProduct.productName}
           </p>
           <p className="text-xs my-4  text-gray-500">
@@ -68,13 +67,13 @@ export default function Product() {
             ))}
           </div>
 
-          <div className="flex flex-col md:flex-row justify-between">
+          <div className="flex flex-col  sm:flex-row justify-between">
             <p className="text-orange-500 text-xl font-bold mr-3">
               $ {singleProduct.price}
             </p>
             <button
               onClick={handleCartClick}
-              className="border md:w-[40%] p-3 flex justify-center items-center rounded-lg bg-orange-500  mb-4 hover:border-2 hover:border-orange-300  hover:bg-orange-400/50"
+              className="border  sm:w-[40%] p-3 flex justify-center items-center rounded-lg bg-orange-500  mb-4 hover:border-2 hover:border-orange-300  hover:bg-orange-400/50"
             >
               Add to Cart
             </button>
@@ -95,9 +94,6 @@ export default function Product() {
           </div>
         </div>
       </div>
-      
-      )
-      
+    )
   );
-  
 }

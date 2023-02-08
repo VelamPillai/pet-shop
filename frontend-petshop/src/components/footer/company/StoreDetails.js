@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
 
 export default function StoreDetails(props) {
   return (
-    <div className="flex flex-col items-center justify-center gap-[1rem] md:gap-[6rem] md:my-[3rem] md:flex-row">
+    <div className="flex flex-col items-center justify-center gap-[1rem]  sm:gap-[6rem]  sm:my-[3rem]  sm:flex-row">
       <img class="w-64" src={props.img} alt={props.title} />
       <div>
         <h2 className="font-bold">{props.title}</h2>

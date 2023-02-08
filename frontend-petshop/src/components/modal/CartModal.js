@@ -7,15 +7,14 @@ import { StoreContext } from "../../context/StoreContext";
 import { AiFillDelete } from "react-icons/ai";
 
 export default function CartModal() {
-  
   const navigate = useNavigate();
 
-  const { homepageState, productState, productDispatch,homepageDispatch } =
+  const { homepageState, productState, productDispatch, homepageDispatch } =
     useContext(StoreContext);
 
   const { user } = homepageState;
 
-  const { cart, product, showHideCartBtn,totalPrice } = productState;
+  const { cart, product, showHideCartBtn, totalPrice } = productState;
 
   //hideModalHandler -
   const hideCartModalHandler = (e) => {
@@ -32,15 +31,17 @@ export default function CartModal() {
 
     cart.length === 1
       ? productDispatch({
-        type: "setTotalPrice",
-        payload: { data: 0 },
-      })
-      :  productDispatch({
-        type: "setTotalPrice",
-        payload: { data: cart
-          .reduce((acc, item) => (acc += item.price * item.quantity), 0)
-          .toFixed(2) },
-      });
+          type: "setTotalPrice",
+          payload: { data: 0 },
+        })
+      : productDispatch({
+          type: "setTotalPrice",
+          payload: {
+            data: cart
+              .reduce((acc, item) => (acc += item.price * item.quantity), 0)
+              .toFixed(2),
+          },
+        });
   };
 
   //increase
@@ -50,11 +51,13 @@ export default function CartModal() {
     foundItem.quantity++;
     productDispatch({
       type: "setTotalPrice",
-      payload: { data: cart
-        .reduce((acc, item) => (acc += item.price * item.quantity), 0)
-        .toFixed(2) },
+      payload: {
+        data: cart
+          .reduce((acc, item) => (acc += item.price * item.quantity), 0)
+          .toFixed(2),
+      },
     });
-   /*  setPrice(
+    /*  setPrice(
       (price) =>
         (price = cart
           .reduce((acc, item) => (acc += item.price * item.quantity), 0)
@@ -76,10 +79,11 @@ export default function CartModal() {
         payload: { data: [...cart].filter((item) => item._id !== id) },
       });
 
-      cart.length === 1 && productDispatch({
-        type: "setTotalPrice",
-        payload: { data: 0 },
-      })
+      cart.length === 1 &&
+        productDispatch({
+          type: "setTotalPrice",
+          payload: { data: 0 },
+        });
     } else {
       foundItem.quantity--;
       productDispatch({
@@ -88,50 +92,50 @@ export default function CartModal() {
       });
       productDispatch({
         type: "setTotalPrice",
-        payload: { data: cart
-          .reduce((acc, item) => (acc += item.price * item.quantity), 0)
-          .toFixed(2) },
+        payload: {
+          data: cart
+            .reduce((acc, item) => (acc += item.price * item.quantity), 0)
+            .toFixed(2),
+        },
       });
     }
   };
 
   //checkout handler
   const checkoutHandler = (e) => {
-    e.stopPropagation()
-   
+    e.stopPropagation();
+
     if (!user) {
       productDispatch({ type: "setShowHideCartBtn" });
-      navigate('/login') 
-    } 
-    else {
-      
-    fetch("http://localhost:8000/orders/addOrder", {
-      method: "POST",
-      headers: {
-        token: localStorage.getItem("token"),
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        items: cart.map((item) => item._id),
-        totalPrice: totalPrice,
-        userId: user._id,
-      }),
-
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        if (result.success) {  
-          console.log(result.data);
-          console.log(result.data._id)
-          let data = new FormData();
-          data.append('firstName', user.firstName)
-            data.append('lastName', user.lastName);
-            data.append('email', user.email);
+      navigate("/login");
+    } else {
+      fetch(" /orders/addOrder", {
+        method: "POST",
+        headers: {
+          token: localStorage.getItem("token"),
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          items: cart.map((item) => item._id),
+          totalPrice: totalPrice,
+          userId: user._id,
+        }),
+      })
+        .then((res) => res.json())
+        .then((result) => {
+          if (result.success) {
+            console.log(result.data);
+            console.log(result.data._id);
+            let data = new FormData();
+            data.append("firstName", user.firstName);
+            data.append("lastName", user.lastName);
+            data.append("email", user.email);
             //password not want to update then old password has been taken
-            data.append('password',  user.password);
-            data.append('profileImage', user.profileImage);
-            user.favoriteProduct.length > 1  && data.append('favoriteProduct',[...user.favoriteProduct])
-            data.append('ordersId',result.data._id)
+            data.append("password", user.password);
+            data.append("profileImage", user.profileImage);
+            user.favoriteProduct.length > 1 &&
+              data.append("favoriteProduct", [...user.favoriteProduct]);
+            data.append("ordersId", result.data._id);
             /* for (let key of data.keys())
             {
              
@@ -143,49 +147,42 @@ export default function CartModal() {
              console.log(key)
               }   */
 
-              fetch(`http://localhost:8000/users/${user._id}`, {
-                method: "PATCH",
-                headers: { token: localStorage.getItem("token") },
-                body: data
-              })
-                .then((res) => res.json())
-                .then((result) => {
-                  if (result.success) {
-                    
-                    homepageDispatch({ type: "setUser", payload: { data: result.data } });
-                    
-                    
-                    
-                  }  else {
-                      toast.error(result.message.message);            
-                    }
-                  
-                })
+            fetch(` /users/${user._id}`, {
+              method: "PATCH",
+              headers: { token: localStorage.getItem("token") },
+              body: data,
+            })
+              .then((res) => res.json())
+              .then((result) => {
+                if (result.success) {
+                  homepageDispatch({
+                    type: "setUser",
+                    payload: { data: result.data },
+                  });
+                } else {
+                  toast.error(result.message.message);
+                }
+              });
 
-
-          productDispatch({
-            type: "resetCart",
-            payload: { data: [] },
-          });
-          productDispatch({
-            type: "setTotalPrice",
-            payload: { data: 0 },
-          })
-          productDispatch({ type: "setShowHideCartBtn" });
-        }
-        else {
-          console.log(result.message)
-        }
-      })
-   
-   
-    }//else
-    
-  }
+            productDispatch({
+              type: "resetCart",
+              payload: { data: [] },
+            });
+            productDispatch({
+              type: "setTotalPrice",
+              payload: { data: 0 },
+            });
+            productDispatch({ type: "setShowHideCartBtn" });
+          } else {
+            console.log(result.message);
+          }
+        });
+    } //else
+  };
 
   return (
     <div
-      className={`bg-orange-400 fixed right-[5px] height-[100vh]  md:right-0  inset-y-0  z-50 w-[100%] md:w-[100%] ${
+      className={`bg-orange-400 fixed right-[5px] height-[100vh]   sm:right-0  inset-y-0  z-50 w-[100%]  sm:w-[100%] ${
         showHideCartBtn ? "visible" : "invisible"
       }`}
     >
@@ -198,18 +195,21 @@ export default function CartModal() {
           <p className=" mt-5 text-black-800 text-sm font-bold ">
             Total Price : ${totalPrice}
           </p>
-          <button onClick={checkoutHandler} className=" mt-5 text-black-800 text-sm font-bold border-1 border-black bg-black text-white p-3 shadow-white shadow-md hover:bg-white hover:text-black hover:shadow-lg hover:shadow-black">
+          <button
+            onClick={checkoutHandler}
+            className=" mt-5 text-black-800 text-sm font-bold border-1 border-black bg-black text-white p-3 shadow-white shadow-md hover:bg-white hover:text-black hover:shadow-lg hover:shadow-black"
+          >
             Proceed to checkout
           </button>
         </div>
 
         <p
           onClick={hideCartModalHandler}
-          className="top-0 right-10 md:right-5 absolute cursor-pointer  text-black-500 text-[3rem]"
+          className="top-0 right-10  sm:right-5 absolute cursor-pointer  text-black-500 text-[3rem]"
         >
           x
         </p>
-        <div className="flex flex-col justify-center items-center top-[30%] md:top-10 absolute  md:p-0">
+        <div className="flex flex-col justify-center items-center top-[30%]  sm:top-10 absolute   sm:p-0">
           <ul className="flex flex-col p-3 ">
             {/*  {product &&
                 product
@@ -224,39 +224,39 @@ export default function CartModal() {
                     <img
                       src={item.productImage}
                       alt="card-pic"
-                      className=" w-[75px] h-[75px] md:w-[150px] md:h-[150px] md:mr-4 p-1"
+                      className=" w-[75px] h-[75px]  sm:w-[150px]  sm:h-[150px]  sm:mr-4 p-1"
                     />
-                    <div className="w-[75px] h-[75px] md:w-[250px] md:h-[150px] mr-4 md:p-1 ">
-                      <p className="font-bold text-[10px] md:text-[.5rem] text-black-500  leading-3">
+                    <div className="w-[75px] h-[75px]  sm:w-[250px]  sm:h-[150px] mr-4  sm:p-1 ">
+                      <p className="font-bold text-[10px]  sm:text-[.5rem] text-black-500  leading-3">
                         {item.productName}
                       </p>
-                      <p className="font-bold text-[10px] md:text-[.5rem] text-black-500  leading-3">
+                      <p className="font-bold text-[10px]  sm:text-[.5rem] text-black-500  leading-3">
                         {item.brand}
                       </p>
                     </div>
-                    <div className="flex md:ml-4">
+                    <div className="flex  sm:ml-4">
                       <button
                         onClick={() => increase(item._id)}
-                        className="w-[25px] h-[50px] md:w-[50px] bg-orange-500 mr-1 md:mr-5 shadow-md  shadow-black rounded-md"
+                        className="w-[25px] h-[50px]  sm:w-[50px] bg-orange-500 mr-1  sm:mr-5 shadow-md  shadow-black rounded-md"
                       >
                         +
                       </button>
                       <p className="text-md">{item.quantity}</p>
                       <button
                         onClick={() => decrease(item._id)}
-                        className="w-[25px] h-[50px] md:w-[50px] bg-orange-500 ml-1 md:ml-5 shadow-md rounded-md shadow-black"
+                        className="w-[25px] h-[50px]  sm:w-[50px] bg-orange-500 ml-1  sm:ml-5 shadow-md rounded-md shadow-black"
                       >
                         {" "}
                         -
                       </button>
                     </div>
 
-                    <p className="ml-1 md:ml-[5rem] text-sm  ">
+                    <p className="ml-1  sm:ml-[5rem] text-sm  ">
                       ${(item.quantity * item.price).toFixed(2)}
                     </p>
                     <AiFillDelete
                       onClick={(e) => deleteCartItem(item._id)}
-                      className="md:mx-[6rem] text-red-900"
+                      className=" sm:mx-[6rem] text-red-900"
                     />
                   </li>
                 );
