@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const adminFeatures = [
-  "addProduct",
-  "displayProduct",
-  "displayCustomers",
-  "displaySingleCustomer",
-  "displayOrders",
-  "displaySingleOrder",
+  
+  "Product",
+  "Customers",
+ /*  "displaySingleCustomer", */
+  "Orders",
+  /* "displaySingleOrder", */
 ];
 export default function Admin() {
     const [display, setDisplay] = useState(true);
@@ -20,12 +20,12 @@ export default function Admin() {
     
     const handleMenuClick = (e) => {
       e.preventDefault();
-      e.target.textContent==='addProduct' ? navigate('/addProduct') :e.target.textContent==='displayProduct'?navigate('/displayProduct'):e.target.textContent==='displayCustomers'?navigate('/displayCustomers'):navigate('/admin')
+      e.target.textContent==='Product'?navigate('/displayProduct'):e.target.textContent==='Customers'?navigate('/displayCustomers'):e.target.textContent==='Orders'?navigate('/displayOrders'):navigate('/admin')
     }
   return (
     <div>
       <p
-        className=" text-xl flex justify-center items-center  font-bold"
+        className=" text-xl flex justify-center items-center  font-bold text-shadow md:mt-[1rem]"
         onClick={handleAdminClick}
       >
         Admin

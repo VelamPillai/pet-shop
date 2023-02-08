@@ -76,7 +76,7 @@ export default function PetMenu() {
             
             type="button"
              onClick={handleBtnClick} 
-            className=" mt-5 p-5 bg-orange-100/75 hover:bg-orange-200 focus:ring-4 focus:outline-none focus:ring-orange-300 md:font-medium rounded-lg text-sm  md:px-4 py-2.5 text-center inline-flex justify-between items-center dark:bg-orange-600 "
+            className=" mt-1 p-5 bg-orange-100/75 hover:bg-orange-200 focus:ring-4 focus:outline-none focus:ring-orange-300 md:font-medium rounded-lg text-sm  md:px-4 py-2.5 text-center inline-flex justify-between items-center dark:bg-orange-600 "
            
           >
            Subcategories

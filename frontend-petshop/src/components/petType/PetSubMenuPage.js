@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Sort from "./Sort";
@@ -9,15 +9,24 @@ import PetMenu from "./PetMenu.js";
 import { StoreContext } from "../../context/StoreContext.js";
 
 export default function PetSubMenuPage() {
-  const { productState } = useContext(StoreContext);
+  const { productState ,productDispatch} = useContext(StoreContext);
 
-  const { product, menuName,subMenuName } = productState;
+  const { product, menuName,subMenuName,sideMenuProduct } = productState;
    
-  
+  useEffect(() => {
+    productDispatch({
+      type: "resetSideMenuProduct",
+      
+    })
+  },[])
 
   return (
-    <div className="flex flex-col">
-      
+    <div className="flex flex-col mt-[3rem] md:m-1">
+      <p className="flex justify-center items-center text-xl font-bold">{
+      menuName==='sale %' ? menuName.split(' ')[0].slice(0, 1).toUpperCase()+menuName.slice(1,4).toUpperCase():
+        menuName.toUpperCase()}
+      </p>
+
      <div className="md:hidden">
         {/* dog menu */}
          {menuName !== 'brand'  && <PetMenu /> }

@@ -1,9 +1,12 @@
 
 import React, { useState,useContext } from 'react';
-import {  NavLink, Outlet } from "react-router-dom";
+import {  NavLink } from "react-router-dom";
+import { BsHeart, BsHeartFill } from "react-icons/bs";
+import FavoriteModal from "../modal/FavoriteModal.js";
+import CartModal from "../modal/CartModal.js";
+import toast, { Toaster } from 'react-hot-toast';
 
-
-import { FaAngleDoubleDown, FaAngleDoubleUp, FaCartPlus } from "react-icons/fa";
+import { FaAngleDoubleDown, FaAngleDoubleUp, FaCartPlus ,FaHeart} from "react-icons/fa";
 
 import { StoreContext } from '../../context/StoreContext.js';
 
@@ -19,13 +22,19 @@ const Navbar = () => {
   const { productDispatch,productState,homepageState} =
     useContext(StoreContext);
   
-  const { product } = productState;
+  const { product ,favoriteProduct,cart } = productState;
   const { user } = homepageState;
   
+   //hideFavoriteModalHandler -
+   const hideModalHandler = (e) => {
+    productDispatch({type:"setShowHideFavoriteBtn"})
+  }; 
+  //hideCartModalHandler
+  const hideCartModalHandler = (e) => {
+    productDispatch({type:"setShowHideCartBtn"})
+};
   //to set the petName to filter the products from the DB
   const handleMenuClick = (e) => {
-    
-   
     
     productDispatch({
       type: "setMenuName",
@@ -42,14 +51,13 @@ const Navbar = () => {
       type: "setBrand",
       payload: { data: [...new Set([...product].map(item=>item.brand))]},
     });
-    setNav(!nav);
-    
+    setNav(!nav);    
   }
 
   
   
   return (
-    <div className=" md:sticky w-full md:h-[50px] flex  justify-between items-center font-bold  md:text-xs text-orange-500 ">
+    <div className=" md:sticky w-[100vw] md:h-[50px] flex  justify-center items-center font-bold  md:text-xs text-orange-500  shadow-lg shadow-gray-500 ">
       
       {/* menu */}
 
@@ -62,28 +70,28 @@ const Navbar = () => {
         </li>}
      
         <li >
-          <NavLink to="/petMainPage" onClick={ handleMenuClick} className=" md:leading-7     lg:p-[2rem] md:p-[1rem]  md:hover:underline " >
+          <NavLink to="/petMainPage" onClick={ handleMenuClick} className=" md:leading-7     lg:p-[2rem] md:p-[1rem]  md:hover:underline  md:focus:text-green-600" >
             Dog 
           </NavLink> 
           
         </li>
         <li>
-          <NavLink to="/petMainPage"  onClick={ handleMenuClick} className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[1rem]">
+          <NavLink to="/petMainPage"  onClick={ handleMenuClick} className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[2rem] md:p-[1rem] md:focus:text-green-600">
             Cat
           </NavLink>
         </li>
         <li>
-          <NavLink to="/brand"  onClick={ handleMenuBrandClick } className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[1rem]">
+          <NavLink to="/brand"  onClick={ handleMenuBrandClick } className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[2rem] md:p-[1rem] md:focus:text-green-600">
             Brand
           </NavLink>
         </li>
         <li>
-          <NavLink to="/blogs"  onClick={ handleMenuClick}className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[1rem]">
+          <NavLink to="/blogs"  onClick={ handleMenuClick}className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[2rem] md:p-[1rem] md:focus:text-green-600">
             Blogs
           </NavLink>
               </li>
               <li>
-          <NavLink to="/petMainPage" onClick={ handleMenuClick} className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[.5rem] text-green-800 animate-ping hover:animate-none">
+          <NavLink to="/petMainPage" onClick={ handleMenuClick} className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[.5rem] text-green-800 animate-ping hover:animate-none md:focus:text-orange-600 focus:animate-none">
           Sale %
           </NavLink>
         </li>
@@ -100,11 +108,10 @@ const Navbar = () => {
         className={
           !nav
             ? "hidden "
-            : "  z-20 w-[90vw]  absolute left-[-5rem]  top-[100px] mb-3 bg-orange-200 flex flex-col justify-center items-center md:hidden p-[1rem] "
+            : "  z-20 w-[100vw]  absolute left-[-5rem]  top-[100px] mb-3 bg-orange-200 flex flex-col justify-center items-center md:hidden p-[1rem] "
         } 
       >
-
-        <li className="py-6 text-xl ">
+      {user.role==='admin' &&  <li className="py-1 text-xl ">
           <NavLink
             to="/admin"
             className=" navHover my-3 border-box p-1 "
@@ -112,8 +119,9 @@ const Navbar = () => {
           >
             Admin
           </NavLink>
-        </li>
-        <li className="py-6 text-xl ">
+        </li>}
+       
+        <li className="py-1 text-xl ">
           <NavLink
             to="/petMainPage"
             className=" navHover my-3 border-box p-1 "
@@ -123,7 +131,7 @@ const Navbar = () => {
           </NavLink>
         </li>
         <hr />
-        <li className="py-6 text-xl">
+        <li className="py-1 text-xl">
           <NavLink
             to="/petMainPage"
             className=" navHover my-2 border-box p-1"
@@ -132,7 +140,7 @@ const Navbar = () => {
             Cat
           </NavLink>
         </li>
-        <li className="py-6 text-xl">
+        <li className="py-1 text-xl">
           <NavLink
             to="/brand"
             className=" navHover my-2 border-box p-1"
@@ -140,7 +148,7 @@ const Navbar = () => {
             Brand
           </NavLink>
         </li>
-        <li className="py-6 text-xl">
+        <li className="py-1 text-xl">
           <NavLink
             to="/blog"
             className=" navHover my-2 border-box p-1"
@@ -149,7 +157,7 @@ const Navbar = () => {
             Blog
           </NavLink>
               </li>
-              <li className="py-6 text-xl">
+              <li className="py-1 text-xl">
           <NavLink
             to="/petMainPage"
             className=" navHover my-2 border-box p-1 text-green-800 animate-ping"
@@ -158,17 +166,31 @@ const Navbar = () => {
            Sale %
           </NavLink>
               </li>
-              <li className="py-6 text-xl">
+              <li className="py-1 text-xl">
           <NavLink
             to="cart"
             className=" navHover my-2 border-box p-1"
             onClick={handleNavClick} 
           >
            <div className="flex justify-center items-center  border border-orange-500  text-4xl rounded">
-        <FaCartPlus className="mr-3  p-2  hover:cursor-pointer" />
-        <p className="text-lg p-2  border-l hover:cursor-pointer border-orange-500 ">
-          $0.00
-        </p>
+           {user && <div className=" border-r border-orange-500 p-1 relative">
+          {
+          favoriteProduct.length ?
+          <p  >
+                <BsHeartFill  onClick={hideModalHandler } className="  p-2  text-orange-600  hover:cursor-pointer " /><span className="absolute text-sm top-0 right-0 text-orange-600  p-1">{favoriteProduct.length}</span></p> : <p>
+          <BsHeart  className="  p-2   hover:cursor-pointer " onClick={()=> toast.error('Please click Heart to add favorite products')} /></p>
+        }
+            </div> }
+      {/*   <FaCartPlus className="  p-2  hover:cursor-pointer" /> 
+      */}
+              {cart && <div className=" border-r border-orange-500 p-1 relative">
+                {cart.length ?
+                  <p ><FaCartPlus onClick={hideCartModalHandler} className="  p-2  text-orange-600  hover:cursor-pointer " /><span className="absolute text-sm top-0 right-0 text-orange-600  p-1">{cart.length}</span></p> :
+                  <FaCartPlus onClick={() => toast.error('Please add Product to cart to show the cart products')} className="  p-2   hover:cursor-pointer " />
+        
+                }
+              </div>
+              }
       </div>
           </NavLink>
         </li>

@@ -23,28 +23,34 @@ import Stores from './components/footer/company/Stores';
 import Home from './pages/Home.js';
 import PetMainPage from "./components/petType/PetMainPage.js";
 import PetSubMenuPage from "./components/petType/PetSubMenuPage.js";
+import PetSideMenuPage from "./components/petType/PetSideMenuPage";
 import Brand from "./components/petType/Brand.js"
 import Product from "./components/petType/Product";
+
 import Admin from "./components/admin/Admin.js"
 import AddProduct from "./components/admin/AddProduct";
 import DisplayProduct from "./components/admin/DisplayProduct";
 import UpdateProduct from "./components/admin/UpdateProduct";
 import DisplayCustomers from "./components/admin/DisplayCustomers";
+import DisplayOrders from "./components/admin/DisplayOrders";
+import UpdateOrder from "./components/admin/UpdateOrder";
+
 import SearchedProduct from "./components/header/SearchedProduct";
 
 
 function App() {
   return (
-    <div className="h-screen md:w-[100vw] flex flex-col">
+    <div className="h-screen md:w-[100vw] flex flex-col p-0">
       <Header />
-      <div className="w-3/4 mx-auto mt-[9rem] ">
+      <div className="w-3/4 mx-auto mt-[9rem] sm:mt-[10rem] ">
         <Routes>
-          <Route path="/">
+          <Route  path="/">
             <Route
               index={true}
               path="/"
               className="min-h-screen"
               element={<Home />}
+              
             />
           </Route>
           <Route index={false} path="searchedProduct" element={<SearchedProduct/>} />
@@ -109,11 +115,15 @@ function App() {
           <Route index={false} path="addProduct" element={<AddProduct />} />
           <Route index={false} path="displayProduct" element={<DisplayProduct />} />
           <Route index={false} path="updateProduct" element={<UpdateProduct />} />
-          <Route index={false} path="displayCustomers" element={<DisplayCustomers/>} />
+          <Route index={false} path="displayCustomers" element={<DisplayCustomers />} />
+          <Route index={false} path="displayOrders" element={<DisplayOrders />} />
+          <Route index={false} path="updateOrder" element={<UpdateOrder />} />
+          
           
         <Route index={false}   path="petMainPage" element={<PetMainPage />} / >
         
           <Route index={false} path="petSubMenuPage" element={<PetSubMenuPage />} />
+          <Route index={false} path="petSideMenuPage" element={<PetSideMenuPage />} />
           <Route index={false} path="brand" element={<Brand />} />
           <Route index={false} path="product" element={<Product/>} /> 
 

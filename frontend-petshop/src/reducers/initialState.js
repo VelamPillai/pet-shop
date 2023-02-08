@@ -13,13 +13,22 @@ const initialState = {
   product: '',
   originalProduct:'',
   sortOption: 'Recommended',
-  menuName: '',
+  menuName: 'dog',
   subMenuName: '',
   brand: '',
   sideMenuBrand: '',
+  sideMenuProduct:'',
   singleProduct:'',
   
-  searchedProduct:''
+  searchedProduct: '',
+  
+  favoriteProduct: [],
+  showHideFavoriteBtn: false,
+  
+  cart: [],
+  order: [],
+  totalPrice :0,
+  showHideCartBtn: false
   
   
 };
