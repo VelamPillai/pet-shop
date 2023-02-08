@@ -42,11 +42,15 @@ export const productReducer = (state, action) => {
     case "setSideMenuProduct": {
       return {
         ...state,
-         sideMenuProduct:[...new Set([...state.sideMenuProduct,...[...state.product].filter(
+         sideMenuProduct:payload.checked?[...new Set([...state.sideMenuProduct,...[...state.product].filter(
           (item) =>
             ((item.petName === state.menuName || item.petName === "dog/cat") ||
             (item.productCategory === state.subMenuName) )&& (item.brand===payload.data)
-        )])], 
+        )])]:[...new Set([...state.sideMenuProduct].filter(
+          (item) =>
+            ((item.petName === state.menuName || item.petName === "dog/cat") ||
+            (item.productCategory === state.subMenuName) )&& (item.brand!==payload.data)
+        ))]
        
       };
     }
