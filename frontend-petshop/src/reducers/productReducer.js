@@ -40,19 +40,72 @@ export const productReducer = (state, action) => {
       };
     }
     case "setSideMenuProduct": {
-      return {
-        ...state,
-         sideMenuProduct:payload.checked?[...new Set([...state.sideMenuProduct,...[...state.product].filter(
-          (item) =>
-            ((item.petName === state.menuName || item.petName === "dog/cat") ||
-            (item.productCategory === state.subMenuName) )&& (item.brand===payload.data)
-        )])]:[...new Set([...state.sideMenuProduct].filter(
-          (item) =>
-            ((item.petName === state.menuName || item.petName === "dog/cat") ||
-            (item.productCategory === state.subMenuName) )&& (item.brand!==payload.data)
-        ))]
-       
-      };
+      switch (payload.name) {
+        case 'brand': {
+          return {
+            ...state,
+             sideMenuProduct:payload.checked?[...new Set([...state.sideMenuProduct,...[...state.product].filter(
+              (item) =>
+                ((item.petName === state.menuName || item.petName === "dog/cat") ||
+                (item.productCategory === state.subMenuName) )&& (item.brand===payload.data)
+            )])]:[...new Set([...state.sideMenuProduct].filter(
+              (item) =>
+                ((item.petName === state.menuName || item.petName === "dog/cat") ||
+                (item.productCategory === state.subMenuName) )&& (item.brand!==payload.data)
+            ))]
+           
+          };
+        }
+        case 'lifeStyle': {
+          return {
+            ...state,
+             sideMenuProduct:payload.checked?[...new Set([...state.sideMenuProduct,...[...state.product].filter(
+              (item) =>
+                ((item.petName === state.menuName || item.petName === "dog/cat") ||
+                (item.productCategory === state.subMenuName) )&& (item.lifeStyle===payload.data)
+            )])]:[...new Set([...state.sideMenuProduct].filter(
+              (item) =>
+                ((item.petName === state.menuName || item.petName === "dog/cat") ||
+                (item.productCategory === state.subMenuName) )&& (item.lifeStyle!==payload.data)
+            ))]
+           
+          };
+        }
+        case 'petSize': {
+          return {
+            ...state,
+             sideMenuProduct:payload.checked?[...new Set([...state.sideMenuProduct,...[...state.product].filter(
+              (item) =>
+                ((item.petName === state.menuName || item.petName === "dog/cat") ||
+                (item.productCategory === state.subMenuName) )&& (item.petSize===payload.data)
+            )])]:[...new Set([...state.sideMenuProduct].filter(
+              (item) =>
+                ((item.petName === state.menuName || item.petName === "dog/cat") ||
+                (item.productCategory === state.subMenuName) )&& (item.petSize!==payload.data)
+            ))]
+           
+          };
+        }
+        case 'material': {
+          return {
+            ...state,
+             sideMenuProduct:payload.checked?[...new Set([...state.sideMenuProduct,...[...state.product].filter(
+              (item) =>
+                ((item.petName === state.menuName || item.petName === "dog/cat") ||
+                (item.productCategory === state.subMenuName) )&& (item.material===payload.data)
+            )])]:[...new Set([...state.sideMenuProduct].filter(
+              (item) =>
+                ((item.petName === state.menuName || item.petName === "dog/cat") ||
+                (item.productCategory === state.subMenuName) )&& (item.material!==payload.data)
+            ))]
+           
+          };
+        }
+        default: {
+          return state
+          }
+      }
+      
     }
     case "resetSideMenuProduct": {
       return {
