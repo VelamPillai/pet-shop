@@ -12,7 +12,7 @@ export default function SideMenu() {
 
   const { productState, productDispatch } = useContext(StoreContext);
 
-  const { product, menuName,   sideMenuBrand, subMenuName } = productState;
+  const { product, menuName,   sideMenuBrand, subMenuName ,sideMenuProduct,originalProduct} = productState;
   
   useEffect(()=>{ 
     setBtn(false)
@@ -55,13 +55,46 @@ export default function SideMenu() {
   };
 
   //handleSideMenuClick
-  const handleSideMenuClick = (brand) => {
-    productDispatch({
+  const handleSideMenuClick = (e) => {
+    if (e.target.checked) {
+      console.log(e.target.checked);
+      productDispatch({
       type: "setSideMenuProduct",
-      payload:{data:brand}
-    })
-    navigate('/petSideMenuPage')
+      payload:{data:e.target.value,checked:true}
+      })
+      navigate('/petSideMenuPage')
+    }
+    else {
+      if (sideMenuProduct) {
+        productDispatch({
+          type: "setProduct",
+          payload:{data:originalProduct}
+        })
+        if (menuName && subMenuName) {
+          
+          navigate('/petSubMenuPage')
+         
+        }
+        else {
+          navigate('/petMainPage')
+}
+        
+       
+      }
+      else{
+      productDispatch({
+      type: "setSideMenuProduct",
+      payload:{data:e.target.value,checked:false}
+      })
+      navigate('/petSideMenuPage')
+    }
+    
+   
+    }
+    
+    
   }
+  console.log(menuName,subMenuName)
 
   return (
     <div className="border-2 m-1 p-5 rounded-lg bg-orange-100 ">
@@ -72,7 +105,7 @@ export default function SideMenu() {
             (item, idx) =>
               idx <= (btn ?   sideMenuBrand.length : 2) && (
                 <div key={idx}>
-                    <input onClick={ ()=>handleSideMenuClick(item)} type="checkbox" name="brand" value={item} />
+                    <input onClick={ handleSideMenuClick} type="checkbox" name="brand" value={item} />
                   <label className="ml-3">
                     {item[0].toUpperCase() + item.slice(1, item.length )}
                   </label>
