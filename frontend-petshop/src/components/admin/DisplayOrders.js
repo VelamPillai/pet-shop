@@ -89,7 +89,7 @@ export default function DisplayOrders() {
           <Toaster />
           <p className="font-bold text-xl mb-3 text-shadow">Orders</p>    
           <div>
-          <div className='flex justify-around  items-center w-[900px] h-[100px] bg-green-600/50 rounded-lg m-2 p-4  shadow-black shadow-inner'>
+          <div className='flex justify-around  items-center flex-col md:flex-row md:w-[900px] md:h-[100px] bg-green-600/50 rounded-lg m-2 p-4  shadow-black shadow-inner'>
           
           <p className='mr-5'>Order No </p>
           <p className='mr-5'>TotalPrice in $</p>
@@ -105,7 +105,7 @@ export default function DisplayOrders() {
                           return (
                               <li key={idx}    className="flex flex-row justify-center items-center relative ">
                                   <OrderCard order={{ ...item }} />
-                                  <div className="flex flex-row "><button onClick={ () => updateHandler(item)} className=" text-lg text-green-600 font-bold justify-center items-center  m-3 p-1 rounded shadow-black shadow-md hover:bg-green-200   lg:box-content "><MdUpdate /></button>
+                                  <div className="flex flex-col md:flex-row "><button onClick={ () => updateHandler(item)} className=" text-lg text-green-600 font-bold justify-center items-center  m-3 p-1 rounded shadow-black shadow-md hover:bg-green-200   lg:box-content "><MdUpdate /></button>
                                       <button onClick={ () => deleteHandler(item._id)} className="text-lg text-red-600 font-bold justify-center items-center  m-3 p-1 rounded shadow-black shadow-md hover:bg-red-100   lg:box-content "><AiFillDelete /></button></div>
                                   
                               </li>

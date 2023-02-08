@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function OrderCard({order}) {
   return (
-      <div className='flex justify-around  items-center w-[900px] h-[150px] bg-orange-500/50 rounded-lg m-2 p-5'>
+      <div className='flex justify-around  items-center flex-col md:flex-row md:w-[900px] md:h-[150px] bg-orange-500/50 rounded-lg m-2 p-5'>
           
           <p className='mr-5 border-1'>{order._id} </p>
           <p className='mr-5'>{order.totalPrice}</p>
