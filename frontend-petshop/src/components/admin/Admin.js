@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect,useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import adminPic from '../../image/catadmin.jpg'
 
+import { StoreContext } from "../../context/StoreContext.js";
+import DisplayOrders from "./DisplayOrders";
+
 const adminFeatures = [
   
-  "Product",
+  "Products",
   "Customers", 
   "Orders"
   
@@ -13,7 +16,50 @@ const adminFeatures = [
 
 export default function Admin() {
     const [display, setDisplay] = useState(true);
-    const navigate = useNavigate()
+  const navigate = useNavigate();
+
+  const { adminState, adminDispatch ,productState,productDispatch} = useContext(StoreContext);
+  const { customers } = adminState;
+  const { product ,order} = productState;
+  useEffect(() => {
+    
+    //customer
+    fetch("http://localhost:8000/users", {
+  method: "GET",
+
+    })
+        .then((res) => res.json())
+        .then((result) => {
+            if (result.success) {
+                adminDispatch({
+                    type: 'setCustomers',
+                    payload:{data:result.data}
+            })
+            } else {
+                console.log('error')
+        }
+        })
+    
+    //order
+    fetch("http://localhost:8000/orders/userOrders", {
+            method: "GET",
+      
+          })
+            .then((res) => res.json())
+            .then((result) => {
+                if (result.success) {
+                    
+                productDispatch({
+      
+                  type: "resetOrder",
+                  payload: { data: result.data },
+                });
+                
+              } else {
+                console.log("error");
+              }
+            });
+},[])
 
   const handleAdminClick = (e) => {
     e.preventDefault();
@@ -22,7 +68,7 @@ export default function Admin() {
     
     const handleMenuClick = (e) => {
       e.preventDefault();
-      e.target.textContent==='Product'?navigate('/displayProduct'):e.target.textContent==='Customers'?navigate('/displayCustomers'):e.target.textContent==='Orders'?navigate('/displayOrders'):navigate('/admin')
+      e.target.textContent==='Products'?navigate('/displayProduct'):e.target.textContent==='Customers'?navigate('/displayCustomers'):e.target.textContent==='Orders'?navigate('/displayOrders'):navigate('/admin')
     }
   return (
     <div className="mt-[1rem]">
@@ -45,12 +91,13 @@ export default function Admin() {
           {adminFeatures.map((item, idx) => (
             <li
               key={idx} onClick={handleMenuClick}
-              className="flex justify-center items-center p-2 md:border bg-orange-400/25 hover:bg-orange-400/25 md:m-3 rounded-lg relative w-[200px] m-1 "
+              className="flex justify-center items-center p-2 md:border bg-orange-400/25 hover:bg-orange-400/25 md:m-3 rounded-lg relative w-[250px] m-1 hover:cursor-pointer shadow-lg shadow-black"
             >
               <div className="border-8 border-orange-500  md:h-[100%]  rounded-2xl absolute  -z-10 shadow-xl shadow-black left-0" ></div>
-              <div className="font-bold ">
+              <div className="font-bold  flex flex-col md:flex-row  ">
                 
-                {item}
+                <p className="md:ml-5">{item}</p>
+                <p className="md:ml-5 ring ring-orange-500 rounded-full p-2 w-[50px] h-[50px] flex justify-center items-center bg-orange-500"> {item==='Products' ? product.length : item==='Customers' ? customers.length :item==='Orders' ? order.length : ''}</p>
               </div>
               
             </li>

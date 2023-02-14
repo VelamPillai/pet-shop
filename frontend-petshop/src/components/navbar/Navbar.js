@@ -1,6 +1,6 @@
 
 import React, { useState,useContext } from 'react';
-import {  NavLink } from "react-router-dom";
+import {  useNavigate, NavLink } from "react-router-dom";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
 import FavoriteModal from "../modal/FavoriteModal.js";
 import CartModal from "../modal/CartModal.js";
@@ -12,6 +12,7 @@ import { StoreContext } from '../../context/StoreContext.js';
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
+  const navigate = useNavigate();
 
   //to show and hide the mobile menu after selection of menu item
   const handleNavClick = (e) =>  {
@@ -27,7 +28,8 @@ const Navbar = () => {
   
    //hideFavoriteModalHandler -
    const hideModalHandler = (e) => {
-    productDispatch({type:"setShowHideFavoriteBtn"})
+     productDispatch({ type: "setShowHideFavoriteBtn" })
+    
   }; 
   //hideCartModalHandler
   const hideCartModalHandler = (e) => {
@@ -85,11 +87,7 @@ const Navbar = () => {
             Brand
           </NavLink>
         </li>
-        <li>
-          <NavLink to="/blogs"  onClick={ handleMenuClick}className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[2rem] md:p-[1rem] md:focus:text-green-600">
-            Blogs
-          </NavLink>
-              </li>
+        
               <li>
           <NavLink to="/petMainPage" onClick={ handleMenuClick} className=" md:leading-7 md:hover:underline border-black/6 my-2 border-box lg:p-[3rem] md:p-[.5rem] text-green-800 animate-ping hover:animate-none md:focus:text-orange-600 focus:animate-none">
           Sale %
@@ -148,15 +146,7 @@ const Navbar = () => {
             Brand
           </NavLink>
         </li>
-        <li className="py-1 text-xl">
-          <NavLink
-            to="/blog"
-            className=" navHover my-2 border-box p-1"
-            onClick={handleNavClick} 
-          >
-            Blog
-          </NavLink>
-              </li>
+        
               <li className="py-1 text-xl">
           <NavLink
             to="/petMainPage"

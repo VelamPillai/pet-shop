@@ -8,7 +8,7 @@ export default function DisplayCustomers() {
     const { adminState,  adminDispatch } = useContext(StoreContext);
     
     const { customers } = adminState;
-    useEffect(() => {
+   /*  useEffect(() => {
         fetch("http://localhost:8000/users", {
       method: "GET",
 
@@ -25,7 +25,7 @@ export default function DisplayCustomers() {
             }
         })
     },[])
-    
+     */
   return (
       <div className="mt-[3rem]">
          

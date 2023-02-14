@@ -92,7 +92,7 @@ export default function PetSubMenuPage() {
             }
         </div>
       </div>
-      <div>Payment methods</div>
+      
     </div>
   );
 }
