@@ -47,7 +47,7 @@ export default function PetSideMenuPage() {
         {/* search - drop down menu - filter */}
         <Sort />
       </div>
-      <div className="flex justify-between mt-5">
+      <div className="flex justify-between mt-5 p-4">
         {/* side menu */}
         <div className="w-1/4 hidden md:flex">
           { menuName=== 'brand' ? null : <SideMenu />}

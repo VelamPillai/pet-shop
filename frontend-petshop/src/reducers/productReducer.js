@@ -166,13 +166,25 @@ export const productReducer = (state, action) => {
       };
     }
     case "resetCart": {
-      localStorage.setItem("localCart", JSON.stringify([...payload.data]));
+       localStorage.setItem("localCart", JSON.stringify([...payload.data]));  
+      //localStorage.removeItem("localCart"); 
       return {
         ...state,
-        cart:[...payload.data]
+         cart:[...payload.data] 
+       
         
       };
     }
+    case "removeCart": {
+      localStorage.removeItem("localCart");  
+     //localStorage.removeItem("localCart"); 
+     return {
+       ...state,
+        cart:[] 
+      
+       
+     };
+   }
     case "setTotalPrice": {
       
       return {
@@ -197,6 +209,7 @@ export const productReducer = (state, action) => {
         
       };
     }
+    
     case "setOrder": {
       
       return {

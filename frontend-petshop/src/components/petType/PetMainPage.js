@@ -85,7 +85,7 @@ useEffect(()=>{
       </div>
       <div className="flex justify-between w-[1/4] mt-5">
         {/* side menu */}
-        <div className="w-1/4 hidden  md:flex mr-5">
+        <div className="w-1/4 hidden  md:flex mr-5 p-4">
            <SideMenu />  
         </div>
 
