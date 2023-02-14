@@ -37,15 +37,17 @@ const CheckoutForm = () => {
   };
 
   return (
+    
     <form
       onSubmit={handleSubmit}
-      className="w-[1000px] flex justify-center items-center flex-col m-5"
+      className="md:w-[1000px] flex justify-center items-center flex-col m-5"
     >
       <PaymentElement />
-      <button disabled={!stripe} className="bg-black text-white m-5 p-2">
+      <button disabled={!stripe} className="bg-red-500 rounded-lg text-[20px] text-white m-5 p-1">
         Submit
       </button>
-    </form>
+      </form>
+      
   );
 };
 
