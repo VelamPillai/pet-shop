@@ -27,10 +27,10 @@ export default function PetSideMenuPage() {
         {/* dog menu */}
          {menuName !== 'brand'  && <PetMenu /> }
        </div> 
-      <p className="flex justify-center items-center text-xl font-bold">{
+     {/*  <p className="flex justify-center items-center text-xl font-bold">{
       menuName==='sale %' ? menuName.split(' ')[0].slice(0, 1).toUpperCase()+menuName.slice(1,4).toUpperCase()+' '+subMenuName.toUpperCase():
         menuName.toUpperCase()+' - '+subMenuName.toUpperCase()}
-      </p>
+      </p> */}
 
       
       <div className="flex flex-row justify-between m-3">
