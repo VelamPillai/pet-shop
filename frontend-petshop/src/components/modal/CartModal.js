@@ -81,6 +81,7 @@ export default function CartModal() {
   //checkout handler
   const checkoutHandler = async (e) => {
     e.stopPropagation();
+    
     if (!user) {
       productDispatch({ type: "setShowHideCartBtn" });
       navigate("/login");
@@ -148,26 +149,26 @@ export default function CartModal() {
               type: "setTotalPrice",
               payload: { data: 0 },
             });
-            //productDispatch({ type: "setShowHideCartBtn" });
-            //setCheckout(false)
+            
           } else {
             console.log(result.message);
           }
         });
+        setCheckout(true);
+
+        const response = await fetch("http://localhost:8000/secret", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ amount: parseInt(totalPrice) * 100 }),
+        });
+        const result = await response.json();
+        console.log(result.clientSecret);
+        if (result.clientSecret) {
+          setClientSecret(result.clientSecret);
+        }
     } //else
 
-    setCheckout(true);
-
-    const response = await fetch("http://localhost:8000/secret", {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify({ amount: parseInt(totalPrice) * 100 }),
-    });
-    const result = await response.json();
-    console.log(result.clientSecret);
-    if (result.clientSecret) {
-      setClientSecret(result.clientSecret);
-    }
+    
   };
 
   return (
