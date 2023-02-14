@@ -61,7 +61,8 @@ const deleteHandler = (id) => {
     let profileImage = formData.get('profileImage').size > 0  ? await toBase64(formData.get('profileImage')) : (user.profileImage);
     
        
-    data.append('firstName', e.target.firstName.value)
+    data.append('firstName', e.target.firstName.value);
+    data.append('address', e.target.address.value);
     data.append('lastName', e.target.lastName.value);
     data.append('email', user.email);
     //password not want to update then old password has been taken
@@ -131,7 +132,7 @@ const deleteHandler = (id) => {
 
         <div className="flex justify-center items-center flex-col w-[100%] md:w-[60%] lg:border   bg-gradient-to-r from-orange-500 to-yellow-600 text hover:bg-gradient-to-l">
           <div className="flex flex-col justify-center items-center border lg:border-0 w-[100%]  p-[1rem] mb-[1rem] md:p-1 lg:h-[900px] ">
-            <p className="m-[.25rem]  font-bold text-center ">
+            <p className="m-[.25rem]  font-bold text-center text-shadow">
               {" "}
               ACCOUNT
             </p>
@@ -202,6 +203,17 @@ const deleteHandler = (id) => {
                   !@#$%
                 </div>
               </div>
+              <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
+                Address :{" "}
+                <input
+                  type="text"
+                  name="address"
+                  defaultValue={user.address}
+                  className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+                  
+                />
+              </label>   
+              
               <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
                 Profile Image:{" "}
                

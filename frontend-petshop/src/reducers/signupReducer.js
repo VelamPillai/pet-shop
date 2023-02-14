@@ -8,7 +8,8 @@ export function signupReducer(state, action) {
             return {
                 ...state,
                 firstName: payload.name === 'firstName' ? payload.data : state.firstName,
-                lastName:payload.name === 'lastName' ? payload.data : state.lastName,
+                lastName: payload.name === 'lastName' ? payload.data : state.lastName,
+                address:payload.name === 'address' ? payload.data : state.address,
                 email: payload.name === 'email' ? payload.data : state.email,
                 password: payload.name === 'password' ? payload.data : state.password,
                 profileImage : payload.name === 'profileImage' ?  payload.data : ''

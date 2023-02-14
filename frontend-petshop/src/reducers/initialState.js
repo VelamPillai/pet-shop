@@ -7,6 +7,7 @@ const initialState = {
 
   email: '',
   password: '',
+  address:'',
   file: null, 
   user: '',
 
