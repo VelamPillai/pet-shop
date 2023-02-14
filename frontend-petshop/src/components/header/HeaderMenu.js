@@ -25,7 +25,9 @@ export default function HeaderMenu() {
   }; 
   const hideCartModalHandler = (e) => {
      productDispatch({type:"setShowHideCartBtn"})
-}; 
+  }; 
+  
+  console.log('header Menu :',favoriteProduct.length,favoriteProduct)
   return (
     <div className="flex text-3xl  ">
        

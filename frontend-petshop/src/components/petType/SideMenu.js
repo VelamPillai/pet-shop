@@ -24,10 +24,11 @@ export default function SideMenu() {
     originalProduct,
   } = productState;
 
+ /*  useEffect(() => {
+    
+  }, [menuName]); */
   useEffect(() => {
     setBtn(false);
-  }, [menuName]);
-  useEffect(() => {
     let sideMenuProduct = "";
     let sideMainProduct = "";
     product &&
@@ -59,7 +60,8 @@ export default function SideMenu() {
 
   const handleBtnClick = (value) => {
     //e.stopPropagate();
-    value === "brand" && setBtn((btn) => !btn);
+    console.log('brandbtn',btn)
+     value === "brand" &&  setBtn((btn) => !btn);
     value === "lifeStyle" && setBtn(true)
   };
 
