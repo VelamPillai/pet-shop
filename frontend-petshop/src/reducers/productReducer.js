@@ -52,6 +52,15 @@ export const productReducer = (state, action) => {
               (item) =>
                 ((item.petName === state.menuName || item.petName === "dog/cat") ||
                 (item.productCategory === state.subMenuName) )&& (item.brand!==payload.data)
+            ))],
+            originalSideMenuProduct:payload.checked?[...new Set([...state.sideMenuProduct,...[...state.product].filter(
+              (item) =>
+                ((item.petName === state.menuName || item.petName === "dog/cat") ||
+                (item.productCategory === state.subMenuName) )&& (item.brand===payload.data)
+            )])]:[...new Set([...state.sideMenuProduct].filter(
+              (item) =>
+                ((item.petName === state.menuName || item.petName === "dog/cat") ||
+                (item.productCategory === state.subMenuName) )&& (item.brand!==payload.data)
             ))]
            
           };
@@ -60,6 +69,15 @@ export const productReducer = (state, action) => {
           return {
             ...state,
              sideMenuProduct:payload.checked?[...new Set([...state.sideMenuProduct,...[...state.product].filter(
+              (item) =>
+                ((item.petName === state.menuName || item.petName === "dog/cat") ||
+                (item.productCategory === state.subMenuName) )&& (item.lifeStyle===payload.data)
+            )])]:[...new Set([...state.sideMenuProduct].filter(
+              (item) =>
+                ((item.petName === state.menuName || item.petName === "dog/cat") ||
+                (item.productCategory === state.subMenuName) )&& (item.lifeStyle!==payload.data)
+            ))],
+            originalSideMenuProduct:payload.checked?[...new Set([...state.sideMenuProduct,...[...state.product].filter(
               (item) =>
                 ((item.petName === state.menuName || item.petName === "dog/cat") ||
                 (item.productCategory === state.subMenuName) )&& (item.lifeStyle===payload.data)
@@ -82,6 +100,15 @@ export const productReducer = (state, action) => {
               (item) =>
                 ((item.petName === state.menuName || item.petName === "dog/cat") ||
                 (item.productCategory === state.subMenuName) )&& (item.petSize!==payload.data)
+            ))],
+            originalSideMenuProduct:payload.checked?[...new Set([...state.sideMenuProduct,...[...state.product].filter(
+              (item) =>
+                ((item.petName === state.menuName || item.petName === "dog/cat") ||
+                (item.productCategory === state.subMenuName) )&& (item.petSize===payload.data)
+            )])]:[...new Set([...state.sideMenuProduct].filter(
+              (item) =>
+                ((item.petName === state.menuName || item.petName === "dog/cat") ||
+                (item.productCategory === state.subMenuName) )&& (item.petSize!==payload.data)
             ))]
            
           };
@@ -90,6 +117,15 @@ export const productReducer = (state, action) => {
           return {
             ...state,
              sideMenuProduct:payload.checked?[...new Set([...state.sideMenuProduct,...[...state.product].filter(
+              (item) =>
+                ((item.petName === state.menuName || item.petName === "dog/cat") ||
+                (item.productCategory === state.subMenuName) )&& (item.material===payload.data)
+            )])]:[...new Set([...state.sideMenuProduct].filter(
+              (item) =>
+                ((item.petName === state.menuName || item.petName === "dog/cat") ||
+                (item.productCategory === state.subMenuName) )&& (item.material!==payload.data)
+            ))],
+            originalSideMenuProduct:payload.checked?[...new Set([...state.sideMenuProduct,...[...state.product].filter(
               (item) =>
                 ((item.petName === state.menuName || item.petName === "dog/cat") ||
                 (item.productCategory === state.subMenuName) )&& (item.material===payload.data)

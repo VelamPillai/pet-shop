@@ -17,7 +17,8 @@ const initialState = {
   subMenuName: '',
   brand: '',
   sideMenuBrand: '',
-  sideMenuProduct:'',
+  sideMenuProduct: '',
+  originalSideMenuProduct:'',
   singleProduct:'',
   
   searchedProduct: '',
