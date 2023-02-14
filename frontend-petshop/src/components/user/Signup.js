@@ -32,6 +32,7 @@ export default function Signup() {
      data.append('lastName', e.target.lastName.value);
      data.append('email', e.target.email.value);
      data.append('password', e.target.password.value);
+     data.append('address', e.target.address.value);
      data.append('profileImage', profileImage)  
      
     
@@ -169,6 +170,20 @@ export default function Signup() {
               !@#$%
             </div>
           </div>
+          <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
+            Address :{' '}
+            <input
+              className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
+              type="text"
+              name="address"
+              onChange={(e) => signupDispatch({
+                type: "onChange",
+                payload: { name: e.target.name, data: e.target.value }
+              })
+              }
+              value={signupState.address}
+            />
+          </label>
           <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
             Profile Image:{' '}
             <input

@@ -7,6 +7,7 @@ const initialState = {
 
   email: '',
   password: '',
+  address:'',
   file: null, 
   user: '',
 
@@ -17,7 +18,8 @@ const initialState = {
   subMenuName: '',
   brand: '',
   sideMenuBrand: '',
-  sideMenuProduct:'',
+  sideMenuProduct: '',
+  originalSideMenuProduct:'',
   singleProduct:'',
   
   searchedProduct: '',

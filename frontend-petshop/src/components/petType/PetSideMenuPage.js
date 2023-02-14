@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Sort from "./Sort";
+import SideMenuSort from "./SideMenuSort";
 import SideMenu from "./SideMenu.js";
 import ProductCard from "./ProductCard.js";
 import PetMenu from "./PetMenu.js";
@@ -26,13 +26,8 @@ export default function PetSideMenuPage() {
      <div className="md:hidden">
         {/* dog menu */}
          {menuName !== 'brand'  && <PetMenu /> }
-       </div> 
-     {/*  <p className="flex justify-center items-center text-xl font-bold">{
-      menuName==='sale %' ? menuName.split(' ')[0].slice(0, 1).toUpperCase()+menuName.slice(1,4).toUpperCase()+' '+subMenuName.toUpperCase():
-        menuName.toUpperCase()+' - '+subMenuName.toUpperCase()}
-      </p> */}
-
-      
+      </div> 
+       
       <div className="flex flex-row justify-between m-3">
         {/* products */}
         <p>
@@ -45,7 +40,7 @@ export default function PetSideMenuPage() {
           products
         </p>
         {/* search - drop down menu - filter */}
-        <Sort />
+        <SideMenuSort />
       </div>
       <div className="flex justify-between mt-5 p-4">
         {/* side menu */}

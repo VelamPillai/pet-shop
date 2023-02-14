@@ -54,7 +54,7 @@ export default function AddProduct() {
             payload: { data: result.data },
           });
 
-          setTimeout(() => navigate('/admin'), 2000);
+          setTimeout(() => navigate('/displayProduct'), 2000);
         } else {
           if (Array.isArray(result.message)) {
             const errMessage = result.message.reduce(
@@ -126,6 +126,7 @@ export default function AddProduct() {
             <input
               className="border border-slate-200 rounded w-[150px] md:w-[300px] h-[50px] "
               type="number"
+              step="0.01" 
               name="price"
               /* onChange={(e) => adminDispatch({
               type: "onChange",

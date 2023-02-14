@@ -6,6 +6,7 @@ import { StoreContext } from "../../context/StoreContext";
 
 import { AiFillDelete } from "react-icons/ai";
 import StripeContainer from "../payment/StripeContainer";
+import { BsExclamationSquareFill } from "react-icons/bs";
 
 export default function CartModal() {
   const navigate = useNavigate();
@@ -85,88 +86,101 @@ export default function CartModal() {
     if (!user) {
       productDispatch({ type: "setShowHideCartBtn" });
       navigate("/login");
-    } else {
-      fetch("http://localhost:8000/orders/addOrder", {
-        method: "POST",
-        headers: {
-          token: localStorage.getItem("token"),
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          items: cart.map((item) => item._id),
-          totalPrice: totalPrice,
-          userId: user._id,
-        }),
-      })
-        .then((res) => res.json())
-        .then((result) => {
-          if (result.success) {
-            console.log(result.data);
-            console.log(result.data._id);
-            let data = new FormData();
-            data.append("firstName", user.firstName);
-            data.append("lastName", user.lastName);
-            data.append("email", user.email);
-            //password not want to update then old password has been taken
-            data.append("password", user.password);
-            data.append("profileImage", user.profileImage);
-            user.favoriteProduct.length > 1 &&
-              data.append("favoriteProduct", [...user.favoriteProduct]);
-            data.append("ordersId", result.data._id);
-            // for (let key of data.keys())
-            // {
 
-            // console.log(key)
-            //  }
-            // for (let key of data.values())
-            //  {
-
-            //  console.log(key)
-            //   }
-
-            fetch(`http://localhost:8000/users/${user._id}`, {
-              method: "PATCH",
-              headers: { token: localStorage.getItem("token") },
-              body: data,
-            })
-              .then((res) => res.json())
-              .then((result) => {
-                if (result.success) {
-                  homepageDispatch({
-                    type: "setUser",
-                    payload: { data: result.data },
-                  });
-                } else {
-                  toast.error(result.message.message);
-                }
-              });
-
-            productDispatch({
-              type: "resetCart",
-              payload: { data: [] },
-            });
-            productDispatch({
-              type: "setTotalPrice",
-              payload: { data: 0 },
-            });
-            
-          } else {
-            console.log(result.message);
-          }
-        });
-        setCheckout(true);
-
-        const response = await fetch("http://localhost:8000/secret", {
+    }
+    
+    else {
+      if (user.address) {
+        fetch("http://localhost:8000/orders/addOrder", {
           method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify({ amount: parseInt(totalPrice) * 100 }),
-        });
-        const result = await response.json();
-        console.log(result.clientSecret);
-        if (result.clientSecret) {
-          setClientSecret(result.clientSecret);
-        }
-    } //else
+          headers: {
+            token: localStorage.getItem("token"),
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            items: cart.map((item) => item._id),
+            totalPrice: totalPrice,
+            userId: user._id,
+          }),
+        })
+          .then((res) => res.json())
+          .then((result) => {
+            if (result.success) {
+              console.log(result.data);
+              console.log(result.data._id);
+              let data = new FormData();
+              data.append("firstName", user.firstName);
+              data.append("lastName", user.lastName);
+              data.append("email", user.email);
+              //password not want to update then old password has been taken
+              data.append("password", user.password);
+              data.append("profileImage", user.profileImage);
+              user.favoriteProduct.length > 1 &&
+                data.append("favoriteProduct", [...user.favoriteProduct]);
+              data.append("ordersId", result.data._id);
+              // for (let key of data.keys())
+              // {
+  
+              // console.log(key)
+              //  }
+              // for (let key of data.values())
+              //  {
+  
+              //  console.log(key)
+              //   }
+  
+              fetch(`http://localhost:8000/users/${user._id}`, {
+                method: "PATCH",
+                headers: { token: localStorage.getItem("token") },
+                body: data,
+              })
+                .then((res) => res.json())
+                .then((result) => {
+                  if (result.success) {
+                    homepageDispatch({
+                      type: "setUser",
+                      payload: { data: result.data },
+                    });
+                  } else {
+                    toast.error(result.message.message);
+                  }
+                });
+  
+              productDispatch({
+                type: "resetCart",
+                payload: { data: [] },
+              });
+              productDispatch({
+                type: "setTotalPrice",
+                payload: { data: 0 },
+              });
+              
+            } else {
+              console.log(result.message);
+            }
+          });
+          setCheckout(true);
+  
+          const response = await fetch("http://localhost:8000/secret", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ amount: parseInt(totalPrice) * 100 }),
+          });
+          const result = await response.json();
+          console.log(result.clientSecret);
+          if (result.clientSecret) {
+            setClientSecret(result.clientSecret);
+          }
+      } 
+      else {
+        productDispatch({ type: "setShowHideCartBtn" });
+      navigate("/account");
+          
+      }
+    
+    }//else
+
+      
 
     
   };
