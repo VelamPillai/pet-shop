@@ -108,7 +108,7 @@ export default function SideMenu() {
         {sideMenuBrand &&
           sideMenuBrand.map(
             (item, idx) =>
-              idx <= (btn ? sideMenuBrand.length : 2) && (
+              idx <= (btn ? sideMenuBrand.length : 4) && (
                 <div key={idx}>
                   <input
                     onClick={handleSideMenuClick}
