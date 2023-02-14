@@ -2,6 +2,7 @@ import React,{useContext} from "react";
 import {useNavigate} from 'react-router-dom'
 
 import toast, { Toaster } from "react-hot-toast";
+import { GiCancel } from "react-icons/gi";
 
 import { StoreContext } from '../../context/StoreContext';
 
@@ -46,11 +47,17 @@ export default function UpdateOrder() {
             }
           });
     
-      }
+    }
+    const cancelHandler = (e) => {
+      e.preventDefault();
+      navigate('/displayOrders')
+    }
   return (
-      <div>
-          <p className="  font-bold text-center mt-[2rem] ">Update Order</p>
-    <div className="flex justify-center items-center flex-wrap w-[500px] flex-col xl:flex-row  lg:border m-auto rounded shadow-black shadow-xs mt-[5rem] md:mt-[3rem] bg-orange-200 p-3">
+    <div className="relative ">
+      
+      <p className="  font-bold text-center mt-[2rem] ">Update Order</p>
+      <GiCancel className="text-white bg-red-500 border-red-500 p-1 rounded-full  text-center text-3xl absolute top-20 md:top-[100px] md:left-[900px]" onClick={ cancelHandler} />
+    <div className="flex justify-center items-center flex-wrap w-[400px] md:w-[500px] flex-col xl:flex-row  lg:border m-auto rounded shadow-black shadow-xs mt-[5rem] md:mt-[3rem] bg-orange-200 p-3">
       <Toaster />
       
               

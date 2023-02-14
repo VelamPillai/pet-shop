@@ -3,6 +3,8 @@ import {useNavigate} from 'react-router-dom'
 
 import toast, { Toaster } from "react-hot-toast";
 
+import { GiCancel } from "react-icons/gi";
+
 import { StoreContext } from '../../context/StoreContext';
 
 
@@ -72,8 +74,14 @@ export default function AddProduct() {
 
    
   }
+  const cancelHandler = (e) => {
+    e.preventDefault();
+    navigate('/displayProduct')
+  }
   return (
     <div>
+      <GiCancel className="text-white bg-red-500 border-red-500 p-1 rounded-full  text-center text-3xl" onClick={ cancelHandler} />
+     
       <div className="flex justify-center items-center flex-wrap flex-col xl:flex-row  lg:border m-auto rounded shadow-black shadow-xs  mt-[3rem] md:mt-[1rem] bg-orange-200/50 p-3">
         <Toaster />
         
