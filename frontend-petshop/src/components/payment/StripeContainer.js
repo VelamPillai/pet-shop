@@ -15,8 +15,11 @@ export default function StripeContainer({clientSecret}) {
   console.log('clientSecret:', clientSecret);
     
   return (
-    <Elements stripe={stripePromise} options={{ clientSecret }}>
+    <>
+      {clientSecret ?  <Elements stripe={stripePromise} options={{ clientSecret }}>
       <CheckoutForm />
-    </Elements>
+    </Elements> : <h1>loading ....</h1>} 
+    </>
+   
   );
 };

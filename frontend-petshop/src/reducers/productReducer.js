@@ -175,6 +175,16 @@ export const productReducer = (state, action) => {
         
       };
     }
+    case "removeCart": {
+      localStorage.removeItem("localCart");  
+     //localStorage.removeItem("localCart"); 
+     return {
+       ...state,
+        cart:[] 
+      
+       
+     };
+   }
     case "setTotalPrice": {
       
       return {
@@ -199,6 +209,7 @@ export const productReducer = (state, action) => {
         
       };
     }
+    
     case "setOrder": {
       
       return {

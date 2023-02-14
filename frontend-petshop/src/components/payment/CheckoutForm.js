@@ -1,4 +1,8 @@
-import {useStripe, useElements, PaymentElement} from '@stripe/react-stripe-js';
+import {
+  useStripe,
+  useElements,
+  PaymentElement,
+} from "@stripe/react-stripe-js";
 
 const CheckoutForm = () => {
   const stripe = useStripe();
@@ -15,40 +19,34 @@ const CheckoutForm = () => {
       return;
     }
 
-    const result = await stripe.confirmPayment(
-      
-      
-      {
-
-
+    const result = await stripe.confirmPayment({
       //`Elements` instance that was used to create the Payment Element
       elements,
 
-       confirmParams: {
-        return_url: "http://localhost:3000",
+      confirmParams: {
+        return_url: "http://localhost:3000/confirmPayment",
       },
-       
-
     });
-
-   
 
     if (result.error) {
       // Show error to your customer (for example, payment details incomplete)
       console.log(result.error.message);
     } else {
-      // Your customer will be redirected to your `return_url`. For some payment
-      // methods like iDEAL, your customer will be redirected to an intermediate
-      // site first to authorize the payment, then redirected to the `return_url`.
+      
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className='w-[1000px] flex justify-center items-center flex-col m-5'>
+    <form
+      onSubmit={handleSubmit}
+      className="w-[1000px] flex justify-center items-center flex-col m-5"
+    >
       <PaymentElement />
-      <button disabled={!stripe} className='bg-black text-white m-5 p-2'>Submit</button>
+      <button disabled={!stripe} className="bg-black text-white m-5 p-2">
+        Submit
+      </button>
     </form>
-  )
+  );
 };
 
 export default CheckoutForm;
