@@ -9,9 +9,11 @@ import LoginImage from '../../image/loginImage.png';
 export default function Login() {
   const navigate = useNavigate();
 
-  const { homepageDispatch, loginState, loginDispatch,productDispatch } =
+  const { homepageDispatch, loginState, loginDispatch,productDispatch ,homepageState} =
     useContext(StoreContext);
 
+  
+  const { user } = homepageState;
   //onSubmit - loginHandler -form element
 
   const loginHandler = (e) => {
@@ -48,6 +50,8 @@ export default function Login() {
               type: 'setFavoriteProduct',
               payload: { data: result.data.favoriteProduct },
             });
+            
+            result.data.role === "admin" ?  navigate('/admin') :
             setTimeout(() => navigate('/'), 2000);
           } else {
             toast.error(result.message);

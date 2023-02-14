@@ -71,26 +71,14 @@ export default function Product() {
             <p className="text-orange-500 text-xl font-bold mr-3">
               $ {singleProduct.price}
             </p>
-            <button
+            {!(user.role === 'admin') &&  <button
               onClick={handleCartClick}
               className="border md:w-[40%] p-3 flex justify-center items-center rounded-lg bg-orange-500  mb-4 hover:border-2 hover:border-orange-300  hover:bg-orange-400/50"
             >
               Add to Cart
-            </button>
-            {/* {addCart ? <button onClick={handleCartClick} className="border w-[80%] p-3 flex justify-center items-center rounded-lg bg-orange-500  mb-4 hover:border-2 hover:border-orange-300  hover:bg-orange-400/50" >
-                          Add to Cart
-                      </button> : <div className="flex flex-row"> 
-                      <button onClick={handleCartClick} className="border w-[20%] p-3 flex justify-center items-center rounded-lg text-xl bg-orange-500  mb-4 hover:border-2 hover:border-orange-300  hover:bg-orange-400/50" >
-                         -
-                          </button>
-                          <div className="border w-[400px] p-3 flex justify-center items-center rounded-lg  bg-orange-500  mb-4 "> < GiBasket /> <p className="mx-2">4</p> < GiBasket /> </div>
-                                
-                          <button onClick={handleCartClick} className="border w-[20%] p-3 flex text-xl justify-center items-center rounded-lg bg-orange-500  mb-4 hover:border-2 hover:border-orange-300  hover:bg-orange-400/50" >
-                          +
-                      </button>
-                      </div>
-                         
-                      } */}
+            </button>}
+           
+           
           </div>
         </div>
       </div>
