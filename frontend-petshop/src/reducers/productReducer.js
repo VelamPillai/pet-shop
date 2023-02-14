@@ -166,10 +166,12 @@ export const productReducer = (state, action) => {
       };
     }
     case "resetCart": {
-      localStorage.setItem("localCart", JSON.stringify([...payload.data]));
+       localStorage.setItem("localCart", JSON.stringify([...payload.data]));  
+      //localStorage.removeItem("localCart"); 
       return {
         ...state,
-        cart:[...payload.data]
+         cart:[...payload.data] 
+       
         
       };
     }

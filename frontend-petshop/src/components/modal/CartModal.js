@@ -1,14 +1,19 @@
-import React, { useContext } from "react";
+import React, { useContext,useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import toast, { Toaster } from "react-hot-toast";
 import { StoreContext } from "../../context/StoreContext";
 
 import { AiFillDelete } from "react-icons/ai";
+import StripeContainer from "../payment/StripeContainer";
 
 export default function CartModal() {
   
   const navigate = useNavigate();
+
+
+  const [checkout, setCheckout] = useState(false);
+  const [clientSecret, setClientSecret] = useState('');
 
   const { homepageState, productState, productDispatch,homepageDispatch } =
     useContext(StoreContext);
@@ -96,9 +101,18 @@ export default function CartModal() {
   };
 
   //checkout handler
-  const checkoutHandler = (e) => {
+  const checkoutHandler = async (e) => {
     e.stopPropagation()
+    setCheckout(true)
    
+const response = await fetch("http://localhost:8000/secret",{method:'POST',headers:{"content-type":"application/json"},body:JSON.stringify({amount:parseInt(totalPrice)*100})}) 
+    const result = await response.json();
+    console.log(result.clientSecret)
+    if(result.clientSecret){
+    setClientSecret(result.clientSecret)
+    
+    
+    
     if (!user) {
       productDispatch({ type: "setShowHideCartBtn" });
       navigate('/login') 
@@ -172,6 +186,7 @@ export default function CartModal() {
             payload: { data: 0 },
           })
           productDispatch({ type: "setShowHideCartBtn" });
+          setCheckout(false)
         }
         else {
           console.log(result.message)
@@ -180,7 +195,7 @@ export default function CartModal() {
    
    
     }//else
-    
+     }
   }
 
   return (
@@ -189,7 +204,7 @@ export default function CartModal() {
         showHideCartBtn ? "visible" : "invisible"
       }`}
     >
-      <div className="flex h-[100%] text-[1.5rem]  justify-start align-top p-3 ">
+      {checkout ?  <StripeContainer clientSecret={clientSecret}/> :(<div className="flex h-[100%] text-[1.5rem]  justify-start align-top p-3 ">
         <p className="flex  mt-2 text-black-800 mr-[2rem] ">Cart</p>
         <div className="mt-3 flex flex-col right-20 absolute">
           <p className="  mt-5 text-black-800 text-sm  font-bold">
@@ -263,7 +278,8 @@ export default function CartModal() {
               })}
           </ul>
         </div>
-      </div>
+      </div>) }
+      
     </div>
   );
 }
