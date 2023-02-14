@@ -37,7 +37,7 @@ export default function HeaderMenu() {
           onClick={navigateToUser}
         />
       )}
-      {user.role === 'user' &&
+      {(!(user.role === 'admin')|| !user)  &&
 
         <div className="md:flex justify-center items-center  border border-orange-500  text-4xl hidden  relative rounded ">
           {user && <div className=" border-r border-orange-500 p-1 relative">

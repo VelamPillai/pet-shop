@@ -15,6 +15,7 @@ const userSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref:'orders'
   }],
+  address:{type:String , default:''},
   favoriteProduct:[{ type: Schema.Types.ObjectId,
     ref:'products'}],
   profileImage: {
