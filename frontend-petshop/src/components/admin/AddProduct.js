@@ -1,12 +1,9 @@
-import React,{useContext} from "react";
-import {useNavigate} from 'react-router-dom'
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import toast, { Toaster } from "react-hot-toast";
 
-import { StoreContext } from '../../context/StoreContext';
-
-
-
+import { StoreContext } from "../../context/StoreContext";
 
 //file to binary
 const toBase64 = (file) =>
@@ -18,68 +15,67 @@ const toBase64 = (file) =>
   });
 export default function AddProduct() {
   const navigate = useNavigate();
-  const {  productDispatch,adminDispatch,adminState} = useContext(StoreContext);
+  const { productDispatch, adminDispatch, adminState } =
+    useContext(StoreContext);
 
-  const addProduct =  async(e) => {
+  const addProduct = async (e) => {
     e.preventDefault();
 
     let formData = new FormData(e.target);
-    let productImage = await toBase64(formData.get('productImage'))
+    let productImage = await toBase64(formData.get("productImage"));
     let data = new FormData();
-    data.append('petName', e.target.petName.value)
-    data.append('productName', e.target.productName.value)
-    data.append('description', e.target.description.value)
-    data.append('price',e.target.price.value)
-    data.append('brand',e.target.brand.value)
-    data.append('petSize',e.target.petSize.value)
-    data.append('lifeStyle', e.target.lifeStyle.value)
-    data.append('productCategory', e.target.productCategory.value)
-    data.append('material', e.target.material.value);
-    data.append('productCharacter', e.target.productCharacter.value);
-    data.append('sale', e.target.sale.value);
-    data.append('productArrival', e.target.productArrival.value);
-    data.append('productImage',productImage)
-    
-    adminDispatch({ type: 'clearForm' })
+    data.append("petName", e.target.petName.value);
+    data.append("productName", e.target.productName.value);
+    data.append("description", e.target.description.value);
+    data.append("price", e.target.price.value);
+    data.append("brand", e.target.brand.value);
+    data.append("petSize", e.target.petSize.value);
+    data.append("lifeStyle", e.target.lifeStyle.value);
+    data.append("productCategory", e.target.productCategory.value);
+    data.append("material", e.target.material.value);
+    data.append("productCharacter", e.target.productCharacter.value);
+    data.append("sale", e.target.sale.value);
+    data.append("productArrival", e.target.productArrival.value);
+    data.append("productImage", productImage);
 
-    fetch('http://localhost:8000/products/addProduct', { method: 'POST', body: data }) 
+    adminDispatch({ type: "clearForm" });
+
+    fetch(" /products/addProduct", { method: "POST", body: data })
       .then((res) => res.json())
       .then((result) => {
         if (result.success) {
-          
-          toast.success('new product added');
+          toast.success("new product added");
           productDispatch({
-
             type: "setProduct",
             payload: { data: result.data },
           });
 
-          setTimeout(() => navigate('/displayProduct'), 2000);
+          setTimeout(() => navigate("/displayProduct"), 2000);
         } else {
           if (Array.isArray(result.message)) {
             const errMessage = result.message.reduce(
               (overallError, errItem) => (overallError += ` * ${errItem}  \n `),
-              ''
+              ""
             );
             console.log(result.message);
             toast.error(`${errMessage}`);
           } else {
             toast.error(result.message);
-            
           }
         }
       });
-
-   
-  }
+  };
   return (
     <div>
       <div className="flex justify-center items-center flex-wrap flex-col xl:flex-row  lg:border m-auto rounded shadow-black shadow-xs  mt-[3rem] md:mt-[1rem] bg-orange-200/50 p-3">
         <Toaster />
-        
+
         <p className="  font-bold text-center ">Add New Product</p>
 
-        <form onSubmit={addProduct } className=" grid md:grid-cols-3 justify-center items-center w-[100%]">
+        <form
+          onSubmit={addProduct}
+          className=" grid md:grid-cols-3 justify-center items-center w-[100%]"
+        >
           <label className="flex flex-col  justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
             Pet Name :{" "}
             <input
@@ -126,7 +122,7 @@ export default function AddProduct() {
             <input
               className="border border-slate-200 rounded w-[150px] md:w-[300px] h-[50px] "
               type="number"
-              step="0.01" 
+              step="0.01"
               name="price"
               /* onChange={(e) => adminDispatch({
               type: "onChange",

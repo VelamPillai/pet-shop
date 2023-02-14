@@ -15,90 +15,85 @@ const toBase64 = (file) =>
   });
 
 export default function Account() {
-  const { homepageState, signupDispatch, homepageDispatch} =
+  const { homepageState, signupDispatch, homepageDispatch } =
     useContext(StoreContext);
   const navigate = useNavigate();
   const { user } = homepageState;
 
   const profileHandler = (e) => {
-        user &&
-      ( e.target.textContent === "Profile" &&
-         navigate("/profile")
-        
-        );
+    user && e.target.textContent === "Profile" && navigate("/profile");
   };
 
-//delete handler
-const deleteHandler = (id) => {
-  fetch(`http://localhost:8000/users/${id}`, {
-    method: "DELETE",
-    headers: { token: localStorage.getItem("token") }      
-  })
-    .then((res) => res.json())
-    .then((result) => {
-      if (result.success) {
-        toast.success('Account has Deleted');
-        setTimeout(() => {
-          localStorage.removeItem('token');
-          homepageDispatch({ type: 'setUser', payload: { data: '' } })
-          navigate('/')
-        },2000)
-        
-      }
+  //delete handler
+  const deleteHandler = (id) => {
+    fetch(` /users/${id}`, {
+      method: "DELETE",
+      headers: { token: localStorage.getItem("token") },
     })
-}
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.success) {
+          toast.success("Account has Deleted");
+          setTimeout(() => {
+            localStorage.removeItem("token");
+            homepageDispatch({ type: "setUser", payload: { data: "" } });
+            navigate("/");
+          }, 2000);
+        }
+      });
+  };
 
   const updateUserHandler = async (e) => {
     e.preventDefault();
-    
+
     let formData = new FormData(e.target);
     let data = new FormData();
 
     //if the profile image want to be updated
-    
-    let profileImage = formData.get('profileImage').size > 0  ? await toBase64(formData.get('profileImage')) : (user.profileImage);
-    
-       
-    data.append('firstName', e.target.firstName.value);
-    data.append('address', e.target.address.value);
-    data.append('lastName', e.target.lastName.value);
-    data.append('email', user.email);
+
+    let profileImage =
+      formData.get("profileImage").size > 0
+        ? await toBase64(formData.get("profileImage"))
+        : user.profileImage;
+
+    data.append("firstName", e.target.firstName.value);
+    data.append("address", e.target.address.value);
+    data.append("lastName", e.target.lastName.value);
+    data.append("email", user.email);
     //password not want to update then old password has been taken
-    data.append('password', e.target.password.value || user.password);
-    data.append('profileImage', profileImage);
+    data.append("password", e.target.password.value || user.password);
+    data.append("profileImage", profileImage);
 
     signupDispatch({ type: "clearForm" });
-    
 
-    fetch(`http://localhost:8000/users/${user._id}`, {
+    fetch(` /users/${user._id}`, {
       method: "PATCH",
       headers: { token: localStorage.getItem("token") },
-      body: data
+      body: data,
     })
       .then((res) => res.json())
       .then((result) => {
         if (result.success) {
           homepageDispatch({ type: "setUser", payload: { data: result.data } });
-          
+
           let name = result.data.firstName.concat(" ", result.data.lastName);
           toast.success(`Hallo ${name} !  profile updated`);
           setTimeout(() => navigate("/profile"), 1000);
         } else {
           if (Array.isArray(result.message)) {
             const errMessage = result.message.reduce(
-              (overallError, errItem) => (overallError += ` * ${errItem}  \n `)," ");           
+              (overallError, errItem) => (overallError += ` * ${errItem}  \n `),
+              " "
+            );
             toast.error(`${errMessage}`);
           } else {
             toast.error(result.message);
-            
           }
         }
       });
   };
   return (
-    <div >
-    
-     
+    <div>
       <div className="flex  flex-col justify-center items-center  md:flex-row w-[100%]  lg:border mx-auto my-[4rem] md:m-0  rounded shadow-black shadow-lg">
         <div className="flex flex-col w-[40%]  p-2 md:p-1">
           <img
@@ -146,7 +141,6 @@ const deleteHandler = (id) => {
                   type="text"
                   name="firstName"
                   defaultValue={user.firstName}
-                  
                 />
               </label>
               <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
@@ -156,10 +150,9 @@ const deleteHandler = (id) => {
                   name="lastName"
                   defaultValue={user.lastName}
                   className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
-                  
                 />
-              </label>              
-              
+              </label>
+
               <label className="flex flex-col justify-center item-center text-xs md:text-md  md:items-start m-[.25rem]  ">
                 Password:{" "}
                 <input
@@ -208,20 +201,17 @@ const deleteHandler = (id) => {
                   name="address"
                   defaultValue={user.address}
                   className="border border-slate-200 rounded w-[150px] md:w-[400px] h-[50px] "
-                  
                 />
-              </label>   
-              
+              </label>
+
               <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
                 Profile Image:{" "}
-               
                 <input
                   className=" py-2 border border-slate-200 rounded bg-white w-[150px] md:w-[400px] h-[50px] "
                   type="file"
-                  name="profileImage"                  
+                  name="profileImage"
                 />
-                 <img src={user.profileImage} width="50px" alt="profileImage" />
-                
+                <img src={user.profileImage} width="50px" alt="profileImage" />
               </label>
               <button className="bg-orange-500 justify-center items-center w-[100px] md:w-[200px]  my-3 md:mx-auto  md:p-1 rounded shadow-black shadow-md focus:bg-green-600  h-[30px] lg:box-content">
                 update

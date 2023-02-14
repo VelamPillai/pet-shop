@@ -1,12 +1,9 @@
-import React,{useContext} from "react";
-import {useNavigate} from 'react-router-dom'
+import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 import toast, { Toaster } from "react-hot-toast";
 
-import { StoreContext } from '../../context/StoreContext';
-
-
-
+import { StoreContext } from "../../context/StoreContext";
 
 //file to binary
 const toBase64 = (file) =>
@@ -18,68 +15,77 @@ const toBase64 = (file) =>
   });
 export default function UpdateProduct() {
   const navigate = useNavigate();
-  const { adminState,adminDispatch, productDispatch} = useContext(StoreContext);
-  
+  const { adminState, adminDispatch, productDispatch } =
+    useContext(StoreContext);
+
   const { product } = adminState;
 
-  const updateProduct =async (e) => {
+  const updateProduct = async (e) => {
     e.preventDefault();
     let formData = new FormData(e.target);
     let data = new FormData();
 
-    let productImage = formData.get('productImage').size > 0 ? await toBase64(formData.get('productImage')) : (product.productImage);
-    
-    data.append('petName', e.target.petName.value)
-    data.append('productName', e.target.productName.value)
-    data.append('description', e.target.description.value)
-    data.append('price',e.target.price.value)
-    data.append('brand',e.target.brand.value)
-    data.append('petSize',e.target.petSize.value)
-    data.append('lifeStyle', e.target.lifeStyle.value)
-    data.append('productCategory', e.target.productCategory.value)
-    data.append('material', e.target.material.value);
-    data.append('productCharacter', e.target.productCharacter.value);
-    data.append('sale', e.target.sale.value);
-    data.append('productArrival', e.target.productArrival.value);
-    data.append('productImage',productImage)
-    
-    adminDispatch({ type: 'clearForm' });
+    let productImage =
+      formData.get("productImage").size > 0
+        ? await toBase64(formData.get("productImage"))
+        : product.productImage;
 
-    fetch(`http://localhost:8000/products/${product._id}`, {
+    data.append("petName", e.target.petName.value);
+    data.append("productName", e.target.productName.value);
+    data.append("description", e.target.description.value);
+    data.append("price", e.target.price.value);
+    data.append("brand", e.target.brand.value);
+    data.append("petSize", e.target.petSize.value);
+    data.append("lifeStyle", e.target.lifeStyle.value);
+    data.append("productCategory", e.target.productCategory.value);
+    data.append("material", e.target.material.value);
+    data.append("productCharacter", e.target.productCharacter.value);
+    data.append("sale", e.target.sale.value);
+    data.append("productArrival", e.target.productArrival.value);
+    data.append("productImage", productImage);
+
+    adminDispatch({ type: "clearForm" });
+
+    fetch(` /products/${product._id}`, {
       method: "PATCH",
       headers: { token: localStorage.getItem("token") },
-      body: data
+      body: data,
     })
       .then((res) => res.json())
       .then((result) => {
         if (result.success) {
-          productDispatch({ type: "setProduct", payload: { data: result.data } });
-          
-          
+          productDispatch({
+            type: "setProduct",
+            payload: { data: result.data },
+          });
+
           toast.success(`Product updated!!!`);
           setTimeout(() => navigate("/displayProduct"), 1000);
         } else {
           if (Array.isArray(result.message)) {
             const errMessage = result.message.reduce(
-              (overallError, errItem) => (overallError += ` * ${errItem}  \n `)," ");           
+              (overallError, errItem) => (overallError += ` * ${errItem}  \n `),
+              " "
+            );
             toast.error(`${errMessage}`);
           } else {
             toast.error(result.message.message);
-            
           }
         }
       });
-
-  }
+  };
 
   return (
     <div>
       <div className="flex justify-center items-center flex-wrap flex-col xl:flex-row  lg:border m-auto rounded shadow-black shadow-xs mt-[3rem] md:mt-[1rem]">
         <Toaster />
-        
+
         <p className="  font-bold text-center text-shadow">Update Product</p>
 
-        <form onSubmit={updateProduct } className=" grid md:grid-cols-3 justify-center items-center w-[100%]">
+        <form
+          onSubmit={updateProduct}
+          className=" grid md:grid-cols-3 justify-center items-center w-[100%]"
+        >
           <label className="flex flex-col  justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
             Pet Name :{" "}
             <input
@@ -91,7 +97,7 @@ export default function UpdateProduct() {
               payload: { name: e.target.name, data: e.target.value }
             })
             }*/
-            defaultValue={product.petName} 
+              defaultValue={product.petName}
             />
           </label>
           <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
@@ -106,7 +112,7 @@ export default function UpdateProduct() {
             })
             }
              */
-            defaultValue={product.productName}
+              defaultValue={product.productName}
             />
           </label>
           <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
@@ -120,7 +126,7 @@ export default function UpdateProduct() {
               payload: { name: e.target.name, data: e.target.value }
             })}
             value={adminState.email} */
-            defaultValue={product.description}
+              defaultValue={product.description}
             />
           </label>
           <label className="flex flex-col justify-center item-center text-xs md:text-md  md:items-start m-[.25rem]  ">
@@ -128,14 +134,14 @@ export default function UpdateProduct() {
             <input
               className="border border-slate-200 rounded w-[150px]  md:w-[200px] lg:w-[300px] h-[50px] "
               type="number"
-              step="0.01" 
+              step="0.01"
               name="price"
               /* onChange={(e) => adminDispatch({
               type: "onChange",
               payload: { name: e.target.name, data: e.target.value }
             })}
             value={adminState.password} */
-            defaultValue={product.price}
+              defaultValue={product.price}
             />
           </label>
           <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
@@ -149,7 +155,7 @@ export default function UpdateProduct() {
               payload: { name: e.target.name, data: e.target.value }
             })}
             value={adminState.email} */
-            defaultValue={product.brand}
+              defaultValue={product.brand}
             />
           </label>
           <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
@@ -162,7 +168,7 @@ export default function UpdateProduct() {
               payload: { name: e.target.name, data: e.target.value }
             })}
             value={adminState.email} */
-            defaultValue={product.petSize}
+              defaultValue={product.petSize}
             >
               {" "}
               <option value="all">all</option>
@@ -181,7 +187,7 @@ export default function UpdateProduct() {
               payload: { name: e.target.name, data: e.target.value }
             })}
             value={adminState.email} */
-            defaultValue={product.lifeStyle}
+              defaultValue={product.lifeStyle}
             >
               {" "}
               <option value="all">all</option>
@@ -200,7 +206,7 @@ export default function UpdateProduct() {
               payload: { name: e.target.name, data: e.target.value }
             })}
             value={adminState.email} */
-            defaultValue={product.productCategory}
+              defaultValue={product.productCategory}
             >
               {" "}
               <option value="food">food</option>
@@ -222,7 +228,7 @@ export default function UpdateProduct() {
               payload: { name: e.target.name, data: e.target.value }
             })}
             value={adminState.email} */
-            defaultValue={product.material}
+              defaultValue={product.material}
             >
               {" "}
               <option value="na">-NA-</option>
@@ -256,7 +262,7 @@ export default function UpdateProduct() {
               payload: { name: e.target.name, data: e.target.value }
             })}
             value={adminState.email} */
-            defaultValue={product.sale}
+              defaultValue={product.sale}
             >
               {" "}
               <option value="false">False</option>
@@ -273,7 +279,7 @@ export default function UpdateProduct() {
               payload: { name: e.target.name, data: e.target.value }
             })}
             value={adminState.email} */
-            defaultValue={product.productArrival}
+              defaultValue={product.productArrival}
             >
               {" "}
               <option value="new">New</option>
@@ -283,7 +289,13 @@ export default function UpdateProduct() {
 
           <label className="flex flex-col justify-center item-center text-xs md:text-md md:items-start m-[.25rem]  ">
             Product Image:{" "}
-            {product.productImage && <img src={product.productImage} width="100px" alt="productImage" />}
+            {product.productImage && (
+              <img
+                src={product.productImage}
+                width="100px"
+                alt="productImage"
+              />
+            )}
             <input
               className="border border-slate-200 rounded w-[150px] md:w-[200px] lg:w-[300px] h-[50px] "
               type="file"
@@ -296,14 +308,13 @@ export default function UpdateProduct() {
               /*  })
             }
           } */
-          
             />
-            
           </label>
           <button className="bg-orange-500 justify-center items-center w-[200px] md:w-[300px]  my-3 md:mx-auto md:my-[1rem] md:p-1 rounded shadow-black shadow-md hover:bg-green-600  h-[30px] lg:box-content">
             UpdateProduct
           </button>
         </form>
-      </div></div>
-  )
+      </div>
+    </div>
+  );
 }

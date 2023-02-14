@@ -44,6 +44,13 @@ app.use(express.json());
 
 //routes - custom middleware
 
+//for build and client routes
+app.use(express.static("./views/build"));
+
+app.get('/', (req, res, next) => {
+  res.sendFile("./views/build/index.html",{root:'.'})
+})
+
 //payment
 
 app.post('/secret', async (req, res, next) => {
