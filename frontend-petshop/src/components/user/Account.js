@@ -22,11 +22,9 @@ export default function Account() {
 
   const profileHandler = (e) => {
         user &&
-      (e.target.textContent === "Account"
-        ? navigate("/account")
-        : e.target.textContent === "Profile"
-        ? navigate("/profile")
-        :  navigate("/notification")
+      ( e.target.textContent === "Profile" &&
+         navigate("/profile")
+        
         );
   };
 
