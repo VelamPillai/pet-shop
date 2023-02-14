@@ -55,7 +55,7 @@ export default function PetSideMenuPage() {
             }
         </div>
       </div>
-      <div>Payment methods</div>
+     
     </div>
   );
 }

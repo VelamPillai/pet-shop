@@ -75,7 +75,7 @@ export default function SideMenu() {
       });
       navigate("/petSideMenuPage");
     } else {
-      if (sideMenuProduct) {
+      /* if (sideMenuProduct) {
         productDispatch({
           type: "setProduct",
           payload: { data: originalProduct },
@@ -85,7 +85,7 @@ export default function SideMenu() {
         } else {
           navigate("/petMainPage");
         }
-      } else {
+      } else { */
         productDispatch({
           type: "setSideMenuProduct",
           payload: {
@@ -95,7 +95,7 @@ export default function SideMenu() {
           },
         });
         navigate("/petSideMenuPage");
-      }
+      //}
     }
   };
   console.log(menuName, subMenuName);

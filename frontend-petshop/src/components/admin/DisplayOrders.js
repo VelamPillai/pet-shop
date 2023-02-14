@@ -19,34 +19,8 @@ export default function DisplayOrders() {
     
     const { order } = productState;
 
-    //get all orders
-    useEffect( () => {
-        fetch("http://localhost:8000/orders/userOrders", {
-            method: "GET",
-      
-          })
-            .then((res) => res.json())
-            .then((result) => {
-                if (result.success) {
-                    
-                productDispatch({
-      
-                  type: "resetOrder",
-                  payload: { data: result.data },
-                });
-                
-              } else {
-                console.log("error");
-              }
-            });
-          
-        
-    },[])
     
-   /*  //adProductHandler
-    const dispalyOrderHandler =()=>{
-      navigate("/addProduct")
-    } */
+   
 
     //delete handler
     const deleteHandler = (id) => {
