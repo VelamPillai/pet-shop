@@ -57,11 +57,11 @@ const Navbar = () => {
   
   
   return (
-    <div className=" md:sticky w-[100vw] md:h-[50px] flex  justify-center items-center font-bold  md:text-xs text-orange-500  shadow-lg shadow-gray-500 ">
+    <div className=" md:sticky w-[100%] md:w-[100vw] md:shadow-lg  md:h-[50px] flex  justify-center items-center font-bold  md:text-xs text-orange-500   ">
       
       {/* menu */}
 
-      <ul className="hidden md:flex  md:justify-between md:items-center md:p-2 ">
+      <ul className="hidden md:flex  md:justify-between md:items-center md:p-2  ">
         {user.role==='admin' &&  <li >
           <NavLink to="/admin" onClick={handleMenuClick} className=" md:leading-7     lg:p-[2rem] md:p-[1rem]  md:hover:underline " >
             Admin

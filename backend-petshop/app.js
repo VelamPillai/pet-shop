@@ -4,6 +4,10 @@ import dotenv from 'dotenv';
 import morgan from 'morgan';
 import upload from 'express-fileupload';
 import cors from 'cors';
+import stripePackage from 'stripe';
+
+//payment
+const stripe =stripePackage(process.env.SECRET_KEY)
 
 //import path: __dirname
 import path from 'path';
@@ -39,6 +43,23 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 //routes - custom middleware
+
+//payment
+
+app.post('/secret', async (req, res, next) => {
+  
+  const payment = await stripe.paymentIntents.create({
+    amount: req.body.amount,
+    currency: 'eur',
+    automatic_payment_methods: {
+      enabled:true
+    }
+    
+  })
+  console.log(payment)
+  res.send({clientSecret:payment.client_secret})
+})
+
 
 //GET ,POST,PATCH,DELETE - req '/user'endpoint and its controller
 

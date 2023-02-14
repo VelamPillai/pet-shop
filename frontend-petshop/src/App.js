@@ -37,6 +37,7 @@ import UpdateOrder from "./components/admin/UpdateOrder";
 
 import SearchedProduct from "./components/header/SearchedProduct";
 
+import ConfirmPayment from "./components/payment/ConfirmPayment";
 
 function App() {
   return (
@@ -125,7 +126,9 @@ function App() {
           <Route index={false} path="petSubMenuPage" element={<PetSubMenuPage />} />
           <Route index={false} path="petSideMenuPage" element={<PetSideMenuPage />} />
           <Route index={false} path="brand" element={<Brand />} />
-          <Route index={false} path="product" element={<Product/>} /> 
+          <Route index={false} path="product" element={<Product />} /> 
+          
+          <Route index={false} path="confirmPayment" element={<ConfirmPayment/>} /> 
 
          <Route path="*" element={<Navigate to="/" replace />} 
     />
