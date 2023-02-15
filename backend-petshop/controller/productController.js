@@ -16,7 +16,7 @@ const getAllProduct = async (req, res, next) => {
 const getSingleProduct = async (req, res, next) => {
   try {
     const id = req.params.id;
-    console.log(id);
+    //console.log(id);
     const product = await productCollection.findById(id);
     //console.log(product);
     res.status(200).json({ success: true, data: product });

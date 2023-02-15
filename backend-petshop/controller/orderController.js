@@ -6,7 +6,7 @@ dotenv.config();
 
 //POST : add a new order to the database 
 const addOrder = async (req, res, next) => {
-    console.log('add order',req.body)
+    //console.log('add order',req.body)
     try {
         
         const order = new orderCollection(req.body);
@@ -43,9 +43,10 @@ const getAllOrder = async (req, res, next) => {
 
 const getSingleOrder = async(req, res, next) => {
     try {
+       // console.log('orderid',req.params.id)
         const id = req.params.id;
         const singleOrder = await orderCollection.findById(id).populate('items').populate('userId');
-        console.log(singleOrder)
+        //console.log(singleOrder)
         res.status(200).json({success:true,data:singleOrder})
 
         
@@ -57,7 +58,7 @@ const getSingleOrder = async(req, res, next) => {
 
 //PATCH - update order
 const updateOrder = async (req, res, next) => {
-    console.log('update',req.params.id)
+    //console.log('update',req.params.id)
     try {
         const id = req.params.id;
              

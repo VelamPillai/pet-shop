@@ -120,12 +120,12 @@ const updateUser = async (req, res, next) => {
 
     // console.log(req.body.favoriteProduct.split(',').length)
     //orderIds
-    console.log("order", req.body.ordersId);
-    console.log("user", user.ordersId);
+   /*  console.log("order", req.body.ordersId);
+    console.log("user", user.ordersId); */
     if (req.body.ordersId) {
       user.ordersId.push(req.body.ordersId);
     }
-    console.log("user", user.ordersId);
+   // console.log("user", user.ordersId);
 
     //password
     if (req.body.password != user.password) {
