@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from "react-hot-toast";
 import { CgProfile } from "react-icons/cg";
 
+
+import { MdOutlineProductionQuantityLimits } from "react-icons/md";
+
 import UserOrderCard from './UserOrderCard';
 import { StoreContext } from "../../context/StoreContext";
 
@@ -106,8 +109,8 @@ export default function Orders() {
           <div className='flex  items-center  md:p-5 flex-col md:w-[75%]'>
             <ul>
               {
-                user && userOrder.length ? userOrder.map((item, idx) => { return( <li key={idx} onClick={()=>displaySingleOrder(item)}>
-                    <p className='m-5 cursor-pointer' > {idx+1} . {item}</p>  
+                user && userOrder.length ? userOrder.map((item, idx) => { return( <li key={idx} onClick={()=>displaySingleOrder(item)} className='hover:text-xl  hover:text-green-200'>
+                    <p className='m-5 cursor-pointer flex gap-3 justify-center items-center ' > <MdOutlineProductionQuantityLimits  className='font-bold text-lg text-green-200 '/> {item}</p>  
                   
                   </li>)
                  

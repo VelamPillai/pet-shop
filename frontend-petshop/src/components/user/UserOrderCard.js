@@ -17,7 +17,7 @@ export default function UserOrderCard() {
     return (
         <>
             
-            <div className='mt-2 flex justify-around'><p>Order No:{singleOrder._id}</p>
+            <div className='mt-2 flex justify-around'><p><span className='text-orange-500 font-bold mr-5'>Order No:</span>{singleOrder._id}</p>
             <GiCancel className="text-white bg-red-500 border-red-500 p-1 rounded-full  text-3xl cursor-pointer" onClick={ cancelHandler} /></div>
             <div className='mt-1 flex justify-center item-center cursor-pointer '>
                 <div className='w-[400px] bg-orange-200/50 p-2 rounded-xl'>
