@@ -5,7 +5,7 @@ import {BsHeart,BsHeartFill } from "react-icons/bs";
 import { StoreContext } from "../../context/StoreContext";
 import FavoriteModal from "../modal/FavoriteModal";
 import CartModal from "../modal/CartModal.js";
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 export default function HeaderMenu() {
   

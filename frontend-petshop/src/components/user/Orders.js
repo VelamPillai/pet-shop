@@ -1,21 +1,21 @@
 import React, { useContext }  from 'react'
 import { useNavigate } from 'react-router-dom';
-import toast, { Toaster } from "react-hot-toast";
-import { CgProfile } from "react-icons/cg";
+import toast from "react-hot-toast";
+
 
 
 import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 
-import UserOrderCard from './UserOrderCard';
+
 import { StoreContext } from "../../context/StoreContext";
 
 export default function Orders() {
-  const { homepageState, homepageDispatch, productState, productDispatch } = useContext(StoreContext);
+  const { homepageState, productState, productDispatch } = useContext(StoreContext);
   
   const navigate = useNavigate();
 
   const { user } = homepageState;
-  const { order, singleOrder  } = productState;
+  const { order } = productState;
 
   //admin Order
   //console.log('admin order', order)
@@ -34,25 +34,6 @@ export default function Orders() {
     
   }
 
-  //delete handler
-  const deleteHandler = (id) => {
-    fetch(`http://localhost:8000/users/${id}`, {
-      method: "DELETE",
-      headers: { token: localStorage.getItem("token") }      
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        if (result.success) {
-          toast.success('Account has Deleted');
-          setTimeout(() => {
-            localStorage.removeItem('token');
-            homepageDispatch({ type: 'setUser', payload: { data: '' } })
-            navigate('/')
-          },2000)
-          
-        }
-      })
-  }
 
   //displaySingleOrder
   const displaySingleOrder = (orderId) => {

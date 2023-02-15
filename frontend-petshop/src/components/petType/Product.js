@@ -2,7 +2,7 @@ import React, { useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import { RiArrowGoBackFill } from "react-icons/ri";
 
-import { GiCancel } from "react-icons/gi";
+
 import { StoreContext } from "../../context/StoreContext.js";
 
 
@@ -12,7 +12,7 @@ export default function Product() {
   const { productState ,productDispatch ,homepageState} = useContext(StoreContext);
 
   const { user } = homepageState;
-  const { singleProduct,cart,menuName ,subMenuName} = productState;
+  const { singleProduct,cart,menuName } = productState;
 
   
 
@@ -31,13 +31,14 @@ export default function Product() {
 
   const cancelHandler = (e) => {
     e.preventDefault();
+    
     user.role === 'user' && menuName !== 'brand' ? navigate('/petMainPage') : navigate('/brand')
     
   }
   
   return (
     <div>
-      {user.role==='user' &&   <RiArrowGoBackFill  className="text-white bg-red-500 border-red-500 p-1 rounded-full  text-center text-3xl" onClick={ cancelHandler} />}
+      {!(user.role==='admin') &&   <RiArrowGoBackFill  className="text-white bg-red-500 border-red-500 p-1 rounded-full  text-center text-3xl" onClick={ cancelHandler} />}
      
       
      
