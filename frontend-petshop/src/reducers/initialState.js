@@ -30,7 +30,9 @@ const initialState = {
   cart: [],
   order: [],
   totalPrice :0,
-  showHideCartBtn: false
+  showHideCartBtn: false,
+
+  singleOrder:''
   
   
 };

@@ -32,12 +32,12 @@ export default function Container(props) {
   const navigate = useNavigate();
 
   const { user } = homepageState;
-  const { product ,cart} = productState;
+  const { product ,cart ,order} = productState;
   
  
   useEffect(() => {
 
-   
+   //product
 
     fetch("http://localhost:8000/products", {
       method: "GET",
@@ -56,6 +56,26 @@ export default function Container(props) {
         }
       });
     //console.log(product)
+
+    //order
+    fetch("http://localhost:8000/orders/userOrders", {
+            method: "GET",
+      
+          })
+            .then((res) => res.json())
+            .then((result) => {
+                if (result.success) {
+                    
+                productDispatch({
+      
+                  type: "resetOrder",
+                  payload: { data: result.data },
+                });
+                
+              } else {
+                console.log("error");
+              }
+            });
     
     //cart items from localStorage  while refreshing browser
     var localStorageCart = JSON.parse(localStorage.getItem("localCart") || "[]");
@@ -73,7 +93,7 @@ export default function Container(props) {
         .reduce((acc, item) => (acc += item.price * item.quantity), 0)
         .toFixed(2) },
     });
-    
+   
     //user authentication after refreshing the browser
     const token = localStorage.getItem("token");
 
@@ -89,6 +109,12 @@ export default function Container(props) {
               type: 'setUser',
               payload: { data: result.data },
             });
+             //favorite product
+    
+      productDispatch({
+        type: "setFavoriteProduct",
+        payload: { data: [...result.data.favoriteProduct] },
+      });
 
             //console.log(user);
             

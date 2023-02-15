@@ -2,13 +2,16 @@
 import { Routes, Route , Navigate } from "react-router-dom";
 
 import './App.css';
-import Account from './components/user/Account.js';
-import Notification from './components/user/Notification.js';
+
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
 import Login from './components/user/Login.js';
 import Signup from './components/user/Signup.js';
+import Account from './components/user/Account.js';
 import Profile from './components/user/Profile.js';
+import Orders from './components/user/Orders.js';
+import UserOrderCard from "./components/user/UserOrderCard";
+
 import LegalNotice from './components/footer/products/LegalNotice';
 import AboutUs from './components/footer/products/AboutUs';
 import PriceDrop from './components/footer/products/PriceDrop';
@@ -58,20 +61,14 @@ function App() {
           <Route index={false} path="login" element={<Login />} />
           <Route index={false} path="signup" element={<Signup />} />
           <Route index={false} path="profile" element={<Profile />} />
+          <Route index={false} path="orders" element={<Orders />} />
+          <Route index={false} path="userOrderCard" element={<UserOrderCard />} />
           <Route
             index={false}
             path="products/legal-notice"
             element={<LegalNotice />}
           />
 
-        
-        <Route index={false} path="login" element={<Login />} />
-        <Route index={false} path="signup" element={<Signup />} />
-
-
-        <Route index={false} path="profile" element={<Profile />} />
-
-     
         <Route
           index={false}
           path="products/legal-notice"
@@ -108,9 +105,9 @@ function App() {
         <Route index={false} path="company/contact" element={<Contact />} />
         <Route index={false} path="company/sitemap" element={<Sitemap />} />
         <Route index={false} path="company/stores" element={<Stores />} />
-        <Route index={false} path="profile" element={<Profile />} /> 
+       
         <Route index={false} path="account" element={<Account />} />
-          <Route index={false} path="notification" element={<Notification />} />
+         
           
           <Route index={false} path="admin" element={<Admin />} />
           <Route index={false} path="addProduct" element={<AddProduct />} />
