@@ -1,7 +1,9 @@
-import React, { useEffect, useContext } from 'react'
+import React, {  useContext } from 'react'
 import {useNavigate} from 'react-router-dom'
 import { GiCancel } from "react-icons/gi";
 import { StoreContext } from "../../context/StoreContext";
+
+
 export default function UserOrderCard() {
 
     const navigate = useNavigate();
@@ -12,7 +14,8 @@ export default function UserOrderCard() {
     const cancelHandler = (e) => {
         e.preventDefault();
         navigate('/orders')
-      }
+    }
+   
    
     return (
         <>
@@ -28,7 +31,7 @@ export default function UserOrderCard() {
                     <p><span className='text-orange-500 font-bold mr-5'>Products:</span></p>
                     <ul className='flex flex-col md:flex-row '>
                     {singleOrder.items.map((item, idx) => {
-                      return (<li key={idx} className='ml-2 border-black border-2 flex justify-center items-center p-1'>
+                      return (<li key={idx} className='ml-2 border-black border-2 flex justify-center items-center p-1 flex-col' >
                         <p>{item.productName}</p>
                         <img src={item.productImage} className='w-[50px] h-[50px]' alt='productPic'/>
       

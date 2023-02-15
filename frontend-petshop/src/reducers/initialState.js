@@ -32,7 +32,8 @@ const initialState = {
   totalPrice :0,
   showHideCartBtn: false,
 
-  singleOrder:''
+  singleOrder: '',
+  
   
   
 };

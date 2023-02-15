@@ -2,6 +2,7 @@ import React, { useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import { RiArrowGoBackFill } from "react-icons/ri";
 
+import { GiCancel } from "react-icons/gi";
 import { StoreContext } from "../../context/StoreContext.js";
 
 
@@ -30,13 +31,15 @@ export default function Product() {
 
   const cancelHandler = (e) => {
     e.preventDefault();
-    menuName!=='brand' ? navigate('/petMainPage') :navigate('/brand')
-
+    user.role === 'user' && menuName !== 'brand' ? navigate('/petMainPage') : navigate('/brand')
     
   }
+  
   return (
     <div>
-      <RiArrowGoBackFill  className="text-white bg-red-500 border-red-500 p-1 rounded-full  text-center text-3xl" onClick={ cancelHandler} />
+      {user.role==='user' &&   <RiArrowGoBackFill  className="text-white bg-red-500 border-red-500 p-1 rounded-full  text-center text-3xl" onClick={ cancelHandler} />}
+     
+      
      
       {singleProduct && (
         <div className="flex flex-col md:flex-row w-full mt-[4rem]">
