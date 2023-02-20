@@ -45,8 +45,8 @@ export default function PetMenu() {
   
 
   return (
-    <div>
-    <div className= "hidden md:flex flex-wrap justify-around items-center">
+    <div className='mt-[1rem]'>
+    <div className= "hidden md:flex flex-wrap m-[1rem] justify-around items-center">
       {(menuName === "dog" || menuName === "cat" || menuName === "sale %") &&
         <ul className="flex flex-row  flex-wrap justify-around  ">
         {

@@ -25,7 +25,7 @@ export default function Brand() {
     }
     
   return (
-      <div className="flex flex-col mt-[3rem] md:m-1">
+      <div className="flex flex-col mt-[3rem] ">
           <p className="flex justify-center items-center text-xl font-bold">
         {menuName.toUpperCase()}
           </p>

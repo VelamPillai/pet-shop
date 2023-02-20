@@ -20,7 +20,7 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.4",
     "path": "^0.12.7",
-    "stripe": "^11.9.1"
+    "stripe": "^11.10.0"
   },
   "devDependencies": {
     "morgan": "^1.10.0",

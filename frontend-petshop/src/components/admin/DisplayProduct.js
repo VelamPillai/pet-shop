@@ -67,7 +67,7 @@ export default function DisplayProduct() {
 
               </div>
           <div>
-              <ul className="grid grid-cols-1 md:grid-cols-4">
+              <ul className="flex flex-col sm:flex-row    justify-center  items-center flex-wrap">
                   
               {product && 
                       product.map((item, idx) => {

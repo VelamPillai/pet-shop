@@ -48,7 +48,7 @@ useEffect(()=>{
   
  
   return (
-    <div className="flex flex-col mt-[3rem] md:m-[1rem]  ">
+    <div className="flex flex-col mt-[3rem]   ">
       <p className="flex justify-center items-center text-md font-bold " >
         {menuName.toUpperCase()}
       </p>
