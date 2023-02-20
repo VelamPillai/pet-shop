@@ -112,7 +112,7 @@ useEffect(()=>{
           <div className="flex justify-start items-center m-2 relative">
       <p
           /* className=" p-2 m-2 ring-2 ring-orange-500 rounded bg-orange-200/25 hover:ring-green-500 hover:bg-green-100/25" */
-          className=" flex justify-center items-center border w-[350px] 2xl:w-[300px] h-[400px] md:h-[400px] bg-orange-400/50 box-border rounded-lg p-4 m-1 text-[4rem] text-green-800"
+          className=" flex justify-center items-center border w-[300px] sm-[300px] 2xl:w-[300px] h-[300px] md:h-[300px] bg-orange-400/50 box-border rounded-lg p-4 m-1 text-[4rem] text-green-800"
           onClick={handleBtnClick}
         >
           {viewBtn ? <BsFillEyeSlashFill className="text-red-600"/> : <BsFillEyeFill />}
