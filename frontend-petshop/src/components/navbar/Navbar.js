@@ -1,18 +1,18 @@
 
 import React, { useState,useContext } from 'react';
-import {  useNavigate, NavLink } from "react-router-dom";
+import {   NavLink } from "react-router-dom";
 import { BsHeart, BsHeartFill } from "react-icons/bs";
-import FavoriteModal from "../modal/FavoriteModal.js";
-import CartModal from "../modal/CartModal.js";
-import toast, { Toaster } from 'react-hot-toast';
 
-import { FaAngleDoubleDown, FaAngleDoubleUp, FaCartPlus ,FaHeart} from "react-icons/fa";
+
+import toast from 'react-hot-toast';
+
+import { FaAngleDoubleDown, FaAngleDoubleUp, FaCartPlus } from "react-icons/fa";
 
 import { StoreContext } from '../../context/StoreContext.js';
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
-  const navigate = useNavigate();
+  
 
   //to show and hide the mobile menu after selection of menu item
   const handleNavClick = (e) =>  {

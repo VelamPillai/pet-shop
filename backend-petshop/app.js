@@ -42,6 +42,8 @@ app.use(morgan('dev'));
 //parse json middleware
 app.use(express.json());
 
+app.use(express.static("./views/build"));
+
 //routes - custom middleware
 
 //payment
@@ -60,6 +62,9 @@ app.post('/secret', async (req, res, next) => {
   res.send({clientSecret:payment.client_secret})
 })
 
+app.get('/', (req, res, next) => {
+  res.sendFile("./views/build/index.html", { root: '.' });
+})
 
 //GET ,POST,PATCH,DELETE - req '/user'endpoint and its controller
 

@@ -1,15 +1,13 @@
-
 import { useEffect, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 
-
-import { StoreContext } from '../context/StoreContext.js';
-import { homepageReducer } from '../reducers/homepageReducer.js';
-import { productReducer } from '../reducers/productReducer.js';
-import { loginReducer } from '../reducers/loginReducer.js';
-import { signupReducer } from '../reducers/signupReducer.js';
+import { StoreContext } from "../context/StoreContext.js";
+import { homepageReducer } from "../reducers/homepageReducer.js";
+import { productReducer } from "../reducers/productReducer.js";
+import { loginReducer } from "../reducers/loginReducer.js";
+import { signupReducer } from "../reducers/signupReducer.js";
 import { adminReducer } from "../reducers/adminReducer.js";
-import initialState from '../reducers/initialState.js';
+import initialState from "../reducers/initialState.js";
 import adminInitialState from "../reducers/adminInitialState.js";
 
 export default function Container(props) {
@@ -28,26 +26,25 @@ export default function Container(props) {
     initialState
   );
   //adminReducer
-  const [adminState, adminDispatch] = useReducer(adminReducer, adminInitialState);
+  const [adminState, adminDispatch] = useReducer(
+    adminReducer,
+    adminInitialState
+  );
   const navigate = useNavigate();
 
   const { user } = homepageState;
-  const { product ,cart} = productState;
-  
- 
+  const { product, cart, order } = productState;
+
   useEffect(() => {
+    //product
 
-   
-
-    fetch("http://localhost:8000/products", {
+    fetch(" /products", {
       method: "GET",
-
     })
       .then((res) => res.json())
       .then((result) => {
         if (result.success) {
           productDispatch({
-
             type: "setProduct",
             payload: { data: result.data },
           });
@@ -56,44 +53,68 @@ export default function Container(props) {
         }
       });
     //console.log(product)
-    
+
+    //order
+    fetch(" /orders/userOrders", {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        if (result.success) {
+          productDispatch({
+            type: "resetOrder",
+            payload: { data: result.data },
+          });
+        } else {
+          console.log("error");
+        }
+      });
+
     //cart items from localStorage  while refreshing browser
-    var localStorageCart = JSON.parse(localStorage.getItem("localCart") || "[]");
+    var localStorageCart = JSON.parse(
+      localStorage.getItem("localCart") || "[]"
+    );
     /* console.log(localStorageCart) */
     productDispatch({
-
       type: "setLocalStorageCart",
-      payload: { data: [...localStorageCart]},
+      payload: { data: [...localStorageCart] },
     });
-    
+
     //set totalPrice
     productDispatch({
       type: "setTotalPrice",
-      payload: { data: localStorageCart
-        .reduce((acc, item) => (acc += item.price * item.quantity), 0)
-        .toFixed(2) },
+      payload: {
+        data: localStorageCart
+          .reduce((acc, item) => (acc += item.price * item.quantity), 0)
+          .toFixed(2),
+      },
     });
-    
+
     //user authentication after refreshing the browser
     const token = localStorage.getItem("token");
 
     if (token) {
-      fetch('http://localhost:8000/users/verifyusertoken', {
-        method: 'GET',
+      fetch(" /users/verifyusertoken", {
+        method: "GET",
         headers: { token: token },
       })
         .then((res) => res.json())
         .then((result) => {
           if (result.success) {
             homepageDispatch({
-              type: 'setUser',
+              type: "setUser",
               payload: { data: result.data },
+            });
+            //favorite product
+
+            productDispatch({
+              type: "setFavoriteProduct",
+              payload: { data: [...result.data.favoriteProduct] },
             });
 
             //console.log(user);
-            
           } else {
-             navigate('/login') 
+            navigate("/login");
           }
         });
     } /* else {
@@ -113,7 +134,8 @@ export default function Container(props) {
         productState,
         productDispatch,
         initialState,
-        adminState, adminDispatch
+        adminState,
+        adminDispatch,
       }}
     >
       {props.children}

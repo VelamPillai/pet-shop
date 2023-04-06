@@ -262,6 +262,15 @@ export const productReducer = (state, action) => {
         
       };
     }
+    case "setSingleOrder": {
+      
+      return {
+        ...state,
+        singleOrder:payload.data
+        
+      };
+    }
+   
     default: {
       return state;
     }
