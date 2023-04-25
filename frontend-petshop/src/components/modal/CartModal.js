@@ -27,7 +27,7 @@ export default function CartModal() {
     }, 0);
     productDispatch({
       type: "setTotalPrice",
-      payload: { data: sum.toFixed(2)},
+      payload: { data: sum.toFixed(2) },
     });
   }, [cart]);
 
@@ -44,8 +44,6 @@ export default function CartModal() {
       type: "resetCart",
       payload: { data: [...cart].filter((item) => item._id !== id) },
     });
-
-    
   };
 
   //increase
@@ -53,7 +51,7 @@ export default function CartModal() {
     console.log(id);
     const foundItem = cart.find((item) => item._id === id);
     foundItem.quantity++;
-       productDispatch({
+    productDispatch({
       type: "resetCart",
       payload: { data: [...cart] },
     });
@@ -68,30 +66,25 @@ export default function CartModal() {
         type: "resetCart",
         payload: { data: [...cart].filter((item) => item._id !== id) },
       });
-     
     } else {
       foundItem.quantity--;
       productDispatch({
         type: "resetCart",
         payload: { data: [...cart] },
       });
-     
     }
   };
 
   //checkout handler
   const checkoutHandler = async (e) => {
     e.stopPropagation();
-    
+
     if (!user) {
       productDispatch({ type: "setShowHideCartBtn" });
       navigate("/login");
-
-    }
-    
-    else {
+    } else {
       if (user.address) {
-        fetch("http://localhost:8000/orders/addOrder", {
+        fetch(" /orders/addOrder", {
           method: "POST",
           headers: {
             token: localStorage.getItem("token"),
@@ -120,16 +113,16 @@ export default function CartModal() {
               data.append("ordersId", result.data._id);
               // for (let key of data.keys())
               // {
-  
+
               // console.log(key)
               //  }
               // for (let key of data.values())
               //  {
-  
+
               //  console.log(key)
               //   }
-  
-              fetch(`http://localhost:8000/users/${user._id}`, {
+
+              fetch(` /users/${user._id}`, {
                 method: "PATCH",
                 headers: { token: localStorage.getItem("token") },
                 body: data,
@@ -145,7 +138,7 @@ export default function CartModal() {
                     toast.error(result.message.message);
                   }
                 });
-  
+
               productDispatch({
                 type: "resetCart",
                 payload: { data: [] },
@@ -154,35 +147,27 @@ export default function CartModal() {
                 type: "setTotalPrice",
                 payload: { data: 0 },
               });
-              
             } else {
               console.log(result.message);
             }
           });
-          setCheckout(true);
-  
-          const response = await fetch("http://localhost:8000/secret", {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify({ amount: parseInt(totalPrice) * 100 }),
-          });
-          const result = await response.json();
-          console.log(result.clientSecret);
-          if (result.clientSecret) {
-            setClientSecret(result.clientSecret);
-          }
-      } 
-      else {
+        setCheckout(true);
+
+        const response = await fetch(" /secret", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ amount: parseInt(totalPrice) * 100 }),
+        });
+        const result = await response.json();
+        console.log(result.clientSecret);
+        if (result.clientSecret) {
+          setClientSecret(result.clientSecret);
+        }
+      } else {
         productDispatch({ type: "setShowHideCartBtn" });
-      navigate("/account");
-          
+        navigate("/account");
       }
-    
-    }//else
-
-      
-
-    
+    } //else
   };
 
   return (

@@ -60,6 +60,11 @@ app.post('/secret', async (req, res, next) => {
   res.send({clientSecret:payment.client_secret})
 })
 
+app.use(express.static("./view/build"));
+
+app.get('/',(req,res,next)=>{
+  res.sendFile("./views/build/index.html",{root:"."});
+})
 
 //GET ,POST,PATCH,DELETE - req '/user'endpoint and its controller
 
