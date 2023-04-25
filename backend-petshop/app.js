@@ -60,7 +60,7 @@ app.post('/secret', async (req, res, next) => {
   res.send({clientSecret:payment.client_secret})
 })
 
-app.use(express.static("./view/build"));
+app.use(express.static("./views/build"));
 
 app.get('/',(req,res,next)=>{
   res.sendFile("./views/build/index.html",{root:"."});
