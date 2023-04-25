@@ -12,7 +12,7 @@ export default function Product() {
   const { productState ,productDispatch ,homepageState} = useContext(StoreContext);
 
   const { user } = homepageState;
-  const { singleProduct,cart,menuName } = productState;
+  const { singleProduct,cart,menuName,product } = productState;
 
   
 
@@ -29,18 +29,11 @@ export default function Product() {
    
   };
 
-  const cancelHandler = (e) => {
-    e.preventDefault();
-    
-    user.role === 'user' && menuName !== 'brand' ? navigate('/petMainPage') : navigate('/brand')
-    
-  }
+ 
   
   return (
     <div>
-      {!(user.role==='admin') &&   <RiArrowGoBackFill  className="text-white bg-red-500 border-red-500 p-1 rounded-full  text-center text-3xl" onClick={ cancelHandler} />}
-     
-      
+           
      
       {singleProduct && (
         <div className="flex flex-col md:flex-row w-full mt-[4rem]">

@@ -18,7 +18,6 @@ export default function PetMainPage() {
   
 
   const { productState,productDispatch} = useContext(StoreContext);
-
   const { product, menuName} = productState;
 
   //to display less product while the first load of the page
