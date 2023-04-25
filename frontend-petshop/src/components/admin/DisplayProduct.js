@@ -6,58 +6,50 @@ import toast, { Toaster } from "react-hot-toast";
 
 import { StoreContext } from "../../context/StoreContext.js";
 
-
 import { AiFillDelete } from "react-icons/ai";
 
 import { MdUpdate } from "react-icons/md";
 
-
 export default function DisplayProduct() {
-    const navigate = useNavigate();
-    const { productState, productDispatch, adminDispatch} = useContext(StoreContext);
-    
-    const { product } = productState;
-    
-    //adProductHandler
-    const addProductHandler =()=>{
-      navigate("/addProduct")
-    }
+  const navigate = useNavigate();
+  const { productState, productDispatch, adminDispatch } =
+    useContext(StoreContext);
 
-    //delete handler
-    const deleteHandler = (id) => {
-        
-      
-    fetch(`http://localhost:8000/products/${id}`, {
+  const { product } = productState;
+
+  //adProductHandler
+  const addProductHandler = () => {
+    navigate("/addProduct");
+  };
+
+  //delete handler
+  const deleteHandler = (id) => {
+    fetch(` /products/${id}`, {
       method: "DELETE",
-      headers: { token: localStorage.getItem("token") }      
+      headers: { token: localStorage.getItem("token") },
     })
       .then((res) => res.json())
       .then((result) => {
-          if (result.success) {
-            
-             toast.success('Product has Deleted');
-            productDispatch({
-                type: "setProduct",
-                payload: { data: result.data },
-              });           
-        }
-        else {            
-           toast.error(result.message.message)
-          }
-      }) 
-       
-
-    }
-    
-     //update handler
-    const updateHandler = (product) => {
-        
-         adminDispatch({
+        if (result.success) {
+          toast.success("Product has Deleted");
+          productDispatch({
             type: "setProduct",
-            payload: { data:product },
-          });  
-        navigate('/updateProduct') 
-    }
+            payload: { data: result.data },
+          });
+        } else {
+          toast.error(result.message.message);
+        }
+      });
+  };
+
+  //update handler
+  const updateHandler = (product) => {
+    adminDispatch({
+      type: "setProduct",
+      payload: { data: product },
+    });
+    navigate("/updateProduct");
+  };
   return (
       <div className="flex flex-col items-center mt-[3rem] md:mt-[2rem]">
           <Toaster />
@@ -90,5 +82,6 @@ export default function DisplayProduct() {
               
           </div>
       </div>
-  )
+    </div>
+  );
 }
