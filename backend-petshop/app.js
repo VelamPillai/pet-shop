@@ -31,7 +31,7 @@ const app = express();
 mongoose.set('strictQuery', true);
 
 //cors config
-app.use(cors({ origin: 'http://localhost:3000', exposedHeaders: ['token'] }));
+app.use(cors({ origin: 'http://localhost:3001', exposedHeaders: ['token'] }));
 
 //middleware for get file-data request(from express-fileupload)
 app.use(upload());

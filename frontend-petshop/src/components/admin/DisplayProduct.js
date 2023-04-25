@@ -17,10 +17,12 @@ export default function DisplayProduct() {
 
   const { product } = productState;
 
+
   //adProductHandler
   const addProductHandler = () => {
     navigate("/addProduct");
   };
+
 
   //delete handler
   const deleteHandler = (id) => {
@@ -73,32 +75,7 @@ export default function DisplayProduct() {
                     <ProductCard product={{ ...item }} />
                   </div>
 
-<<<<<<< HEAD
-              </div>
-          <div>
-              <ul className="flex flex-col sm:flex-row    justify-center  items-center flex-wrap">
-                  
-              {product && 
-                      product.map((item, idx) => {
-                          return (
-                            <li key={idx} className="flex flex-row justify-center items-center relative ">
-                              <div className="relative z-0"><ProductCard product={{ ...item }}  /></div>
-                                  
-                              <div className="flex flex-col">
-                                <button onClick={() => updateHandler(item)} className=" text-lg text-green-600 font-bold justify-center items-center  m-3 p-2 rounded shadow-black shadow-md bg-green-400/50 hover:bg-green-200   lg:box-content absolute top-0 right-5 z-40"><MdUpdate /></button>
-                                      <button onClick={ () => deleteHandler(item._id)} className="text-lg text-red-600 font-bold justify-center items-center  m-3 p-2 rounded shadow-black shadow-md bg-red-100 hover:bg-red-200   lg:box-content absolute top-10 right-5 z-40"><AiFillDelete /></button></div>
-                                  
-                              </li>
-                      )
-                  
-              })
-                  }
-                  
-              </ul>
-              
-              
-          </div>
-=======
+
                   <div className="flex flex-col">
                     <button
                       onClick={() => updateHandler(item)}
@@ -117,7 +94,6 @@ export default function DisplayProduct() {
               );
             })}
         </ul>
->>>>>>> 15d2af099c47a0e2b5584d0142fcf9eeafa3912b
       </div>
     </div>
   );

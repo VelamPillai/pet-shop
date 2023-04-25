@@ -19,7 +19,6 @@ export default function SideMenuSort() {
     sideMenuProduct.sort((a, b) => Number(b.price) - Number(a.price)) 
     e.currentTarget.value === 'Price(low-high)' &&
     sideMenuProduct.sort((a, b) => Number(a.price) - Number(b.price)) 
-    //console.log(originalSideMenuProduct)
     e.currentTarget.value==='Recommended' && productDispatch({ type: "setSideMenuProduct", payload: { data:[...originalSideMenuProduct] } });
     setHideOption((hideOption) => !hideOption);
   };

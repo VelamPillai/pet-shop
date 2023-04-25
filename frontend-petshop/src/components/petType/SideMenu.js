@@ -60,7 +60,6 @@ export default function SideMenu() {
 
   const handleBtnClick = (value) => {
     //e.stopPropagate();
-    console.log('brandbtn',btn)
      value === "brand" &&  setBtn((btn) => !btn);
     value === "lifeStyle" && setBtn(true)
   };
@@ -68,7 +67,6 @@ export default function SideMenu() {
   //handleSideMenuClick
   const handleSideMenuClick = (e) => {
     if (e.target.checked) {
-      console.log(e.target.checked);
       productDispatch({
         type: "setSideMenuProduct",
         payload: { data: e.target.value, checked: true, name: e.target.name },
@@ -98,7 +96,6 @@ export default function SideMenu() {
       //}
     }
   };
-  console.log(menuName, subMenuName);
 
   return (
     <div className="border-2 m-1 p-5 rounded-lg bg-orange-100 ">
